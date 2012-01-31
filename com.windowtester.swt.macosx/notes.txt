@@ -1,0 +1,9 @@
+BasicRecorderSmokeTests may need to close the Welcome page.
+
+Look at those tests to see if record/codegen/playback has
+any hope of running.
+
+It puts junit in test mode, runs a script, collects the
+events, generates a script from the events, and compares
+it to the expected script. There will be platform dependencies
+to deal with.

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WindowTester JUnit4 Support Plug-in
+Bundle-SymbolicName: com.windowtester.runtime.junit4
+Bundle-Version: 0.0.0.qualifier
+Bundle-Vendor: Google
+Require-Bundle: com.windowtester.runtime,
+ org.junit4
+Export-Package: com.windowtester.runtime.internal.junit4.mirror.runners,
+ com.windowtester.runtime.junit4,
+ com.windowtester.runtime.junit4.runners

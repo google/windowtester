@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Packager Documentation" default="run-cc">
+        <!-- $Id -->
+        <!-- ================================================= -->
+        <target name="run-cc">
+			<cc_init />
+
+            <!-- Build Designer docs -->
+			<cc_setup />
+        	
+    		<get_product_info product="Shared"/>
+    		<createLinkFile product="Shared" eclipsedir="eclipse_330" eclipsetarget="3.3"/>
+    		
+            <cc_eclipse_ant buildfile="build-web.xml" log="build-WindowTesterWeb.log" eclipsedirname="eclipse_330" />
+
+        </target>
+
+</project>

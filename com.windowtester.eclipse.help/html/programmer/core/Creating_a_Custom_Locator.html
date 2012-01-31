@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 2 April 2007), see www.w3.org" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Creating a Custom Locator</title>
+<link rel="stylesheet" type="text/css" href=
+"../../../stylesheets/book.css" />
+</head>
+
+<body>
+<h2 id="CreatingaCustomLocatorSWT">Creating a Custom Locator (SWT)</h2><p>For most applications, the locators shipped with WindowTester Pro are more than sufficient.  That said, it can be convenient at times to create custom locators of your own.  To start, you should be familiar with <a href="core/Finding_Widgets.html">how widget finding works</a>.</p><ol style="list-style: none;"><li><a href="#CreatingaCustomLocatorSWT">Creating a Custom Locator (SWT)</a></li><li><a href="#WhyCreateaCustomLocator">Why Create a Custom Locator?</a><ol style="list-style: none;"><li><a href="#OverridingMatchingCriteria">Overriding Matching Criteria</a></li><li><a href="#SupportingCustomWidgets">Supporting Custom Widgets</a></li></ol></li><li><a href="#ExtendedExampleCreatingaCustomBrowserLocator">Extended Example: Creating a Custom Browser Locator</a></li></ol><p><hr/></p><h2 id="WhyCreateaCustomLocator">Why Create a Custom Locator?</h2><p>Reasons to create a custom locator include:</p><ol><li>You want to override the default matching criteria of a standard locator</li><li>You want to create a locator for an unsupported widget</li></ol><h3 id="OverridingMatchingCriteria">Overriding Matching Criteria</h3><p>Overriding matching criteria is done by providing a specialized implementation of the locator&#8217;s <code>IWidgetMatcher</code>.  In the SWT case the matcher is specified in the <code>SWTWidgetLocator.buildMatcher()</code> method.  For example, suppose we wanted to create a custom locator that matched <i>selected</i> buttons.  To do this we could start first with a matcher defined like this.</p><pre><code>class SelectedButtonMatcher implements IWidgetMatcher {
+			
+	private final IWidgetMatcher defaultMatcher;
+
+	SelectedButtonMatcher(IWidgetMatcher defaultMatcher) {
+		this.defaultMatcher = defaultMatcher;
+	}
+		
+	public boolean matches(Object widget) {
+		return isSelected(widget) &amp;&amp; matchesDefaultCriteria(widget);
+	}
+
+	private boolean matchesDefaultCriteria(Object widget) {
+		return defaultMatcher.matches(widget);
+	}
+
+	private boolean isSelected(Object widget) {
+		if (!(widget instanceof Button))
+			return false;
+		final Button button = (Button)widget;
+		final boolean[] result = new boolean[1];
+		Display.getDefault().syncExec(
+			new Runnable() {
+				public void run() {
+					result[0] = button.getSelection(); }							
+		});
+		return result[0];
+	}					
+}
+</code></pre><p></p><p>(Note that here we are <i>decorating</i> the default matcher.  A simpler implementation would forego a reference to the default matcher.)</p><p>With this matcher defined a <code>SelectedButtonLocator</code> could be defined like this:</p><pre><code>public class SelectedButtonLocator extends ButtonLocator {		
+   	private static final long serialVersionUID = 1L;
+
+	public SelectedButtonLocator(String label) {
+      		super(label);
+   	}
+		
+	@Override
+	protected IWidgetMatcher buildMatcher() {
+		IWidgetMatcher defaultMatcher = super.buildMatcher();
+		return new SelectedButtonMatcher(defaultMatcher);
+	}			
+}
+</code></pre><p></p><p>Using this locator looks just like using the standard button locator:</p><pre><code>ui.click(new ButtonLocator("OK")); //standard
+ui.click(new SelectedButtonLocator(".*")); //custom
+</code></pre><p></p><p>(Notice that you can use a wildcard just like the standard locator since we are decorating the default matching criteria.  The custom locator reference reads: <i>"click the selected button with any text"</i>.)</p><h3 id="SupportingCustomWidgets">Supporting Custom Widgets</h3><p>The simplest kind of custom widget support involves creating a convenience subclass of <code>SWTWidgetLocator</code> which adds no behavior.  For example, the following locator matches eclipse forms UI <code>Section</code> widgets.</p><pre><code>public class SectionLocator extends SWTWidgetLocator {
+
+	private static final long serialVersionUID = 621335057837701982L;
+
+	public SectionLocator(String text) {
+		super(Section.class, text);
+	}
+
+	public SectionLocator(String text, SWTWidgetLocator parent) {
+		super(Section.class, text, parent);
+	}
+
+	public SectionLocator(String text, int index, SWTWidgetLocator parent) {
+		super(Section.class, text, index, parent);
+	}
+}
+</code></pre><p></p><p>Notice that this is essentially the same as the first case where we are specifying custom matching criteria.  Here we are taking advantage of <code>SWTWidgetLocator</code>'s default strategy of matching on widgets by class.</p><p>(More complex are widgets whose <i>selection</i> implementation needs to be customized.  For example, a widget whose components need to be revealed to be clicked, such as a tree or tray, will require more than the default <code>SWTWidgetLocator</code> click handling.  In a future article we will cover how to provide custom selection logic for such a widget.)</p><h2 id="ExtendedExampleCreatingaCustomBrowserLocator">Extended Example: Creating a Custom Browser Locator</h2><p>To highlight some of the subtleties of creating locators (and more of the power), the following example presents a more interesting kind of locator, for the <code>org.eclipse.swt.browser.Browser</code> widget.  (Note: the latest source for this example can be found on the WindowTester Pro Commons site <a href="http://code.google.com/p/wt-commons/wiki/WTSnippets">here</a>.)</p><p>The browser is interesting because it contains rendered HTML.  In this example we&#8217;d like to create a browser locator that provides some access to that HTML so that we can use it in making assertions.  When we&#8217;re done we will be able to write things like this:</p><pre><code>ui.assertThat(new BrowserLocator().htmlContains(EXPECTED_URL));
+</code></pre><p></p><p>The trick in doing this is to create a special kind of <code>IWidgetReference</code> for browser instances.  This will be returned from <code>IUIContext.findAll(..)</code> calls.  Our <code>BrowserLocator</code> looks like this:</p><pre><code>public class BrowserLocator extends SWTWidgetLocator {
+
+	private static final long serialVersionUID = 1L;
+	public BrowserLocator() {
+		super(Browser.class);
+	}
+	@Override
+	public IWidgetLocator[] findAll(IUIContext ui) {
+		IWidgetLocator[] refs = super.findAll(ui);
+		BrowserReference[] browsers = new BrowserReference[refs.length];
+		for (int i = 0; i &lt; browsers.length; i++) {
+			browsers[i] = new BrowserReference((IWidgetReference)refs[i]);
+		}
+		return browsers;
+	}
+}
+</code></pre><p></p><p>Where our <code>BrowserReference</code> is written like this:</p><pre><code>public class BrowserReference implements IWidgetReference {
+	
+	private class HtmlContainsCondition implements ICondition {
+
+		String expectedText;
+		
+		public HtmlContainsCondition(String expectedText) {
+			this.expectedText = expectedText;
+		}
+			
+		public boolean test() {
+			String html = getHTML();
+			if (html == null)
+				return false;
+			return html.contains(expectedText);
+		}				
+	}
+
+		
+	private final IWidgetReference browserWidget;
+
+	public BrowserReference(IWidgetReference browserWidget) {
+		this.browserWidget = browserWidget;
+	}
+				
+	public Object getWidget() {
+		return browserWidget.getWidget();
+	}
+
+	/**
+	  * @since Eclipse 3.4 where Browser.getText() is introduced
+	  */
+	public String getHTML() {
+		final String text[] = new String[1];
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				text[0] = getText(getBrowser());
+			}			
+		});
+		return text[0];
+	}
+		
+	private static String getText(Browser browser) {
+		if (browser == null)
+			return null;
+			
+		try {
+			Method m = browser.getClass().getMethod("getText", (Class[]) null);
+			m.setAccessible(true);
+			return (String) m.invoke(browser, (Object[]) null);
+		} catch (SecurityException e) {
+		} catch (NoSuchMethodException e) {
+		} catch (IllegalArgumentException e) {
+		} catch (IllegalAccessException e) {
+		} catch (InvocationTargetException e) {
+		}
+		return null;
+		}
+		
+		public void execute(final String script) {
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					getBrowser().execute(script);
+				}			
+			});
+		}
+		public void setURL(final String url) {
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					getBrowser().setUrl(url);
+				}			
+			});
+		}
+		
+		public ICondition htmlContains(String expectedText) {
+			return new HtmlContainsCondition(expectedText);
+		}
+		
+		public Browser getBrowser() {
+			return (Browser)getWidget();
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.windowtester.runtime.locator.IWidgetLocator#findAll(com.windowtester.runtime.IUIContext)
+		 */
+		public IWidgetLocator[] findAll(IUIContext ui) {
+			return browserWidget.findAll(ui);
+		}
+
+		/* (non-Javadoc)
+		 * @see com.windowtester.runtime.locator.IWidgetMatcher#matches(java.lang.Object)
+		 */
+		public boolean matches(Object widget) {
+			return browserWidget.matches(widget);
+		}
+		
+		
+	}
+</code></pre><p></p><p>Things to notice:</p><ul><li>The <code>htmlContains(String expectedText)</code> method is an example of a <a href="Condition_Factories.html">condition factory</a>.</li><li>All direct access to the <code>Browser</code> widget is done explicitly on the UI thread (in a runnable executed by the <code>Display</code>)<sup class="footnote"><a href="#___fn1">1</a></sup>.</li><li>Access to the HTML leverages a method (<code>getText()</code>) that is new to the <code>Browser</code> as of Eclipse 3.4.  By using reflection to access this method we ensure that this locator is compilable against earlier Eclipse versions.</li><li>The error handling is provisional at best.</li></ul><p id="___fn1" class="footnote"><sup>1</sup> For more on the topic of UI thread access see this document on the <a href="Test_Execution.html">test thread model</a>.</p></body></html>

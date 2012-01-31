@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Internal WindowTester Development Tools"
+            id="com.windowtester.eclipse.ui_tool.commands.category">
+      </category>
+      <command
+            name="Build type maps for WTConvertAPIContextBuilder"
+            categoryId="com.windowtester.eclipse.ui_tool.commands.category"
+            id="com.windowtester.eclipse.ui_tool.commands.contextBuilderTool">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.windowtester.eclipse.ui_tool.commands.contextBuilderTool"
+            class="com.windowtester.eclipse.ui_tool.WTConvertAPIContextBuilderTool">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="WT"
+               id="com.windowtester.eclipse.ui_tool.menus.wtToolsMenu">
+            <command
+                  commandId="com.windowtester.eclipse.ui_tool.commands.contextBuilderTool">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>

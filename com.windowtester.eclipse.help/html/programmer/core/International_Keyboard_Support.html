@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>International Keyboard Support</title>
+<link rel="stylesheet" type="text/css" href=
+"../../../stylesheets/book.css" />
+</head>
+<body>
+<h2 id="UsingInternationalNonUSKeyboards">Using International
+(Non-US) Keyboards</h2>
+<p>In order to enable locale specific keyboard for testing, insert
+the following statement at the beginning of the test</p>
+<pre>
+<code>WT.setLocaleToCurrent();
+</code>
+</pre>
+<p>To reset the keyboard setting to its default settings,
+insert</p>
+<pre>
+<code>WT.resetLocale()
+</code>
+</pre>
+<p>at the end of the test.</p>
+<p>A test case&rsquo;s <code>setUp()</code> and
+<code>tearDown()</code> methods are good places for these actions;
+alternatively this might be done in a custom
+<code>Suite</code>.</p>
+<h2 id="SupportedLanguages">Supported Languages</h2>
+<p>We currently have support for the following languages:</p>
+<ul>
+<li>English</li>
+<li>German (Germany)</li>
+<li>Dutch (Belgium)</li>
+<li>French (France)</li>
+<li>Spanish (Spain)</li>
+<li>Swedish (Sweden)</li>
+<li>Japanese (Japan)</li>
+</ul>
+<h2 id="AddingNewLanguageSupport">Adding New Language Support</h2>
+<p>If the language/locale of the keyboard you are using is not
+currently on the list, with your help, we can add support for it.
+Support for non-US keyboards can be implemented by adding the
+corresponding key maps to the database. In order to do this please
+make sure you are using the latest build and follow the steps
+below:</p>
+<ol>
+<li>Download the <a href=
+"../../../download/MapGenerator.java.txt">MapGenerator</a> java
+application.</li>
+<li>Run this application on your machine with the non-US keyboard
+attached. It will generate one or more <code>*.map</code>
+files.</li>
+<li>Please send these <code>*.map</code> files to Support and we
+will fold them into the WindowTester Pro runtime.</li>
+<li>We will then let you know when a new build of WindowTester Pro
+is available for you to try.</li>
+</ol>
+</body>
+</html>

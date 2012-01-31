@@ -1,0 +1,30 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 5.0</h1>
+
+ 
+This document contains descriptions of some of the more interesting or significant changes in the *WindowTester Pro v5.0* release.
+
+{toc}
+
+<hr/>
+
+
+h2. WindowTester Pro v5.0 Highlights
+
+WindowTester Pro version 5.0.0 dramatically improves UI test performance and Linux support, extends the Assertions UI to support Swing and fixes a variety of items to improve usability. Highlights include:
+
+* __UI Test Performance__  –  On average, UI test runs 2.5 times faster, and overall performance is significantly enhanced.
+* __Linux Support__ – A core SWT runtime re-design provides dramatic improvements in support for Linux.
+* __Assertions Inspector Supports Swing__ – "Inspector support":../ui/assertionsUI.html  has been added for Swing recording.  
+* __Runtime Fixes__ – A variety of items have been addressed to improve the runtime story, including:
+** enhancing key entry and embedded runtime support for Swing, 
+** Swedish and US keyboard support, 
+** combo item selection fixes, and
+** named tool item enablement assertion support.
+
+<hr/>
+
+Notes for the *4.0.0 release* can be found "here":4.0.0.html.
+

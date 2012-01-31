@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript>
+  <component class="java.awt.Button" id="?" index="3" tag="?" window="Applet Viewer 0" />
+  <component class="sun.applet.AppletViewer" hOrder="0" id="Applet Viewer 0" tag="Applet Viewer: example.SimpleApplet" />
+  <component class="java.awt.Dialog" id="Dialog" title="Dialog" />
+  <component class="java.awt.Button" id="High Button" tag="High" window="Applet Viewer 0" />
+  <component class="java.awt.Button" id="Low Button" tag="Low" window="Applet Viewer 0" />
+  <component class="java.awt.Label" id="Press a button" tag="Press a button" window="Applet Viewer 0" />
+  <component class="example.SimpleApplet" id="SimpleApplet Instance" window="Applet Viewer 0" />
+  <component class="java.awt.Label" id="This is a dialog" index="0" tag="This is a dialog" title="Dialog" />
+  <component class="java.awt.TextField" id="textField" index="4" tag="textField" window="Applet Viewer 0" />
+  <appletviewer archive="lib/example.jar" code="example.SimpleApplet" height="250" width="250" />
+  <action args="textField" class="java.awt.TextComponent" method="actionFocus" />
+  <action args="textField,some text" class="abbot.tester.ComponentTester" method="actionKeyString" />
+  <assert component="High Button" method="isVisible" />
+  <action args="High Button" method="actionClick" />
+  <assert component="SimpleApplet Instance" method="getMessage" value="Up, up and away!" />
+  <assert component="Low Button" method="isVisible" />
+  <action args="Low Button" method="actionClick" />
+  <assert component="SimpleApplet Instance" method="getMessage" value="How low can you go?" />
+  <action args="?" method="actionClick" />
+  <wait args="Dialog" class="abbot.tester.ComponentTester" method="assertFrameShowing" />
+  <assert component="This is a dialog" method="getText" value="This is a dialog" />
+  <action args="Dialog" class="java.awt.Dialog" method="actionClose" />
+  <wait args="Dialog" class="abbot.tester.ComponentTester" invert="true" method="assertFrameShowing" />
+  <action args="5000" method="actionDelay" />
+  <terminate />
+</AWTTestScript>
+

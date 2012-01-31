@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Continuous Tests</title>
+
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet"></head>
+
+<body><h1>Continuously Running WindowTester Pro Tests</h1><p>WindowTester Pro
+easily integrates into continuous build systems including Ant, Maven,
+Hudson and Cruise Control. This tight integration ensures that the
+&ldquo;correctness&rdquo;of an application is tested each time the application is built. </p><p>
+To be able to run WindowTester Pro tests in a continuous build environment,
+the  machine you will be running the tests on must have a graphical interface and a user
+account.  Some servers strictly use command line, in which case, WindowTester Pro tests won't run. In addition, it appears that the user must be logged in at the
+time that the tests are executed (at least on Windows) or the
+applications under test may not have access to the appropriate UI
+resources (console, graphics area, ...) for the tests to successfully
+execute. Typically build servers are run without an installed UI
+therefore we recommend that WindowTester Pro tests be executed on dedicated
+test machines separate from the build server and the test results
+uploaded back to the build server for collation.</p>
+
+
+</body></html>

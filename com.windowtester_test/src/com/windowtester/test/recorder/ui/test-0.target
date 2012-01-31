@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.2"?>
+
+<target name="WindowTester-RCP">
+
+   <location useDefault="true"/>
+
+   <content>
+      <plugins>
+         <plugin id="com.windowtester.runtime"/>
+         <plugin id="com.windowtester.swt.runtime"/>
+      </plugins>
+      <features>
+         <feature id="org.eclipse.rcp"/>
+      </features>
+   </content>
+
+</target>

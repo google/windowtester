@@ -1,0 +1,22 @@
+<title>Code Generation</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+<h1>Code Generation</h1>
+
+Once a test is recorded, there are a number of ways the generated test can be specialized.
+
+{toc}
+
+<hr/>
+
+h2. Selecting a Custom Base Test Class
+
+It often makes sense to create "reusable base test classes":../programmer/core/Custom_Base_Test.html that define reusable fixture setup logic.  These base tests can be specified in the **New UI Test** wizard.
+
+!superclass-ss.png!
+
+h2. Specifying Setup Handlers
+
+Robust tests are independent in that they depend very little on pre-established application state.  Test independence can be promoted by capturing all of the test's expectations about the application under state in __setup condition handlers__ defined in the test's @setUp@ method.  Common conditions can be selected in the **New UI Test** wizard.
+
+!setup-ss.png!

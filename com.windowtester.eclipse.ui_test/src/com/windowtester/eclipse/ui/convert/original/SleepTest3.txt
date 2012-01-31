@@ -1,0 +1,11 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import com.windowtester.runtime.swt.UITestCaseSWT;
+
+public class SleepTest3 extends UITestCaseSWT {
+
+	public void testSleep() throws Exception {
+		getUI().pause(3000);
+	}
+		
+}

@@ -1,0 +1,3 @@
+com.windowtester.swt.codegen/basic           = true
+com.windowtester.swt.codegen/codegen         = true
+com.windowtester.swt.codegen/recorder/events = true

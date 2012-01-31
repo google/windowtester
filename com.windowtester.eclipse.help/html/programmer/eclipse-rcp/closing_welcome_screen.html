@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Closing the Welcome Screen</title>
+<link rel="stylesheet" type="text/css" href=
+"../../../stylesheets/book.css" />
+</head>
+<body>
+<h2 id="ClosingtheWelcomeScreen">Closing the Welcome Screen</h2>
+<p>Sometimes when I record I don&rsquo;t get the Welcome screen but
+when I run my tests the welcome screen is open which causes my
+tests to fail. How do I determine if the Welcome screen is open so
+I can close it? To address this issue in our tests, we use this
+common <code>setUp()</code> method:</p>
+<pre>
+<code>protected void setUp() throws Exception {
+   getUI().ensureThat(ViewLocator.forName("Welcome").isClosed());
+}
+</code>
+</pre>
+<p>or, using static imports (and the <code>EclipseLocators</code>
+factory class):</p>
+<pre>
+<code>protected void setUp() throws Exception {
+   getUI().ensureThat(view("Welcome").isClosed());
+}
+</code>
+</pre>
+</body>
+</html>

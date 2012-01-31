@@ -1,0 +1,19 @@
+<title>Closing the Welcome Screen</title>
+
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+h2. Closing the Welcome Screen
+
+Sometimes when I record I don't get the Welcome screen but when I run my tests the welcome screen is open which causes my tests to fail. How do I determine if the Welcome screen is open so I can close it? To address this issue in our tests, we use this common @setUp()@ method:
+
+bc.. protected void setUp() throws Exception {
+   getUI().ensureThat(ViewLocator.forName("Welcome").isClosed());
+}
+p. 
+
+or, using static imports (and the @EclipseLocators@ factory class):
+
+bc.. protected void setUp() throws Exception {
+   getUI().ensureThat(view("Welcome").isClosed());
+}
+p. 

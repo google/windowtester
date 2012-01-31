@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 2 April 2007), see www.w3.org" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Condition Factories</title>
+<link rel="stylesheet" type="text/css" href=
+"../../../stylesheets/book.css" />
+</head>
+<body>
+<h2 id="WhatareConditionFactories">What are Condition
+Factories?</h2>
+<p><a href="../../reference/conditions.html">Conditions</a> are
+used to test properties. Locator-specific properties can be tested
+through special conditions that are surfaced via <i>condition
+factory</i> methods. Surfacing conditions this way makes building
+assertions in the IDE easy. For instance, if we are testing
+properties of a button, the IDE&rsquo;s content assist proposes the
+following conditions:</p>
+<p><img border="0" src="condition_factory.jpg" /></p>
+<p>Continuing with this example, if the test we are writing is of
+enablement, our resulting assertion could look like this:</p>
+<pre>
+<code>ui.assertThat(new ButtonLocator("OK").isEnabled());
+</code>
+</pre>
+<h2 id="ImplementingaConditionFactory">Implementing a Condition
+Factory</h2>
+<p>Implementing a condition factory is as simple as adding an
+instance method that returns an <code>ICondition</code> to a
+locator. For example, the <code>ButtonLocator</code>'s enablement
+condition factory might be written like this:</p>
+<pre>
+<code>public ICondition isEnabled() {
+	return new IsEnabledCondition(this, true);
+}
+</code>
+</pre>
+<p>Here the <code>IsEnabledCondition</code> is responsible for
+testing whether the locator&rsquo;s target widget is in fact
+enabled (in simple cases this might just be done in line).</p>
+</body>
+</html>

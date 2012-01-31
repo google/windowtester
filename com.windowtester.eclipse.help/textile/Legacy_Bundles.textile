@@ -1,0 +1,71 @@
+<title>Legacy Bundles</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+This document provides a high-level description of the contents of the legacy compatibility bundles.
+
+{toc}
+
+h3. Common Runtime Legacy
+
+The @com.windowtester.runtime.legacy@ bundle provides legacy compatibility for clients who depend on legacy Common Runtime API services.
+
+
+h3. SWT Runtime Legacy
+
+The @com.windowtester.swt.runtime.legacy@ bundle provides legacy compatibility for clients who depend on legacy SWT Runtime API services.
+
+h4. Migrated classes
+
+Classes moved from the @com.windowtester.swt.runtime@ bundle to the @com.windowtester.swt.runtime.legacy@ bundle include:
+
+table{border:1px solid black}.
+|<_. com.windowtester.swt.runtime.legacy|
+|@com.windowtester.event.selector.swt.BasicWidgetSelector@|
+|@com.windowtester.event.selector.swt.CanvasSelector@|
+|@com.windowtester.event.selector.swt.ComboSelector@|
+|@com.windowtester.event.selector.swt.ListSelector@|
+|@com.windowtester.event.selector.swt.MenuItemSelector@|
+|@com.windowtester.event.selector.swt.StyledTextSelector@|
+|@com.windowtester.event.selector.swt.SWTWidgetSelectorAdapter@|
+|@com.windowtester.event.selector.swt.TextSelector@|
+|@com.windowtester.event.selector.swt.ToolItemSelector@|
+|@com.windowtester.event.selector.swt.TreeCellSelector@|
+|@com.windowtester.event.selector.swt.TreeItemSelector@|
+|@com.windowtester.event.selector.swt.TreeItemSelector2@|
+|@com.windowtester.event.selector.swt.WidgetSelectorAdapterFactory@|
+|@com.windowtester.event.selector.swt.ext.PopupMenuSelector@|
+|@com.windowtester.event.selector.swt.ext.PopupMenuSelector2@|
+|@com.windowtester.event.swt.CComboSelector@|
+|@com.windowtester.event.swt.DisplayEventDispatcher@|
+|@com.windowtester.event.swt.ISWTWidgetSelectorDelegate@|
+|@com.windowtester.event.swt.SystemEventMonitor@|
+|@com.windowtester.event.swt.TableItemSelector@|
+|@com.windowtester.event.swt.TableItemSelector2@|
+|@com.windowtester.event.swt.UIDriver@|
+|@com.windowtester.event.swt.UIProxy@|
+|@com.windowtester.event.swt.WidgetSelectorFactory@|
+|@com.windowtester.finder.matchers.swt.AdjacentTextMatcher@|
+|@com.windowtester.finder.matchers.swt.ExactClassMatcher@|
+|@com.windowtester.finder.matchers.swt.HierarchyMatcher@|
+|@com.windowtester.finder.matchers.swt.InstanceMatcher@|
+|@com.windowtester.finder.matchers.swt.LabeledWidgetMatcher@|
+|@com.windowtester.finder.matchers.swt.ParentIndexMatcher@|
+|@com.windowtester.finder.matchers.swt.ShellComponentMatcher@|
+|@com.windowtester.finder.matchers.swt.TableCellMatcher@|
+|@com.windowtester.finder.matchers.swt.ToolTipTextMatcher@|
+|@com.windowtester.finder.matchers.swt.TreeItemByPathMatcher@|
+|@com.windowtester.finder.matchers.swt.ViewComponentMatcher@|
+|@com.windowtester.swt.condition.eclipse.CompilerSettingsChangedShellHandler@|
+|@com.windowtester.swt.condition.eclipse.ConfirmPerspectiveSwitchShellHandler@|
+|@com.windowtester.swt.condition.eclipse.FileExistsCondition@|
+|@com.windowtester.swt.condition.eclipse.FolderExistsCondition@|
+|@com.windowtester.swt.condition.eclipse.JobsCompleteCondition@|
+|@com.windowtester.swt.condition.eclipse.PathExistsCondition@|
+|@com.windowtester.swt.condition.eclipse.ProjectExistsCondition@|
+|@com.windowtester.swt.condition.eclipse.WidgetShowingCondition@|
+|@com.windowtester.swt.condition.eclipse.WizardClosingShellHandler@|
+|@com.windowtester.swt.monitor.IUIThreadMonitor@|
+|@com.windowtester.swt.monitor.IUIThreadMonitorListener@|
+|@junit.extensions.UIAssertionHelper@|
+|@junit.extensions.UITestCase@|
+|@junit.extensions.EclipseLogUtil@|

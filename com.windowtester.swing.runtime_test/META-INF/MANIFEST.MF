@@ -1,0 +1,17 @@
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.windowtester.swing.runtime_test;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-Localization: plugin
+Require-Bundle: org.junit,
+ com.windowtester.runtime,
+ com.windowtester.swing.runtime,
+ com.windowtester.swt.runtime,
+ com.windowtester.swt.codegen,
+ org.eclipse.jface,
+ org.eclipse.core.runtime,
+ com.windowtester.swing.recorder
+Manifest-Version: 1.0
+Bundle-ActivationPolicy: lazy
+Eclipse-AutoStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName

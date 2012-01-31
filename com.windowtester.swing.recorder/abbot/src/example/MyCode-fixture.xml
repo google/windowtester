@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Basic fixture for MyCode">
+  <component class="javax.swing.JFrame" id="My Code" tag="My Code" title="My Code" />
+  <launch args="[]" class="example.MyCode" classpath="lib/example.jar" method="main" />
+  <wait args="My Code" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+</AWTTestScript>
+

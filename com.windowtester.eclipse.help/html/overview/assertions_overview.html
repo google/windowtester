@@ -1,0 +1,46 @@
+<?xml version='1.0' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Assertions in WindowTester Pro</title>
+	<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1 id="CodeAssertionsinWindowTester Pro">Code Assertions in
+WindowTester Pro</h1>
+<p>Interacting with an application under test (<strong>AUT</strong>)
+is only half of the story. In order to <i>verify</i> facts about the
+AUT, WindowTester Pro provides a rich assertion story.</p>
+<h2 id="AssertionsatRecordingTime">Assertions at Recording-Time</h2>
+<p>During a recording session, a tester can create two kinds of
+assertions.</p>
+<h3 id="LocatorSpecificAssertions">Locator-Specific Assertions</h3>
+<p>Using the <a href="../ui/assertionsUI.html">assertion
+inspector</a>, a tester can make assertions about properties of specific
+widgets located in the AUT. For example, if we are testing a wizard
+page, we might at some point want to verify that the "Finish" button is
+disabled. The generated code would look like this:</p>
+<pre><code>ui.assertThat(new ButtonLocator("Finish").isEnabled(false));
+</code></pre>
+<p></p>
+<h3 id="AssertionHooks">Assertion Hooks</h3>
+<p>If there is no existing locator-supported assertion for the
+property in question, a tester can use the <a
+	href="../ui/recording_control.html">recording control</a> to create an
+<strong>assertion hook</strong> as a means to place-mark a spot where
+there is some state they want to check in the generated code. An
+assertion hook creates a <strong>code stub</strong> in the generated
+code where the developer can later define the logic of the assertion. An
+example assertion hook might look like so in the generated code:</p>
+<pre><code>public void verifyNetworkState() {
+	//TODO: fill out assertion logic
+}
+</code></pre>
+<p></p>
+<h2 id="RuntimeSupportforAssertions">Runtime Support for Assertions
+</h2>
+<p>The WindowTester Pro runtime provides a rich library of conditions
+that can be used to build assertions. For more on assertions see <a
+	href="../reference/assertions.html">here</a>.</p>
+</body>
+</html>

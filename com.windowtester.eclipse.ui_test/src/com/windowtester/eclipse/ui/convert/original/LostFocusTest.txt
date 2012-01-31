@@ -1,0 +1,22 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.UITestCaseSWT;
+import com.windowtester.runtime.swt.finder.UnableToFindActiveShellException;
+import com.windowtester.runtime.swt.locator.eclipse.ActiveEditorLocator;
+
+public class LostFocusTest extends UITestCaseSWT {
+
+	
+	public void testDrive() throws Exception {
+		IUIContext ui = getUI();
+		try {
+			ui.find(new ActiveEditorLocator());
+			fail();
+		} catch (UnableToFindActiveShellException e) {
+			//pass
+		}
+		
+	}
+	
+}

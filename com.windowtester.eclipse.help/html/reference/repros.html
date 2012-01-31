@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Bug Reporting with Reproductions</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type=
+"text/css" />
+</head>
+<body>
+<h1>Effective Bug Reporting Through Reproduction Test Cases</h1>
+<p>The key to a high-bandwidth interaction with the support team is
+the effective communication of the issue you are experiencing. The
+best way to communicate issues with the WindowTester Pro runtime is
+through a testcase that we can run on our end that demonstrates the
+problem. Once we can <i>feel your pain</i> we can more easily
+diagnose and address it.</p>
+<ol style="list-style: none;">
+<li><a href="#WritingGoodReproductions">Writing Good
+Reproductions</a>
+<ol style="list-style: none;">
+<li><a href="#TheSharedTestEnvironment">The Shared Test
+Environment</a></li>
+</ol>
+</li>
+<li><a href="#ThisgoesforFeaturesToo">This goes for Features
+Too!</a></li>
+</ol>
+<hr />
+<h2 id="WritingGoodReproductions">Writing Good Reproductions</h2>
+<p>There are a few ingredients that make up a good test
+reproduction. Good reproductions are:</p>
+<ul>
+<li><b>Isolated</b> -- the test should be runnable in isolation.
+Tests that expect the workspace to be in a particular state when
+run violate this premise.</li>
+<li><b>Standalone</b> -- the test should be as stand-alone as
+possible. Ideally the test should be a single class (or package)
+that can be imported into a developer&rsquo;s workspace. If
+necessary, the test might also be parceled up in a new
+project.</li>
+<li><b>Lean</b> -- the test should be as minimal as possible. This
+means:
+<ul>
+<li>it should be as simple as possible and</li>
+<li>it should introduce a minimal set of dependencies (ideally
+none).</li>
+</ul>
+</li>
+</ul>
+<h3 id="TheSharedTestEnvironment">The Shared Test Environment</h3>
+<p>As a baseline environment tests should be written against the
+most recent GA of the standard Eclipse IDE. For example all of the
+following bits of UI are fair game:</p>
+<ul>
+<li>Basic Workbench views (<i>Problems</i>, <i>Error Log</i>, etc),
+wizards, preferences, and so on</li>
+<li>JDT tools (wizards, natures, etc.)</li>
+<li>PDE tools</li>
+<li>...</li>
+</ul>
+<p>As you can see this is quite a rich palette for writing
+tests!</p>
+<h2 id="ThisgoesforFeaturesToo">This goes for Features Too!</h2>
+<p>In addition to communicating about bugs, this is also an
+effective way to communicate about feature ideas too. Feature
+requests that are fleshed out with reproduction driver tests are
+much easier for developers to dig into, assess and estimate. They
+also provide a good shared language for exchanging ideas.</p>
+<p>For example, suppose we are exploring a new feature for a text
+editor locator enhancement that adds support for clicking specified
+locations in an editor&rsquo;s document and a customer submits
+something like this:</p>
+<pre>
+<code>
+public class EditorMarginLocatorTest extends UITestCaseSWT {
+	private static class TextAtRowColEqualsCondtion implements IUICondition { ... }
+        private static String TEST_TEXT = "text to enter";
+	
+	@Override
+	protected void setUp() throws Exception {
+	       super.setUp();
+	       createAndOpenDocument();
+	}
+       private void createAndOpenDocument() { ... }
+       public void testDrive() throws Exception {
+	       IUIContext ui = getUI();
+	       ui.click(new EditorLocator().atRowCol(12, 3)); //new API?
+	       ui.enterText(TEST_TEXT);
+	       ui.assertThat(new TextAtRowColEqualsCondition(12,3, TEST_TEXT));                
+	}
+</code>
+</pre>
+<p>This makes for happy developers! :-) Communicating with a test
+that drives us up to this snippet is a great jumpstart for
+exploring the implementation of the feature and is a good starting
+point for a conversation about the proposed API.</p>
+</body>
+</html>

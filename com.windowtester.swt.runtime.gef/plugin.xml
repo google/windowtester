@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+     <extension-point id="figureIdentifierAdvisor" name="figureIdentifierAdvisor" schema="schema/figureIdentifierAdvisor.exsd"/>
+   <extension
+         point="com.windowtester.swt.runtime.widgetIdentifierDelegate">
+      <widgetIdentifierDelegate
+            class="com.windowtester.recorder.gef.internal.GEFIdentifierDelegate">
+      </widgetIdentifierDelegate>
+   </extension>
+   <extension
+         point="com.windowtester.runtime.classResolver">
+      <classResolver
+            class="com.windowtester.recorder.gef.internal.GEFClassResolver">
+      </classResolver>
+   </extension>
+   
+  <!--extension
+         point="com.windowtester.swt.recorder.widgetIdentifierDelegate">
+      <widgetIdentifierDelegate class="com.windowtester.swt.runtime.gef.recorder.GEFIdentifierDelegate"/>
+   </extension-->
+   
+
+</plugin>

@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.windowtester.swt.runtime.macosx.carbon.x86;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-Activator: com.windowtester.swt.macosx.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.windowtester.runtime,
+ com.windowtester.swt.runtime
+Export-Package: com.windowtester.runtime.swt.internal.widgets.carbon,
+ com.windowtester.swt.macosx.external
+Bundle-ClassPath: .,
+ lib/wt-carbon.jar
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Eclipse-PlatformFilter: (& (osgi.ws=carbon) (osgi.os=macosx) (|(osgi.arch=x86)(osgi.arch=ppc)) )

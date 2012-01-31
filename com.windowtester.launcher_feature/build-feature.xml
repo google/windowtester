@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_all">
+
+	<!-- =================================================
+		Initialize the build and build bundles and sub-features
+		by calling build-elements.xml
+		
+		=== Required Properties:
+		
+		build.target - the build being performed
+			(e.g. "build_all", "build_3.1" or "build_3.0")
+	-->
+	<target name="build_init">
+		<init_properties />
+		<read_feature />
+		<read_build />
+
+		<echo message="Project-CommonFiles=${Project-CommonFiles}" />
+	</target>
+
+	<!-- ================================================= 
+		Build this feature for Eclipse 3.2
+	-->
+	<target name="build_3.2" depends="build_init" if="build.for.32.flag">
+		<dir_bundle eclipseTarget="3.2" type="features">
+			<fileset dir="." includes="${Project-CommonFiles}"/>
+		</dir_bundle>
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.3
+		and place them into ${build.temp}/3.3/${Project-Name}/out
+	-->
+	<target name="build_3.3" depends="build_init" if="build.for.33.flag">
+		<dir_bundle eclipseTarget="3.3" type="features">
+			<fileset dir="." includes="${Project-CommonFiles}"/>
+		</dir_bundle>
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.4
+		and place them into ${build.temp}/3.4/${Project-Name}/out
+	-->
+	<target name="build_3.4" depends="build_init" if="build.for.34.flag">
+		<dir_bundle eclipseTarget="3.4" type="features">
+			<fileset dir="." includes="${Project-CommonFiles}"/>
+		</dir_bundle>
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.5
+		and place them into ${build.temp}/3.5/${Project-Name}/out
+	-->
+	<target name="build_3.5" depends="build_init" if="build.for.35.flag">
+		<dir_bundle eclipseTarget="3.5" type="features">
+			<fileset dir="." includes="${Project-CommonFiles}"/>
+		</dir_bundle>
+	</target>
+
+	<!-- ================================================= 
+		Build this feature for all versions of Eclipse
+	-->
+	<target name="build_all" depends="build_3.5, build_3.4, build_3.3, build_3.2">
+	</target>
+</project>

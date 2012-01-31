@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>What&rsquo;s New</title>
+<link rel="stylesheet" type="text/css" href=
+"../../stylesheets/book.css" />
+</head>
+<body>
+<h1>What's New in 3.9.0</h1>
+<p>This document contains descriptions of some of the more
+interesting or significant changes in the <strong>WindowTester Pro
+v3.9.0</strong> release.</p>
+<ol style="list-style: none;">
+<li><a href="#Runtime">Runtime</a></li>
+<li><a href="#TargetManagement">Target Management</a></li>
+<li><a href="#StabilityMaintenance">Stability/Maintenance</a></li>
+</ol>
+<hr />
+<h2 id="Runtime">Runtime</h2>
+<p>To enrich RCP tests, condition handling support has been added
+for eclipse views and perspectives.</p>
+<ul>
+<li><i>View Condition Handling</i> - Showing and Closed condition
+handlers have been implemented for views allowing one to write
+expressions such as
+<code>ui.ensureThat(view(&ldquo;Search&rdquo;).isShowing())</code>
+and
+<code>ui.ensureThat(view(&ldquo;Search&rdquo;).isClosed())</code>.</li>
+</ul>
+<ul>
+<li><i>Perspective Condition Handling</i> - Active and Closed
+condition handlers have been implemented for perspectives allowing
+one to write expressions such as
+<code>ui.ensureThat(perspective(&ldquo;Debug&rdquo;).isActive())</code>
+and
+<code>ui.ensureThat(perspective(&ldquo;Debug&rdquo;).isClosed())</code>.</li>
+</ul>
+<p>A few other notable runtime enhancements include:</p>
+<ul>
+<li><i>Swing Runtime Drag and Drop</i> - Drag and drop support has
+been added to the Swing runtime.</li>
+</ul>
+<ul>
+<li><i>Class Name Based Locators</i> -
+<code>SWTWidgetLocator</code> and <code>SwingWidgetLocator</code>
+instances can now be constructed using class names (rather than
+only <code>Class</code> instances). This works-around cases where a
+<code>Class</code> is not visible to the test project.</li>
+</ul>
+<ul>
+<li><i>Turkish Keyboard support</i> - Runtime support for the
+Turkish keyboard has been added.</li>
+</ul>
+<h2 id="TargetManagement">Target Management</h2>
+<p>WindowTester Pro custom target support has been improved to make
+working with GEF-based applications easier.</p>
+<ul>
+<li><i>Target Provisioner GEF Support</i> - The <b>New WindowTester
+Pro Target Provisioner</b> wizard has been improved to optionally
+allow the addition of WindowTester Pro GEF support bundles to the
+created target provisioner.</li>
+</ul>
+<h2 id="StabilityMaintenance">Stability/Maintenance</h2>
+<p>This release also contains a number of fixes to improve the
+overall stability of the product.</p>
+<ul>
+<li><i>Figure Locator Runtime fixes</i> - interactions with figures
+that have no <code>EditDomain</code> associated were causing
+internal exceptions. These have now been fixed.</li>
+</ul>
+<ul>
+<li><i>SWT Widget Locator Link text matching fixed</i> - text
+values in <code>Link</code> widgets was not being properly matched
+by <code>SWTWidgetLocator</code> instances.</li>
+</ul>
+<ul>
+<li><i>SWT Combo Item selection fixes</i> - <code>Combo</code>
+widgets are now tested for enablement before selection is
+attempted. This remedies issues where unexpected results were
+produced when interacting with disabled combos.</li>
+</ul>
+<ul>
+<li><i>ContributedToolItemLocator</i> - Fixed for clicks on
+Contributed tool items in property pages.</li>
+</ul>
+<ul>
+<li><i>SWTIdleCondition Fixes for Linux</i> - The
+<code>SWTIdleCondition</code> was prone to deadlocks in some rare
+cases in Linux; this issue has now been fixed.</li>
+</ul>
+<ul>
+<li><i>Widget Selection Fixes for Linux</i> - Widget selections
+were prone to deadlocks in some rare cases in Linux; this issue has
+now been fixed.</li>
+</ul>
+<ul>
+<li><i>JListLocator</i> - fixed to work with list elements which
+have a &ldquo;/&rdquo;.</li>
+</ul>
+<ul>
+<li><i>OS X Tree Check Fixes</i> - Tree check selections have been
+fixed for OS X.</li>
+</ul>
+<ul>
+<li><i>Button Identification Fixes</i> - The recorder was
+misidentifying buttons in labeled composites with
+<code>LabeledLocator</code> matchers (instead of
+<code>ButtonLocator</code> instances); this has now been
+fixed.</li>
+</ul>
+<ul>
+<li><i>TableCellLocator Column Index Validation Fixes</i> - The
+column index starts from 1 for the first column and so on. If a
+column index of 0 is used, an exception is thrown indicating
+invalid column index.</li>
+</ul>
+<ul>
+<li><i>Workbench Focus Condition Handling</i> - The focus forcing
+condition handler (as used in calls such as
+<code>ui.ensureThat(workbench().hasFocus())</code>) has been
+fixed.</li>
+</ul>
+<ul>
+<li><i>Context Menu Selection Fixes (OS X)</i> - Fixes were made to
+address issues with context menu selections on OS X.</li>
+</ul>
+<ul>
+<li><i>NamedWidgetLocator Fixes</i> -
+<code>NamedWidgetLocator</code> instances parameterized with a
+class were not respecting the class in their matching. This has now
+been fixed.</li>
+</ul>
+<hr />
+<p>Notes for the <strong>3.8.0 release</strong> can be found
+<a href="3.8.0.html">here</a>.</p>
+</body>
+</html>

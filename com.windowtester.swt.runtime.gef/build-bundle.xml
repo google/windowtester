@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_all">
+
+	<!-- ================================================= 
+		Build elements common for all versions of Eclipse 
+		and place them into ${build.temp}/common/${Project-Name}/out
+	-->
+	<target name="build_common">
+		<init_properties />
+		<read_manifest />
+		<read_build />
+		<eclipsetools.generateBuildJars />
+
+		<dir_bundle eclipseTarget="common" type="plugins">
+			<fileset dir="." includes="${Project-CommonFiles}" />
+		</dir_bundle>
+		<property name="gef.base.dir" value="/opt/plugins/gef" />
+		<property name="gef.base.loc" location="${gef.base.dir}" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.2
+		and place them into ${build.temp}/3.2/${Project-Name}/out
+	-->
+	<target name="build_3.2" depends="build_common" if="build.for.32.flag">
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.2" />
+		</ant>
+		<dir_bundle eclipseTarget="3.2" type="plugins" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.3
+		and place them into ${build.temp}/3.3/${Project-Name}/out
+	-->
+	<target name="build_3.3" depends="build_common" if="build.for.33.flag">
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.3" />
+		</ant>
+		<dir_bundle eclipseTarget="3.3" type="plugins" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.4
+		and place them into ${build.temp}/3.4/${Project-Name}/out
+	-->
+	<target name="build_3.4" depends="build_common" if="build.for.34.flag">
+		<fileset dir="${gef.base.loc}/E-3.4/eclipse/plugins"
+					id="gef.draw2d.jar.file.3.4.fs">
+			<include name="org.eclipse.draw2d_3.4*.jar"/>
+			<include name="org.eclipse.gef_3.4*.jar"/>
+			<exclude name="*source*" />
+		</fileset>
+		<pathconvert property="gef.draw2s.jar.3.4" refid="gef.draw2d.jar.file.3.4.fs" />
+		<echo message="using draw2d &amp; gef jars  ${gef.draw2s.jar.3.4}" />
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.4" />
+			<property name="project.classpath_3.4" value="${gef.draw2s.jar.3.4}" />
+		
+		</ant>
+		<dir_bundle eclipseTarget="3.4" type="plugins" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.5
+		and place them into ${build.temp}/3.5/${Project-Name}/out
+	-->
+	<target name="build_3.5" depends="build_common" if="build.for.35.flag">
+		<fileset dir="${gef.base.loc}/E-3.5/eclipse/plugins"
+					id="gef.draw2d.jar.file.3.5.fs">
+			<include name="org.eclipse.draw2d_*.jar"/>
+			<include name="org.eclipse.gef_*.jar"/>
+			<exclude name="*source*" />
+		</fileset>
+		<pathconvert property="gef.draw2s.jar.3.5" refid="gef.draw2d.jar.file.3.5.fs" />
+		<echo message="using draw2d &amp; gef jars  ${gef.draw2s.jar.3.5}" />
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.5" />
+			<property name="project.classpath_3.5" value="${gef.draw2s.jar.3.5}" />
+		
+		</ant>
+		<dir_bundle eclipseTarget="3.5" type="plugins" />
+	</target>			
+			
+	<!-- ================================================= 
+		Build elements for all versions of Eclipse
+	-->
+	<target name="build_all" depends="build_3.5, build_3.4, build_3.3, build_3.2">
+	</target>
+
+</project>

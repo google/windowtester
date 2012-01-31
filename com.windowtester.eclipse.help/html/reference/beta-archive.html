@@ -1,0 +1,4498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>Beta History</title>
+  <link href="../../stylesheets/book.css" type="text/css" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+
+
+
+
+<span class="helpHeader">History</span>
+<br>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.5.1 (beta) -- September 5, 2008</h3>
+
+
+
+
+
+
+Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">TableCellLocator.hasText(..)</span>
+- TableCellLocators can now be used to create HasTextConditions (for
+example: <tt>ui.assertThat(new TableCellLocator("item 1",
+"Value").hasText("yyy"))</tt>).</li>
+
+
+  <li><span style="font-style: italic;">TreeItemLocator.isSelected()</span>
+- TreeItemLocators now implement <tt>IsSelected </tt>and can now also be used to create IsSelectedConditions to test for the check-state of a tree item (for
+example: <tt>ui.assertThat(new TreeItemLocator("Popeye").isSelected()</tt>).</li>
+
+
+
+
+  <li><span style="font-style: italic;">New WT Intro Page Content</span>
+- New WindowTester Pro Intro content pages have been added making it easier
+to quickly navigate to useful resources from the Universal Intro Page.</li>
+
+
+
+
+  <li><span style="font-style: italic;">Assertion UI Activated</span> -
+The assertion generation UI that has been considered experimental until
+now, has been promoted to the main-stream and is now activated by
+default.</li>
+
+
+
+
+</ul>
+
+
+
+
+Fixes:&nbsp;
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">TableCellLocator Row and Column by-text Handling</span> - An issue preventing row and column text to be useable in specifiying&nbsp;table cell conditions (e.g.,&nbsp;<tt>new TableCellLocator("item 1",
+"Value").isVisible()</tt>) has been fixed.</li>
+
+
+
+  <li><span style="font-style: italic;">Double-Escape Handling in TreeItem Paths</span> -TreeItem paths with double-escapes (e.g., "foo\\\\bar") where not being properly handled; this has been fixed..</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 3.5.1 (beta) -- August 28, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Drag And
+Drop Source Caching</span> - drag sources that were established
+using moveTo(..) were not reliably getting cached. This has been fixed.
+  </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">GEF Rendered
+Pane Handling</span> - figures on rendered panes (such as those
+used by GMF) require (and now get) special bounds (re)translation.
+  </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.5.1 (beta) -- August 20, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Figure
+Matcher Visibility Testing</span> - The default figure matcher
+implementation now ensures figures are visible (rejecting figures that
+are not showing as indicated by the <tt>IFigure.isShowing()</tt>
+method).</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Runtime
+DragTo Handling with Figures as Targets (revisited for XYs)</span>
+- A bug in the runtime Drag and Drop support where the drag target is a
+figure and is wrapped in an XY locator has been addressed and fixed.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.5.1 (beta) -- August 3, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">ScreenCapture
+improvements</span> - ScreenCapture handling has been improved to
+be more robust in the face of out of memory conditions. It is also now
+more user-configurable. See <a href="javadoc/com/windowtester/runtime/util/ScreenCapture.html">ScreenCapture</a>
+for details.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">RCP Ant
+Example Documentation Update</span> - The documentation for the
+RCP Ant example has been updated to reflect refactoring in progress.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Runtime
+DragTo Handling with Figures as Targets</span> - Runtime Drag and
+Drop support has been improved for the case where the drag target is a
+figure.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.5.1 (beta) -- July 17, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Javadoc
+improvements</span> - The docs for <tt>IUIContext.keyClick(int)</tt>
+were improved to better describe composite key stroke specifications.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Table Item
+Selection Recording</span> - A regression was fixed that was
+causing double clicks on table items to be wrongly generated as single
+clicks.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Mac Native
+Library Linking</span> - The Cocoa JNI library was wrongly
+specified. This has now been fixed. </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">WT.END Key
+Entry</span> - A bug preventing proper dispatch of "END"
+keystrokes has been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">XY
+Coordinates for Canvas Drops Fixed</span> - XY Coordinates for
+drags to Canvas widgets were being (wrongly) discarded. This has now
+been fixed and recorded drags to canvases should include proper XY
+information.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.5.1 (beta) -- July 8, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">DragTo
+Modifier Keys</span> - Modifier keys were being neglected by
+calls to <tt>dragTo</tt>; this has now been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Runtime
+handling of Menu Items w/ Slashes (and Shortcuts)</span> - The
+MenuItem path tokenizer has been fixed to handle corner cases with
+slashes (e.g., "Find/Replace...") and accelerators/shortcuts.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JobsCompleteCondition
+Now Ignores EPP UDC Jobs</span> - The JobsCompleteCondition has
+been updated to ignore EPP Usage Data Collector jobs by default.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Conditions
+Handled During Exception Handling</span> - Registered conditions
+are now handled during shell tear down when for failed tests. This
+provides a hook for developers who need to participate in teardown. An
+example of where this is handy is in the case where a closed shell
+gives rise to a confirmation dialog. In order to not go into an
+infinite regress when the framework tries to close the shells, a
+condition can be registered to handle the nested dialog properly.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">One Time
+Setup/Teardown</span> - The logic to manage the test lifecycle
+has been improved and onetime class setup and teardown methods are now
+being called as expected.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">ViewLocator.forName(..)</span>
+- A new factory for View Locators has been implemented, allowing
+testers to specify views by name (vs. id).</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.0.1 (beta) -- June 11, 2008</h3>
+
+
+
+
+
+
+Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Palette
+Button Recording</span> - Interactions with GEF palette buttons
+(e.g., the control used to hide/reveal the palette) now generate <code>PaletteButtonLocator</code>
+selections.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Dynamic Tree
+Content Handling Fix</span> - Dynamic trees contain "dummy" items
+as placeholders for their dynamic content which were confusing our
+finder. These placeholders are now properly handled. </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Test
+Execution Notification Fix</span> - Timeouts in tests were
+bypassing our test finished event notification compromising some test
+lifecycle management (e.g., resetting of JFace Automation flags). </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Palette Item
+Selection Fix/Workaround For Redesigned GEF Palette</span> - In
+GEF 3.4RC3, a quirk in the newly redesigned palette model broke
+selections of the "Marquee" tool. This issue has now been addressed in
+our EditPartFinder. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 3.0.1 (beta) -- May 29, 2008</h3>
+
+
+
+
+
+
+Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Recorder
+Console Enabled by Default</span> - The recorder console has made
+it out of its experimental period and is now on by default. The
+"classic" recorder can be re-enabled from the WindowTester Pro Recorder UI
+preferences. For more details, see the online help docs. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">GEF Runtime
+Transaction Fix</span> - Transactions triggered by actions on a
+GEF canvas are waited for. In cases where a modal dialog was popped up
+before the transaction was complete, this wait was timing out (pending
+interaction with the dialog). This case is now handled (the wait is
+canceled). </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JUnit38Runner
+Fixed</span> - The provisional JUnit38 runner provided for JUnit4
+compatibility had a faulty filter implementation that has been fixed.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 3.0.1 (beta) -- May 20, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Empty Shell
+Showing Fixes</span> - Transient shells that were causing
+spurious wait calls to be generated are now being identified and
+ignored by the recorder.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Debugging
+Warnings Changed to Traces</span> - When the recorder cannot find
+the control with current focus it used to add a remark to the log, this
+is now a trace (and will only be seen if tracing is enabled).</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Recorder DND
+Glitches Fixed</span>
+- A number of issues in GEF DND recording have been addressed: a bug
+that caused empty dragTo(..) events to be codegened has been fixed; and
+drag events whose source selection is missing from the recording
+(because there was no explicit click before the drag) are being
+repaired at codegen-time.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Ant Example
+Documentation Updated</span>
+- The ant example docs were updated to include a tip about properly
+setting up proxy host information. (Thanks to Fabian Leuthold for
+pointing this out!)</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">CTabItem
+Close Runtime support</span>
+- CTabItems can now be closed by passing a CTabItemLocator into the
+ui.close(..) method. Closing this way rather than by using a relative
+XY to locate the 'X' on the tab is not only more robust but also better
+communicates intent in the test. </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">CTabItem
+Close Recorder support</span> - CTabItem interactions no longer
+include XY information. In case the CTabItem was closed, a call to
+ui.close(..) will be generated. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 3.0.1 (beta) -- April 30, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">GEF Scroll
+and Reveal Fixes</span> - Fixes were made to the GEF runtime to
+better handle scrolling and revealing items on a figure canvas during
+selection.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">GEF Palette
+Item Revealing Strategy</span> - The strategy used to reveal
+palette items when the palette is hidden has been updated to pin the
+palette. This fix addresses potential timing issues where clicks on
+items occur as the palette is opening or closing.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">TreeItemLocator
+Empty Child Reveal Fixes</span> - Handling of the case where a
+tree item selection is attempted on a branch that does not exist has
+been improved. (The new behavior is to throw a search exception where
+before there was an expansion timeout exception.)</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Recorder
+Console Swing Improvements</span> - The Recorder console now has
+improved labels for Swing element selections.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Filtered
+Tree Item Recording fixes</span> - The recorder has been fixed to
+recognize filtered trees.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 3.0.1 (beta) -- April 15, 2008</h3>
+
+
+
+
+
+
+Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">WT File
+System Target Provisioner Wizard</span>
+- A new wizard has been added to drive the creation of a custom target
+provisioner that provides the WindowTester Pro plugins required to record
+and playback tests. &nbsp;Such a provisioner comes in handy in
+cases
+where developers are devloping against a target that is not based on
+the IDE itself (which automatically has all of the WT libraries
+installed). &nbsp;NOTE: this is a work in progress... &nbsp;;)</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 3.0.1 (beta) -- April 2, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">FAQ Updated</span>
+- Instructions for enabling foreign keyboard support have been added to
+the FAQ.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">MenuItemLocator
+and native dialog misbehavior</span> - menu item selections that
+launched native dialogs were hanging in Eclipse 3.3. This regression
+has been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">SectionLocator
+Fixes</span> - a bug in the section child index finding algorithm
+was fixed. This bug made it impossible to collect (using a findAll(..))
+all the children of a Section.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">LabeledLabelLocator
+Implemented</span> - A new locator for locating labeled labels
+has been added.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.3.1 (beta) -- February 8, 2008</h3>
+
+
+
+
+
+
+Fixes:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li style="text-align: left;"><span style="font-style: italic;">Updated <a href="../samples/ant_sample.html">Ant Example</a></span>
+--- &nbsp; Changed test script to use <a href="javadoc/com/windowtester/runner/WindowTesterRunner.html">com.windowtester.runner.application</a>
+rather than org.eclipse.test.uitestapplication. Fixed download URL to
+Eclipse 3.2.2. </li>
+
+
+
+
+
+
+  <li style="text-align: left;"><span style="font-style: italic;">Updated <a href="../samples/ant_rcp_sample.html">Ant RCP Example</a></span>
+--- &nbsp; Changed test script to use <a href="javadoc/com/windowtester/runner/WindowTesterRunner.html">com.windowtester.runner.application</a>
+rather than org.eclipse.test.uitestapplication. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.3.1 (beta) -- released January 22, 2008</h3>
+
+
+
+
+
+
+<span style="font-style: italic;">Features:
+</span><br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">New
+MenuItemLocator condition factories</span> --- &nbsp;<strong></strong>New
+condition factory methods on the SWT&nbsp; menu item locator allow
+you
+to test enablement and check state easily. &nbsp;For example, to
+test
+enablement you would write&nbsp;<code>assertThat(new
+MenuItemLocator("Window/Close All Perspectives").isEnabled())</code>.
+&nbsp;To verify checked state: <code>assertThat(new
+MenuItemLocator("Project/Build Automatically").isSelected())</code>.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span>
+<h3>Version 2.3.1 (beta) -- released December 21, 2007</h3>
+
+
+
+
+
+
+<span style="font-style: italic;">Features:
+</span><br>
+
+
+
+
+
+
+<ul style="font-style: italic;">
+
+
+
+
+
+
+  <li>Added support to change the keyboard type to current locale
+during the test.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<div style="margin-left: 40px;">For
+example, If current locale is German / Germany, and the test needs to
+use the German Keyboard to enter text, then in the test have the
+statement
+<br>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><span style="font-weight: bold;">WT.setWTLocaleToCurrent();</span>
+<br>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<div style="margin-left: 40px;">From then on, all text
+will be entered using the German keyboard mapping. At the end of the
+tests, in order to set it back to the US Keyboard use
+<br>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><span style="font-weight: bold;">WT.resetWTLocale();</span>
+</div>
+
+
+
+
+
+
+<h3>Version 2.3.1 (beta) -- released December 11, 2007</h3>
+
+
+
+
+
+
+Fixes:&nbsp;<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Recording
+standalone SWT applications under Eclipse 3.3</span> - Fixed
+problem where the New UI test dialog does not show up after closing
+application.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.3.0&nbsp;-- released October 26, 2007</h3>
+
+
+
+
+
+
+<p>Fixes:&nbsp;</p>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li>During a test, double click on TableItem to open a dialog
+used to stop the test execution. This problem has been fixed and now
+the test continuous to successful completion.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Fixed a
+problem with the preference "Switch Primary and secondary mouse buttons
+during playback"</span> - Un-checking the option should work
+properly now.</li>
+
+
+
+
+
+
+  <li>Fixed NPE when playing back SWT tests.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<p>Features :&nbsp;</p>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">TableCellLocator
+support</span> - Added a <a href="javadoc/com/windowtester/runtime/swt/locator/TableCellLocator.html">TableCellLocator
+    </a>to help address a particular cell in a Table. Currently
+there is only runtime support for the TableCellLocator. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.2.1 (beta) - released October 19, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:<br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Swing
+Runtime - </span>Locating JButtons using index has been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JOptionPane
+Dialogs - </span>Clicks on Yes / No buttons in JOptionPane
+dialogs now generate JButtonLocator instead of NamedWidgetLocator.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Context
+Click -&nbsp;</span>[Linux] Context click has been fixed.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:
+<h3>Version 2.2.1 (beta) - released October 09, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:<br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Swing
+Recorder</span> - Applets can now be recorded.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Actions on
+JTables -</span> Code generation for context clicks and clicks
+with modifiers on JTables has been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JDT Plugin
+dependency relaxed</span> - Dependency on plugin
+org.eclipse.jdt.core has been made optional.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">GEF Plugin
+export removed</span> - The eclipse GEF plugin is no longer
+exported.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li>Added support for Non US keyboards. When&nbsp; the
+language of a locale is not English, the string isn mapped using a
+keymap corresponding to&nbsp; the keyboard based on Country and
+Language. Support for keyboards can be implemented by adding the
+corresponding keymaps to the database. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.2.1 (beta) - released September 25, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:</span><br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Swing
+Dialogs --</span> When multiple Dialogs were open, the
+appropriate&nbsp; dialog was not found. This has now been fixed. </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">View Locator
+Visibility Fix --</span> View Locators were not properly testing
+for visibility when looking for their components; this is now fixed. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">new
+Assertion support</span>-- <a href="assertions.html">Assertions</a>
+can be included to validate the application and UI state during test
+execution.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">new
+Condition documentation</span>-- new documentation for use of <a href="conditions.html">Conditions</a>.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.2.1 (beta) - released September 11, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:</span><br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Class
+Reference Regression Fixed</span>-- a classloading
+corner-case&nbsp;was addressed and fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JFace Test
+Automation Flags Handled</span>--
+&nbsp;ErrorDialog.AUTOMATED_MODE is disabled during test runs (and
+re-enabled when the test runs end).</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 2.2.1 (beta) - released August 29, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:</span><br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Compound
+Keystroke Support Fixed</span>-- some keystrokes were being
+improperly interpreted; these have now been fixed.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Support for
+recording Custom Widgets</span>-- Applications with Custom
+Widgets can now be recorded and tests can be generated featuring these
+widgets.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Default Wait
+Timeout and Intervals Now User-Configurable</span>--
+Users can now set default timeout and interval values through the WT
+class (see WT#setDefaultWaitTimeOut(..) and
+WT#setDefaultWaitInterval(..)).</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 2.2.1 (beta) - released August 21, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:</span><br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Compound
+Keystrokes supported</span>-- the SWT UIContext now supports
+compound keystrokes such as&nbsp;ui.keyClick(WT.CTRL | WT.SHIFT,
+'r')</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Combo Item
+Selection fixes</span>-- combo item selections that fail because
+keystroke navigation is unsupported are "repaired" by forcing the
+selection. <span style="font-weight: bold;"></span></li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span>Features:
+<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">NamedWidgetLocator&nbsp;
+for Swing</span> - Swing components with names set using the
+setName() method can now be addressed using this locator. </li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JTextComponentLocator</span>
+- Improved JTextComponentLocator to allow for clicks based on caret
+position. This is useful when specifying clicks on JTextPane and
+JTextArea. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.2.1 (beta) - released August 2, 2007</h3>
+
+
+
+
+
+
+<span style="font-weight: normal;">
+Fixes:</span><br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JobsCompleteCondition</span>--
+Logic fixed.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">WindowTester Pro
+Preferences --&nbsp;</span>Preferences can now be exported
+via the Eclipse preference exporter.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Ant RCP Test
+Example</span> -- Added an RCP Application Ant test example
+(see&nbsp;the help docs for more details)..</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span><span style="font-weight: normal;"></span>
+<h3><br>
+
+
+
+
+
+
+</h3>
+
+
+
+
+
+
+<h3>Version 2.2.1 (beta) - released July 24, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">ContributedToolItemLocator</span>--
+Fixed to ignore matching toolitems that are not currently visible.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">New
+Recording Information dialog -- </span>Added
+a new dialog that appears after a recording session if nothing was
+recorded so that the cause of the recording problem can be better
+deduced.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Split local
+and global ConditionMonitor --&nbsp;</span>Added
+a condition monitor associated with the IUIContext separate from the
+global condition monitor. The local condition monitor can be accessed
+via the IUIContext#getAdapter(...) method by passing
+IConditionMonitor.class as the argument. The local condition monitor
+and all conditions and handlers associated with it are discarded when
+the IUIContext is discarded (typically at the end of the execution of a
+test), while the global condition monitor persists for the entire java
+execution session.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Split local
+and global ShellMonitor</span><span style="font-style: italic;">&nbsp;--&nbsp;</span>Added
+a shell monitor associated with the IUIContext separate from
+the global shell monitor. The local shell monitor can be
+accessed via the IUIContext#getAdapter(...) method by passing
+IShellMonitor.class as the argument.The local shell monitor and all
+conditions and handlers associated
+with it are discarded when the IUIContext is discarded (typically at
+the end of the execution of a test), while the global shell monitor
+persists for the entire java execution session.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span>
+<h3>Version 2.2.1 (beta) - released July 17, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">JobsCompleteCondition</span>--
+Revised to ignore Mylyn/Mylar jobs by default.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">New UI Test
+dialog message -- </span>When
+the "Create folders automatically" option is unchecked, the warning
+message about creating the project should not be there. The project
+must exist otherwise the Finish button is disabled.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.2.0&nbsp;-- released June 29, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">MenuItemLocator
+Enablement Fix</span>-- MenuItemLocators now wait for enablement
+before performing the item click. &nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.1.1 (beta) -- released June 19, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">ButtonLocator
+Enablement Fix</span>-- ButtonLocators now wait for enablement
+before performing the click. &nbsp;</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Active Shell
+Finding Retries Implemented</span>--
+attempts to find the current active shell are now retried (wait up to 3
+seconds, testing at 500ms intervals). &nbsp;This addresses an issue
+in
+debugging where the resumed test would fail with an assertion error due
+to a null root in a find.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Named Combo
+Widget Identification Improvements</span> -- further improvements
+were made to the recorder to better locate named locators such as
+Combos and CCombos.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Updated
+Tutorials -- </span>Updated the tutorials to use the new sample
+project wizard.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Simplify
+recorded menu path</span>-- Strip ampersands and accelerators off
+menu paths when recording so that<br>
+
+
+
+
+
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;ui.click(new
+MenuItemLocator("&amp;File/&amp;New\tAlt+Shift+N/P&amp;roject..."));<br>
+
+
+
+
+
+
+becomes<br>
+
+
+
+
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+ui.click(new MenuItemLocator("File/New/Project..."));</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">New Sample
+project wizard -- </span>Added a new wizard to import the sample
+projects used in the tutorials.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span>
+<h3>Version 2.1.1 (beta) -- released June 13, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Tree Items
+properly Escaped in Recording</span>-- Tree items with '\'s in
+their text are now being properly escaped in the generated locator.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">MenuItemLocators
+Adapted by UIContext</span>--
+There is some confusion between the two locators named MenuItemLocator
+(bad name choice for at least one!) &nbsp;To remedy the confusion,
+the
+UIContext now performs adaptation behind the scenes so that if a
+runtime MenuItemLocator is used when an SWT MenuItemLocator is required
+the test will perform as expected.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 2.1.1 (beta) --&nbsp;released June 5,
+2007&nbsp;</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Record
+Launch Configuration for SWT/Java Applications </span>--
+The working directory for the launch configuration is now set to the
+project directory. Earlier versions did not have this set that cause
+the application not starting up when recording.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 2.1.1 (beta) -- released May 31, 2007&nbsp;</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Context
+Clicks on Empty Trees Recorded</span>-- Context clicks that were
+getting dropped by the recorder are now being properly picked up.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"></span>
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">New JUnit
+formatter for WindowTester Pro-- </span>New
+com.windowtester.runtime.ant.WindowTesterXMLJUnitResultFormatter
+class for generating a JUnit result.xml file with embedded links to
+screen captures taken by WindowTester Pro during test execution.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.1.1 (beta) -- released May 25, 2007</h3>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"></span>
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">UI Thread
+Monitor enhancement-- </span>Enhanced
+the UI Thread Monitor to notify a listener, generate a report and exit
+the application if the UI thread is unresponsive. Previously, the UI
+Thread Monitor would only notify a
+listener.WindowTesterXMLJUnitResultFormatter</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.1.0 (Release) -- released April 30, 2007</h3>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Promoted
+from beta. Includes bug fixes and minor features listed under version
+2.0.1.</span></li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.0.1 (beta) -- released April 25, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Nested&nbsp;Modal
+Dialogs on Force Close Properly Handled</span>-- Nested
+modal dialogs were causing tests to hang where they were forced closed
+at test tear-down. &nbsp;(Specifically, if a dilaog A was up and
+forced
+closed and it in turn opened a dialog B, B was not &nbsp;getting
+closed, the test thread was blocked and the test hung.) &nbsp;To
+remedy
+this, the Exception-Handling logic used at tear-down has been improved.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Launching of
+recording with arguments for Java applications fixed for Eclipse 3.2
+and 3.3 - </span>You should now be able to record Java
+applications passing arguments in the record configuration.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Fix for
+running tests on Swing applications with input parameters</span>
+-&nbsp; You should be able to run a test on a Swing application
+that has input parameters.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Failures in
+Combo Selections Handled (more) Gracefully</span>--
+A disposed widget exception was fixed and now failures in item
+selections throw an appropriate widget not found exception.&nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<p>Features:</p>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Enhanced Ant
+sample -</span>
+Enhanced&nbsp;sample for running tests from Ant. The sample now
+downloads,&nbsp;installs and configures all the necessary elements
+for
+running an automated test and runs a sample JUnit Plug-in test against
+Eclipse.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span>
+<h3>Version 2.0.1 (beta) -- released April 17, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Improved
+Javadocs</span>--
+&nbsp;Documentation describing common SWTWidgetLocator construction
+cases (where no information to disambiguate the parent) was added and
+the IUIContext.find(..) documentation was elaborated.<br>
+
+
+
+
+
+
+  </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.0.1 (beta) -- released April 10, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Regular
+Expression Matching in CTabItemLocators</span>-- Regular
+expression mishandling in CTabItems (and other basic widget locators)
+was fixed.&nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;">
+</span>
+<h3>Version 2.0.1 (beta) -- released April 3, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Indexed
+Hierarchical Matching</span>-- A bug was fixed in matching
+indexed widget locators.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Codegen for
+Escaped Chars</span>&nbsp;-- Characters that need to be
+escaped (e.g., quotes) are now properly escaped in codegen.</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">IShellMonitor
+Retrieval</span> -- ShellMonitors can again be safely fetched
+from the new IUIContext. &nbsp;</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Combo
+Selection Verification Errors Fixed</span> -- Combo selections in
+large lists of combo items are now properly handled and verified.
+&nbsp;</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Failures
+in Tree Item Contex Clicks Properly Handled</span> -- Context
+clicks on non-existent tree items are now throwing the expected
+exception. &nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Improved
+ToolItem Locator Recording</span> - The
+new&nbsp;ContributedToolItemLocator is now used in
+recording.&nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.0.1 (beta) -- released March 28, 2007</h3>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Improved
+ToolItem Locator</span>
+- A new locator, ContributedToolItemLocator, has been added to the
+runtime and recorder to locate
+tool items that have been contributed via toolitem contributions in the
+plugin.xml.&nbsp;</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">ToolItem
+Pulldown Locator </span>-- A new locator,
+PullDownMenuItemLocator, has been added to the runtime to locate and
+select pulldown menu items for toolitems.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 2.0.1 (beta) -- released March 20, 2007</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Assertion
+Hook Codegen</span>--&nbsp;Assertion Hooks were wrongly being
+generated against UIContext instance not TestCase. &nbsp;This is
+now fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Screen
+Capture Fix</span>-- A Screen Capture on find failures regression
+has been fixed.</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;"> Hoverinfo
+Setup Fix</span>-- A regression in our handling of cached
+hoverinof during condition handling has been fixed.&nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"></span>
+<span style="font-weight: bold;"></span>
+<h3>Version 2.0.0&nbsp;-- released March&nbsp;06, 2007</h3>
+
+
+
+
+
+
+Features:<br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">WindowTester Pro
+Swing</span> - Improved &nbsp;infrastructure to support Swing.<span style="font-weight: bold;"></span></li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">New API</span>
+- Improved and simplified API.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Code Coverage</span>
+- Inclusion of the Code Coverage feature.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-style: italic;"></span>
+<h3>Version 1.5.1 (beta) -- released November 20, 2006</h3>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Debugging
+Constants</span>--&nbsp;Debugging constants have moved from
+the swt.runtime to the
+com.windowtester.runtime plugin.&nbsp; In order to get tracing, it
+must now
+be enabled in the com.windowtester.runtime plugin..</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"></span>
+<h3><br>
+
+
+
+
+
+
+</h3>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released August 22, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Widget
+Matching Performance Improvements</span><em>--</em>&nbsp;
+A number of fixes have been introduced to improve widget-matching
+performance.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Regular
+Expression Matching Fix</span>-- A bug causing
+PatternSyntaxExceptions to be thrown (incorrectly) has been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Recording
+Control Dialog Presentation</span>-- &nbsp;The recording
+dialog has been fixed to no longer use the development environment as
+its parent. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 1.01 (beta) -- released August 8, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Tree
+Item Context Selection Error Reporting</span><em>--</em>&nbsp;
+Error messages for failed context selections have been improved..</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"><br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li><em>Regular Expressions in Text Matching---</em>
+&nbsp; &nbsp;text matching now supports Java-style
+regular expressions. &nbsp;See <a href="javadoc-old/com/windowtester/swt/util/StringComparator.html">StringComparator</a>
+for more details<span style="font-style: italic;">.</span></li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 1.01 (beta) -- released August 1, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Tree/Table
+Item Checks Recording</span><em>---</em>&nbsp; A
+bug preventing Tree/Table Item Checks from being recorded has been
+fixed.</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Shell
+Disposal Recording&nbsp;</span><em> ---</em>
+&nbsp;Recording of shell disposals has been improved; codegen now
+generates better waitForShellDisposed conditions.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"><br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li><em>OneTimeTearDown --- </em>A
+oneTimeTearDown method has
+been added to UITestCase, providing &nbsp;ahook for tearDown code
+that
+should be run only once per test class.&nbsp;</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+</span>
+<h3>Version 1.01 (beta) -- released Jul 18, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Recording
+Label Widgets&nbsp;</span><em> ---</em>&nbsp;
+Selections of Label Widgets were not being properly recorded.</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">WidgetDisposedCondition&nbsp;</span><em>
+---</em> &nbsp;The WidgetDisposedCondition now has an
+explanatory toString method.</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Screenshots&nbsp;</span><em>
+---</em>&nbsp; Some test failures were not producing
+screenshots.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"><br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li><em>WidgetShowingCondition --- </em>A
+new WidgetShowingCondition has been added to the
+com.windowtester.swt.condition.eclipse package.&nbsp;</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">WaitForShellDisposed
+default timeout&nbsp;</span><em> ---</em>&nbsp;
+The&nbsp;WaitForShellDisposed default timeout has been upped to 15
+seconds.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Widget
+Finder Retries</span> -- To
+make tests more robust and less prone to intermittent failures caused
+by slight differences in the speed of playback execution, widget
+finding has been refactored to retry failed attempts before giving up.
+&nbsp;(The current setting is at 10 retries made at 500ms
+intervals.)</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3><br>
+
+
+
+
+
+
+</h3>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released Jul 11, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">Escaped
+Paths in Tree Selection</span><em>&nbsp;---</em>&nbsp;
+Escaped delimeters in tree paths were not being properly handled; this
+bug has been fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Escaped
+Paths in Context Menus</span> &nbsp;---- A bug causing paths
+with escaped delimeters (e.g. "\\/") to fail in Context Menus was
+fixed..</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Screenshots</span>
+---&nbsp;&nbsp; A number of issues that were causing extra
+screenshots to be generated (in non-error conditions) were fixed</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"><br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li><em>Revised Primary Pref Page ---&nbsp;</em>Updated
+the main WindowTester Pro preference page to show product information such
+as version, build, installation location, etc. <em></em></li>
+
+
+
+
+
+
+  <li><em>Support for Onetime Setup</em>
+&nbsp;---&nbsp; UITestCase now supports a oneTimeSetup method
+that is called once per test class, before setUp.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Support
+for re-mapped Mouse Buttons </span>---
+Support for remapped primary and secondary mouse buttons was added as a
+user preference (in the WindowTester Pro Playback preferences).</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3><br>
+
+
+
+
+
+
+</h3>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released Jun 27, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>3.2 Compatability Fixes ---</em>
+Various
+Compatability issues were addressed.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3><br>
+
+
+
+
+
+
+</h3>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released Jun 20, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Codegen Bugs --- </em>A bug that
+caused paused recordings to throw NPEs in code generation has been
+fixed.</li>
+
+
+
+
+
+
+  <li><em></em><span style="font-style: italic;">TableItem
+Event Recording</span>
+---&nbsp;A bug in TabItem x,y relative coordinate recording was
+fixed.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">WaitForShellShowing
+Code Generation Fixes</span> --- Shell title was not always
+properly generated in waitForShellShowing() events; this has now been
+fixed.</li>
+
+
+
+
+
+
+  <li>Column-Based TableItem Clicks --- Column-based table
+item clicks were fixed in the runtime.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+Features: <span style="font-style: italic;"><br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+</span>
+<ul>
+
+
+
+
+
+
+  <li> <em>Improved ShellMonitor API ---&nbsp;</em>API
+was added to IShellMonitor that supports removal of specified
+conditions:&nbsp;<a href="javadoc-old/com/windowtester/swt/condition/shell/IShellMonitor.html">IShellMonitor#remove(com.windowtester.swt.condition.shell.IShellCondition)</a>.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released Jun 6, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Javadocs</em> ---
+API javadocs have been expanded and improved.</li>
+
+
+
+
+
+
+  <li><em>Test Lifecycle</em> --- Tests with a
+trailing open menu will no longer hang test execution.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Table
+Item Clicks</span> --- Some table item clicks were failing to
+click within the clickable area
+of the item.&nbsp; Our click location finding stratgey has been
+updated to
+handle these cases.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Tree
+Item Clicks</span> --- Tree Item clicks were not properly
+returning the clicked item --- as a
+result, hover info was not being properly set causing drag events with
+a clicked tree item as a source to fail with a NPE.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Screenshots</span>
+--- Fixed a number of issues that were causing extra screenshots to be
+generated (in non-error conditions).</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">Tutorial</span>
+---&nbsp; The online Tutorial was updated to reflect our updated
+Launch Configuration story.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features:
+<ul>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">ScreenShots</span>
+---&nbsp; Screenshots are now emitted to a "wintest/" subdirectory
+of the working eclipse base directory.</li>
+
+
+
+
+
+
+  <li> <span style="font-style: italic;">ViewLocators</span>
+--- &nbsp;Introduced a custom locator used for scoping widget
+searches by eclipse workbench views. &nbsp;See: <a href="javadoc-old/com/windowtester/swt/locator/eclipse/ViewLocator.html"><span style="text-decoration: underline;">com.windowtester.swt.locator.eclipse.ViewLocator</span></a>
+for more.</li>
+
+
+
+
+
+
+  <li>LabeledLocators --- Introduced a custom locator used
+for identifying widgets that have an associated Label widget.
+&nbsp;See: <a href="javadoc-old/com/windowtester/swt/locator/LabeledLocator.html"><span style="text-decoration: underline;">com.windowtester.swt.locator.LabeledLocator</span></a>
+for more.</li>
+
+
+
+
+
+
+  <li><em>FAQ</em> ---&nbsp; FAQ expanded
+and updated.<span style="font-style: italic;"></span></li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3><br>
+
+
+
+
+
+
+</h3>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released May 25, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Javadocs</em> ---
+API javadocs have been expanded and improved.</li>
+
+
+
+
+
+
+  <li><span style="font-style: italic;">3.0/3.2
+Compatability</span>
+--- a number of &nbsp;compatability fixes were made to the recorder
+to
+make it fully compatable with Eclipse 3.0.* and upcomming 3.2 releases.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features:
+<ul>
+
+
+
+
+
+
+  <li> <em>FAQ</em> ---
+A WindowTester Pro FAQ has been started and integrated into the help
+documentation. </li>
+
+
+
+
+
+
+  <li> <em>Common Eclipse Conditions</em>
+---Implementations of common eclipse conditions have been added to the
+runtime. See: the <a href="javadoc-old/com/windowtester/swt/condition/eclipse/package-summary.html">com.windowtester.swt.condition.eclipse
+package description</a> for more. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released May 16, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Combo Item Selections</em> ---
+Combo selection post-condition verification code was throwing
+WidgetDisposed exceptions in cases where the Combo was hosted by a
+shell (such as a dialog) that was disposed before the verification
+completed. This has been fixed. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features:
+<ul>
+
+
+
+
+
+
+  <li> <em>Condition Monitoring</em> --- A new
+condition monitoring and handling API has been introduced (see: <a href="javadoc-old/com/windowtester/swt/condition/package-summary.html">com.windowtester.swt.condition
+package description</a>). </li>
+
+
+
+
+
+
+  <li> <em>Basic Drag and Drop</em> --- Basic
+drag and drop support has been implemented (see: <a href="javadoc-old/com/windowtester/swt/IUIContext.html">IUIContext.dragTo(int
+x, int y)</a>). </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released May 9, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Tree Item Path Resolution</em> ---
+a bug in the resolution of paths in trees with mutiple nodes with the
+same name (e.g., "parent/child/chidl") was fixed. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Screen Capture For Failed Menu Selections</em>
+--- attempts to select menu items that do not exist now produce
+screenshots of the menu open at the time of failure. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released May 2, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Runtime</em> --- various runtime
+issues were addressed to make test runs more robust. </li>
+
+
+
+
+
+
+  <li> <em>Context Menus</em> --- various
+improvements were made to the recorder to better detect context menu
+selections. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features:
+<ul>
+
+
+
+
+
+
+  <li> <em>Named Widget Resolution in Recording</em>
+--- the recorder now properly handles named widgets in recording, using
+their names to re-identify them in playback rather than generated <code>WidgetLocator</code>s.
+  </li>
+
+
+
+
+
+
+  <li> <em>New Condition API</em> --- <code>IUIContext</code>
+now supports waits for arbitrary conditions (implemented as <code>ICondition</code>s).
+  </li>
+
+
+
+
+
+
+  <li> <em>Point-Based Context Menu Selections</em>
+--- context menu selections that require an offset to identify their
+target are now supported with the <code>IUIContext#contextClick(Widget
+w, int x, int y, String path)</code> method. </li>
+
+
+
+
+
+
+  <li> <em>Improved mouseMove API</em> --- <code>IUIContext</code>
+now supports mouse movements to points relative to widgets with the <code>mouseMove(Widget
+w, int x, int y)</code> method and moves to absolute coordinates
+with the <code>mouseMove(int x, int y)</code> method. </li>
+
+
+
+
+
+
+  <li> <em>Improved Widget-Finding API</em>
+--- <code>IUIContext</code> now supports widget finding by
+locator directly with the <code>find(WidgetLocator locator)</code>
+method. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released April 12, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Context Menus</em> --- various
+runtime and playback bugs have been addressed. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features:
+<ul>
+
+
+
+
+
+
+  <li> <em>Help Documentation</em> ---
+Javadocs have been added to the help documentation. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<h3>Version 1.01 (beta) -- released April 7, 2006</h3>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Features:
+<ul>
+
+
+
+
+
+
+  <li> <em>Screen Captures</em> --- on failing
+tests, runtime now captures screen shots of the application under test
+at the time of test failure. </li>
+
+
+
+
+
+
+  <li> <em>WidgetSearchException</em> --- a
+new supertype of <code>WidgetNotFoundException</code> and <code>MultipleWidgetFoundException</code>
+was introduced to ease handling of exceptions in cases where both
+exceptions are to be handled in the same way. </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Fixes: <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <em>Test Failure Teardown</em> --- some
+test failures (where menus or modal dialogs were open at the time of
+failure) were blocking test execution; this has now been fixed and
+tests fail appropriately. </li>
+
+
+
+
+
+
+  <li> <em>Context Menu Support</em> ---
+context menu support has been improved in runtime and playback. </li>
+
+
+
+
+
+
+  <li> <em>Escaped Text in Text Entry Recordings</em>
+--- backslashes recorded in text entry are now properly escaped in the
+generated text entry code. </li>
+
+
+
+
+
+
+  <li> <em>Support for Slashes ('\') in Path Items</em>
+--- Path items that use the default delimiter can now be handled as the
+slash is escaped. For example: the item "Find/Replace" becomes
+"Find\\/Replace". </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+</body>
+</html>

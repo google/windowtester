@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="List, JComboBox">
+  <component id="JComboBox Instance" class="javax.swing.JComboBox" title="My Code" />
+  <component id="JScrollPane Instance" class="javax.swing.JScrollPane" parent="My Pane" index="7" title="My Code" />
+  <component id="JTable Instance" class="javax.swing.JTable" parent="JViewport Instance" index="0" title="My Code" />
+  <component id="JViewport Instance" class="javax.swing.JViewport" parent="JScrollPane Instance" index="0" title="My Code" />
+  <component id="My Code Root Pane" class="javax.swing.JRootPane" index="0" title="My Code" tag="My Code Root Pane" />
+  <component id="My List" class="javax.swing.JList" name="My List" title="My Code" />
+  <component id="My Pane" class="javax.swing.JPanel" name="My Pane" parent="null.layeredPane" index="0" title="My Code" />
+  <component id="null.layeredPane" class="javax.swing.JLayeredPane" name="null.layeredPane" parent="My Code Root Pane" index="1" title="My Code" />
+  <fixture filename="MyCode-fixture.xml"/>
+  <assert value="Combo 0" component="JComboBox Instance" method="getSelectedItem" />
+  <action class="javax.swing.JComboBox" args="JComboBox Instance,Combo 10" method="actionSelectItem" />
+  <action class="javax.swing.JComboBox" args="JComboBox Instance,Combo 15" method="actionSelectItem" />
+  <action class="javax.swing.JComboBox" args="JComboBox Instance,Combo 2" method="actionSelectItem" />
+  <action class="javax.swing.JList" args="My List,0" method="actionSelectIndex" />
+  <action class="javax.swing.JList" args="My List,6" method="actionSelectIndex" />
+  <action class="javax.swing.JList" args="My List,1" method="actionSelectIndex" />
+  <action class="javax.swing.JList" args="My List,3" method="actionSelectIndex" />
+  <action class="javax.swing.JList" args="My List,7" method="actionSelectIndex" />
+  <assert value="6" component="JTable Instance" method="getRowCount" />
+</AWTTestScript>
+

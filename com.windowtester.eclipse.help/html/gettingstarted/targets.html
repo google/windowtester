@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Adding WindowTester Pro Plug-ins to custom PDE targets</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Adding WindowTester Pro Plug-ins to custom PDE targets</h1>
+<p>When developing applications that share the same plug-in
+configuration as the eclipse IDE, nothing special needs to be done to
+add the WindowTester Pro libraries to your environment. &nbsp;On the other
+hand,&nbsp; if you are developing against a custom target that is not
+based on the IDE, you will need to add the <b>WindowTester Pro plugins</b> to your
+target yourself.</p>
+<h3>Step 1: Creating a WindowTester Pro File System Target Provisioner</h3>
+<p>The first step is to create a provisioner based on your current
+WindowTester Pro installation. &nbsp;To do this, start the <b>New WindowTester Pro
+Target Provisioner</b> wizard. Open the New Wizard Selector:
+<b>File &gt; New &gt; Other...</b> and select <b>WindowTester Pro > WindowTester Pro Target Provisioner</b>.</p>
+<br>
+<img src="../../images/newWizSelector.png" alt="New Target Provisioner Dialog">
+<br>
+<p>Click <b>Next></b> and specify the type of target you want to
+create and choose a destination for the created target.</p>
+<br>
+<img src="../../images/targetProvisionerWiz.png" alt="Select Type of Target">
+<p>Once the target has been created, you can use it in one of two
+ways:</p>
+<h3>Step 2 option 1: Add WindowTester Pro Target Plugins to Your Target Platform</h3>
+<p>You can add the WindowTester Pro target plugins to your target platform by
+opening the <b>Target Platform</b> PDE preference page (Window > Preferences > Plug-in Development > Target Platform), clicking <b>Add...</b></p>
+<br><img src="../../images/targetPrefs.png" alt="Add"><br>
+<p>selecting <b>File System</b> from the list of provisioner types:</p>
+<br><img src="../../images/addPlugins.png" alt="">
+<p>and then click <b>Browse...</b> and pointing to where you created your target provisioner:</p>
+<br><img src="../../images/browseForTarget.png" alt="Browse For Target">
+<p>Finallly, click <b>Reload </b>then <b>Add Required Plug-ins</b>:</p>
+<img src="../../images/reload.png" alt="Reload"><br>
+<h3>Step 2 option 2: Add WindowTester Pro Target Plugins to Your Target Definition</h3>
+<p>If you use a target definition file, add the target directory to your
+target definition by clicking the <b>Add...</b> button in the <b>Additional
+Locations</b> section of the target overview.</p>
+<br><img src="../../images/targeDef.png" alt="Add Target Location"><br>
+<p>Browsing, as above, to the target's location on disk. &nbsp;Finally, be sure to reload your target  and add required plugins (see
+above).</p>
+<h3><a name="validate_plugins">Step 3: Validate Plug-ins</a></h3>
+<p>If the <b>Recorder control does not appear</b> or the <b>Record button is disabled</b> when you launch a recording, it's likely due to a missing plug-in. 
+One way to find out what plug-ins are missing is to click the <b>Validate Plug-ins</b> button in your recording launch configuration. If something is missing,
+you should see something like this window:<br> <img src="../../images/missing_plugin.png" alt="Missing Plug-in"></p>
+<p>If this is the case, find that bundle  in your eclipse installation's plugins directory
+and then copy it into the file provisioner you made with the WT plugins in it.  
+You'll probably need to reload your provisioner too. When this is done, you should see the junit.org plugin 
+available in your launch configuration's list of available plugins.  
+Once it is, select it and retry recording. </p>
+</body>
+</html>

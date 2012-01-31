@@ -1,0 +1,30 @@
+<title>Running Tests</title>
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet"/>
+
+
+h1. Running Tests
+
+WindowTester Pro tests are run or played back just like any other JUnit tests. 
+
+* __RCP and Plug-in tests__ are run as *JUnit Plug-In Tests* and 
+* __SWT stand-alone application and Swing tests__ are run as *JUnit Tests*. 
+
+These standard test configurations are accessible from a context menu in the *Package Explorer* or *Java Editor*.
+
+!../../images/runAs.jpg!
+
+h3. Viewing Results
+
+Test results are displayed in the standard *JUnit view*. 
+
+!../../images/runResults.jpg!
+
+If a test fails, WindowTester Pro provides a stack trace identifying the point of failure.
+
+
+<br/>
+
+*Related topics:*
+
+* <a href="generating_tests.html">Generating Tests</a>
+

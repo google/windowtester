@@ -1,0 +1,31 @@
+<title>Assertions in WindowTester Pro</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+h1. Code Assertions in WindowTester Pro
+
+Interacting with an application under test (*AUT*) is only half of the story.  In order to __verify__ facts about the AUT, WindowTester Pro provides a rich assertion story.
+
+h2. Assertions at Recording-Time
+
+During a recording session, a tester can create two kinds of assertions.
+
+h3. Locator-Specific Assertions
+
+Using the "assertion inspector":../ui/assertionsUI.html, a tester can make assertions about properties of specific widgets located in the AUT.  For example, if we are testing a wizard page, we might at some point want to verify that the "Finish" button is disabled.  The generated code would look like this:
+
+bc.. ui.assertThat(new ButtonLocator("Finish").isEnabled(false));
+p. 
+
+h3. Assertion Hooks
+
+If there is no existing locator-supported assertion for the property in question, a tester can use the "recording control":../ui/recording_control.html to create an *assertion hook* as a means to place-mark a spot where there is some state they want to check in the generated code.  An assertion hook creates a *code stub* in the generated code where the developer can later define the logic of the assertion. An example assertion hook might look like so in the generated code:
+
+bc.. public void verifyNetworkState() {
+	//TODO: fill out assertion logic
+}
+p. 
+
+
+h2. Runtime Support for Assertions 
+
+The WindowTester Pro runtime provides a rich library of conditions that can be used to build assertions.  For more on assertions see "here":../reference/assertions.html.

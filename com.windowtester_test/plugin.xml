@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+<extension point="org.eclipse.ui.views">
+  <view name="%view.ControlsExample.name" icon="icons/controls_example.gif" category="org.eclipse.swt.examples.category" class="org.eclipse.swt.examples.controls.ControlView" id="org.eclipse.swt.examples.controls.view" /> 
+  <view name="%view.CustomControlsExample.name" icon="icons/controls_example.gif" category="org.eclipse.swt.examples.category" class="org.eclipse.swt.examples.controls.CustomControlView" id="org.eclipse.swt.examples.customcontrols.view" /> 
+  </extension>
+
+<extension point="org.eclipse.ui.views">
+  <category name="%category.SWTExamples.name" id="org.eclipse.swt.examples.category" /> 
+  <view name="%view.LauncherExample.name" icon="icons/launcher_example.gif" category="org.eclipse.swt.examples.category" class="org.eclipse.swt.examples.launcher.LauncherView" id="org.eclipse.swt.examples.launcher.view" /> 
+  </extension>
+  
+  <extension point="org.eclipse.ui.views">
+        <category
+            name="WindowTester Support Sandbox"
+            id="sandbox">
+      </category>
+        <view
+            category="sandbox"
+            class="com.windowtester.sandbox.views.TableInAView"
+            id="TableInAView"
+            name="Table In A View">
+      </view>
+        <view
+              category="sandbox"
+              class="com.windowtester.sandbox.views.TextInAView"
+              id="ViewWithText"
+              name="View with a Text">
+        </view>
+    </extension>
+</plugin>

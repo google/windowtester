@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<title>WindowTester Pro Tutorial</title>
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h1>Record and Playback a Sample RCP Test</h1>
+<p>The following describes how to record and playback a UI test for
+RCP applications:</p>
+
+<p>Prerequisite: This tutorial
+requires either RCP Developer v2.7.0 and above or WindowTester Pro 2.2.0 and
+above.&nbsp;</p>
+<ol>
+	<li><a href="#step1">Import&nbsp;the sample Contact Manager
+	RCP project.</a></li>
+	<li><a href="#step2">Launch recording session and record user
+	interactions.</a></li>
+	<li><a href="#step3">Stop recording and save recorded test.</a></li>
+	<li><a href="#step4">Play back the recorded&nbsp;test.</a></li>
+	<li><a href="#step5">Slower playback (optional).</a></li>
+</ol>
+<h3><a name="step1">1. Import&nbsp;the&nbsp;Contact Manager RCP
+example project</a></h3>
+<ul>
+	<li>Select <b>File &gt;
+	Import</b> from the main menu.</li><br>
+	<img src="../../images/rcptutorial_download1.gif"
+	alt="Download sample Contact Manager RCP application">
+	<li>Expand <b>WindowTester Pro </b>and
+	select <b>Contact Manager RCP
+	Example Project</b>.&nbsp;<em>Please
+	note, this wizard is only available in WindowTester Pro v2.2.0 and above.</em></li>
+	<li>Click <b>Next</b>.</li>
+	<li>Click <b>Finish. </b>The <b>ContactManagerRCP</b> project is now
+	created in your workspace.</li>
+</ul>
+<h3><a name="step2">2. Launch recording session and record user
+interactions</a></h3>
+<p>Look for a tool item ( <img
+	src="../../images/icons/record_pulldown_menu.gif">) that looks
+like the run arrow with a little console under it (should be next to
+external tools).</p>
+<ul>
+	<li>From its pull-down menu select <b>"Record
+	Configurations..."</b>.</li>
+<br><img
+	src="../../images/record_e33_pulldown.gif"><br>
+<br><img
+	src="../../images/rcptutorial_recordconfig.gif"
+	alt="Record Configuration">
+	<li>In the Record configuration dialog, select <b>Eclipse Application</b> on the left
+	navigation.</li>
+	<li>Click the <b>New </b>icon ( <img
+		alt="" src="../../images/icons/eclipse_new_config.gif">).</li>
+	<li>Select <b>rcpContactMngr.poduct
+	</b>from the Run a product drop-down.</li>
+	<li>Click the <b>Record</b> button.&nbsp;This will run the Contact
+	Manager application&nbsp; in recording mode and opens the <a
+		href="../ui/recording_control.html">recording control</a> shown below.</li>
+<br><img
+	src="../../images/recorder_controller_record.jpg"
+	alt="Recorder Controller"> <img alt="Recording control view"
+	src="../../images/recorder_control_view.jpg">
+	<li>To start recording, click on the <b>record button</b> (red ball) in the
+	recorder.&nbsp;Perform user interactions like adding a new contact.In
+	the Contact Manager application, select <b>File</b> &gt; <b>New
+	Contact</b>.</li>	
+</ul>
+<h3><a name="step3">3. Stop recording and save recorded test</a></h3>
+<p>To stop recording, close the application. The recorder
+	disappears and a new UI Test dialog opens.</p>
+<ul>
+<img src="../../images/rcptutorial_save_uitest.png" alt="Save UI Test">
+	<li>Enter the name of a test project such as <b>ContactManagerRCPTests</b>. <em>We recommend
+	that tests be placed into a project separate from the code under
+	test.&nbsp;</em></li>
+	<li><b>Create folder
+	automatically if they do not exist</b> - If the Source folder does not
+	exist and this option is checked,&nbsp;it will automatically create the
+	test project with the src and bin folders. <b>If your project structure does not
+	have a separate src and bin folders,&nbsp;uncheck this option and make
+	sure your test project exists.</b></li>
+	<li>Enter the package name such as&nbsp;<b>com.contactmanager.tests</b>.</li>
+	<li>Enter the name of a test case such as&nbsp;<b>AddContactTest</b></li>
+	<li>The rest can be default. For more information see the <a href="../ui/codegen.html">Code generation page</a>.</li>
+	<li>Click&nbsp;<b>Finish</b> to generate this test.</li>
+</ul>
+<p>You should now see a test project with the generated test case in
+your workspace.</p>
+<h3><a name="step4">4. Play back the recorded test</a></h3>
+<p><b>RCP application UI tests</b> must be run as <b>JUnit Plug-in tests.</b> 
+To playback the test, first create a new <b>JUnit Plugin Test</b> launch
+configuration.<br><img src="../../images/rcptutorial_newrunconfig.gif"
+	alt="Test Run Configuration">
+</p>
+<ul>
+	<li>Select the <b>AddContactTest.java</b>
+	class.</li>
+	<li>Select the <b>Run </b>&gt; <b>Run...</b> menu to open the run
+	configuration dialog.</li>
+	<li>Select&nbsp;<b>JUnit Plugin Test </b>on the left navigation.</li>
+	<li>Click the <b>New</b> ( <img
+		src="../../images/icons/eclipse_new_config.gif">) icon.</li>
+	<li>Switch to the <b>Main</b> tab.<br>
+	<img src="../../images/rcptutorial_runconfigmaintab.gif"
+	alt="Run Configuration Main Tab"></li>
+	<li>Select&nbsp;<b>rcpContactMngr.product</b> from the Run a
+	product drop-down.</li>
+	<li>Click <b>Run</b>. This launches the Contact Manager
+	application and runs your test.</li>
+</ul>
+<h3><a name="step5">5.&nbsp;Slower playback (optional)</a></h3>
+You can slow down the playback by enabling the
+<a href="../reference/preferences/playback.html">playback delay
+preference</a>
+.
+<br>
+<b>Related FAQs:</b>
+If you're getting
+<b>ClassCastExceptions or NoClassDefFound
+errors, see </b>
+<a href="../faq/faq_swt.html#reference_rcpapp"><b>How can I can add my RCP app to my Testing
+plugin classpath so that I can access classes from my RCP app?</b></a>
+<br><br>
+<h3>Related Topic:</h3>
+<h3>Adding Assertions (Optional)</h3> 
+<p>Assertions can be generated at recording time using the assertion inspector tool. The assertion inspector is activated by clicking the inspector tool item on the recording controller. 
+	See the <a href="../ui/assertionsUI.html">Assertion Inspector</a> documentation.</p>
+	
+</body>
+</html>

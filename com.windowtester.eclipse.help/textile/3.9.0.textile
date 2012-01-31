@@ -1,0 +1,71 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 3.9.0</h1>
+
+ 
+This document contains descriptions of some of the more interesting or significant changes in the *WindowTester Pro v3.9.0* release.
+
+{toc}
+
+<hr/>
+
+
+h2. Runtime
+
+To enrich RCP tests, condition handling support has been added for eclipse views and perspectives.
+
+* __View Condition Handling__ - Showing and Closed condition handlers have been implemented for views allowing one to write expressions such as @ui.ensureThat(view("Search").isShowing())@ and @ui.ensureThat(view("Search").isClosed())@.
+
+* __Perspective Condition Handling__ -  Active and Closed condition handlers have been implemented for perspectives allowing one to write expressions such as @ui.ensureThat(perspective("Debug").isActive())@ and @ui.ensureThat(perspective("Debug").isClosed())@.
+
+A few other notable runtime enhancements include:
+
+* __Swing Runtime Drag and Drop__ - Drag and drop support has been added to the Swing runtime.
+
+* __Class Name Based Locators__ - @SWTWidgetLocator@ and @SwingWidgetLocator@ instances can now be constructed using class names (rather than only @Class@ instances).  This works-around cases where a @Class@ is not visible to the test project.
+
+* __Turkish Keyboard support__ - Runtime support for the Turkish keyboard has been added.
+
+h2. Target Management
+
+WindowTester Pro custom target support has been improved to make working with GEF-based applications easier.
+
+* __Target Provisioner GEF Support__ - The **New WindowTester Pro Target Provisioner** wizard has been improved to optionally allow the addition of WindowTester Pro GEF support bundles to the created target provisioner.
+
+h2. Stability/Maintenance
+
+This release also contains a number of fixes to improve the overall stability of the product.
+
+* __Figure Locator Runtime fixes__ - interactions with figures that have no @EditDomain@ associated were causing internal exceptions.  These have now been fixed.
+
+* __SWT Widget Locator Link text matching fixed__ - text values in @Link@ widgets was not being properly matched by @SWTWidgetLocator@ instances.
+
+* __SWT Combo Item selection fixes__ - @Combo@ widgets are now tested for enablement before selection is attempted.  This remedies issues where unexpected results were produced when interacting with disabled combos.
+
+* __ContributedToolItemLocator__ - Fixed for clicks on Contributed tool items in property pages.
+
+* __SWTIdleCondition Fixes for Linux__ - The @SWTIdleCondition@ was prone to deadlocks in some rare cases in Linux; this issue has now been fixed.
+
+* __Widget Selection Fixes for Linux__ - Widget selections were prone to deadlocks in some rare cases in Linux; this issue has now been fixed.
+
+* __JListLocator__ - fixed to work with list elements which have a "/".
+
+* __OS X Tree Check Fixes__ - Tree check selections have been fixed for OS X.
+
+* __Button Identification Fixes__ - The recorder was misidentifying buttons in labeled composites with @LabeledLocator@ matchers (instead of @ButtonLocator@ instances); this has now been fixed.
+
+* __TableCellLocator Column Index Validation Fixes__ - The column index starts from 1 for the first column and so on.  If a column index of 0 is used, an exception is thrown indicating invalid column index.
+
+* __Workbench Focus Condition Handling__ - The focus forcing condition handler (as used in calls such as @ui.ensureThat(workbench().hasFocus())@) has been fixed.
+
+* __Context Menu Selection Fixes (OS X)__ - Fixes were made to address issues with context menu selections on OS X. 
+
+* __NamedWidgetLocator Fixes__ - @NamedWidgetLocator@ instances parameterized with a class were not respecting the class in their matching. This has now been fixed.
+
+
+<hr/>
+
+Notes for the *3.8.0 release* can be found "here":3.8.0.html.
+
+

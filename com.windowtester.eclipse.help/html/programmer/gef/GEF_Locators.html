@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 2 April 2007), see www.w3.org" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>GEF Locators</title>
+<link rel="stylesheet" type="text/css" href=
+"../../../stylesheets/book.css" />
+</head>
+
+
+<body><h1>Finding Figures</h1></p><p>WindowTester Pro supports two basic strategies for locating GEF figures. </p><ol style="list-style: none;"><li><a href="#BasicFigureMatching">Basic Figure Matching</a></li><li><a href="#MatchingFiguresbyName">Matching Figures by Name</a><ol style="list-style: none;"><li><a href="#NamedFigures">Named Figures</a></li><li><a href="#NamedEditParts">Named EditParts</a></li></ol></li><li><a href="#PaletteItemMatching">Palette Item Matching</a></li><li><a href="#CanvasInteractions">Canvas Interactions</a></li><li><a href="#FurtherResources">Further Resources</a></li></ol><p><hr/></p><h2 id="BasicFigureMatching">Basic Figure Matching</h2><p>The most basic approach to matching figures is to match figures by class and index (scanning from left-to-right, top-to-bottom) on the canvas.  Using this scheme, the following selection chooses the first (notice this is zero-based) <code>Ellipse</code> on the canvas.</p><pre><code>ui.click(new LRLocator(0, new FigureClassLocator("org.eclipse.draw2d.Ellipse")));
+</code></pre><p></p><p>For interactions with small diagrams or with legacy applications where the product code is not open to modification, such a scheme is often sufficient.  </p><h2 id="MatchingFiguresbyName">Matching Figures by Name</h2><p>To scale, and wherever possible, a more robust approach is to name figures, either through the figure itself or, more likely, through its associated edit part.</p><h3 id="NamedFigures">Named Figures</h3><p>Named figures are matched with the <code>NamedFigureLocator</code>.  Figures are named by implementing the special <code>getFigureId()</code> method on the Figure of interest. Any figure that provides a <code>getFigureId()</code> method can be identified using a <code>NamedFigureLocator</code>. Named figures will resolve to <code>NamedFigureLocator</code> instances at recording time. </p><p>An example of a figure that could be identified using this scheme is as follows:</p><pre><code>class MyFigure extends Figure {
+   private static final String FIGURE_NAME = "my.figure";
+   public String getFigureId() {
+      return FIGURE_NAME;
+   }
+}
+</code></pre><p></p><p>A recording of a click on this figure would then yield a test with a call like this:</p><pre><code>...
+ui.click(new NamedFigureLocator("my.figure"));
+</code></pre><p></p><p>Do note that the visibility of the getFigureId() method is not required to be public. This means that your test-enabling method hooks do not need to be outward-facing if that is not desirable. Also note that the onus is on you, the programmer, to ensure that figure IDs are unique. The above example is an especially <em>BAD</em> naming scheme since every instance of this figure will bear the same name. To this point, it should be noted that, while supported, figure naming is often not desirable since <code>Figure</code> instances rarely themselves know enough about the domain objects they represent in order to uniquely tag them. A better alternative is generally to put this logic in the <code>EditPart</code>, using the special naming scheme described below.</p><h3 id="NamedEditParts">Named EditParts</h3><p>Figures with named edit parts are matched with the <code>NamedEditPartFigureLocator</code>.  <code>EditPart</code> instances are named by implementing the special <code>getEditPartId()</code> method on the @EditPar@t of interest. Any <code>EditPart</code> that provides a <code>getEditPartId()</code> method can used to identify its associated <code>IFigure</code> using a <code>NamedEditPartFigureLocator</code>. Named edit parts will resolve to <code>NamedEditPartFigureLocator</code> instances at recording time.   An example of an edit part that could be identified using this scheme is as follows:</p><pre><code>class MyPart extends AbstractEditPart {
+   private String getEditPartId() {
+      return ((Model)getModel()).getName();
+   }
+   ...
+}
+</code></pre><p></p><p>The <code>EditPart</code> id in this case is derived from the backing model object (an instance of a fictitious Model class). Supposing a particular EditPart is backed by a Model with the name &#8220;Homer&#8221;, a recording of a click on this figure would then yield a test with a call like this:</p><pre><code>...
+ui.click(new NamedEditPartFigureLocator("Homer"));
+</code></pre><p></p><p>Notice that as this example demonstrates, the visibility of the <code>getEditPartId()</code> method is not required to be <em>public</em> (though it can be). This means that your test-enabling method hooks do not need to be outward-facing if that is not desirable. Also note that it is the programmer&#8217;s responsibility to ensure that edit part IDs are unique. </p><h2 id="PaletteItemMatching">Palette Item Matching</h2><p>Palette items are matched by path much like tree items using the <code>PaletteItemLocator</code>. </p><pre><code>ui.click(new PaletteItemLocator("Shapes/Ellipse"));
+</code></pre><p></p><h2 id="CanvasInteractions">Canvas Interactions</h2><p>Where the canvas itself is the target of an interaction (when creating figures for instance), the <code>FigureCanvasXYLocator</code> can be used to specify coordinates on the canvas.  This snippet, for example, places an Ellipse at the coordinate (50,50) on the figure canvas:</p><pre><code>ui.click(new PaletteItemLocator("Shapes/Ellipse"));
+ui.click(new FigureCanvasXYLocator(50, 50));
+</code></pre><p></p><h2 id="FurtherResources">Further Resources</h2><p>For more details, please look at the classes and javadocs in the <code>com.windowtester.runtime.gef.locator</code> package.</p></body></html>

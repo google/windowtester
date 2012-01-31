@@ -1,0 +1,87 @@
+<title>GEF Locators</title>
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+<h1>Finding Figures</h1>
+
+WindowTester Pro supports two basic strategies for locating GEF figures. 
+
+
+{toc}
+
+<hr/>
+
+
+h2. Basic Figure Matching
+
+The most basic approach to matching figures is to match figures by class and index (scanning from left-to-right, top-to-bottom) on the canvas.  Using this scheme, the following selection chooses the first (notice this is zero-based) @Ellipse@ on the canvas.
+
+bc.. ui.click(new LRLocator(0, new FigureClassLocator("org.eclipse.draw2d.Ellipse")));
+p. 
+
+For interactions with small diagrams or with legacy applications where the product code is not open to modification, such a scheme is often sufficient.  
+
+h2. Matching Figures by Name
+
+To scale, and wherever possible, a more robust approach is to name figures, either through the figure itself or, more likely, through its associated edit part.
+
+h3. Named Figures
+
+Named figures are matched with the @NamedFigureLocator@.  Figures are named by implementing the special @getFigureId()@ method on the Figure of interest. Any figure that provides a @getFigureId()@ method can be identified using a @NamedFigureLocator@. Named figures will resolve to @NamedFigureLocator@ instances at recording time. 
+
+An example of a figure that could be identified using this scheme is as follows:
+
+bc.. class MyFigure extends Figure {
+   private static final String FIGURE_NAME = "my.figure";
+   public String getFigureId() {
+      return FIGURE_NAME;
+   }
+}
+p. 
+
+A recording of a click on this figure would then yield a test with a call like this:
+
+bc.. ...
+ui.click(new NamedFigureLocator("my.figure"));
+p. 
+
+Do note that the visibility of the getFigureId() method is not required to be public. This means that your test-enabling method hooks do not need to be outward-facing if that is not desirable. Also note that the onus is on you, the programmer, to ensure that figure IDs are unique. The above example is an especially _BAD_ naming scheme since every instance of this figure will bear the same name. To this point, it should be noted that, while supported, figure naming is often not desirable since @Figure@ instances rarely themselves know enough about the domain objects they represent in order to uniquely tag them. A better alternative is generally to put this logic in the @EditPart@, using the special naming scheme described below.
+
+
+h3. Named EditParts
+
+Figures with named edit parts are matched with the @NamedEditPartFigureLocator@.  @EditPart@ instances are named by implementing the special @getEditPartId()@ method on the @EditPar@t of interest. Any @EditPart@ that provides a @getEditPartId()@ method can used to identify its associated @IFigure@ using a @NamedEditPartFigureLocator@. Named edit parts will resolve to @NamedEditPartFigureLocator@ instances at recording time.   An example of an edit part that could be identified using this scheme is as follows:
+
+bc.. class MyPart extends AbstractEditPart {
+   private String getEditPartId() {
+      return ((Model)getModel()).getName();
+   }
+   ...
+}
+p.  
+
+The @EditPart@ id in this case is derived from the backing model object (an instance of a fictitious Model class). Supposing a particular EditPart is backed by a Model with the name "Homer", a recording of a click on this figure would then yield a test with a call like this:
+
+bc.. ...
+ui.click(new NamedEditPartFigureLocator("Homer"));
+p. 
+
+Notice that as this example demonstrates, the visibility of the @getEditPartId()@ method is not required to be _public_ (though it can be). This means that your test-enabling method hooks do not need to be outward-facing if that is not desirable. Also note that it is the programmer's responsibility to ensure that edit part IDs are unique. 
+
+h2. Palette Item Matching
+
+Palette items are matched by path much like tree items using the @PaletteItemLocator@. 
+
+bc.. ui.click(new PaletteItemLocator("Shapes/Ellipse"));
+p. 
+
+h2. Canvas Interactions
+
+Where the canvas itself is the target of an interaction (when creating figures for instance), the @FigureCanvasXYLocator@ can be used to specify coordinates on the canvas.  This snippet, for example, places an Ellipse at the coordinate (50,50) on the figure canvas:
+
+bc.. ui.click(new PaletteItemLocator("Shapes/Ellipse"));
+ui.click(new FigureCanvasXYLocator(50, 50));
+p. 
+
+h2. Further Resources
+
+For more details, please look at the classes and javadocs in the @com.windowtester.runtime.gef.locator@ package.

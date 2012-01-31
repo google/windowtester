@@ -1,0 +1,116 @@
+<title>API Migration</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h2>Legacy API Migration</h2>
+
+This document provides a high-level description of WindowTester Pro API deprecated or removed in *WindowTester Pro v5.0*.
+
+{toc}
+
+h3. Overview
+
+WindowTester Pro v. 5.0 includes a number of API breaking changes.  The rationale and preamble to these changes is described in this separate "document":Legacy_API_Phase_Out.html.  The following sections describe the specific changes made and the tooling we have provide to help make this transition painless to end-users.
+
+h3. API Migration Tooling
+
+WindowTester Pro contributes API migration tools to the IDE.  To convert API, select a project, package or Java resource and choose the *WindowTester Pro Tools  > Convert to new WindowTester Pro API* action from the context menu.
+
+!{ }convert.png!
+
+Before your code is updated you can preview (and selectively apply) the proposed changes.
+
+!{ }convert_wizard.png!
+
+
+If you want to roll-back the refactoring, simply  select *Undo Convert to new WindowTester Pro API* from the *Edit* menu.
+
+!{ }undo_convert.png!
+
+If you experience any issues when using the migration tooling, please do not hesitate to contact support.
+
+
+h3(#assert). Improved Assertions
+
+With 5.0 come a number of improvements to our assertion support.
+
+h4. New locator close API
+
+The @IUIContext.close(..)@ method has been removed in favor of a more type-safe, robust and expressive idiom for closing UI entities.  The new way of closing is to leverage the *isClosed()* condition factory on supporting locators.  For example, ensuring that the "Welcome" view is closed is now as simple as saying:
+
+bc.. ui.ensureThat(ViewLocator.forName("Welcome").isClosed());
+p. 
+
+or, using static imports (and the @EclipseLocators@ factory class):
+
+bc.. ui.ensureThat(view("Welcome").isClosed());
+p. 
+
+For more on assertions, please see this "overview":assertions.html.
+
+
+h4. New locator focus API
+
+The @IUIContext.setFocus(..)@ method has been removed in favor of the more expressive *hasFocus()* condition factory defined on appropriate locators.  Ensuring that a widget has focus is now as easy as this:
+
+bc.. ui.ensureThat(new ShellLocator("My RCP").hasFocus());
+p. 
+
+If you are interested in _workbench_ focus, the following idiom is preferred 
+
+bc.. ui.ensureThat(new WorkbenchLocator().hasFocus());
+p. 
+
+or, using static imports (and the @EclipseLocators@ factory class):
+
+bc.. ui.ensureThat(workbench().hasFocus());
+p. 
+
+
+h3. API Change Summary
+
+
+h4. Moved API types
+
+The following table summarizes API types whose packages have changed.
+
+table{border:1px solid black}.
+|<_. old location|<_. new location|
+{background:#ddd}.| @com.windowtester.runtime.swt.experimental.locator.ActiveEditorLocator@ | @com.windowtester.runtime.swt.locator.eclipse.ActiveEditorLocator@ |
+| @com.windowtester.swt.util.DebugHelper@ | @com.windowtester.runtime.swt.util.DebugHelper@ |
+{background:#ddd}.| @junit.extensions.UITestCase@ | @com.windowtester.runtime.swt.UITestCaseSWT@ |
+| @junit.extensions.UITestCaseSWT@ | @com.windowtester.runtime.swt.UITestCaseSWT@ |
+{background:#ddd}.| @junit.extensions.UITestCaseSwing@ | @com.windowtester.runtime.swing.UITestCaseSwing@ |
+| @com.windowtester.runtime.swt.finder.UnableToFindActiveShellException@ | @com.windowtester.runtime.swt.UnableToFindActiveShellException@ |
+
+
+
+h4. Moved Internal types 
+
+In addition to migrated *API* types, a number of *internal* classes have moved as well.  If your tests are referencing these classes please contact support and we will help you find a preferred solution.
+
+table{border:1px solid black}.
+|<_. old location|<_. new location|
+{background:#ddd}.| @com.windowtester.swt.util.ExceptionHandlingHelper@ | @com.windowtester.runtime.swt.internal.ExceptionHandlingHelper@ |
+| @com.windowtester.event.swt.text.InsertTextEntryStrategy@ | @com.windowtester.runtime.swt.internal.text.InsertTextEntryStrategy@ |
+{background:#ddd}.| @com.windowtester.event.swt.text.ITextEntryStrategy@ | @com.windowtester.runtime.swt.internal.text.ITextEntryStrategy@ |
+| @com.windowtester.event.swt.text.TextEntryStrategy@ | @com.windowtester.runtime.swt.internal.text.TextEntryStrategy@ |
+{background:#ddd}.| @com.windowtester.swt.util.PathStringTokenizerUtil@ | @com.windowtester.runtime.swt.internal.util.PathStringTokenizerUtil@ |
+| @com.windowtester.swt.util.TextUtils@ | @com.windowtester.runtime.swt.internal.util.TextUtils@ |
+{background:#ddd}.| @com.windowtester.swt.WidgetLocatorService@ | @com.windowtester.runtime.swt.internal.finder.WidgetLocatorService@ |
+| @com.windowtester.finder.swt.ShellFinder@ | @com.windowtester.runtime.swt.internal.finder.ShellFinder@ |
+
+
+h4. Deprecated Methods
+
+The @IUIContext.pause(int)@ method has been deprecated in favor of declaring a wait for a proper condition using @IUIContext.wait(ICondition)@.   In this approach, time-based waits are supported  with the new @TimeElapsedCondition@ condition type.
+
+h4. Removed Methods
+
+Two methods have been removed from the @IUIContext@ interface in favor of more expressive constructs using conditions. See the <a href="#assert">Improved Assertions</a> documentation for more details.
+
+table{border:1px solid black}.
+|<_. removed methods|
+{background:#ddd}.|-@IUIContext.close(ILocator locator)@-|
+|-@IUIContext.setFocus(ILocator locator)@-|
+
+

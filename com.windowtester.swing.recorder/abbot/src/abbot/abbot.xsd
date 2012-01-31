@@ -1,0 +1,617 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>This XML schema defines the structure of the Abbot test scripts.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="AWTTestScript" type="TestScriptType">
+    <xsd:key name="componentIDref">
+      <xsd:annotation>
+        <xsd:documentation>The id attribute of the component elements has to be unique. It is used to reference a specific component in the rest of the script.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:selector xpath="component"/>
+      <xsd:field xpath="@id"/>
+    </xsd:key>
+  </xsd:element>
+  <xsd:complexType name="TestScriptType">
+    <xsd:annotation>
+      <xsd:documentation>Root element of an Abbot test script. Every script must have exactly one AWTTestScript element.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="component" type="componentType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:group ref="launch" minOccurs="0"/>
+      <xsd:group ref="step" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="terminate" type="terminateType" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the test script. The description is used by the script editor (Costello) for the display.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="forked" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>Indicates that the script should be run in a separate process, also referred to as a forked VM.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="vmargs" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates the arguments pass to the forked VM.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="slow" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>Indicates that this script will be played back in slow mode. Slow means that every step performed by the robot will be delayed by 200 ms, or the value of the abbot.script.slow_delay property.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="awt" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>Indicates that this script will be played back in AWT mode. AWT mode places events directly in the Java event dispatch queue and bypasses native OS event handling entirely.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:group name="launch">
+    <xsd:annotation>
+      <xsd:documentation>Launch variations.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="launch" type="launchType"/>
+      <xsd:element name="appletviewer" type="appletviewerType"/>
+      <xsd:element name="fixture" type="scriptType"/>
+    </xsd:choice>
+  </xsd:group>
+  <xsd:group name="step">
+    <xsd:annotation>
+      <xsd:documentation>All possible steps in a test script.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="sequence" type="sequenceType"/>
+      <xsd:element name="action" type="actionType"/>
+      <xsd:element name="annotation" type="annotationType"/>
+      <xsd:element name="assert" type="assertType"/>
+      <xsd:element name="call" type="callType"/>
+      <xsd:element name="event" type="eventType"/>
+      <xsd:element name="expression" type="expressionType"/>
+      <xsd:element name="sample" type="sampleType"/>
+      <xsd:element name="wait" type="waitType"/>
+      <xsd:element name="script" type="scriptType"/>
+      <xsd:element name="fixture" type="scriptType"/>
+    </xsd:choice>
+  </xsd:group>
+  <xsd:complexType name="componentType">
+    <xsd:annotation>
+      <xsd:documentation>Component elemets references the GUI components in the application to be tested. Encapsulate as much information as is available to identify a GUI component. The component references have to be the first elements in a test script.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="id" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="EN">Unique identifier for the component. This identifier will be used as a reference to the component in step definitions.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Class name of the component. This has to be the fully qualified name of the class, e.g. java.awt.frame.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Name of the component. Must be identical to the name attribute of the component as specified in java.awt.Component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="window" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identificator of the parent window of this component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="parent" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identificator of the parent component of this component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="root" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>Whether this component is a root window.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="index" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Index number of the component among parent's children.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Title of this component, usually as returned by getTitle().</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="borderTitle" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Title of a border around this component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="label" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Label of this component, usually as returned by getLabel().</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="text" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text of this component, usually as returned by getText().</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Icon for this component.  Might be an accessible description or a filename.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="tag" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated.  Specific identifying tag for this component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="invoker" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>For popup menus only, the identificator of the invoking component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="params" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>List of set parameters recognized by Applet.getParameterInfo (for Applets only).  Parameters are saved in name1=value1;name2=value2;... format.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="docBase" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>URL returned by Applet.getDocumentBase (for Applets only).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="hOrder" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Horizontal (left-to-right) index among otherwise identical components.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="vOrder" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Vertical (top-to-bottom) index among otherwise identical components.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated.  For popup menus only, the x coordinate of the location of the invocation.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated.  For popup menus only, the y coordinate of the location of the invocation.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="launchType">
+    <xsd:annotation>
+      <xsd:documentation>Provides launching of the application under tested.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="class" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Fully qualified name of the class to be invoked by the script. The class has to be in the system classpath or the classpath has to be set explicitly in the launch tag.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="method" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Name of the method to be invoked in the class.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="args" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The args attribute is a comma-separated list of arguments to pass to the class method, and may use square brackets to denote an array, e.g. "[one,two,three]" will be interpreted as an array length 3 of String.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="classpath" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The class path attribute may use either colon or semicolon as a path separator, but should preferably use relative paths to avoid making the containing script platform- and location-dependent.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="delegate" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="threaded" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>The 'threaded' attribute is provided in case your code under test requires GUI event processing prior to returning from its invoked method.  An example might be a main method which invokes dialog and waits for the response before continuing.  In general, it's better to refactor the code if possible so that the main method turns over control to the event dispatch thread as soon as possible.  Otherwise, if the application under test is background threaded by the Launch step, any runtime exceptions thrown from the launch code will cause errors in the launch step out of sequence with the other script steps.  While this won't cause any problems for the Abbot framework, it can be very confusing for the user.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the launch step.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="appletviewerType">
+    <xsd:annotation>
+      <xsd:documentation>Provides launching of an Applet under appletviewer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="code" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Fully qualified name of the Applet class to be invoked by the script. The class should be found in the paths specified by either the codebase or archive attributes.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="params" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>A comma-separated list of name=value pairs which will be passed to the applet via the applet tag.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="codebase" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Specifies the codebase attribute to be used with the applet tag.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="archive" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Specifies the archive attribute to be used with the applet tag.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Specifies the width attribute to be used with the applet tag.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="height" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Specifies the height attribute to be used with the applet tag.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="terminateType">
+    <xsd:annotation>
+      <xsd:documentation>Terminates the application under test. This tag must be the last tag in a test script.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the terminate step.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="sequenceType">
+    <xsd:annotation>
+      <xsd:documentation>Sequence step.
+A sequence groups a sequence of other steps.  The sub-steps have a fixed order and are executed in the order contained in the sequence. Events sent by sub-steps are propagated by this one.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:group ref="step" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the sequence step.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="actionType">
+    <xsd:annotation>
+      <xsd:documentation>Action step. 
+An action reproduces a user semantic action (such as a mouse click, menu selection, or drag/drop action) on a particular component.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="method" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Method name of the actionXXX method, e.g. to click a button (actionClick on AbstractButtonTester).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="args" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Arguments passed to the called method. The id of the component being operated on must be the first argument. The args attribute is not required because there are a few cases (e.g. wait for idle) where a component reference is not necessary.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The class that is beeing tested. The class of that component must be identified by the class tag if the action is not provided by the base ComponentTester class. 
+Note that if the first argument is a Component, the class tag is required.
+Note also that the specified class is the tested class, not the target class for the method invocation.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the action.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="annotationType" mixed="true">
+    <xsd:annotation>
+      <xsd:documentation>Annotation step.
+Provides a method for communicating a message on the display. May display for a reasonable delay or require user input to continue.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="component" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identificator of the component to which the location of the annotation shall be relatively positioned.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Title of the annotation window.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="userDismiss" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>Indicated if the annotation requires a user input.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Width of the annotation window in pixel.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="height" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Height of the annotation window in pixel.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>X coordinate of the upper left corner of the annotation window relativ to the specified component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Y coordinate of the upper left corner of the annotation window relativ to the specified component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the annotation.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="assertType">
+    <xsd:annotation>
+      <xsd:documentation>Assert step.
+An assert defines an assertion in the script. An assertion performes a method an compares the result with an expected result. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="method" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Method to be called for the assertion. You can invert the sense of either form of assertion by inserting a '!' character before the method name.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="args" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Arguments passed to the assertion method.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The class tag is required for assertions based on a class derived from ComponentTester; the class tag indicates the Component class, not the Tester class (the appropriate tester class will be derived automatically).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="component" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identifier of the component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Expected value for the assertion of a method that returns a value.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="invert" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>If set inverts the form of the assertion. Identical to method="!XXX".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the assertion.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="expr" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Boolean Java expression to evaluate.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="callType">
+    <xsd:annotation>
+      <xsd:documentation>Call step.
+Performes a method call on an arbitrary class. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="method" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Method to be invoked.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="args" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Arguments passed to the method.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Target class of the method invocation.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="property" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>If a property is indicated, the stringified result of the call will be stored in a property for later retrieval into any string as ${property}.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the call step.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="eventType">
+    <xsd:annotation>
+      <xsd:documentation>Event step.
+Script step to generate a single AWT event to a component. Currently used for key down/up and mouse motion.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="component" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Identificator of the component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="type" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Type of the event. Currently supported are "MouseEvent" and "KeyEvent".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="kind" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Kind of the event. Something like "MOUSE_MOVED".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="modifiers" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Modifiers.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>X coordinate for a mouse event.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Y coordinate for a mouse event.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="count" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Count for mouse events.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="trigger" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Trigger for mouse events.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="keyCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>KeyCode for KeyEvents.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="keyChar" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Character for key events.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the event.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="expressionType" mixed="true">
+    <xsd:annotation>
+      <xsd:documentation>Expression step.
+Provides evaluation of Java code..</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the expression.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="sampleType">
+    <xsd:annotation>
+      <xsd:documentation>Sample step.
+The sample step stores the value found from the given method from the ComponentTester class.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="property" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Property to which the value should be stored.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="method" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Method to be invoked.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The class tag is required for methods based on a class derived from ComponentTester; the class tag indicates the Component class, not the Tester class (the appropriate tester class will be derived automatically).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="component" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identificator of the component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="args" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Arguments passed to the invoked method.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the sample step.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="waitType">
+    <xsd:annotation>
+      <xsd:documentation>Wait step.
+A wait step is a special kind of an assert step. It waits for an event.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="method" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Method to be called for the assertion. You can invert the sense of either form of assertion by inserting a '!' character before the method name.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="args" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Arguments passed to the assertion method.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The class tag is required for assertions based on a class derived from ComponentTester; the class tag indicates the Component class, not the Tester class (the appropriate tester class will be derived automatically).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="component" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identifier of the component.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Expected value for the assertion of a method that returns a value.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="invert" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation>If set inverts the form of the assertion. Identical to method="!XXX".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="timeout" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Timeout period for the wait step in milliseconds. If not set 10 s is used.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="pollInterval" type="xsd:int">
+      <xsd:annotation>
+        <xsd:documentation>Sleep time between checking the assertion. If not set 1/10 s is used.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the wait step.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="scriptType">
+    <xsd:annotation>
+      <xsd:documentation>Script step.
+Includes another Abbot test script into this script.  Typically included scripts should omit launch and terminate steps.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="comment" type="commentType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="filename" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Filename of the included script.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="commentType">
+    <xsd:annotation>
+      <xsd:documentation>Comment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="desc" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Description of the nested script.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>What&rsquo;s New</title>
+<link rel="stylesheet" type="text/css" href=
+"../../stylesheets/book.css" />
+</head>
+<body>
+<h1>What's New in 3.7.0</h1>
+<p>This document contains descriptions of some of the more
+interesting or significant changes in the <strong>WindowTester Pro
+v3.7.0</strong> release.</p>
+<ol style="list-style: none;">
+<li><a href="#StabilityMaintenance">Stability/Maintenance</a></li>
+<li><a href="#Documentation">Documentation</a></li>
+<li><a href="#Runtime">Runtime</a></li>
+</ol>
+<hr />
+<h2 id="StabilityMaintenance">Stability/Maintenance</h2>
+<p>This release contains a number of fixes to improve the overall
+stability of the product.</p>
+<ul>
+<li><i>Compound Keystroke Dispatch Fixes</i> - Certain compound
+keystrokes (e.g., <code>WT.SHIFT|WT.ARROW_RIGHT</code>) were not
+being posted properly on some machines. A fix has been introduced
+to make this dispatch more reliable.</li>
+</ul>
+<ul>
+<li><i>XY calculation in figure dragTo operations</i> - The XY
+offset of figure drag operations was wrongly being calculated from
+the target figure&rsquo;s center. This has now been fixed to be
+based on the (expected) top left corner.</li>
+</ul>
+<ul>
+<li><i>TreeCellLocator fixes</i> - A bug preventing qualified
+locators (e.g., cells in views) from being properly constructed has
+been fixed.</li>
+</ul>
+<h2 id="Documentation">Documentation</h2>
+<p>A number of improvements have been made to the product
+documentation.</p>
+<ul>
+<li>A new <a href="programmer/index.html">programmer&rsquo;s
+guide</a> has been added to the product documentation.</li>
+</ul>
+<ul>
+<li><i>API Quick Reference Card</i> - A new <a href=
+"programmer/core/wtQuickRef.pdf">API Quick Reference Card</a> has
+been added to the documentation.</li>
+</ul>
+<ul>
+<li><i>Javaodc fixes</i> - Due to malformed html in a package
+description, the API Summary doc was not being properly built; this
+has now been fixed.</li>
+</ul>
+<h2 id="Runtime">Runtime</h2>
+<p>WindowTester Pro core runtime improvements include the
+following.</p>
+<ul>
+<li><i>ComboLocator</i> - A new <code>ComboLocator</code> has been
+introduced that can be used to conveniently assert
+<code>Combo</code> text values.</li>
+</ul>
+<ul>
+<li><i>Legacy API Migration</i> - Legacy API consolidation and
+migration has begun. See this <a href=
+"reference/Legacy_API_Phase_Out.html">document</a> for more
+details.</li>
+</ul>
+<ul>
+<li><i>Bundle Infrastructure updates</i> - In order to take
+advantage of OSGi bundle management best practice, we have begun
+the process of creating (and migrating to) bundle manifests for all
+the WindowTester Pro bundles. Note: API clients should not be
+affected by this move. Please let us know if you are!</li>
+</ul>
+<ul>
+<li><i>TreeItemLocator improvements</i> -
+<code>TreeItemLocator</code> implements <code>HasText</code> and
+provides a <code>hasText(..)</code> condition factory method.</li>
+</ul>
+<hr />
+<p>Notes for the <strong>3.6.0 release</strong> can be found
+<a href="3.6.0.html">here</a>.</p>
+</body>
+</html>

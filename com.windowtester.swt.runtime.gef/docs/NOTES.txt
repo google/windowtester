@@ -1,0 +1,15 @@
+A few notes:
+
+1. Make sure the GEF reference is BEFORE com.windowtester.swt.runtime in
+   the plugin dependencies list.  E.g.:
+   
+      Require-Bundle: org.eclipse.gef,
+ 	  	com.windowtester.swt.runtime
+ 	
+   And NOT!:	
+ 	
+      Require-Bundle: com.windowtester.swt.runtime,
+   		org.eclipse.gef
+ 	
+   Failing to do this will result in unexpected WidgetNotFoundExceptions.
+   

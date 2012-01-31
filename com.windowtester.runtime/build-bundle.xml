@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_all">
+
+	<!-- ================================================= 
+		Build elements common for all versions of Eclipse 
+		and place them into ${build.temp}/common/${Project-Name}/out
+	-->
+	<target name="build_common">
+		<init_properties />
+		<read_manifest />
+		<read_build />
+		<eclipsetools.generateBuildJars />
+
+		<dir_bundle eclipseTarget="common" type="plugins">
+			<fileset dir="." includes="${Project-CommonFiles}" />
+		</dir_bundle>
+		<property name="gef.base.dir" value="/opt/plugins/gef"/>
+		<property name="gef.base.loc" location="${gef.base.dir}"/>
+		<dirname file="${ant.file}" property="ant.file.dir.loc"/>
+	</target>
+
+	<!-- ================================================= 
+		TODO: [author=Dan] Even though we export the abbot jars, using the getClasspath
+		Ant task on dependent plugin projects does not include those jars on the 
+		returned classpath... so.... explicitly unzip them into the temporary bin 
+		so that dependent plugins projects can reference them.
+		
+		Exclude the junit.jar to prevent collision with existing org.junit plugin.
+	-->
+	<macrodef name="unzip_abbot_jars">
+		<attribute name="eclipseTarget" />
+		<sequential>
+			<unzip dest="${build.temp}/@{eclipseTarget}/${Project-Name}/bin">
+				<fileset dir=".">
+					<include name="abbot/lib/*.jar" />
+					<include name="abbot/lib/*.zip" />
+					<exclude name="**/junit.jar"/>
+				</fileset>
+			</unzip>
+		</sequential>
+	</macrodef>
+
+	<!-- ================================================= 
+	-->
+	<macrodef name="get_draw2d_jars">
+		<attribute name="jar" />
+		<attribute name="destDir" default="${ant.file.dir.loc}" />
+		<attribute name="destJar" default="@{destDir}/draw2d.jar" />
+		<sequential>
+			<checkfile file="@{jar}" />
+			<echo>copying @{jar} to @{destJar}</echo>
+			<copy file="@{jar}" tofile="@{destJar}" overwrite="true"/>
+		</sequential>
+	</macrodef>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.2
+		and place them into ${build.temp}/3.2/${Project-Name}/out
+	-->
+	<target name="build_3.2" depends="build_common" if="build.for.32.flag">
+		<get_draw2d_jars jar="${gef.base.loc}/E-3.2/eclipse/plugins/org.eclipse.draw2d_3.2.0.v20060626.jar" />
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.2" />
+		</ant>
+		<dir_bundle eclipseTarget="3.2" type="plugins">
+			<fileset dir="${ant.file.dir.loc}" includes="draw2d.jar" />
+		</dir_bundle>
+		<unzip_abbot_jars eclipsetarget="3.2" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.3
+		and place them into ${build.temp}/3.3/${Project-Name}/out
+	-->
+	<target name="build_3.3" depends="build_common" if="build.for.33.flag">
+		<get_draw2d_jars jar="${gef.base.loc}/E-3.3/eclipse/plugins/org.eclipse.draw2d_3.2.100.v20070529.jar" />
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.3" />
+		</ant>
+		<dir_bundle eclipseTarget="3.3" type="plugins">
+			<fileset dir="${ant.file.dir.loc}" includes="draw2d.jar" />
+		</dir_bundle>
+		<unzip_abbot_jars eclipsetarget="3.3" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.4
+		and place them into ${build.temp}/3.4/${Project-Name}/out
+	-->
+	<target name="build_3.4" depends="build_common" if="build.for.34.flag">
+		<fileset dir="${gef.base.loc}/E-3.4/eclipse/plugins"
+					includes="org.eclipse.draw2d_3.4*.jar"
+					id="draw2d.jar.file.3.4.fs" />
+		<pathconvert property="draw2s.jar.3.4" refid="draw2d.jar.file.3.4.fs" />
+		<echo message="using draw2d jar file ${draw2s.jar.3.4}" />
+		<get_draw2d_jars jar="${draw2s.jar.3.4}" />
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.4" />
+		</ant>
+		<dir_bundle eclipseTarget="3.4" type="plugins">
+			<fileset dir="${ant.file.dir.loc}" includes="draw2d.jar" />
+		</dir_bundle>
+		<unzip_abbot_jars eclipsetarget="3.4" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.5
+		and place them into ${build.temp}/3.5/${Project-Name}/out
+	-->
+	<target name="build_3.5" depends="build_common" if="build.for.35.flag">
+		<fileset dir="${gef.base.loc}/E-3.5/eclipse/plugins"
+					includes="org.eclipse.draw2d_3.5*.jar"
+					id="draw2d.jar.file.3.5.fs" />
+		<pathconvert property="draw2s.jar.3.5" refid="draw2d.jar.file.3.5.fs" />
+		<echo message="using draw2d jar file ${draw2s.jar.3.5}" />
+		<get_draw2d_jars jar="${draw2s.jar.3.5}" />
+		<ant antfile="build-jars.xml">
+			<property name="eclipseTarget" value="3.5" />
+		</ant>
+		<dir_bundle eclipseTarget="3.5" type="plugins">
+			<fileset dir="${ant.file.dir.loc}" includes="draw2d.jar" />
+		</dir_bundle>
+		<unzip_abbot_jars eclipsetarget="3.5" />
+	</target>
+	
+	
+	
+	<!-- ================================================= 
+		Build elements for all versions of Eclipse
+	-->
+	<target name="build_all" depends="build_3.5, build_3.4, build_3.3, build_3.2">
+		<get_draw2d_jars jar="${gef.base.loc}/E-3.3/eclipse/plugins/org.eclipse.draw2d_3.2.100.v20070529.jar" />
+	</target>
+
+</project>

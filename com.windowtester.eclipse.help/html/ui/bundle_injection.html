@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Dynamically Injecting Required Recording Bundles</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type=
+"text/css" />
+</head>
+<body>
+<h1>Dynamically Injecting Required Recording Bundles</h1>
+The WindowTester Pro event recorder uses a standard launch
+configuration to launch the application to record. For the recorder
+to work, a number of our bundles/plug-ins need to be present in the
+runtime. These plug-ins can be included in the launch configuration
+either <b>manually</b>, by selecting the bundles in the Plug-ins
+tab of the launch configuration or <b>dynamically</b>, by letting
+WindowTester Pro inject those bundles into the classpath of the
+launch configuration. Bundle injection is an option in the
+recording launch configuration&rsquo;s <b>Recorder tab</b> that can
+be set manually before launching a recording session.
+<p><img src="bundle-injection-option.png" alt=
+"Dynamic bundle injection option" /></p>
+<p>If the option, <b>"Inject required WindowTester Pro bundles
+dynamically if needed"</b>, is enabled and any of the recording
+bundles is missing from the launch configuration, the bundles will
+be injected dynamically without user interaction. If the option is
+not enabled, the user is asked to confirm whether to inject the
+bundles dynamically.</p>
+<p><img src="bundle-injection-dialog.png" alt=
+"Confirm bundle injection dialog" /></p>
+<p>Selecting <b>No</b> will launch the application to record but it
+<b>may</b> or <b>may not</b> show the recording control.<br />
+Selecting <b>Yes</b> will do the following:</p>
+<ul>
+<li>Dynamically inject the required recorder bundles into the
+classpath of the launch configuration.</li>
+<li>Launch the application to record and open the <a href=
+"recording_control.html">recording control</a>.</li>
+<li>Enable the option in the recording launch configuration to
+inject the bundles dynamically if needed. This ensures that the
+next time a recording is launched using the same launch
+configuration, the user will not be prompted again.</li>
+</ul>
+</body>
+</html>

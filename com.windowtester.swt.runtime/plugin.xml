@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>>
+
+     <extension-point id="widgetIdentifierDelegate" name="Widget Identifier" schema="schema/widgetIdentifierDelegate.exsd"/>
+   <extension-point id="osDelegate" name="OS Delegate" schema="schema/osDelegate.exsd"/>
+      
+   <extension
+         point="org.eclipse.ui.preferencePages">
+          <page
+            class="com.windowtester.runtime.swt.internal.preferences.GeneralWindowTesterPreferencePage"
+            id="com.windowtester.swt.runtime.preferences.GeneralPreferencePage"
+            name="WindowTester"/>
+      <page
+            category="com.windowtester.swt.runtime.preferences.GeneralPreferencePage"
+            class="com.windowtester.runtime.swt.internal.preferences.CodegenPreferencePage"
+            id="com.windowtester.swt.preferences.CodegenPreferencePage"
+            name="Code Generation"/>
+      <page
+            category="com.windowtester.swt.runtime.preferences.GeneralPreferencePage"
+            class="com.windowtester.runtime.swt.internal.preferences.PlaybackPreferencePage"
+            id="com.windowtester.swt.preferences.PlaybackPreferencePage"
+            name="Playback"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="com.windowtester.runtime.swt.internal.preferences.PlaybackPreferenceInitializer"/>
+      <initializer class="com.windowtester.runtime.swt.internal.preferences.CodeGenPreferenceInitializer"/>
+   </extension>
+   <!--extension
+         point="com.windowtester.runtime.selectionStrategy">
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Button"
+            hint="mouse.click.center"
+            name="Button Selection Strategy"
+            result="org.eclipse.swt.widgets.Button"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a button selection strategy. This strategy uses mouse to click on the center of a button. Parameter must be provided to indicate which
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Button"
+            hint="mouse.click.position"
+            name="Button Position Selection Strategy"
+            result="org.eclipse.swt.widgets.Button"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a strategy for support click on button position.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+            <selectionStrategy
+            component="org.eclipse.swt.widgets.Button"
+            hint="mouse.move.center"
+            name="Button Mouse Move Strategy"
+            result="org.eclipse.swt.widgets.Button"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is strategy for mouse move to label center.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Button"
+            hint="mouse.move.position"
+            name="Button Mouse Move Position Strategy"
+            result="org.eclipse.swt.widgets.Button"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is strategy for mouse move to label position
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CCombo"
+            hint="mouse.click.center"
+            name="CCombo Selection Strategy"
+            result="org.eclipse.swt.custom.CCombo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a ccombo selection strategy. This strategy uses mouse click on the center of a ccombo.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CCombo"
+            hint="mouse.click.item.label.center"
+            name="CCombo Item Selection Strategy"
+            result="org.eclipse.swt.custom.CCombo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.CComboItemMouseSelectionStrategy">
+         <description>
+            This is a ccombo selection strategy. This strategy uses mouse click on the center of a ccombo item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CCombo"
+            hint="text.enter"
+            name="CCombo Text Enter Strategy"
+            result="org.eclipse.swt.custom.CCombo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TextEnterStrategy">
+         <description>
+            This is a CCombo enter text strategy.
+         </description>
+         <parameter
+               name="enteredText"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CCombo"
+            hint="mouse.move.center"
+            name="CCombo Mouse Move Strategy"
+            result="org.eclipse.swt.custom.CCombo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is a CCombo mouse move strategy. This strategy uses mouse click on the center of ccombo item.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CCombo"
+            hint="mouse.move.position"
+            name="CCombo Mouse Move Position Strategy"
+            result="org.eclipse.swt.custom.CCombo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is a CCombo mouse move position strategy. This strategy uses mouse click on the position of ccombo item.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Combo"
+            hint="mouse.click.center"
+            name="Combo Selection Strategy"
+            result="org.eclipse.swt.widgets.Combo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a combo item selection strategy. This strategy uses mouse click on the center of combo.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Combo"
+            hint="mouse.click.item.label.center"
+            name="Combo Item Selection Strategy"
+            result="org.eclipse.swt.widgets.Combo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.ComboItemMouseSelectionStrategy">
+         <description>
+            This is a combo item selection strategy. This strategy uses mouse click on the center of combo item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Combo"
+            hint="text.enter"
+            name="Combo Enter Text Strategy"
+            result="org.eclipse.swt.widgets.Combo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TextEnterStrategy">
+         <description>
+            This is a strategy for text enter into combo. This strategy uses generic key strategy for text enter.
+         </description>
+         <parameter
+               name="enteredText"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Combo"
+            hint="mouse.move.center"
+            name="Combo Mouse Move Strategy"
+            result="org.eclipse.swt.widgets.Combo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is a Combo mouse move strategy. This strategy uses mouse click on the center of combo.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Combo"
+            hint="mouse.move.position"
+            name="Combo Mouse Move Position Strategy"
+            result="org.eclipse.swt.widgets.Combo"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is a Combo mouse move position strategy. This strategy uses mouse click on the position of combo.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CTabItem"
+            hint="mouse.click.center"
+            name="CTab Item Selection Strategy"
+            result="org.eclipse.swt.custom.CTabItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a CTab selection strategy. This strategy uses mouse click on the center of a CTab item.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CTabItem"
+            hint="mouse.click.position"
+            name="CTab Item Position Selection Strategy"
+            result="org.eclipse.swt.custom.CTabItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a strategy for support click on CTabItem position.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CTabItem"
+            hint="mouse.move.center"
+            name="CTab Item Mouse Move Strategy"
+            result="org.eclipse.swt.custom.CTabItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is a CTab item mouse move strategy. This strategy uses mouse move on the center of a CTab item.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.CTabItem"
+            hint="mouse.move.position"
+            name="CTab Item Mouse Move Position Strategy"
+            result="org.eclipse.swt.custom.CTabItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is a CTab item mouse position move strategy. This strategy uses mouse move on the position of a CTab item.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Widget"
+            hint="mouse.click.generic"
+            name="Generic Mouse Click Selection Strategy"
+            result="org.eclipse.swt.widgets.Widget"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.MouseClickSelectionStrategy">
+         <description>
+            This is generic selection strategy. It has two parameters that represent the coordinates of the click location relative to the widget bounds
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="mouse.button.mask"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+            <selectionStrategy
+            component="org.eclipse.swt.widgets.Widget"
+            hint="mouse.move.generic"
+            name="Generic Mouse Move Strategy"
+            result="org.eclipse.swt.widgets.Widget"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.MouseMoveStrategy">
+         <description>
+            This is generic strategy for mouse move to coordinates.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Widget"
+            hint="key.generic"
+            name="Generic Key Press Selection Strategy"
+            result="org.eclipse.swt.widgets.Widget"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.KeyPressSelectionStrategy">
+         <description>
+            This is a key press strategy. Ih has 2 parameters: key code and type of press (only KeyDown, only KeyUp, full press - another value).
+         </description>        
+         <parameter
+               name="key.code"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="key.press.type"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Label"
+            hint="mouse.move.center"
+            name="Label Mouse Move Strategy"
+            result="org.eclipse.swt.widgets.Label"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is strategy for mouse move to label center.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Label"
+            hint="mouse.move.position"
+            name="Label Mouse Move Position Strategy"
+            result="org.eclipse.swt.widgets.Label"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseMoveStrategy">
+         <description>
+            This is strategy for mouse move to label position
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.List"
+            hint="mouse.click.item.label.center"
+            name="List Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.List"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.ListItemMouseSelectionStrategy">
+         <description>
+            This is a list item selection strategy. This strategy uses mouse to click on the center of list item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+         <parameter
+               name="mouse.button.mask"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.MenuItem"
+            hint="mouse.click.item.label.center"
+            name="Menu Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.MenuItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.MenuItemMouseSelectionStrategy">
+         <description>
+            This is a menu item selection strategy. This strategy uses mouse to click on the center of menu item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+         <parameter
+               name="mouse.button.mask"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Menu"
+            hint="mouse.click.item.label.center"
+            name="Menu Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.MenuItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.MenuItemMouseSelectionStrategy">
+         <description>
+            This is a menu item selection strategy. This strategy uses mouse to click on the center of menu item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.StyledText"
+            hint="mouse.click.center"
+            name="Styled Text Selection Strategy"
+            result="org.eclipse.swt.custom.StyledText"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a styled text selection strategy.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.StyledText"
+            hint="mouse.click.position"
+            name="Styled Text Position Selection Strategy"
+            result="org.eclipse.swt.custom.StyledText"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a strategy for support click on styled text position.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.StyledText"
+            hint="text.enter"
+            name="Styled Text Enter Strategy"
+            result="org.eclipse.swt.custom.StyledText"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TextEnterStrategy">
+         <description>
+            This is a strategy for styled text entering.
+         </description>
+         <parameter
+               name="enteredText"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.custom.StyledText"
+            hint="menu.click"
+            name="Styled Text Context Menu Selection Strategy"
+            result="org.eclipse.swt.custom.StyledText"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TextContextMenuSelectionStrategy">
+         <description>
+            This is a styled text context click strategy.
+         </description>
+         <parameter
+               name="menuPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.TabItem"
+            hint="mouse.click.center"
+            name="Tab Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.TabItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a Tab selection strategy. This strategy uses mouse to click on the center of a Tab item.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.TabItem"
+            hint="mouse.click.position"
+            name="Tab Item Position Selection Strategy"
+            result="org.eclipse.swt.widgets.TabItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a strategy for support click on TabItem position.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.TableItem"
+            hint="mouse.click.item.label.center"
+            name="Table Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.TableItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TableItemMouseSelectionStrategy">
+         <description>
+            This is a table item selection strategy. LabelOrPath represent name of column. This strategy uses mouse to click on the center of table cell.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="false"
+               type="java.lang.String"/>
+         <parameter
+               name="mouse.button.mask"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.TableItem"
+            hint="mouse.click.center"
+            name="Table Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.TableItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TableItemMouseSelectionStrategy">
+         <description>
+            This is a table item context menu selection strategy. This strategy uses mouse to click on table item and mouse click on context menu item.
+         </description>
+         <parameter
+               name="mouse.button.mask"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.TableItem"
+            hint="menu.click"
+            name="Table Item Context Menu Selection Strategy"
+            result="org.eclipse.swt.widgets.TableItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TableItemContectMenuSelectionStrategy">
+         <description>
+            This is a table item context menu selection strategy. This strategy uses mouse to click on table item and mouse click on context menu item.
+         </description>
+         <parameter
+               name="menuPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Text"
+            hint="mouse.click.center"
+            name="Text Selection Strategy"
+            result="org.eclipse.swt.widgets.Text"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a text selection strategy. This strategy uses mouse to click on the center of a text.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Text"
+            hint="mouse.click.position"
+            name="Text Position Selection Strategy"
+            result="org.eclipse.swt.widgets.Text"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a strategy for support click on text position.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Text"
+            hint="text.enter"
+            name="Text Enter Strategy"
+            result="org.eclipse.swt.widgets.Text"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TextEnterStrategy">
+         <description>
+            This is a text enter strategy. This strategy uses generic key strategy for text enter.
+         </description>
+         <parameter
+               name="enteredText"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Text"
+            hint="menu.click"
+            name="Text Context Menu Selection Strategy"
+            result="org.eclipse.swt.widgets.Text"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TextContextMenuSelectionStrategy">
+         <description>
+            This is a text context click strategy.
+         </description>
+         <parameter
+               name="menuPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.ToolItem"
+            hint="mouse.click.center"
+            name="Tool Item Selection Strategy"
+            result="org.eclipse.swt.widgets.ToolItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a Tool item selection strategy. This strategy uses mouse to click on the center of a Tool item.
+         </description>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.ToolItem"
+            hint="mouse.click.position"
+            name="Tool Item Position Selection Strategy"
+            result="org.eclipse.swt.widgets.ToolItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.WidgetMouseSelectionStrategy">
+         <description>
+            This is a strategy for support click on ToolItem position.
+         </description>
+         <parameter
+               name="location.x"
+               required="true"
+               type="java.lang.Integer"/>
+         <parameter
+               name="location.y"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Tree"
+            hint="mouse.click.item.label.center"
+            name="Tree Item Mouse Selection Strategy"
+            result="org.eclipse.swt.widgets.TreeItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TreeItemMouseSelectionStrategy">
+         <description>
+            This is a tree item selection strategy. This strategy uses mouse to click in the visible part of tree item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+         <parameter
+               name="mouse.button.mask"
+               required="true"
+               type="java.lang.Integer"/>
+      </selectionStrategy>
+      <selectionStrategy
+            component="org.eclipse.swt.widgets.Tree"
+            hint="menu.click"
+            name="Tree Item Context Menu Selection Strategy"
+            result="org.eclipse.swt.widgets.MenuItem"
+            strategy="com.windowtester.runtime.swt.internal.playback.strategy.TreeItemContextMenuSelectionStrategy">
+         <description>
+            This is a tree item context menu selection strategy. This strategy uses mouse to click on tree item and mouse click on context menu item.
+         </description>
+         <parameter
+               name="labelOrPath"
+               required="true"
+               type="java.lang.String"/>
+         <parameter
+               name="menuPath"
+               required="true"
+               type="java.lang.String"/>
+      </selectionStrategy>
+   </extension-->
+   <extension
+         point="com.windowtester.runtime.classResolver">
+      <classResolver
+            class="com.windowtester.runtime.swt.internal.SWTRuntimeClassResolver">
+      </classResolver>
+   </extension>
+   
+</plugin>

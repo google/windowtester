@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.windowtester.swt.codegen.codegenParticipant">
+      <codegenParticipant
+            class="com.windowtester.swt.gef.codegen.GEFCodegenerator">
+      </codegenParticipant>
+   </extension>
+
+</plugin>

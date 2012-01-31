@@ -1,0 +1,7 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 6.0</h1>
+
+ 
+WindowTester Pro v.6.0 mirrors the functionality of "WindowTester Pro v5.1":5.1.0.html, but is now a product of Google, Inc.

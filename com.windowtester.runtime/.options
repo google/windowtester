@@ -1,0 +1,5 @@
+com.windowtester.runtime/basic                    = true
+com.windowtester.runtime/runtime/widget/selection = true
+com.windowtester.runtime/runtime/hierarchy        = true
+com.windowtester.runtime/runtime/conditions       = true
+com.windowtester.runtime/runtime/uiThreadMonitor  = true

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.4"?>
+
+<product name="WindowTester Server" id="com.windowtester.server.ui.WindowTester_Server_UI" application="com.windowtester.server.ui.application" version="0.1.0" useFeatures="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages i16="/com.windowtester.server.ui/icons/alt_window_16.gif" i32="/com.windowtester.server.ui/icons/alt_window_32.gif"/>
+
+   <splash
+      startupProgressRect="5,275,445,15"
+      startupMessageRect="7,252,445,20"
+      startupForegroundColor="000000" />
+   <launcher>
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="com.windowtester.server.ui" version="0.1.0"/>
+   </features>
+
+</product>

@@ -1,0 +1,8 @@
+<title>WindowTester Pro API Usage Report</title>
+
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+
+h1. WindowTester Pro API Usage Report
+
+Select  the project with the WindowTester Pro tests and right click to invoke the context menu. Choose the menu option  <b>WindowTester Pro Tools  > Report WindowTester Pro API  Used </b>. This will generate a report in simple text format  showing all the WindowTester Pro API that was used in the project. 

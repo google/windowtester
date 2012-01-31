@@ -1,0 +1,81 @@
+<title>Test Execution</title>
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+h2. Test Execution and Lifecycle Explained
+
+{toc}
+
+<hr/>
+
+h2. UI Test Cases
+
+Test cases in WindowTester Pro subclasses of @UITestCaseSWT@ (for SWT) or @UITestCaseSwing@ (for Swing).  The classes are in turn specializations of JUnit's @TestCase@.  For instance, the class hierarchy of @UITestCaseSWT@ is summarized here:
+
+!testCaseHierarchy.jpg!
+
+h2. Running Tests
+
+Since WindowTester Pro tests are __just JUnit tests__, this means that they can be run using standard JUnit test runners.  In other words, running a plug-in WindowTester Pro test is just like running any other PDE test.
+
+!runAs.jpg!
+
+
+h2. Test Execution (A Tale of Two Threads)
+
+WindowTester Pro test execution is a bit more complicated than standard JUnit tests.  The key to understanding test execution in WindowTester Pro is understanding its threading story.
+
+h3. SWT UI Thread
+
+SWT follows the threading model supported directly by the operating system. The UI thread is the thread on which the Display is created and on which all widgets must be created and accessed.  If this invariant is violated an @SWTException@ is thrown signaling invalid thread access[1]. 
+
+h3. Test Thread
+
+WindowTester Pro tests execute a separate non-UI __test thread__.  This is crucial since the UI thread frequently blocks -- for instance when it is in a modal context and is waiting for user input.  If tests did not have their own thread, WindowTester Pro would not be able to drive the UI when it is blocked.
+
+h3. Bridging the Thread Divide
+
+To avoid thread access violations, the user must take care to ensure that all access to UI resources is done on the UI thread.  The idiom for doing this is to create a @Runnable@ and pass it to the @Display@ for execution.  As an example, take the following which safely accesses the text content of a @Text@ widget:
+
+bc.. String getText(final Text widget) {
+	final String text[] = new String[1];
+	Display.getDefault().syncExec(new Runnable() {
+		public void run() {
+			text[0] = widget.getText();
+		}			
+	});
+	return text[0];
+}
+p. 
+
+In a test, we could use such a method like this:
+
+bc.. IWidgetReference ref = (IWidgetReference) ui.find(new SWTWidgetLocator(Text.class));
+Text text = (Text)ref.getWidget();
+assertEquals("some text", getText(text));
+p. 
+
+__*Note* that a better way to handle this assertion is using a condition.  For more on conditions in the context of assertions see "here":../../reference/assertions.html.__
+
+
+h2. Test Lifecycle
+
+WindowTester Pro tests are bootstrapped and run by a standard JUnit test runner.
+
+
+h3. Viewing Test Results
+
+When a test is run in the IDE, it's results are displayed in the JUnit test view.
+
+!results.jpg!
+
+
+h3. Screenshots
+
+To help you troubleshoot test failures, WindowTester Pro automatically captures screen shots on test failures. These screen shots are emitted to a @wintest@ sub-directory of the working Eclipse base directory. For instance, if your eclipse is located in @C:\dev\eclipse@, screenshots would appear in @C:\dev\eclipse\wintest@.
+
+You can capture a new screenshot at any time during a test using the @ScreenCapture@ utility class. Please see the @ScreenCapture@ "javadoc":../../reference/javadoc/com/windowtester/runtime/util/ScreenCapture.html for more information on how this is done.
+
+
+<hr/>
+
+fn1. For more on the SWT threading story see this "document":http://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/guide/swt_threading.htm.
