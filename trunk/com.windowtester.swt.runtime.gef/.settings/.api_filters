@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="com.windowtester.swt.runtime.gef" version="2">
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/TextFlowIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.TextFlowIdentifier">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.TextFlowIdentifier"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/NamedEditPartFigureIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.NamedEditPartFigureIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.NamedEditPartFigureIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/draw2d/internal/condition/FigureXYCondition.java" type="com.windowtester.runtime.draw2d.internal.condition.FigureXYCondition">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.draw2d.internal.condition.FigureXYCondition"/>
+            </message_arguments>
+        </filter>
+        <filter id="1109393411">
+            <message_arguments>
+                <message_argument value="3.6.2"/>
+                <message_argument value="com.windowtester.runtime.draw2d.internal.condition.FigureXYCondition"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF">
+        <filter id="923795461">
+            <message_arguments>
+                <message_argument value="0.0.0.qualifier"/>
+                <message_argument value="3.6.1.200810170921"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/AnchorIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.AnchorIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.AnchorIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/NamedFigureIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.NamedFigureIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.NamedFigureIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/draw2d/internal/helpers/FigureSelectorHelper.java" type="com.windowtester.runtime.draw2d.internal.helpers.FigureSelectorHelper">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.draw2d.internal.helpers.FigureSelectorHelper"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/AbstractQualifiedFigureIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.AbstractQualifiedFigureIdentifier">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.AbstractQualifiedFigureIdentifier"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/AbstractFigureIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.AbstractFigureIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.AbstractFigureIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/SimpleClassBasedFigureIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.SimpleClassBasedFigureIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.SimpleClassBasedFigureIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/LRQualifyingIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.LRQualifyingIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.LRQualifyingIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/PaletteItemIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.PaletteItemIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.PaletteItemIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/locator/TextFlowLocator.java" type="com.windowtester.runtime.gef.locator.TextFlowLocator">
+        <filter id="1109393411">
+            <message_arguments>
+                <message_argument value="3.6.2"/>
+                <message_argument value="com.windowtester.runtime.gef.locator.TextFlowLocator"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/FigureCanvasIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.FigureCanvasIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.FigureCanvasIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/windowtester/runtime/gef/internal/identifier/ResizeHandleIdentifier.java" type="com.windowtester.runtime.gef.internal.identifier.ResizeHandleIdentifier">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="com.windowtester.runtime.gef.internal.identifier.ResizeHandleIdentifier"/>
+                <message_argument value="com.windowtester.swt.runtime.gef_0.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

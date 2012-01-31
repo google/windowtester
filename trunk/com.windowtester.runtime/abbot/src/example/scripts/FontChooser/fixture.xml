@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="font chooser launch">
+  <component class="example.ArrowButton" id="ArrowButton Instance" title="Font Chooser unit test" />
+  <component class="javax.swing.JTextField" id="JTextField Instance" title="Font Chooser unit test" />
+  <component class="javax.swing.JLabel" id="Sample Text" index="1" tag="The quick brown fox jumped over the lazy dog" title="Font Chooser unit test" />
+  <component class="javax.swing.JCheckBox" id="bold" tag="bold" title="Font Chooser unit test" />
+  <component class="javax.swing.JCheckBox" id="italic" tag="italic" title="Font Chooser unit test" />
+  <launch args="[]" class="example.FontChooser" classpath="lib/example.jar" method="main" />
+  <wait args="Font Chooser unit test" class="abbot.tester.ComponentTester" method="assertFrameShowing" />
+</AWTTestScript>
+

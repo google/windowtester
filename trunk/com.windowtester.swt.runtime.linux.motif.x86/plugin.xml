@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.windowtester.runtime.runtimeFactory">
+      <factory os="linux" ws="motif" arch="x86" priority="10"
+            class="com.windowtester.runtime.swt.internal.widgets.linux.motif.x86.WTRuntimeFactorySWT_linux_motif_x86"/>
+   </extension>
+
+</plugin>

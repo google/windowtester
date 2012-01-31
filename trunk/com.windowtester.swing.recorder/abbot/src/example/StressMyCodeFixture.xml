@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Menu selections">
+  <launch classpath="lib/example.jar" args="[]" delegate="false" class="example.MyCode" method="main" />
+  <wait args="My Code" method="assertFrameShowing" />
+</AWTTestScript>
+

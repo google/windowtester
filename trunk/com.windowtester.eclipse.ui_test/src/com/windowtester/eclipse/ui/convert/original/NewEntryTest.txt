@@ -1,0 +1,44 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import junit.extensions.UITestCaseSWT;
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.WT;
+import com.windowtester.runtime.swt.locator.LabeledTextLocator;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+
+public class NewEntryTest extends UITestCaseSWT {
+
+	ShellShowingCondition showingCondition = new ShellShowingCondition("");
+	
+	/**
+	 * Main test method.
+	 */
+	public void testNewEntry() throws Exception {
+		IUIContext ui = getUI();
+		ui.click(new MenuItemLocator("File/New Contact..."));
+		ui.wait(showingCondition);
+		ui.enterText("James");
+		ui.keyClick(WT.TAB);
+		ui.enterText("Smith");
+		ui.click(new LabeledTextLocator("Street"));
+		ui.enterText("645 NW 1st Ave");
+		ui.click(new LabeledTextLocator("City"));
+		ui.click(new ButtonLocator("&Finish"));
+		ui.click(2, new TableItemLocator("Smith,James", new ViewLocator(
+				"com.instantiations.example.contactmanager.rcp.view")));
+		ui.click(new LabeledTextLocator("City"));
+		ui.enterText("New York");
+		ui.click(new MenuItemLocator("File/Exit"));
+		ui.wait(new ShellDisposedCondition("Progress Information"));
+		ui.wait(new ShellShowingCondition("Save Resource"));
+		ui.click(new ButtonLocator("&No"));
+		ui.wait(new ShellDisposedCondition("Save Resource"));
+		ui.wait(new ShellDisposedCondition("RCP Contacts Editor"));
+	}
+
+}

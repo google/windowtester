@@ -1,0 +1,559 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Version History</title>
+<link rel="stylesheet" type="text/css" href=
+"../../stylesheets/book.css" />
+</head>
+<body>
+<p><br /></p>
+<p><b>Release notes for the latest release can be found <a href=
+"../whatsnew.html">here</a>.</b></p>
+<hr />
+<h3 id="Version5.0.1betalatest">Version 5.0.1 (beta) - latest</h3>
+<p>Fixes</p>
+<ul>
+<li><i>List item context clicks</i> - a bug causing list item
+context clicks to fail in some cases has been fixed.</li>
+</ul>
+<h3 id="Version5.0.1betaMay202010">Version 5.0.1 (beta) - May 20,
+2010</h3>
+<p>Features</p>
+<ul>
+<li><i>Parameterized tool items</i> - tool items that have an
+associated <code>ParameterizedCommand</code> can now be located
+with the <code>ContributedToolItemLocator</code>.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>TreeItem check selections</i> - a bug preventing proper
+check state event notification from occurring in
+<code>CheckboxTreeViewer</code> trees has been fixed.</li>
+</ul>
+<h3 id="Version5.0.1betaMay122010">Version 5.0.1 (beta) - May 12,
+2010</h3>
+<p>Fixes</p>
+<ul>
+<li><i>TreeItem check selections</i> - a bug causing the
+<code>WT.CHECK</code> modifier mask set in the
+<code>TreeItemLocator</code> constructor to be ignored at runtime
+has now been fixed.</li>
+</ul>
+<ul>
+<li><i>JLabels in tooltips</i> - <code>JLabel</code> widgets in
+tooltips can now be reliably found by the Swing runtime.</li>
+</ul>
+<h3 id="Version5.0.1betaApril302010">Version 5.0.1 (beta) - April
+30, 2010</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Playback delay settings</i> - playback delay settings
+specified in the Playback preferences page were being ignored by
+the runtime; this has now been fixed.</li>
+</ul>
+<h3 id="Version5.0.1betaApril202010">Version 5.0.1 (beta) - April
+20, 2010</h3>
+<p>Fixes</p>
+<ul>
+<li><i>International KeyBoard Support</i> - is now working for all
+the supported language/keyboards.</li>
+</ul>
+<h3 id="Version5.0.1betaApril142010">Version 5.0.1 (beta) - April
+14, 2010</h3>
+<p>Features</p>
+<ul>
+<li><i>Pull down menu item index state assertions</i> - the index
+of a menu item in its parent menu can now be asserted on pull down
+menu items. For example,
+<ul>
+<li><code>ui.assertThat(new PullDownMenuItemLocator("Layout", new
+ViewLocator("org.eclipse.debug.ui.ExpressionView")).hasIndex(0))</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Version5.0.1betaApril82010">Version 5.0.1 (beta) - April 8,
+2010</h3>
+<p>Features</p>
+<ul>
+<li><i>Pull down menu item state assertions</i> - enablement and
+selection state can now be asserted on pull down menu items. For
+example,
+<ul>
+<li><code>ui.assertThat(new PullDownMenuItemLocator("Deselect
+Default Working Set", new
+ViewLocator("org.eclipse.debug.ui.BreakpointView")).isEnabled(false))</code>
+and</li>
+<li><code>ui.assertThat(new
+PullDownMenuItemLocator("Layout/Vertical View Orientation", new
+ViewLocator("org.eclipse.debug.ui.ExpressionView")).isSelected())</code>
+respectively.</li>
+</ul>
+</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Named combo support</i> - Combo items contained in named
+<code>Combo</code> widgets are being properly resolved.</li>
+<li><i>Tree item context click reveal support</i> - tree item
+context click selections have been fixed to properly scroll to
+expose the target of the context click.</li>
+<li><i>Combo item recording</i> - a bug causing recording combo
+selections to hang the recorder has been fixed.</li>
+</ul>
+<h3 id="Version4.0.1betaJanuary292010">Version 4.0.1 (beta) -
+January 29, 2010</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Swing Key Entry Support</i> - fixed keyclicks with modifiers
+and characters.</li>
+</ul>
+<h3 id="Version4.0.1betaJanuary112010">Version 4.0.1 (beta) -
+January 11, 2010</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Recorder dialog button toggle state</i> - button enablement
+state now (again) correctly tracks recorder state.</li>
+</ul>
+<h3 id="Version4.0.1betaDecember32009">Version 4.0.1 (beta) -
+December 3, 2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Swedish Keyboard Support</i> - fixed the keymap for the
+&auml; and &Auml; character entries.</li>
+<li><i>Embedded Swing Runtime Support</i> - fixed finder to look
+for Windows specific implementation of embedded swing frames.</li>
+</ul>
+<h3 id="Version4.0.1betaNovember192009">Version 4.0.1 (beta) -
+November 19, 2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Keyboard Support</i> - fixed the en_US keymap to display the
+appropriate characters.</li>
+</ul>
+<h3 id="Version4.0.1betaNovember92009">Version 4.0.1 (beta) -
+November 9, 2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Combo Item Selections</i> - a number of fixes have been made
+to combo selections:
+<ul>
+<li>combo selection now ensure the SWT.Selection event is
+dispatched to all event listeners.</li>
+<li>selection and event dispatch are done asynchronously to guard
+against deadlock in case a listener needs access to the display
+thread.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><i>Named Tool Item Enablement</i> - enablement assertions for
+named tool items have been fixed.</li>
+</ul>
+<h3 id="Version3.9.1betainternal">Version 3.9.1 (beta) -
+internal</h3>
+<p>Fixes</p>
+<ul>
+<li><i>ContributedToolItems</i> - the
+<code>ContributedToolItemLocator</code> now supports ToolItems
+added via command contributions.</li>
+</ul>
+<h3 id="Version3.9.1betaSeptember222009">Version 3.9.1 (beta) -
+September 22, 2009</h3>
+<p>Features</p>
+<ul>
+<li><i>TableCellLocator column header support</i> - the
+<code>TableCellLocator</code> now supports clicks on Table column
+headers.</li>
+</ul>
+<ul>
+<li><i>Improved embedded Swing locator handling</i> - swing
+locators can now be used directly within an SWT UI context to
+handle Swing widgets that are embedded in an SWT application.</li>
+</ul>
+<ul>
+<li><i>Assertion API for Swing locators</i> - The following
+assertion API are supported for the Swing Locators &ndash; HasText,
+IsEnabled, IsSelected, HasFocus and IsVisible.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Combo Item selection issues</i> - combo selection logic has
+improved to handle dynamic combos.</li>
+</ul>
+<h3 id="Version3.9.1betaSeptember72009">Version 3.9.1 (beta) -
+September 7, 2009</h3>
+<p>Features</p>
+<ul>
+<li><i>JSE-1.5.0</i> - WindowTester Pro is being moved to leverage
+Java5; as a first step, execution environments have been updated to
+JSE-1.5.0.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Runtime performance fixes</i> - performance has been
+optimized in a number of places to address severe performance
+issues seen with eclipse 3.5 on systems with hyper-threading
+enabled.</li>
+</ul>
+<ul>
+<li><i>Opening perspectives</i> - WindowTester Pro will now
+correctly open perspectives in the same window (instead of spawning
+a new one).</li>
+</ul>
+<ul>
+<li><i>Internal and nested classes</i> - Added Swing recorder and
+runtime support for internal and nested class.</li>
+</ul>
+<ul>
+<li><i>Cocoa menu bar fonts</i> - menu bar font sizes are now
+calculated based on the primary monitor&rsquo;s screen resolution
+fixing some menu item selection issues on high resolution
+displays.</li>
+</ul>
+<ul>
+<li><i>Preliminary 64 bit cocoa support</i> - initial steps have
+been taken to support 64 bit cocoa.</li>
+</ul>
+<h3 id="Version3.9.1betaAugust132009">Version 3.9.1 (beta) - August
+13, 2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Hyperlink recording</i> - SWT hyperlink identification in
+the recorder has been improved.</li>
+</ul>
+<ul>
+<li><i>Link recording</i> - SWT link identification in the recorder
+has been improved.</li>
+</ul>
+<ul>
+<li><i>TableItem selection state assertions</i> - selection state
+tests were not always accurate and have now been fixed.</li>
+</ul>
+<ul>
+<li><i>View Menu Recording</i> - view menu selections are now
+properly handled by the recorder.</li>
+</ul>
+<ul>
+<li><i>Recorder UI improvements</i> a number of refinements have
+been made to the recorder console:
+<ul>
+<li>a recorder configuration (launcher) tool item has been added to
+the view toolbar.</li>
+<li>keystrokes are now presented as strings (where appropriate)
+rather than individual keystrokes (e.g., <i>&ldquo;Foo&rdquo;
+entered</i> rather than the sequence <i>&lsquo;F&rsquo;
+pressed</i>, <i>&lsquo;o&rsquo; pressed</i>, <i>&lsquo;o&rsquo;
+pressed</i>).</li>
+<li>events can now be deleted from the sequence using the
+<i>DELETE</i> key.</li>
+<li>a special page is presented when there is no active recording
+with pointers to help launch new recordings.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Version3.9.1betaJuly302009">Version 3.9.1 (beta) - July 30,
+2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Linux threading bug</i> - sometimes a deadlock would be
+reached when a mouse click occurred; this has now been fixed.</li>
+</ul>
+<ul>
+<li><i>Assertions on combo items</i> - the Combo (and CCombo) item
+locator returned <code>true</code> to isVisible if the list could
+be found, now <code>true</code> is returned only if the item itself
+is found in the list.</li>
+</ul>
+<ul>
+<li><i>Assertions on list items</i> - the List item locator
+returned <code>true</code> to isVisible if the list could be found,
+now <code>true</code> is returned only if the item itself is found
+in the list.</li>
+</ul>
+<ul>
+<li><i>Assertions on tool item buttons</i> - for some tool item
+buttons, isEnabled always returned <code>true</code> if the tool
+item could be found, now <code>true</code> is returned only if the
+button widget is enabled.</li>
+</ul>
+<ul>
+<li><i>Linux tree expansion fix</i> - the correct key is now used
+to expand tree items in Linux that have a tool tip or cell
+editor.</li>
+</ul>
+<h3 id="Version3.9.1betaJuly172009">Version 3.9.1 (beta) - July 17,
+2009</h3>
+<p>Features</p>
+<ul>
+<li><i>WizardPageLocator API</i> - API has been added for wizard
+page access
+(<code>com.windowtester.runtime.swt.locator.jface.WizardPageLocator</code>);
+an existing internal class
+(<code>com.windowtester.runtime.swt.internal.locator.jface.WizardPageLocator</code>)
+has been deprecated in favor of the new API.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Circular dependency removed</i> - a fragment contributed by
+WindowTester Pro code coverage functionality was introducing a
+bundle dependency cycle; this cycle has now been removed.</li>
+</ul>
+<ul>
+<li><i>(Post context click) menu recording fix</i> - a bug
+affecting the recording of top-level menu selections immediately
+after a context selection has been fixed.</li>
+</ul>
+<ul>
+<li><i>Codegen fix for tests with no setup handlers</i> - tests
+generated with no setup handlers selected were causing errors to
+get reported to the log; this has now been fixed.</li>
+</ul>
+<h3 id="Version3.8.1betaInternalRelease">Version 3.8.1 (beta) -
+Internal Release</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Figure Locator Runtime fixes</i> - interactions with figures
+that have no <code>EditDomain</code> associated were causing
+internal exceptions. These have now been fixed.</li>
+</ul>
+<ul>
+<li><i>SWT Widget Locator Link text matching fixed</i> - text
+values in <code>Link</code> widgets was not being properly matched
+by <code>SWTWidgetLocator</code> instances.</li>
+</ul>
+<ul>
+<li><i>SWT Combo Item selection fixes</i> - <code>Combo</code>
+widgets are now tested for enablement before selection is
+attempted. This remedies issues where unexpected results were
+produced when interacting with disabled combos.</li>
+</ul>
+<h3 id="Version3.8.1betaMay182009">Version 3.8.1 (beta) - May 18,
+2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>ContributedToolItemLocator</i> - Fixed for clicks on
+Contributed tool items in property pages.</li>
+</ul>
+<h3 id="Version3.8.1betaMay72009">Version 3.8.1 (beta) - May 7,
+2009</h3>
+<p>Features</p>
+<ul>
+<li><i>Target Provisioner GEF Support</i> - The <b>New WindowTester
+Pro Target Provisioner</b> wizard has been improved to optionally
+allow the addition of WindowTester Pro GEF support bundles to the
+created target provisioner.</li>
+</ul>
+<ul>
+<li><i>Class Name Based Locators</i> -
+<code>SWTWidgetLocator</code> and <code>SwingWidgetLocator</code>
+instances can now be constructed using class names (rather than
+only <code>Class</code> instances). This works-around cases where a
+<code>Class</code> is not visible to the test project.</li>
+</ul>
+<ul>
+<li><i>Turkish Keyboard support</i> - Runtime support for the
+Turkish Q keyboard has been added.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>SWTIdleCondition Fixes for Linux</i> - The
+<code>SWTIdleCondition</code> was prone to deadlocks in some rare
+cases in Linux; this issue has now been fixed.</li>
+</ul>
+<ul>
+<li><i>Widget Selection Fixes for Linux</i> - Widget selections
+were prone to deadlocks in some rare cases in Linux; this issue has
+now been fixed.</li>
+</ul>
+<ul>
+<li><i>JListLocator</i> - fixed to work with list elements which
+have a &ldquo;/&rdquo;.</li>
+</ul>
+<h3 id="Version3.8.1betaApril302009">Version 3.8.1 (beta) - April
+30, 2009</h3>
+<p>Features</p>
+<ul>
+<li><i>GEF Runtime Docs Improved</i> - New GEF Runtime
+documentation has been added to the Programmer&rsquo;s Guide.</li>
+<li><i>Swing Runtime Drag and Drop</i> - Drag and drop support has
+been added to the Swing runtime.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>OS X Tree Check Fixes</i> - Tree check selections have been
+fixed for OS X.</li>
+<li><i>Button Identification Fixes</i> - The recorder was
+misidentifying buttons in labeled composites with
+<code>LabeledLocator</code> matchers (instead of
+<code>ButtonLocator</code> instances); this has now been
+fixed.</li>
+<li><i>TableCellLocator Column Index Validation Fixes</i> - The
+column index starts from 1 for the first column and so on. If a
+column index of 0 is used, an exception is thrown indicating
+invalid column index.</li>
+<li><i>Workbench Focus Condition Handling</i> - The focus forcing
+condition handler (as used in calls such as
+<code>ui.ensureThat(workbench().hasFocus())</code>) has been
+fixed.</li>
+</ul>
+<h3 id="Version3.8.1betaApril202009">Version 3.8.1 (beta) - April
+20, 2009</h3>
+<p>Features</p>
+<ul>
+<li><i>View Condition Handling</i> - Showing and Closed condition
+handlers have been implemented for views allowing one to write
+expressions such as
+<code>ui.ensureThat(view("Search").isShowing())</code> and
+<code>ui.ensureThat(view("Search").isClosed())</code>.</li>
+</ul>
+<ul>
+<li><i>Perspective Condition Handling</i> - Active and Closed
+condition handlers have been implemented for perspectives allowing
+one to write expressions such as
+<code>ui.ensureThat(perspective("Debug").isActive())</code> and
+<code>ui.ensureThat(perspective("Debug").isClosed())</code>.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Context Menu Selection Fixes (OS X)</i> - Fixes were made to
+address issues with context menu selections on OS X.</li>
+</ul>
+<ul>
+<li><i>NamedWidgetLocator Fixes</i> -
+<code>NamedWidgetLocator</code> instances parameterized with a
+class were not respecting the class in their matching. This has now
+been fixed.</li>
+</ul>
+<h3 id="Version3.7.1betaMarch252009">Version 3.7.1 (beta) - March
+25, 2009</h3>
+<p>Features</p>
+<ul>
+<li><i>View Closed Condition Handling</i> - View locators can now
+be used to create condition handlers that ensure that views are
+closed (e.g., <code>ui.ensureThat(new
+ViewLocator(..).isClosed());</code>). This comes in handy,
+particularly, in the RCP case where the &ldquo;Welcome&rdquo; page
+needs to be dismissed.</li>
+</ul>
+<ul>
+<li><i>Workbench Focus Condition Handling</i> - A new workbench
+locator can now be used to a create condition handler that ensures
+that the workbench has focus (e.g., <code>ui.ensureThat(new
+WorkbenchLocator().hasFocus());</code>).</li>
+</ul>
+<ul>
+<li><i>Welcome View Condition Handling (Recorder)</i> - The
+recorder can now generate test <code>setUp</code> logic that ensure
+that the &ldquo;Welcome&rdquo; page is closed before proceeding
+with the test.</li>
+</ul>
+<ul>
+<li><i>Custom Base Test Selection</i> - At test creation time,
+users can now select user-defined custom base tests for generated
+test classes to extend.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Swing UI Context mouseMove Support</i> - The Swing
+implementation of <code>IUIContext.mouseMove(..)</code> has been
+fixed.</li>
+</ul>
+<h3 id="Version3.7.1betaFebruary202009">Version 3.7.1 (beta) -
+February 20, 2009</h3>
+<p>Features</p>
+<ul>
+<li><i>IUIContext.ensureThat(..) Implemented</i> - UI contexts now
+support the <code>ensureThat(..)</code> protocol.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Menu Tracking on Mac OS X</i> - A bug in our menu tracking
+strategy was fixed to better handle cascading menus on OS X.</li>
+</ul>
+<h3 id="Version3.7.1betaFebruary32009">Version 3.7.1 (beta) -
+February 3, 2009</h3>
+<p>Fixes</p>
+<ul>
+<li><i>Linux Stability Issues</i> - A number of linux stability
+issues have been addressed.</li>
+<li><i>Embedded Swing Components</i> - The Swing widget finder has
+been improved to handle AWT/Swing components that are embedded in
+SWT Controls.</li>
+</ul>
+<h3 id="Version3.6.1betaDecember202008">Version 3.6.1 (beta) -
+December 20, 2008</h3>
+<p>Features</p>
+<ul>
+<li><i>API Quick Reference Card</i> - A new <a href=
+"../programmer/core/wtQuickRef.pdf">API Quick Reference Card</a>
+has been added to the documentation.</li>
+</ul>
+<h3 id="Version3.6.1betaDecember152008">Version 3.6.1 (beta) -
+December 15, 2008</h3>
+<p>Features</p>
+<ul>
+<li><i>Programmer&rsquo;s Guide</i> - A new <a href=
+"../programmer/index.html">programmer&rsquo;s guide</a> has been
+added to the product documentation. The guide will be evolving over
+the next few beta releases.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>Compound Keystroke Dispatch Fixes</i> - Certain compound
+keystrokes (e.g., <code>WT.SHIFT|WT.ARROW_RIGHT</code>) were not
+being posted properly on some machines. A fix has been introduced
+to make this dispatch more reliable.</li>
+</ul>
+<h3 id="Version3.6.1betaNovember252008">Version 3.6.1 (beta) -
+November 25, 2008</h3>
+<p>Features</p>
+<ul>
+<li><i>API for easy access to UI Context ConditionMonitor</i> - The
+<code>IUContext</code> now provides a convenience method
+(<code>getCondtionMonitor()</code>) whereby the current Condition
+Monitor instance can be accessed.</li>
+<li><i>ComboLocator</i> - A new <code>ComboLocator</code> has been
+introduced that can be used to conveniently assert
+<code>Combo</code> text values.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>XY calculation in figure dragTo operations</i> - The XY
+offset of figure drag operations was wrongly being calculated from
+the target figure&rsquo;s center. This has now been fixed to be
+based on the (expected) top left corner.</li>
+<li><i>Legacy API Migration</i> - Legacy API consolidation and
+migration has begun. See this <a href=
+"Legacy_API_Phase_Out.html">document</a> for more details.</li>
+</ul>
+<h3 id="Version3.6.1betaNovember172008">Version 3.6.1 (beta) -
+November 17, 2008</h3>
+<p>Features</p>
+<ul>
+<li><i>TreeItemLocator improvements</i> -
+<code>TreeItemLocator</code> implements <code>HasText</code> and
+provides a <code>hasText(..)</code> condition factory method.</li>
+</ul>
+<p>Fixes</p>
+<ul>
+<li><i>TreeCellLocator fixes</i> - A bug preventing qualified
+locators (e.g., cells in views) from being properly constructed has
+been fixed.</li>
+<li><i>Bundle Infrastructure updates</i> - In order to take
+advantage of OSGi bundle management best practice, we have begun
+the process of creating (and migrating to) bundle manifests for all
+the WindowTester Pro bundles. Note: API clients should not be
+affected by this move. Please let us know if you are!</li>
+<li><i>Javaodc fixes</i> - Due to malformed html in a package
+description, the API Summary doc was not being properly built; this
+has now been fixed.</li>
+</ul>
+<hr />
+<p>Notes for previous release betas are archived <a href=
+"beta-archive.html">here</a>.</p>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.windowtester.swt.runtime">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.windowtester.swt.runtime" id="widgetSelectors" name="Widget Selectors"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="widgetSelector" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="widgetSelector">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a unique name that will be used to reference this widget selector.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="widgetClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified name of the widget class that is handled by this widget selector.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="selectorDelegate" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified name of the Java class that implements &lt;samp&gt;com.windowtester.runtime.swt.IWidgetSelectorDelegate&lt;/samp&gt; interface.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         The following is an example of the extension point usage:
+
+   &lt;p&gt;
+   &lt;pre&gt;
+      &lt;extension point=&quot;com.windowtester.swt.runtime.widgetSelectors&quot;&gt;
+         &lt;widgetSelector
+            id=&quot;com.example.xyz.comboSelector&quot;
+            widgetClass=&quot;org.eclipse.swt.widgets.Combo&quot;
+            selectorDelegate=&quot;com.example.xyz.MySpecialComboSelector&quot;&gt;
+         &lt;/widgetSelector&gt;
+      &lt;/extension&gt;
+   &lt;/pre&gt;
+   &lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Plug-ins that want to extend this extension point must implement the &lt;samp&gt;com.windowtester.runtime.swt.IWidgetSelectorDelegate&lt;/samp&gt; interface.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright &amp;amp;copy; 2003-2010 Google, Inc. All Rights Reserved
+      </documentation>
+   </annotation>
+
+</schema>

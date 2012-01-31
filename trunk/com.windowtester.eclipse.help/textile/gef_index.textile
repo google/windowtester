@@ -1,0 +1,5 @@
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+h1. GEF Runtime
+
+* "Locating GEF Figures":GEF_Locators.html

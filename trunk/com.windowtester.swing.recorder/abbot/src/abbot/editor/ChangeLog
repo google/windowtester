@@ -1,0 +1,1892 @@
+2005-11-09  Timothy Wall  <twall@oculustech.com>
+
+	* LookAndFeelPreserver.java: Restore LAF when components are added
+	*after* the current round of updates completes.
+
+2005-06-10  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (openScript): Clear script selection box when
+	a script not in the current suite is selected.
+
+2005-06-03  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptTable.java: Fix table selection foreground.
+
+2005-05-19  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Allow override of editor function keys.
+
+2005-05-09  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/EventRecorder.java: Avoid recording key press/release
+	events with no valid keycode.  This is a VM bug, but avoid it anyway.
+	* recorder/ComponentRecorder.java: Don't swallow key typed events
+	with alt-graph modifier.
+
+2005-04-26  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (ScriptEditor): Fix labels on record vs
+	record+motion (pdham). 
+
+2005-03-13  Timothy Wall  <twall@users.sf.net>
+
+	* widgets/Mnemonic.java: Remove 1.4 dependencies.
+
+2005-03-13  Timothy Wall  <twall@users.sf.net>
+
+	* TestSelector.java (setCollector): Ensure abbot.jar is always in
+	test collector classpath.  Allow dynamic setting of classpath to
+	scan for test suites.
+	* ScriptEditor.java: Pass classpath to TestSelector instead of a
+	TestCollector.  
+	* widgets/ArrayEditor.java: Repaint on row changes.
+	
+2005-02-21  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Add support for fixtures.  Preserve selection
+	when running the current selection of steps.
+
+2005-02-20  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (processEvent): Make recording error reporting
+	consistent. 
+	* recorder/ComponentRecorder.java (parse): Include more directions
+	in bug report request.
+
+2004-12-27  Timothy Wall  <twall@users.sf.net>
+
+	* editors/CallEditor.java: Dynamically loading classes may result
+	in a NoClassDefFoundError, so handle it gracefully.
+
+2004-12-23  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditorFrame.java: Ensure mnemonics are properly set on
+	dynamic menus; encoded ampersand sometimes showed up.
+
+2004-09-24  Timothy Wall  <twall@users.sf.net>
+
+	* widgets/Mnemonic.java: Always return a valid display index (an
+	index of -1 will make the LAF not display the mnemonic).
+
+2004-09-23  Timothy Wall  <twall@users.sf.net>
+
+	* widgets/Mnemonic.java (getMnemonic): Encapsulate mnemonic
+	unencoded text, keycode, and displayed index, based on a property
+	which uses an ampersand to indicate the mnemonic.
+	* ScriptEditorFrame.java (EditorMenu): Auto-set mnemonics and
+	displayed mnemonic indices.
+	* CustomCheckBoxMenuItem.java: Ditto.
+
+2004-09-21  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (processEvent): Fix NPE at end of recording.
+
+2004-09-19  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/JTabbedPaneRecorder.java: Handle OSX popup menu tabs.
+
+2004-09-18  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Include border when capturing images on
+	Frames/Dislogs; if you don't want the decorations, capture the
+	root pane or layered pane instead.
+	* LookAndFeelPreserver.java: Fix NPE when there is no explicit
+	LookAndFeel. 
+
+2004-09-16  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: Clean up listeners.
+	* ScriptEditor.java: Clean up and refactor image capture.
+	* widgets/AbstractComponentDecorator.java: Put arbitrary
+	decoration on a widget.
+	* widgets/Highlighter.java: Highlight a given component's border.
+	* HierarchyWriter.java: Fix ComponentReference ctor signature.
+	
+	* ScriptEditor.java: Move dialog display...
+	* ScriptEditorFrame.java: ...here.  Use LAF preserver.
+	* LookAndFeelPreserver.java: New.  Always preserve the editor's
+	LAF, irrespective of changes made by the SUT.
+
+2004-09-08  Timothy Wall  <twall@users.sf.net>
+
+	* widgets/TextField.java: Fix recursive modification exception
+	when replacing selected text.
+	* editors/StepEditor.java: Allow reversion of text to default
+	description. 
+
+2004-08-16  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (initMenus): Fix OSX menus. Alpabetize steps
+	and actions in "Insert" menu.
+
+2004-08-15  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Auto-scroll to selected step when running.
+
+2004-08-05  Timothy Wall  <twall@users.sf.net>
+
+	* editors/LaunchEditor.java: Replace the hint description on edit.
+	* editors/AppletviewerEditor.java: Ditto.
+	* ScriptEditor.java: Use standardized hint descriptions.
+	
+2004-08-02  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (show->hide): Override non-deprecated method.
+	* ScriptEditorFrame.java: Add tooltip for script description.
+	
+2004-07-30  Timothy Wall  <twall@users.sf.net>
+
+	* Costello.java: Use native LAF by default, instead of the default
+	one (affects w32 and linux, which otherwise default to metal).
+	* ScriptEditor.java: Minor cleanup.  Move wordBreak method to
+	TextFormat. 
+	
+2004-07-27  Timothy Wall  <twall@users.sf.net>	
+
+	* editors/ExpressionEditor.java: New. Edit expressions.
+	* recorder/ComponentRecorder.java: Better distinguish
+	native/simulated drag/drop operations.  Keep track of drag origin.
+
+2004-07-26  Timothy Wall  <twall@users.sf.net>
+
+	* Costello.java: Don't do robot verification when running the editor.
+
+2004-07-26  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java (parseDrop): Fix NPE on X11 text
+	selection.  Distinguish native D&D operations.
+	* actions/EditorAction.java (EditorAction): Descriptions are optional.
+	* recorder/Recorder.java: Ensure all exceptions thrown while
+	recording get captured.
+
+2004-07-23  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Add file bug report option.
+
+2004-07-20  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditorFrame.java: Allow split pane to go smaller than
+	editor height.
+
+	* ScriptModel.java: Fix exception thrown when deleting rows.
+	* ScriptEditor.java: Add more support actions (email, website,
+	userguide).  Add explicit AWT mode switch.
+	* ScriptTable.java (canMoveUp, drag): Don't allow drops prior to
+	launch step. 
+
+2004-07-18  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Properly look up modifiers for
+	ItemEvent handling.
+	* ComponentBrowser.java: Switch to non-concise hierarchy display
+	if a selected component is elided.
+	* ComponentNode.java: Factor out hierarchy tracking functions to
+	own class. 
+	* CompactHierarchy.java: Directly represent compact hierarchy
+	instead of faking it via TreeNode interface.
+	
+2004-07-07  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Fix recursive save bug if attempt is made to
+	save a new script in the temporary directory.
+
+2004-06-28  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Reduce extraneous log output.
+
+2004-06-25  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ChoiceRecorder.java: Fix recorder to work with
+	streamlined tester.
+
+2004-06-22  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Obtain InputState through Robot.
+
+2004-06-16  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Flag the AWT menu selection as
+	a popup if it is not activated from a MenuBar.  Same for JMenuItem
+	selections. 
+	* recorder/AbstractSemanticRecorderFixture.java: Make some method
+	names clearer.
+	
+2004-05-12  Timothy Wall  <twall@users.sf.net>
+
+	* editors/StepEditor.java: Avoid recursion in
+	ComboBox.configureEditor. 
+	* editors/CallEditor.java: Catch IllegalArgumentException, which
+	indicates the selected method is ambiguous and thus can't be
+	uniquely resolved.
+
+2004-05-02  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Include script launches as indication that
+	the editor itself is being tested.
+
+2004-03-18  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: Ensure assert/sample buttons stay enabled
+	when the component selection changes but the selected property
+	does not.
+	* editors/CallEditor.java: Avoid inadvertent change to combo box
+	selected method when the list is refreshed.
+
+2004-03-14  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Fix script rename bug.
+
+2004-03-14  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: Make sure component selection updates
+	corresponding tables.
+	* editors/StepEditor.java: Revise component update to only update
+	selected components.
+
+2004-03-13  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: Add tabs for component InputMap and
+	ActionMap. 
+
+	* widgets/ArrayEditor.java: Respond properly to actionPerformed.
+	* editors/StepEditor.java: Highlight invalid class and method names.
+	* editors/*Editor.java: Ditto.
+	
+2004-03-12  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: String-encode array-valued property values.
+	Preserve the property selection when other selections change, if
+	possible. 
+	* ScriptEditor.java: Use String-encoded value when making a new
+	Assert/Sample. 
+	
+2004-03-11  Timothy Wall  <twall@users.sf.net>
+
+	* editors/AssertEditor.java: Propagate changes appropriately.
+	* editors/PropertyCallEditor.java: Ditto.
+	* editors/CallEditor.java: Update method list when class changes.
+	Turn target class name text red if the class is not found.
+	
+2004-03-09  Timothy Wall  <twall@users.sf.net>
+
+	* widgets/TextFormat.java (wordWrap): Fix line wrapping.
+
+2004-03-09  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Make  shift+F1, alt+shift+F1 actions explicit
+	in the menus.
+
+2004-03-03  Timothy Wall  <twall@users.sf.net>
+
+	* editors/AppletviewerEditor.java: New. Editor for applet launcher.
+	* ScriptEditorFrame.java: Fix negated label lookup.
+
+2004-02-26  Timothy Wall  <twall@users.sf.net>
+
+	* WeakHashMaps keep a strong reference to their values.  oops.
+	So WeakHashMap.put(obj, obj) doesn't work like I thought it did.
+	Thanks to a little unit testing to expose this artifact.
+	* editor/ComponentBrowser.java
+	* editor/ComponentTreeIcons.java
+	* editor/recorder/ComponentRecorder.java
+	
+2004-02-25  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Default to non-threaded launch.
+
+2004-02-23  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/EventRecorder.java: Include target component in key events.
+
+2004-02-20  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Clean up menu/action initialization.  Menu
+	layout is declared and defined in ScriptEditor; only the action
+	names are shared in EditorConstants.
+	* ScriptEditorFrame.java: Ditto.
+	
+2004-02-17  Timothy Wall  <twall@users.sf.net>
+
+	* widgets/TextField.java: Allow "ESC" to revert the text field to
+	its last saved text (since last Enter).
+	* ReferenceAttributeModel.java: Table model for component
+	reference attributes.
+	* ComponentBrowser.java: Add editor for component reference
+	attributes. 
+	* ComponentTree.java: If a selected component disappears, select
+	its nearest available ancestor.
+	
+2004-02-13  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Allow insertion of scripts that don't yet exist.
+
+2004-02-12  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Don't query on new script, and ensure a
+	sample fixture is inserted.
+
+	* ScriptEditorFrame.java: Fix preservation of editor size/position.
+
+	* ComponentTree.java: Position tooltips within the hierarchy.
+	* ComponentNode.java: ditto.
+	* ComponentBrowser.java: Link filtering and elision.
+	
+2004-02-11  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTree.java: Avoid reloading if setting the selection
+	triggers hierarchy changes.  Preserve selection across changes in 
+	the hierarchy, if possible.
+
+2004-02-09  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Avoid sticky assertion wait (no key released
+	event is sent on app launch, which leaves the assert button in its
+	"wait" state).
+	* ComponentBrowser.java: Extract component tree.
+	* ComponentTree.java: New.  Factor out from larger class.
+	
+2004-02-08  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentNode.java: Show popups directly under their invoking
+	components. 
+	* ComponentBrowser.java: Clean up refresh; don't reload the entire
+	hierarchy on every change.
+	* ComponentPropertyModel.java: Fix sporadic tree indexing errors.
+	
+2004-02-05  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentNode.java: Elide RootPaneContainer components for clarity.
+
+	* Costello.java: Use platform LAF.  Add logo.
+	* ComponentBrowser.java: Use custom icons for components in tree.
+	Makes it easier to distinguish windows from components.
+	* recorder/ComponentRecorder.java: Always use component reference
+	for window showing/not showing.
+	
+2004-02-04  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Clear stop step, and use a different color to
+	highlight it.
+	(ScriptEditor): Properly flag which editor is the main one.
+
+2004-02-03  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Update script description to reflect its path
+	if it's displaying the default description (mbisping).
+
+2004-02-03  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Ensure proper target class is
+	used when using ComponentLocation arguments.  
+	(parseClick): allow for multiple small drag events triggering the
+	start of a DnD operation.  This probably still needs some refinement.
+	* ScriptEditor.java: Explicitly provide hierarchy for scripts.
+
+2004-01-29  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: Preserve selection when hierarchy is
+	reloaded.  Refresh on popup trigger.
+	* ComponentNode.java: Displsy transient popups (for now).
+	Eventually want to make them appear under the invoker instead of
+	under the parent, at least when the hierarchy is being filtered.
+	
+2004-01-26  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/JTreeRecorder.java: Capture node handle toggles.
+	* ComponentNode.java: Fix NPE when generating tree paths.
+
+2004-01-24  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentBrowser.java: Use new abbot.finder.* stuff.  Move
+	TreePath generation into ComponentNode.
+	* ComponentNode.java: Use Hierarchy to determine children.  Hide
+	JPopupMenu from between JMenu and its contents.
+	* HierarchyWriter.java: Use new abbot.finder.* stuff.
+	* ScriptEditor.java: Ditto.  Add a Hierarchy context.
+	* recorder/*: Remove unused ComponentFinder references.
+	
+2004-01-15  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ButtonRecorder.java: New.
+	* recorder/CheckboxRecorder.java: New.
+	* editors/StepEditor.java: Accept all text changes as input
+	instead of waiting for enter/focus change (since ESC to cancel was
+	never implemented; maybe do it later so we have commit/rollback).
+	* editors/CallEditor.java: Use an explicit array editor for
+	arguments, which avoids having the user escape embedded commas.
+	* editors/*: Refactor to make operation simpler.  
+	* widgets/ArrayEditor.java: New.
+	* widgets/TextField.java: Moved from editor dir.
+	* widgets/TextFormat.java: Ditto.
+	* widgets/TextArea.java: Send ActionEvents live.
+	
+2004-01-15  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Don't record a drag unless the
+	distance exceeds what's likely for a drag.
+
+2004-01-14  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Ignore ThreadDeath.
+
+2004-01-08  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Don't allow code under test to hide the main
+	editor window.
+
+2004-01-07  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Fix drag/drop recording for 1.4
+	VMs (1.3 VMs do not provide sufficient recording information).
+
+2003-12-22  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/JComponentRecorder.java: Fix several
+	keystroke-generation bugs in AWT mode.
+	* recorder/ComponentRecorder.java: Ditto.
+	
+2003-12-19  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: No need to track mouse in/out,
+	since drags get converted to drag tracking instead of click tracking.
+
+2003-12-11  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Clean up multi-click handling.
+	Recognize most exits as semantic event terminators.
+
+2003-11-19  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Use ComponentLocation for drag,
+	drop, popup menus, and click, which enables components with
+	substructure to provide a better location than a simple
+	coordinate. 
+	* recorder/JTreeRecorder.java: Ditto.
+	* recorder/JTableRecorder.java: Ditto.
+	* recorder/JListRecorder.java: Ditto.
+	
+2003-11-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JTreeRecorder.java (createClick): select/click by value
+	(path) if possible.
+	* recorder/JListRecorder.java (createClick): ditto.
+	* recorder/JTableRecorder.java (createClick): ditto.
+
+2003-11-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Ensure nested scripts are saved beyond 2 levels.
+
+2003-10-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Properly track AWT checkbox
+	menu items.
+
+2003-10-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Properly track AWT popup menus.
+
+2003-10-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/EventRecorder.java (EventRecorder): Strip extraneous
+	shortcut modifiers.
+
+	* HierarchyWriter.java: Delegate exporting the hierarchy as XML.
+	* ScriptEditor.java: Use dedicated class to export hierarchy.
+	
+2003-10-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Don't use ThreadTerminatingSM; it still needs
+	work. 
+
+2003-09-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java: Fix excessive CPU usage in 1.4.2.
+
+2003-09-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Change the default sTepRunner behavior to not
+	terminate on an error (ensures the app is still visible after
+	failure). 
+
+	* recorder/JComboBoxRecorder.java: Use same method of comparing
+	values as the corresponding tester.
+
+2003-09-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/WindowRecorder.java: Don't record window move/resize if
+	the window is not yet showing.
+
+	* ScriptEditorFrame.java: Don't show status dialog if there's not
+	any hidden text.
+
+2003-09-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Change event exception handler signature.
+	(startRecording): Don't do "toBack" if the AUT isn't yet launched,
+	or it will get hidden.
+	
+2003-08-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (exportHierarchy): Add capability to export
+	the AUT hierarchy (as a script containing only component references).
+	Show confirmation dialogs on delete/clear.
+	Ensure the script editor gets out of the way when replaying selected
+	steps. 
+	* EditorConstants.java: Ditto.
+	* ScriptEditorFrame.java: Ditto.
+	
+2003-08-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Click on selected step should display step
+	editor if not already.
+
+2003-08-20  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (runSelectedSteps): Properly capture ESC
+	keypress. 
+
+	* actions/EditorAction.java (EditorAction): Avoid errors if
+	accelerators/mnemonics are empty strings.
+
+	* ScriptEditor.java (main): Don't do a bug check if there's no
+	splash screen.
+
+2003-08-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Add "Run selection" option.  Refactor
+	launch/run steps to use the same step running code.
+	* ScriptEditorFrame.java: Add new menu option.
+	* EditorConstants.java: Ditto.
+	
+2003-08-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/DialogRecorder.java (createResize): Only record
+	resizing if the dialog is user resizable.  Remove redundant
+	createMove method.
+	* recorder/FrameRecorder.java (createResize): Ditto for Frames.
+	* recorder/FileDialogRecorder.java: New. Support AWT FileDialog.
+	* recorder/ComponentRecorder.java: Make isClose/isOpen protected
+	for subclass access.
+	
+	* ScriptEditor.java: Ensure insert terminate goes at the *end* of
+	the script.
+
+	* recorder/JComponentRecorder.java: Avoid recording both actions
+	and keystrokes when actions are detected.  Avoid errors on
+	un-named actions.
+
+2003-08-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (accept): Avoid
+	Robot.toString(Component) until it gets fixed (big performance hit). 
+
+2003-08-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Catch uncaught exceptions in thread group.
+
+2003-07-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/EventRecorder.java: Listen for focus change events.
+
+2003-07-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Ensure exit events are captured on OSX.
+
+2003-07-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Store a component reference if
+	necessary when tracking window show/hide events.
+
+	* ScriptEditorFrame.java: Center about box.
+
+2003-07-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Don't add a component reference if there is
+	no script.
+
+2003-07-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/Recorder.java: Avoid Robot.toString if not required.
+
+2003-07-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JComboBoxRecorder.java (createSelection): Don't select
+	by value if the toString method is Object.toString.
+	* recorder/JListRecorder.java: Ditto.
+	* ScriptEditor.java: Don't require MJRApplicationUtilities to run.
+	
+2003-07-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/EventRecorder.java (insertStep): Initialize
+	lastStepTime in start() instead of in ctor.
+
+2003-07-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (processEvent): Use abbot.fixture.event_mask
+	to indicate what events to look for (defaults to
+	RECORDING_EVENT_MASK). 
+
+2003-07-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Don't create early references
+	(fixed problem in DefaultComponentFinder that necessitated the
+	workaround).
+
+	* recorder/AbstractInternalFrameWatcher.java: New.  Extracted
+	support for tracking internal frame events.
+	* recorder/JInternalFrameRecorder.java: Implement tracking of
+	iconify, resize, and move actions.
+
+	* recorder/EventRecorder.java: Catch internal frame CLOSING events.
+	* recorder/JInternalFrameRecorder.java: Record internal frame events.
+	
+2003-07-01  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (processEvent): Add a component reference on
+	alt+shift+F1 (jimdoyle). 
+
+	* ScriptEditor.java (browseTests): Use exception.toString instead
+	of getMessage, since the latter might return null.
+	
+	* ScriptEditor.java (main): Handle startup errors more gracefully.
+	* Costello.java: Ditto.
+	
+2003-06-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (newScript): Fix "new file" bug.
+
+2003-06-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JTextComponentRecorder.java (JTextComponentRecorder):
+	Record clicks as an index into the text rather than a
+	component-relative coordinate.
+
+2003-06-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editors/*Editor.java: Ensure display of default description gets
+	updated. 
+
+	* ScriptEditor.java (newScript): Don't accept directories as "new
+	script". 
+	* editors/EventEditor.java (EventEditor): Properly initialize
+	event editor field.
+
+2003-06-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTable.java (getCursorRowAtPoint): Use the full row height
+	when checking where the cursor should go.
+
+2003-06-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (startRecording): Apparently setEnabled(true)
+	on a frame now activates it on w32.  Make sure it doesn't happen
+	when we're starting a recording, since activating the editor frame
+	tells the editor to stop recording.
+
+2003-06-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Don't pass filtered events to recorder.  Fix
+	bug which prevented shift+F2 from triggering a recording after the
+	first occurrence of that event.
+
+2003-06-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Make sure we can still activate the editor
+	window during recording (terminates recording).  W32 behavior has
+	changed to make activating the frame impossible if it is not
+	enabled. 
+
+2003-05-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/Recorder.java: Change interface to accomodate failures.
+	* recorder/EventRecorder.java: Catch and rethrow semantic recorder
+	failures. 
+	* recorder/RecordingFailedException: Provide payload for
+	recorder failures.
+	
+2003-05-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java: Add button for creating property samples.
+	* ScriptEditor.java: Add Sample options.
+	(eventDispatched): Fix assert/sample options based on modifier
+	keypress. 
+
+2003-05-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java: Move actions into a submenu.
+	* ComponentBrowser.java: Switch to hierarchy view if the component
+	selection has no corresponding reference.
+	* ScriptEditor.java: Internal housekeeping.
+	Use the least-derived component class possible when creating
+	Assert steps that check component properties.
+	(addTesterMethodCall): Improve arguments input.
+	(setProperty): Implement new Resolver interface.
+	
+2003-05-21  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: move setting of open/closed
+	window cache to the appropriate location.
+
+2003-05-20  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Don't record window events from
+	transient popups.
+	* recorder/JComboBoxRecorder.java (parseClick): Significantly
+	clean up combo box recording.
+
+	* recorder/ChoiceRecorder.java: New.
+
+2003-05-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Use strings instead of numeric
+	codes for event recording type.
+
+2003-05-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JComboBoxRecorder.java: Clean up combo box recording;
+	fix class cast exception bug.
+	* ScriptEditor.java: Change event exception handler signature.
+
+2003-05-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (getTesterMethodArgsDesc): Use tester class
+	name, since any given action might override one from its parent
+	class. 
+	(setDocumentationProperties): Deprecate.
+	* TextFormat.java: Don't wrap html in html.  Don't word-wrap html.
+	
+2003-05-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ComponentNode.java: getFrames is now getRootWindows.
+	
+	* actions/EditorAction.java (EditorAction): Avoid OOB indexing
+	error in the off chance a loaded property is invalid.
+	Make explicit that certain strings are optional resources.
+
+2003-05-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Don't terminate AUT when doing save as or
+	rename.  Keep track of script filenames rather than script objects.
+	Query to save when switching between scripts.
+	* recorder/FrameRecorder.java (FrameRecorder): Add support for
+	maximize/normalize (not entirely done yet).
+
+2003-05-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Trim down event mask.
+	* recorder/EventRecorder.java: Ditto.
+	
+2003-05-04  Timothy Wall  <twall@users.sf.net>
+	
+	* ScriptEditor.java: Preserver security manager when editor itself
+	is under test.
+	
+	* ComponentPropertyModel.java (ComponentPropertyModel): Fix
+	property list filtering.
+
+	* ScriptTable.java (ScriptTable): Add actions to table action map.
+	Map space to toggle open/closed state of selected sequence.
+	
+2003-05-03  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java (runScript): Move toFront call to end of
+	script run (it was mistakenly placed after script launch).
+	
+	* ScriptEditor.java (setStatus): Provide file:line information on
+	step failure.
+	* ScriptMode.java: Provide access to file/line information.
+	
+2003-04-30  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptEditor.java: Control recorder directly.  Clean up event
+	handling.
+	(terminate): Keep recorder results on app exit.
+	* recorder/Recorder.java (Recorder): Moved component event
+	generation to EventNormalizer.  Simplify usage (no more
+	threading); Recorder can be directly fed events.
+	* recorder/ComponentRecorder.java (isClose): Don't use
+	HIERARCHY_CHANGE events any more.
+	* recorder/EventRecorder.java: Adapt to new Recorder signature.
+	
+2003-04-26  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java: Ditch unnecessary synchronization.
+	* recorder/EventRecorder.java: Ditto.
+	* recorder/*Recorder.java: Ditto.
+	
+2003-04-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Update components state after changing the
+	script. 
+	* ScriptTable.java: Select entire sequence.
+	* recorder/ComponentRecorder.java: Rename isDrop to isDragDrop,
+	which is more accurate.
+	
+2003-04-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (groupSteps): Add group command.
+	* EditorActions.java: Ditto.
+	* ScriptEditorFrame.java: Ditto.
+	
+2003-04-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTable.java: Fix cursor indexing bug.
+
+2003-04-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* StepTransferable.java: New.  Support dragging script steps.
+	* ScriptTable.java: Enable drag & drop.
+	* ScriptEditor.java: Ditto.
+	* ScriptModel.java: Refactor; limit to script manipulation.
+	
+2003-04-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (setSelectedReference): Fix NPE when
+	clearing selection.
+	* ScriptEditor.java (addTesterMethodStep): Don't replace the first
+	component argument if the first argument isn't a component.
+	Use a VM system property to indicate which editor is the "root".
+	Make closing a dialog the same as "cancel".
+	* ScriptModel.java: Don't wait for results of GUI update.
+	* Costello.java: Remove NPE handling on dispose which is now
+	handled elsewhere.
+	
+2003-04-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Fix image capture key control tracking.
+
+2003-04-01  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java: Ensure status window doesn't have a
+	screwy location when it's large and first shown.
+	* recorder/ComponentRecorder.java: Fix class cast exception on
+	non-component events when checking for tool tips.
+	
+2003-03-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java (setStatus): Avoid startup deadlock on SMP
+	linux.  Set initial status window position.
+
+	* recorder/EventRecorder.java (EventRecorder): When inserting
+	window waits, use the actual timeout if greater than the default.
+	Remove remnants of one-off recordings.
+	* recorder/Recorder.java: Keep track of when the last event was
+	processed.
+	
+2003-03-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (parseClick): Fix bug which
+	masked certain InputEvents following MouseEvents (pickens).
+	
+	* recorder/EventRecorder.java: Strip key press/release at
+	beginning/end of recording.
+	* ScriptEditor.java: Cull duplicate key events pre-1.4.
+	* recorder/Recorder.java: Ditto.
+	* recorder/EventRecorder.java (captureRawEvent): Don't need to cull
+	duplicate key events any longer.
+
+	* recorder/EventRecorder.java (getSemanticRecorder): Properly
+	cache recorders for inner classes (pickens).
+	* ComponentPropertyModel.java (isAccessibleGetterMethod): Don't
+	display getTag or getTester in the list of available properties.
+
+2003-03-27  Timothy Wall  <twall@users.sf.net>
+
+	* recorder/ComponentRecorder.java (ComponentRecorder): Filter out
+	tooltip events (pickens).
+
+	* recorder/WindowRecorder.java: Record window_closing events.
+
+2003-03-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* actions/CommandHistory.java: New. Command history/undo support.
+	* actions/NoUndoException.java: Ditto.
+	* actions/UndoableCommand.java: Ditto.
+	* editors/AnnotationEditor.java: New. Annotation editing.
+	* ScriptEditor.java (launch): Re-enable components on the event
+	dispatch thread.  Don't respond to manual settings of combo boxes.
+	* Costello.java: Add some OSX 1.4 checking.
+	* EditorConstants.java: Add annotation menu item.
+	* ScriptEditorFrame.java: Ditto.
+	* editors/StepEditor.java: Add text area creation.  Clean up
+	component management.
+	* editors/CommentEditor.java: Use base class facilities.
+	
+2003-03-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Factor out input state tracking.
+	(isRecorderStart/isRecorderStop): 1.4 doesn't send multiple key
+	events to outer components, so account for that.
+
+2003-03-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (fireHierarchyChanged): Don't bother
+	notifying updater if the component is disabled; it will
+	automatically reload when re-enabled (pickens).
+
+	* editors/EventEditor.java: New.  Editor for raw AWT events.
+	* editors/StepEditor.java: Provide a combo box for selecting among
+	component references.
+	* recorder/EventRecorder.java: Make enter/exit mouse events become
+	motion events.
+	* recorder/Recorder.java: Use single-threaded event listener.
+	
+2003-02-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java (dispose): Add missing call to super.dispose.
+
+2003-02-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/EventRecorder.java: Use Event instead of SendEvent.
+	* editors/EventEditor.java: New. Editor for raw events.
+	* ScriptEditor.java (isRecorderStart): Make sure recorder doesn't
+	start again immediately after stopping.  Change editor functions
+	to use shift+FN.  Remove single-action recorders, as they're not
+	terribly useful.
+
+2003-02-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/Recorder.java (eventDispatched): Don't recursively
+	invoke eventDispatched, which will botch the order of deferred
+	events; sequentially process events instead. 
+	* ScriptEditor.java (eventDispatched): Ditto.
+
+2003-02-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (eventDispatched): Ensure that deferred events
+	will actually get processed at some later point.  
+	* recorder/Recorder.java (eventDispatched): Serialize all events
+	to be dispatched on the event dispatch thread *only*.
+
+2003-02-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JComponentRecorder.java (createActionMap): Use
+	JComponent class when creating a new action.
+
+2003-02-01  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (createWindowEvent): Use window
+	name over title or tag, if available.
+
+2003-01-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptModel.java (ScriptModel): Fix step move operation when a
+	sequence is open.
+	
+	* ScriptEditor.java (setTestSuite): Use error/warning dialogs
+	instead of printing dialog warnings (toddster).
+
+2003-01-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Allow for some
+	1.4.1 intervening events on a multiple click.
+
+2003-01-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Modifier keys terminate an
+	input method sequence.  Absorb key release events after input
+	method events on OSX (may need to do this on other platforms).
+	* recorder/EventRecorder.java: Prune option key on OSX when it
+	appears to have surrounded an input method event.
+	
+2003-01-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Terminate input method
+	recording after every commit.
+
+2002-12-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java: Add apple-specific about handler.  Use
+	improved text field for script description.
+	* ScriptEditor.java: Add apple-specific quit handler.
+	* TextField.java: New. Refactor improved text field...
+	* editors/StepEditor.java: ...from here.
+	
+2002-12-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (parseClick): Account for
+	forwarded mouse clicks.
+	* ScriptModel.java (setValueAt): Don't hold lock when posting to
+	event queue.
+
+2002-12-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Remove security manager on exit.  
+	(dupScript): subsumed into newScript, since functionality was
+	almost identical.
+	(newScript): ensure file exists when creating a new script, since
+	scripts now require all referenced files to exist.
+	
+2002-12-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* EditorConstants.java: Add close menu item.
+	* ScriptEditor.java: Ditto.
+	* ScriptEditorFrame.java: Ditto.
+	* editors/AssertEditor.java: Handle invalid class names.
+	* editors/CallEditor.java: Ditto.
+	* recorder/Recorder.java: Ensure recorder is always removed from
+	listening prior to creating a step.  Also ignore events if
+	suspended, terminated, or canceled.
+	
+2002-12-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/Recorder.java (recordEvent): Don't record events to
+	filtered components.
+
+2002-12-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentPropertyModel.java (setComponent): Include properties
+	provided by ComponentTester classes.
+
+2002-12-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JComboBoxRecorder.java: Save value instead of index, if
+	possible. 
+	* ScriptEditorFrame.java: Save view settings.
+	* ComponentPropertyModel.java: Include hasXXX.
+	* editors/StepEditor.java: Provide a combo box method.
+	* editors/CallEditor.java (getMethodNames): Use a combo box for
+	method name selection.
+	* editors/ActionEditor.java: Ditto.
+	* editors/AssertEditor.java: Ditto.
+	* editors/LaunchEditor.java; Ditto.
+	* Preferences.java: New. Persistent editor preferences.
+
+2002-12-06  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editors/StepEditor.java (isLocalMenuActive): Ensure changes are
+	propagated when focus leaves a text field.
+
+	* recorder/AbstractButtonRecorder.java: Ignore multiple clicks.
+	* recorder/JComboBoxRecorder.java: Ditto.
+	* recorder/JListRecorder.java: Handle multiple clicks.
+	* recorder/ComponentRecorder.java: Ditto.
+	* recorder/JTabbedPaneRecorder.java: Ditto.
+	* recorder/JTableRecorder.java: Ditto.
+	
+2002-12-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editors/LaunchEditor.java (actionPerformed): Remove extraneous
+	fields. 
+
+2002-12-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JTextComponentRecorder.java (createDrop): Supply class
+	when creating the action, so that the JTextComponentTester is
+	properly identified on playback.
+
+2002-12-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (setSelectedComponent): Ignore transient
+	popups.  Update reference list in response to resolver changes.
+	* ComponentNode.java: Abstract transient popup check.
+	* recorder/Recorder.java: Ditto.
+	* ScriptEditor.java: Get rid of add/remove event handler cruft.
+	Extract EventExceptionHandler class.
+	(setStatus): Provide stack trace information on errors.
+	* ScriptEditorFrame.java: Provide for extended status
+	information.  Fix size of status window.
+	* editors/ScriptEditor.java: Change method signature for file path.
+	
+2002-12-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (ScriptEditor): Recursively save scripts.
+
+2002-12-01  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/WindowRecorder.java: Don't record windows that aren't
+	yet open.  
+	* ComponentBrowser.java (fireHierarchyChanged): Update hierarchy
+	table when re-enabled.
+
+2002-11-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JComboBoxRecorder.java (parseClick): Gracefully handle
+	drags (fixes NPE bug).
+	* recorder/JTextComponentRecorder.java: New.  Capture text
+	selections. 
+	* recorder/ComponentRecorder.java: Clean up drag handling.
+	* recorder/EventRecorder.java: Keep track of when a new recorder
+	is started.
+	* recorder/JComponentRecorder.java: Capture action map actions.
+	
+2002-11-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Use a separate lock for the mouse tracker.
+	* ComponentPropertyModel.java (setComponent): Only look up public
+	property methods, and show warnings when property values are
+	inaccessible. 
+
+2002-11-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (actionPerformed): Refer to ScriptFixture
+	instead of ScriptTestCase.
+
+2002-11-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java: Simplify ctors.
+	* ScriptEditor.java (newScript): Use new Script ctors.
+	* ScriptModel.java: Ditto.
+	* script/Call.java: Delegate script parse error tracking to Step.
+	* script/Step.java: Provide facility for noting script errors.
+	Make factory method dynamically look up step classes.
+	* script/Launch.java: Leave threading up to the StepRunner.
+	* script/Sequence.java: Pass script errors to base Step class.
+	Simplify ctors.
+	* script/StepRunner.java: Thread launch steps, if necessary, and
+	catch their results.  Track launch step instead of class loader.
+	
+2002-11-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (initFrame): Unify status colors with script
+	table colors.
+	* ComponentBrowser.java (getComponentForReference): Provide a
+	component even if more than one were found.
+	(setComponentReference): Print multiple components more nicely.
+	* recorder/ComponentRecorder.java (ComponentRecorder): Capture
+	certain keys as keystrokes rather than character input.
+
+2002-11-21  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (actionPerformed): Add insertCall function.
+	* ScriptEditorFrame.java (ScriptEditorFrame): Ditto.
+	* EditorConstants.java: Ditto.
+	* editors/CallEditor.java (CallEditor): New.
+	* editors/AssertEditor.java: Derive from CallEditor.
+	* editors/ActionEditor.java: Ditto.
+	* editors/LaunchEditor.java: Ditto.
+
+2002-11-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (createAWTMenuSelection): Fix
+	bug setting incorrect method call.
+
+2002-11-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/Recorder.java: Refactor hierarchy event handler.
+
+2002-11-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Use simplified version checking.
+	* recorder/Recorder.java: Ditto.
+	
+2002-11-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Disable entire UI while script is running or
+	being launched.
+
+2002-11-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java (initComponents): Add non-modal status
+	window for long status messages.  Don't export status label.
+	* ScriptEditor.java (getDirectory): Method added to Resolver interface.
+	* editors/AssertEditor.java: Step might change more internal state
+	when inverted/value are set.
+	
+2002-11-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (eventDispatched): Release lock on deferred
+	event list prior to dispatching an event.
+	* recorder/Recorder.java (suspend): Add suspend/resume to recorder.
+	* recorder/EventRecorder.java (insertStep): Allow manual insertion
+	of steps into the recorder's stream.
+	
+2002-11-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (addStep): Only use cursor location for
+	determining where to insert steps, not the selection.  Don't
+	terminate recorder if app not yet launched.
+	* ScriptModel.java (insertStep): Throw IllegalArgumentException if
+	arguments are out of bounds.
+	* recorder/Recorder.java: Add debug output.
+	
+2002-11-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (ComponentBrowser): Ignore hierarchy
+	changes on filtered windows.
+
+2002-10-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Costello.java: Hide 1.4.1 VM window dispose bug.
+
+2002-10-28  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptModel.java (insertStep): Special case inserting a step
+	with no existing steps.
+
+2002-10-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (addStep): Refactor step movement/insert
+	functionality into ScriptModel.
+	(eventDispatched): Add workaround to prevent a common application
+	startup deadlock, typically triggered by Window.show().
+	* ScriptModel.java: Ditto.
+	* recorder/ComponentRecorder.java: Save tab key as keystrokes.
+	* recorder/EventRecorder.java: Use F2 as terminator.
+	
+2002-10-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Use F1, F2 for convenience in selecting
+	components and start/stop recording.
+	* ScriptEditorFrame.java (showAboutBox): Add about box.
+
+2002-10-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/*.java: Ensure full method names are used when creating
+	new actions.
+	* ScriptEditor.java: Expect runner to throw.  
+
+2002-10-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java: Add runto menu item.
+	* ScriptEditor.java: Add runto option. Move action here...
+	* actions/EditorActions.java: ...from here.  Obsolete.
+	
+	* ScriptEditor.java: Use a dedicated class (StepRunner) to run
+	scripts.   This allows more control over script execution than if
+	the script itself controls it.  stop on error/failure options are
+	on the runner now.  
+	* ScriptModel.java: No need to listen to script any longer.
+	* ScriptTable.java: Leave step coloring up to subclassing.
+	
+2002-10-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java: Accumulate input method text.
+	Create keystrings instead of keystrokes on key_typed events, since
+	keystrokes depend on a reverse char->keycode map which isn't
+	always available.
+	* recorder/EventRecorder.java: Coalesce key strokes into a key
+	string where possible.  Accumulate multiple key strings into a
+	single event.
+	
+2002-10-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Costello.java: Widen splash screen for French formatting.
+	* i18n/Resources.java: Only warn about missing resources if asked
+	(abbot.editor.show_missing_resources). 
+	* recorder/EventRecorder.java (eventNames): Add InputMethod.
+	* recorder/SemanticEvents.java: Ditto.
+	* recorder/ComponentRecorder.java: Ditto.
+	
+2002-10-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (saveScript): Accomodate canonical
+	File.canWrite usage.  Allow checkExit from methods that aren't
+	really exiting.  Don't let code under test install its own event
+	thread exception handler.  
+	Provide a separate motion-tracking recorder.
+
+2002-10-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Costello.java: Catch NPE bugs on OSX.  Provide access to the
+	splash screen itself for bug checking.
+	* editor/ScriptEditor.java: Fix NPE when no script is specified.
+	Check for w32 bugs on startup (ptardif@tiersolutions.com).
+	
+2002-10-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editors/ScriptEditor.java: Add vm args.  Warn if save file is
+	not writable.
+	* ScriptEditor.java: Handle extra VM args.
+	* action/EditorActions.java: Add vmargs action.
+	* EditorConstants.java: Ditto.
+	
+2002-10-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Let the component browser update itself.
+	* ComponentBrowser.java (ComponentBrowser): Ensure the browser is
+	always updated from the appropriate context.
+	
+2002-10-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/EventRecorder.java: Use Action methods instead of
+	Step.toString hack.
+	* editors/AssertEditor.java: Add missing arguments field.
+	* ComponentBrowser.java: Clean up reloading.
+	* ComponentNode.java: Ditto.
+	* Costello.java: Clean up splash label.
+	* ScriptEditor.java: Avoid potential event thread deadlock.
+	* recorder/*Recorder.java: Use full method names when creating
+	actions/asserts. 
+	
+	* ScriptEditor.java: Look first in resources for action
+	descriptions, then look in system properties.
+	* i18n/Resources.java: Change optional property suffixes.  Return
+	null if resource not found; if someone wants to have the key be
+	the default, they can provide the function.
+	* i18n/Strings.java: Remove STR_ constants.
+	* ScriptEditorFrame.java, ScriptModel.java, TestSelector.java,
+	ComponentBrowser.java, ComponentNode.java,
+	ComponentPropertyModel.java: Reference resource bundle directly. 
+
+2002-10-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptModel.java (toString): Use proper Script representation in
+	table. 
+	* i18n/Resources.java: Fall back to default resource, then the key
+	itself.  It's not useful to have a missing resource exception; log
+	a warning instead on program exit.
+	* ScriptEditor.java: Update assert/wait creation.
+	* recorder/ComponentRecorder.java: Ditto.
+	* editors/AssertEditor.java: Add wait options.
+	* editors/StepEditor.java: Add a border.
+	
+2002-10-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/EventRecorder.java: i18n.
+	* Costello.java (main): Provide some splash window standout on
+	platforms that needed. 
+
+2002-09-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* i18n/*: Move i18n resources to top level, auto-generate from
+	build script.
+
+2002-09-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* i18n/StringsBundle_fr_FR.properties: New french translations.
+	* i18n/StringsBundle_en_US.properties: Add full descriptions for
+	aid in translation.
+	
+2002-09-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editors/CommentEditor.java (CommentEditor): New.
+	* EditorConstants.java: Add insert comment option.
+	* ScriptEditor.java: Ditto.
+	* ScriptEditorFrame.java: Ditto.
+	* actions/EditorActions.java: Ditto.
+	* ScriptModel.java: Don't need custom Step stringification any
+	more. 
+	
+2002-09-28  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java: Clean up UI sizing.
+	* ScriptEditor.java: Make sure inserted scripts are file-relative.
+	* ScriptEditorFrame.java: Ditto.
+	* ScriptTable.java: Ditto.
+	* editors/StepEditor.java: Implement Scrollable.
+	* editors/ScriptEditor.java: New.
+	* editors/SequenceEditor.java: New.
+	* editors/*.java: Support step data changes.
+	* recorder/EventRecorder.java: Add InputMethod events.
+	
+	* editors/{Action,Assert,Launch,Step}Editor.java: New editors.
+	* ScriptEditor.java: Only provide xml editing when no editor is
+	provided.  Move editor lookup to StepEditor.  Disable editor
+	selection while script is running.
+	* ScriptEditorFrame.java: Fix compiler warning.  Maintain step
+	editor size.
+	* ScriptModel.java:  Listen to step edits.
+	* ScriptTable.java: Provide selected Step access.
+	* i18n/*.properties: Add step editor strings.
+	
+2002-09-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ReferencesModel.java: Catch an invalid script exception, not
+	IllegalArgument, and show a dialog when we get it.
+	* ScriptEditor.java: Catch Invalid script errors.
+	* ScriptModel.java: Update to use jdom.
+	* editors/XMLEditor.java: Ditto.
+	
+2002-09-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java: Keep step editor sizes more stable.
+	
+2002-09-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (accept): Support AWT menu
+	selections. 
+	* recorder/EventRecorder.java: Ditto.
+	* recorder/Recorder.java: Ditto.
+	* ComponentNode.java: Accomodate MenuComponents.
+	* ComponentBrowser.java: Ditto.
+	* ScriptEditor.java: Catch ActionEvents, since that's sometimes
+	the only event we can get from an AWT menu component.
+	* Costello.java: No screen menu bar for OSX, it's buggy.
+	
+2002-09-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java: Reduce split pane divider sizes.  Set
+	scroll pane background color.
+	* Costello.java (main): Use screen menu bar if not under test.
+	* EditorConstants.java: Move Accelerator key generation here.  Add
+	slow script option.
+	* ScriptEditor.java: Add slow script option handling.  Add
+	preliminary step editor loading.
+	* ScriptEditorFrame.java: Move some string constants here.  Add
+	some padding around top row.  Support step editors.
+	* actions/EditorAction.java: Simplify ctor.
+	* actions/EditorToggleAction.java: Ditto.
+	* actions/EditorActions.java: Ditto.
+	* icons/*.gif: Rename to match i18n keys.
+	* i18n/Strings.java: Move out some constants.
+	* i18n/*.properties: Add some more keys.  Add accelerators and
+	mnemonics. 
+	
+2002-09-20  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (eventDispatched): Avoid event storms in
+	1.4 (1.4 spews far more HIERARCHY_CHANGE events).
+	* ScriptEditor.java: Explicitly set test script selector enabled
+	if there's a test suite.
+	
+2002-09-20  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (stateChanged): Don't rely on reference equality.
+	Add script fork toggle option.
+	* EditorConstants.java: Add script fork toggle option
+	* ScriptEditorFrame.java: Ditto.
+	* i18n/*: Add forking strings.
+	
+2002-09-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (setStatus): Clean up setStatus(Step) and use
+	MessageFormat for error/warning/failure.
+	* i18n/*: Support above changes.
+	
+2002-09-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java: Reload on window closing/closed events.
+	* ScriptEditor.java (ScriptEditor): Add an event dispatch
+	exception handler to avoid console spewage on application under
+	test exit.  Remove more ComponentFinder dependencies, update ref
+	lookup signature.  Catch script errors and display them in a
+	dialog.  Fix NPE in SaveAs.
+	* ScriptModel.java: Show dialogs on error.
+	* recorder/ComponentRecorder.java (parseMenuSelection): Fix popup
+	parsing bug on w32 (popup doesn't show until after MOUSE_RELEASE).
+
+2002-09-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* i18n/Resources.java (load): Add exception handling (maybe 1.4
+	added the thrown exception -- 1.3 didn't have it).
+	* recorder/EventRecorder.java: Use explicit package name.
+	* ComponentBrowser.java: Get rid of some redundant borders.
+	* ScriptEditor.java: Don't need to keep track of the recorder
+	action listener.
+	* ScriptEditorFrame.java: Remove some unused fields.
+	* recorder/*Recorder.java: Remove ComponentFinder dependencies.
+	
+2002-09-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (ComponentBrowser): More i18n.
+	* TextFormat.java (dialog): Ditto.
+	* TestSelector.java (TestSelector): Ditto.
+	* i18n/Strings.java, *.properties: New strings added.
+	* ComponentPropertyModel.java (ComponentPropertyModel): List
+	uninteresting properties to be filtered rather than the inverse.
+
+2002-09-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* i18n/StringsBundle_en_GB.properties: New
+	(ASmithMontebello@aol.com). 
+	* i18n/StringsBundle_en_US.properties: Fix typo, add default
+	launch description.
+	
+2002-09-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptModel.java (setValueAt): Reset the default placeholder
+	launch description once the step has been edited.
+	
+	* ScriptEditor.java (stopListening): Remove ComponentFinder linkage.
+	* recorder/*Recorder.java: Remove ComponentFinder from ctor, since
+	chained ComponentFinders are no longer required.
+	Remove ActionListener from ctor to simplify derived class ctors.
+	* recorder/WindowRecorder.java: New.
+	* recorder/FrameRecorder.java: New.
+	* recorder/DialogRecorder.java: New.
+	
+2002-09-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ContainerRecorder.java (ContainerRecorder): New. For
+	consistency. 
+	* recorder/WindowRecorder.java (parseWindowEvent): New.  Record
+	window move and resize.
+	* Costello.java (main): Oops, don't enable screen menu bar until
+	it's fixed (Jaguar?).
+
+2002-09-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (ComponentBrowser): Ensure hierarchy is
+	updated when new windows appear.
+
+2002-09-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Use Throwable.toString instead of getMessage.
+	* ScriptModel.java: Row of script itself is -1.
+	
+2002-09-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java (setSelectedComponent): Major rework of
+	component browser selections and messaging.  Fix step insertion
+	errors as well as some other minor bugs.
+	* ComponentBrowserListener.java: New.
+	* ScriptEditor.java: Implement listener.
+	(addTesterMethodStep): refactor from editor action.  editor action
+	now only collects the arguments.  Don't try to load icons unless a
+	property has been set for the action.
+	* ComponentPropertyModel.java (setComponent): Optimize for loading
+	speed.  Provide manifest constants for data access.
+	
+2002-09-10  Timothy Wall  <twall@users.sourceforget.net>
+
+	* ScriptEditor.java (insertStep): Use getTester methods from
+	ComponentTester rather than ComponentFinder.
+
+2002-09-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Revise editor context setup, now
+	that dynamic class loading is working properly.  Root context is
+	determined by the editor's class loader.
+
+2002-09-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (browseTests): Don't clear test suite if no
+	others found.
+	* Costello.java: Set up OSX properties.
+	* ScriptEditorFrame.java: Use a more maintainable layout.
+	
+2002-09-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java (ScriptEditorFrame): Use i18n resources.
+	* actions/EditorActions.java (createActions): Ditto.
+	* ScriptEditor.java (eventDispatched): Terminate recording rather
+	than canceling it.  Keep recording if there's an app thread
+	running.  Use resource bundle properties for documentation
+	properties. 
+
+	* i18n/Strings.java: Remove unused entry.  Add more entries.
+	* i18n/StringsBundle*: Ditto.
+	* recorder/Recorder.java: Add terminate method, to explicitly
+	indicate that the recorder is done.
+	
+2002-09-06  Timothy Wall  <twall@users.sourceforge.net>
+
+	* i18n/Strings.java: Add i18n resources.
+	* i18n/StringsBundle_en_US.properties: US English translations.
+	(Title): Remove extraneous character.
+	* EditorConstants.java: Extend string resource IF.
+	* ScriptEditor.java: Extract most strings to resource bundle.
+	(checkExit): Allow exit on startup errors.
+
+2002-09-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Move security manager to inner class.
+
+2002-09-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java: Consolidate editor action data into
+	EditorActions. 
+	* ScriptEditorFrame.java: Refactor menu generation.
+	* EditorConstants.java: Remove unused constants.
+	* ScriptEditorJMenuBar.java: Removed.
+	* actions/EditorAction.java: Renamed from AbstractEditorAction.
+	* actions/EditorToggleAction.java: Renamed from
+	AbstractEditorToggleAction.
+	* actions/*Action.java: Removed.  Data moved to EditorConstants.
+	
+2002-08-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (runScript): Add menu doc strings for new
+	actions.  Don't generate updates for ComponentBrowser, but do
+	disable it during launch.
+	* ComponentBrowser.java (ComponentBrowser): Update self from
+	hierarchy changes instead of depending on editor to do it.
+	* ComponentNode.java: Use default finder instance.
+	
+2002-08-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Costello.java: Remove anonymous class to reduce startup load
+	overhead. 
+
+2002-08-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (insertLaunch): Default to delegating class
+	loader instead of non-delegating.
+
+2002-08-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (record): Don't listen to events until we
+	start recording.  Avoid logging events on filtered components,
+	since toString(event) can be slow (as per kgirard).
+	(eventDispatched): Only log events on components with a
+	non-filtered frame.
+
+2002-08-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (wantMnemonics): Use Platform functions.
+	* ScriptEditorJMenuBar.java: Ditto.
+	
+2002-08-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (getWorkingDirectory): If no test suite, use
+	the directory of the current script.
+
+2002-08-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (main): Pack and show main window on the event
+	dispatch thread to avoid deadlocks.  NOTE: while setText on the
+	status bar doesn't need to be on the event thread, setForeground
+	and setToolTipText do b/c they directly affect the native peer
+	and/or other AWT resources.
+	Also make sure splash screen isn't prematurely disposed.
+	(getChooser): Set default directory in file chooser to be the
+	current working directory, which is preferable to the user home
+	directory. 
+
+2002-08-14  Kyle Girard  <kgirard@klocwork.com>
+
+	* ScriptEditor.java: fixed the save-as feature.  Script actually 
+	saves then the save button is pressed and if script doesn't belong
+	to a suite the script selctor is disabled
+
+2002-07-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentBrowser.java: Use new componentsMatch signature.
+	* ComponentNode.java: Only match class name prefix, since the last
+	part may vary depending on whether you get a Window, Panel, or
+	something else.
+	* Costello.java (main): Add a splash screen.
+	* ScriptEditor.java (insertScript): Defer creation of file chooser
+	to speed startup.  Instantiate available flavors of EventRecorder.
+	(runScript): Don't save the script prior to running.
+	(quit): Close windows more quickly on exit.
+	(setStatus): Set text field text on Swing thread.
+	(addComponentPropertyCheck): Reorganize call structure to make the
+	component class available.
+	
+2002-07-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (populateCaptureMenu): On script
+	failure/error, leave "launch" disabled, but enable "run" and
+	"terminate", if applicable.
+
+2002-07-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditorFrame.java (ScriptEditorFrame): Provide access to
+	enabled state of actions.
+	* ScriptEditor.java (populateCaptureMenu): Launch the app if
+	starting a recording and it's not launched.
+
+2002-07-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* EventRecorder.java (coalesceKeyStrokes): Don't save mods arg if
+	there isn't one.
+	* ComponentRecorder.java (createStep): Ditto.
+	* ScriptEditor.java (eventDispatched): Fix some of the hierarchy
+	event NPE spewage by automatically filtering script editor subwindows.
+
+2002-07-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (eventDispatched): Don't look at or respond to
+	certain events if a test is running.
+
+2002-07-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (setStatus): Use better checking for tertiary
+	mouse click.
+
+2002-07-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (launch): Make sure terminate is enabled even
+	if launch fails.
+
+2002-07-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (initFrame): Customize the frame's dispose
+	method so that applications under test cannot dispose the frame. 
+	
+2002-07-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (launch): Suppress problematic component
+	refresh (JTree) while the GUI under test is launching or the
+	script is running.
+
+2002-07-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptEditor.java (initContext): Use factory method to obtain a
+	ComponentFinder.
+
+2002-07-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentRecorder.java (parse): Drop duplicate key typed events.
+	* EventRecorder.java: Put event capture into its own method.
+	* ScriptEditorFrame.java: Move ctors up.
+	* SemanticRecorder.java: Clear up javadoc.
+	
+2002-07-03    <insight@tstsn03s>
+
+	* ScriptEditor.java: Fixed bug which just inserted another launch
+	and terminate when there was already a script loaded.
+
+2002-06-27  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentRecorder.java: Use new finder method names.
+        * ScriptEditor.java: Clean up event logging.
+        
+2002-06-25  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentRecorder.java (parse): Handle popups on mouse button
+        release. 
+        * ScriptEditor.java (initSecurityManager): Avoid annoying A: drive
+        bug on w32.
+
+2002-06-24  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ScriptEditorFrame.java (ScriptEditorFrame): Move more of the
+        GUI-specific stuff here from ScriptEditor.
+        * ScriptEditorJMenuBar.java (createMenu): Only set mnemonics where
+        appropriate.  Strip down to basics and keep it simple.
+        * ScriptEditor.java: Move more GUI stuff out.
+        * actions/*.java: Give actions unique integer IDs, and use these
+        when notifying the action listener.
+        * EditorConstants.java: New. Menu and menu item IDs.  Could
+        probably also be used for string constants.
+        
+2202-06-24 Kyle Girard <kgirard@klocwork.com>
+
+        * ScriptEditor.java Added the accelerators back in (oops)
+        * ScriptEditorJMenuBar.java removed the large number of get methods
+        in favour of one get method
+
+2002-06-24  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentNode.java (toString): Use standard ComponentTester
+        toString function for components.
+        * actions/AbstractEditorAction.java: Define other modifier mask
+        strings. 
+        * ScriptEditor.java: Hide must be within try block to avoid Sun
+        bug NPE.
+        
+2002-06-20  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentNode.java (getChildCount): Move filtering of transient
+        popup windows here.
+        * DefaultComponentFinder.java: From here.
+
+2002-06-19  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ScriptEditor.java (ScriptEditor): Remove obsolete event
+        intervention.  
+        * ScriptEditorFrame.java: Ditto.
+        * Recorder.java (enableHierarchyEvents): Use a method of checking
+        for a protected class that doesn't make the compiler complain.
+
+2002-06-19 Kyle Girard <kgirard@klocwork.com>
+
+        * ScriptEditor.java split ScriptEditor into View/Controller 
+        all GUI components are in ScriptEditorFrame and ScriptEditorJMenuBar
+        * added ScriptEditorFrame.java
+        * added ScriptEditorJMenuBar.java
+        * moved CustomCheckBoxMenuItem.java into it's own class
+        
+2002-06-18  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ScriptEditor.java (launch): Make sure the script launch is
+        explicitly threaded.  Ensure launch/terminate actions are
+        enabled/disabled on changes to the script steps, as well as on
+        launch/terminate. 
+        * ComponentBrowser.java (getReferenceListSelection): Return null
+        if there is no selection.
+        * Recorder.java: Use isAssignableFrom instead of string comparison
+        on class name.
+        
+2002-06-17  Timothy Wall  <twall@users.sourceforge.net>
+
+        * TextFormat.java: Support for tooltips/dialog text formatting.
+        * ComponentBrowser.java: Display a tooltip for the property
+        assertion button to indicate wait/invert alternatives.
+
+2002-06-13  Timothy Wall  <twall@users.sourceforge.net>
+
+        * EventRecorder.java (coalesceKeyStrokes): Clean up text capture,
+        accomodate lack of KEY_TYPED events.
+        * Recorder.java: Remove duplicate logging.
+        * ComponentBrowser.java: Update label for property assertion button.
+
+        * ScriptEditor.java (createMenuBar): Rename Run menu to Test.
+        Abstract key codes for invert/wait toggles.
+        
+2002-06-12  Kyle Girard  <kgirard@klocwork.com>
+
+        * ScriptEditor.java Removed the press alt to switch Assert to Wait.  
+        Assert and Wait might be combined... the jury's still out
+        * ScriptEditor.java Moved Assert and Wait Menus into the Insert Menu
+        * ScriptEditor.java Removed the "Insert" label from items in the 
+        Insert Menu
+        * ScriptEditor.java No longer have to hold shift the entire time you 
+        enter wait/assert information in order to invert the action
+    
+2002-06-12  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentRecorder.java: Move isModifier into Recorder.
+        On linux, ignore ICONIFIED as part of window closing.
+        * EventRecorder.java: Coalesce key press/typed/release events.
+        Remove redundant press/release events.  Do both of these just
+        prior to creating the final sequence.
+        * Recorder.java: Added isModifier.
+        
+2002-06-11  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ScriptEditor.java (runScript): Make sure new threads are started
+        under the appropriate thread group.
+        * ComponentBrowser.java: Show all components found in a warning,
+        for debug purposes.  Eventually want this to go in the gui somewhere.
+
+2002-06-10  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentRecorder.java (createStep): Use correct Action ctor for
+        activating a Window.  Allow some intervening events when recording
+        a click, and require a release before a click is recorded.
+        * actions/SaveAsScriptAction.java (SaveAsScriptAction): Reinstate.
+        * ScriptEditor.java (addStep): Fix duplicate fixture command.  Fix
+        up some menu shortcuts and ordering.  Reinstate saveas, delete
+        actions.
+        (eventDispatched): Cancel recording if there are no application
+        windows left open (required to stop an EventRecorder, since there
+        is no cancel event for that recorder).
+        * Recorder.java: Some refactoring for hierarchy events, planning
+        to avoid some bugs in 1.3 awt implementations.
+        
+2002-06-09  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ScriptEditor.java (initActions): Revert "Save As" to "Rename".
+        Clean up menu generation and labels.  No mnemonics on Macs.
+        (main): Serious menu cleanup.
+        (dupScript): Include wait for frame showing if there is one, since
+        this is a common step after launch.
+        * actions/*.java: Ditto.
+        
+2002-06-08  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentBrowser.java: Catch MultipleComponentsFoundException.
+        This still needs to be handled in the editor so that the
+        ambiguities can be resolved properly.
+        * ScriptEditor.java: Change deprecated action names to new ones.
+        
+2002-06-07  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ComponentNode.java (toString): Use simpleClassName from
+        ComponentTester. 
+        * Recorder.java (eventToString): Ditto.  Also use its
+        toString(AWTEvent) method.
+
+2002-06-06  Timothy Wall  <twall@users.sourceforge.net>
+
+        * ChangeLog: started changelog specific to editor to accommodate
+        higher traffic. 
+        * actions/AbstractEditorAction.java: Use platform-specific
+        modifier keys for menu accelerators.
+        * actions/NewScriptAction.java: Ditto.
+
+2002-06-06  Kyle Girard  <kgirard@klocwork.com>
+        
+        * added icons in the abbot/editor/icons directory
+        * moved actions out of ScriptEditor.java rewrote them in their own
+        directory 
+        * Changed ScriptEditor.java to use the new actions...added benefit 
+        abbot now has mnemonics, accelerator keys and some icons
+        * changed layout of menus in the ScriptEditor hopefully makes things 
+        easier to use.
+
+

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><img><title>Importing a deployed RCP Application</title>
+
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet"></head>
+
+<body><h1>Importing a deployed&nbsp;RCP Application</h1>
+<p>WindowTester Pro tests can&nbsp;be generated against deployed applications. To do so you must first
+import your application into your Eclipse development environment and then record your tests as usual.&nbsp;</p><p>Follow
+these steps to import a RCP application into your Eclipse development
+environment. This example (created using Eclipse 3.3) focuses on the <b>Contact Manager RCP application</b>.&nbsp;</p>
+<p>If you want to use our example, download and install the Contact Manager RCP application</p>
+<ol>
+<li>Download the&nbsp;<a href="../../download/ContactManagerRCP.zip"><b>ContactManager RCP Example</b></a> example that's appropriate for  your OS and version of Eclipse you are using.
+</li>
+<li>Install the example by unzipping the downloaded file.</li>
+</ol>
+<h3>Import the application to be tested</h3><ol><li><span id="BugEvents"><span style="">
+Launch Eclipse and open the import wizard by selecting <b>File &gt; Import</b> from the main menu.</li><li><span id="BugEvents"><span style="">Select&nbsp;<span style="font-weight: bold;">Plug-in Development &gt; Plug-ins and Fragments</span>&nbsp;<span style="font-weight: bold;"></span>and then click <span style="font-weight: bold;">"Next".</span><br></span></span><br>
+<img src="../../images/deployed_rcp_import.png" alt="Import"><br><br></li><li><span id="BugEvents"><span style="">
+Locate the <span style="font-weight: bold;">"Import From"</span> Group and uncheck <span style="font-weight: bold;">"The target platform".</span></span></span></li><li><span id="BugEvents"><span style=""><span style="font-weight: bold;"></span>Click <span style="font-weight: bold;">"Browse..."</span> and locate the plugins directory where you un-zipped the <span style="font-weight: bold;">Contact Manager&nbsp;example application</span>.</span></span></li><li><span id="BugEvents"><span style="">Click <span style="font-weight: bold;">"Next"</span>.</span></span><br><p><img alt="" src="../../images/deployed_rcp_import_plugins_fragments.png"></p></li><li><span id="BugEvents"><span style="">
+Click <span style="font-weight: bold;">"Add All --&gt;"</span> to import all of the application's plugins, then click <span style="font-weight: bold;">"Finish".<br><br></span></span></span>
+<img alt="" src="../../images/deployed_rcp_add_all.png"><br><br>You should now see all of the application's plugins in the <span style="font-weight: bold;">Package Explorer</span> within the <span style="font-weight: bold;">Java perspective</span>.<br><br>
+<img alt="" src="../../images/deployed_rcp_imported.png"></li></ol><h3><span id="BugEvents"><span style="">You can now generate your tests by following&nbsp;</span></span>the same record and playback steps&nbsp;2, 3 and 4 described in <a href="../gettingstarted/rcp_sampletest.html#step2">Testing a&nbsp;RCP application</a> tutorial.</h3><br>
+</body></html>

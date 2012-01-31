@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Using Intl Keyboard</title>
+<link href="../../../stylesheets/book.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><h1>Using International (Non-US) Keyboards</h1>
+<p>In order to enable locale specific keyboard for testing,
+insert the following statement at the beginning of the test </p><pre>WT.setLocaleToCurrent();</pre> and <pre>WT.resetLocale()</pre><p> 
+at the end of the test to reset the keyboard setting to default settings.</p><p> We currently have support for the following languages:</p><ul><li>
+English</li><li>German (Germany)</li><li>Dutch (Belgium)</li><li>French (France)</li><li>Spanish (Spain)</li><li>Swedish (Sweden)</li><li>Japanese (Japan)</li></ul><p>
+If the language/locale of the keyboard you are using is not currently
+on the list, with your help, we can add support for it. Support
+for non-US keyboards can be implemented by adding the corresponding key maps to the database. In
+order to do this please make sure you are using the latest build and
+follow the steps below:</p><ol><li>Download the <a href="../../../download/MapGenerator.java">MapGenerator</a> java application.</li><li>Run this application on your machine with the non-US keyboard
+attached. It will generate one or more *.map files.</li><li>Please send&nbsp;these *.map files to Support and we will fold them into WindowTester Pro.</li><li>We will then let you know when a new build of WindowTester Pro is
+available for you to try.</li></ol></body></html>

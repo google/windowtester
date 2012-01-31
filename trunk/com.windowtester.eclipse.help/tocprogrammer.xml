@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toc label="Programmer&apos;s Guide" link_to="toc.xml#prog" topic="html/programmer/index.html">
+   <topic href="html/programmer/core/index.html" label="Runtime Core">
+      <topic href="html/programmer/core/Test_Execution.html" label="Test Lifecycle and Execution">
+      </topic>
+      <topic href="html/programmer/core/wtQuickRef.pdf" label="API Quick Reference Card">
+      </topic>
+      <topic href="html/programmer/core/Custom_Base_Test.html" label="Creating a Custom Base Test">
+      </topic>
+      <topic href="html/programmer/core/Finding_Widgets.html" label="How Widgets Are Found">
+      </topic>
+      <topic href="html/programmer/core/Creating_a_Custom_Locator.html" label="Writing Custom Locators">
+      </topic>
+      <topic href="html/programmer/core/Condition_Factories.html" label="Condition Factories">
+      </topic>
+      <topic href="html/programmer/core/embedded_swing_components.html" label="Embedded Swing Components">
+      </topic>
+   </topic>
+   <topic href="html/programmer/gef/index.html" label="GEF Runtime">
+      <topic href="html/programmer/gef/GEF_Locators.html" label="Locating GEF Figures">
+      </topic>
+   </topic>
+</toc>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+</head>
+
+<body style="background-color: white;">
+
+Provides support for Conditions to the WindowTester runtime.
+<p>
+UI Tests are made robust using <em>Conditions</em>.  Conditions implement the
+{@link com.windowtester.runtime.condition.ICondition} interface and are commonly
+used to cause tests to pause until some condition becomes true (for instance
+once a file is created on the filesystem).  Conditions can also be registered
+with the runtime's {@link com.windowtester.runtime.condition.IConditionMonitor} and used
+to trigger {@link com.windowtester.runtime.condition.IHandler}s.  Special Eclipse-specific
+conditions can be found in the <code>com.windowtester.runtime.swt.condition.eclipse.package</code>.
+The <code>com.windowtester.runtime.swt.condition.shell</code> package provides
+conditions and handlers tailored for monitoring SWT Shell conditions.
+
+</p><h2>Related Documentation</h2>
+
+For overviews, tutorials, examples, guides, and tool documentation, please see:
+<ul>
+  <li><a href="../../../../../../../html/overview/index.html">WindowTester Overview</a>
+  </li><li><a href="../../../../../../../html/gettingstarted/rcp_sampletest.html">WindowTester RCP Tutorial</a></li>
+ <li><a href="../../../../../../../html/gettingstarted/swing_sampletest.html">WindowTester Swing Tutorial</a></li>
+</ul>
+
+
+</body></html>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="com.windowtester.runtime" version="2">
+<resource path="src/com/windowtester/internal/runtime/ClassReference.java" type="com.windowtester.internal.runtime.ClassReference">
+<filter id="338792546">
+<message_arguments>
+<message_argument value="com.windowtester.internal.runtime.ClassReference"/>
+<message_argument value="forName(Class)"/>
+</message_arguments>
+</filter>
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.ClassReference"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/condition/NotUICondition.java" type="com.windowtester.internal.runtime.condition.NotUICondition">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.internal.runtime.condition.NotUICondition"/>
+</message_arguments>
+</filter>
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.condition.NotUICondition"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/IUIContext.java" type="com.windowtester.runtime.IUIContext">
+<filter id="1210056707">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.IUIContext"/>
+</message_arguments>
+</filter>
+<filter id="1210056707">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.runtime.IUIContext"/>
+</message_arguments>
+</filter>
+<filter id="1210056707">
+<message_arguments>
+<message_argument value="3.6.2"/>
+<message_argument value="com.windowtester.runtime.IUIContext"/>
+</message_arguments>
+</filter>
+<filter id="403804204">
+<message_arguments>
+<message_argument value="com.windowtester.runtime.IUIContext"/>
+<message_argument value="ensureThat(IConditionHandler)"/>
+</message_arguments>
+</filter>
+<filter id="403804204">
+<message_arguments>
+<message_argument value="com.windowtester.runtime.IUIContext"/>
+<message_argument value="getConditionMonitor()"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/condition/UICondition.java" type="com.windowtester.runtime.condition.UICondition">
+<filter id="338792546">
+<message_arguments>
+<message_argument value="com.windowtester.runtime.condition.UICondition"/>
+<message_argument value="testUI(IUIContext)"/>
+</message_arguments>
+</filter>
+<filter id="338722907">
+<message_arguments>
+<message_argument value="com.windowtester.runtime.condition.UICondition"/>
+<message_argument value="UICondition(IUIContext)"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/WidgetLocator.java" type="com.windowtester.runtime.WidgetLocator">
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.WidgetLocator"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/ProductInfo.java" type="com.windowtester.internal.runtime.ProductInfo">
+<filter id="388194388">
+<message_arguments>
+<message_argument value="com.windowtester.internal.runtime.ProductInfo"/>
+<message_argument value="build"/>
+<message_argument value="200901230516"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="com.windowtester.internal.runtime.ProductInfo"/>
+<message_argument value="build"/>
+<message_argument value="200810170921"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/UIContextCommon.java" type="com.windowtester.internal.runtime.UIContextCommon">
+<filter id="1143996420">
+<message_arguments>
+<message_argument value="com.windowtester.internal.runtime.UIContextCommon"/>
+</message_arguments>
+</filter>
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.internal.runtime.UIContextCommon"/>
+</message_arguments>
+</filter>
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.UIContextCommon"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/internal/OS.java" type="com.windowtester.runtime.internal.OS">
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.internal.OS"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/selector/IUISelectorRegistry.java" type="com.windowtester.internal.runtime.selector.IUISelectorRegistry">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.selector.IUISelectorRegistry"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/selector/UISelectorRegistry.java" type="com.windowtester.internal.runtime.selector.UISelectorRegistry">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.selector.UISelectorRegistry"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="abbot/src/abbot/tester/JTextComponentTester.java" type="abbot.tester.JTextComponentTester">
+<filter id="1243611139">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="scrollToVisible(Component, int)"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom.DocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom.DocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom3.as.DOMASBuilder">
+<filter id="404791350">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom3.as.DOMASBuilder"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.html.dom.HTMLDocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.html.dom.HTMLDocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom.DeferredDocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom.DeferredDocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.parsers.DOMASBuilderImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.parsers.DOMASBuilderImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom.PSVIDocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom.PSVIDocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xml.serialize.DOMWriterImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xml.serialize.DOMWriterImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.impl.xs.dom.DocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.impl.xs.dom.DocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom.DOMInputSourceImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom.DOMInputSourceImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom.CoreDocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom.CoreDocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.wml.dom.WMLDocumentImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.wml.dom.WMLDocumentImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.dom3.as.DOMASWriter">
+<filter id="404791350">
+<message_arguments>
+<message_argument value="org.apache.xerces.dom3.as.DOMASWriter"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF">
+<filter id="923795461">
+<message_arguments>
+<message_argument value="0.0.0.qualifier"/>
+<message_argument value="3.6.1.200810170921"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="META-INF/MANIFEST.MF" type="org.apache.xerces.parsers.DOMBuilderImpl">
+<filter id="337682486">
+<message_arguments>
+<message_argument value="org.apache.xerces.parsers.DOMBuilderImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/selector/IUISelectorFactory.java" type="com.windowtester.internal.runtime.selector.IUISelectorFactory">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.selector.IUISelectorFactory"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/condition/NotCondition.java" type="com.windowtester.internal.runtime.condition.NotCondition">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.internal.runtime.condition.NotCondition"/>
+</message_arguments>
+</filter>
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.condition.NotCondition"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/condition/IUIConditionHandler.java" type="com.windowtester.runtime.condition.IUIConditionHandler">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.runtime.condition.IUIConditionHandler"/>
+</message_arguments>
+</filter>
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.condition.IUIConditionHandler"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/internal/AssertionHandler.java" type="com.windowtester.runtime.internal.AssertionHandler">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.internal.AssertionHandler"/>
+</message_arguments>
+</filter>
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.runtime.internal.AssertionHandler"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/internal/runtime/condition/Condition.java" type="com.windowtester.internal.runtime.condition.Condition">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.runtime.condition.Condition"/>
+</message_arguments>
+</filter>
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.internal.runtime.condition.Condition"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/internal/IAssertionHandler.java" type="com.windowtester.runtime.internal.IAssertionHandler">
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.internal.IAssertionHandler"/>
+</message_arguments>
+</filter>
+<filter id="1109393411">
+<message_arguments>
+<message_argument value="3.7.1"/>
+<message_argument value="com.windowtester.runtime.internal.IAssertionHandler"/>
+</message_arguments>
+</filter>
+</resource>
+</component>

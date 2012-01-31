@@ -1,0 +1,49 @@
+<html>
+<head>
+<!-- 
+  Copyright 2002-2004 Timothy Wall
+-->
+</head>
+<body bgcolor="white">
+
+<!-- One sentence summary -->
+Provides basic elements for constructing a test script.  A 
+{@link abbot.script.Step} is the basic unit of execution.  Steps may be
+grouped into a {@link abbot.script.Sequence}.  See the documentation for
+{@link abbot.script.Step} for information on extending script features.
+<p>
+Following are some of the basic elements of a {@link abbot.script.Script}:
+<p>
+  <ul>
+  <li><b>Invoking Code</b><br>
+  Usually you will have a single Launch step at the beginning of your script
+  to load and activate your GUI under test.  See the <a
+  href="Launch.html">Launch</a> class for details.<br>
+  <li><b>Component Reference</b><br>
+  This entry is not an actual script step, but a representation of an actual
+  component within the GUI.  The ComponentReference ID may be used in argument
+  lists where a java.awt.Component would normally be expected.  See the
+  {@link abbot.script.ComponentReference} class for details.<br>
+  <li><b>Action</b><br>
+  This type of step invokes a semantic user action on the GUI, such as a mouse
+  clickk, menu selection, or drag/drop action.  Different actions are
+  supported by different GUI components.  All actions supported may be found
+  in the APIs for the
+  {@link abbot.tester.ComponentTester} and its
+  subclasses. 
+  See the {@link abbot.script.Action} class for details.<br>
+  <li><b>Assert</b><br>
+  This type of step tests for a condition in the GUI, such as whether a
+  Component property matches a particular value, or it might invoke a custom
+  test exported by a ComponentTester class.  See the <a
+  href="Assert.html">Assert</a> class for details.<br>
+  <li><b>Wait</b><br>
+  This type of step simply waits for an Assert to become true, with an
+  adjustable timeout and sleep cycle.  See
+  {@link abbot.script.Assert#setWait(boolean)} for details.<br>
+  </ul>
+<p>
+<!-- Put @see and @since tags down here. -->
+
+</body>
+</html>

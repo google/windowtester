@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.windowtester.runtime">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.windowtester.runtime" id="selectionStrategy" name="UI Selection Strategy"/>
+      </appInfo>
+      <documentation>
+         UI Selection Strategy extension point provides selection strategies for the widget. It allows alternative strategies to be used and contributed  for the same widget.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="selectionStrategy" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="selectionStrategy">
+      <complexType>
+         <sequence>
+            <element ref="description"/>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the strategy.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="hint" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A hint that will be used to reference this selection strategy. The uniqueness of a strategy will be defined by both corresponding component and hint.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="component" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A component class that this selection is corresponds to. A component can be a widget, Swing component or other class that represents UI component. This is a fully qualified Java name of the class that is handled by this selection strategy.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="strategy" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified name of the Java class that implements &lt;samp&gt;com.windowtester.runtime.playback.SelectionStrategy&lt;/samp&gt; abstract class.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="com.windowtester.runtime.playback.SelectionStrategy"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="result" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Result of execution of this strategy. This is usually a widget/subwidget that will be selected during the selection process. The widget may be recieved with getResult() after execution of getExecutionList().
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="description" type="string">
+      <annotation>
+         <documentation>
+            The desrciption of the strategy.
+         </documentation>
+      </annotation>
+   </element>
+
+   <element name="parameter">
+      <annotation>
+         <documentation>
+            Provides required in runtime parameters for the strategy.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="required" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  Boolean attribute that designates if this argument is required.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the parameter. The name must be unique and is required.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The type of the parameter. It is a fully qualified Java name of class or interface.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         2.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         The following is an example of the extension point usage:
+
+   &lt;p&gt;
+   &lt;pre&gt;
+      &lt;extension point=&quot;com.windowtester.runtime.selectionStrategy&quot;&gt;
+         &lt;selectionStrategy
+            id=&quot;com.example.xyz.buttonSelectionStrategy&quot;
+            component=&quot;org.eclipse.swt.widgets.Combo&quot;
+            strategy=&quot;com.example.xyz.MySpecialComboSelectionStrategy&quot;&gt;
+            &lt;description&gt;
+            This is My Special Combo Selection Strategy
+            &lt;/description&gt;
+            &lt;parameter name=&quot;ComboListIndex&quot; required=&quot;true&quot; type=&quot;java.lang.Integer&quot;/&gt;
+         &lt;/selectionStrategy&gt;
+      &lt;/extension&gt;
+   &lt;/pre&gt;
+   &lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Plug-ins that want to extend this extension point must implement the &lt;samp&gt;com.windowtester.runtime.playback.SelectionStrategy&lt;/samp&gt; abstract class.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>

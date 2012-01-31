@@ -1,0 +1,53 @@
+<html>
+<head>
+<!-- 
+  Copyright 2002 Timothy Wall
+-->
+</head>
+<body bgcolor="white">
+
+<!-- One sentence summary -->
+Provide component-specific actions and tests.  Each unique class of GUI component can have its own Tester class derived from
+{@link abbot.tester.ComponentTester}.
+This class provides any number of action methods which can exercise the
+various user semantic actions that the GUI component supports.  For example,
+{@link abbot.tester.AbstractButtonTester}
+provides the
+{@link abbot.tester.AbstractButtonTester#actionClick(java.awt.Component)}
+method to perform a button click.  The Tester may also provide bean-like
+is/get methods to facilitate access to component properties that might not
+otherwise be readily available as a property.  For example, 
+{@link abbot.tester.JPopupMenuTester} 
+has a
+{@link abbot.tester.JPopupMenuTester#getMenuLabels(java.awt.Component)}
+method which returns the text of the menu items within it as an array of
+{@link java.lang.String}.
+
+<h3>Keymaps</h3>
+Provides maps between keystrokes and resulting typed characters, so that for
+any given key character, the keystroke required to produce it may be looked
+up.  The maps are properties files where the keys are a combination of
+keycodes and modifiers.  In the case of multiple keystrokes mapping to the
+same character, a modifier suffix of zero will take precedence over others,
+but otherwise you might get any valid keystroke which produces the
+character.<p> 
+Each property key comprises a keycode represented by the suffix of
+{@link java.awt.event.KeyEvent}.VK_</code> constant, a period, and an integer
+modifier mask (0/shift, 1/control, 2/meta, or 8/alt).  The value is either the
+hex value of the resulting character, or one of {illegal, system, untyped}.
+"Illegal" means an IllegalArgumentException is thrown if the value is used,
+"system" means that the key caused the key mapping application to lose
+keyboard focus, and "untyped" means that no keychar input was produced.<p>
+The name/value pairs in the keymap files are sorted to facilitate diffs.  If
+keymaps differ for the same locale/OS, then non-producing values should take
+precedence over defined values, provided there exists at least one keystroke
+in the file for producing the given value.  Only values defined across
+<i>all</i> keymaps for a given locale/OS should be used to avoid using any
+invalid keystrokes.<p>
+<!-- Put @see and @since tags down here. -->
+There is a keymap generator which generates these maps for the current locale
+and OS.  
+@see abbot.tester.MapGenerator 
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import java.awt.event.KeyEvent;
+
+import com.windowtester.runtime.swt.UITestCaseSWT;
+
+import com.windowtester.internal.swing.UIContextSwing;
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swing.locator.LabeledTextLocator;
+import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
+import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
+import com.windowtester.runtime.swt.locator.ButtonLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+
+import static com.windowtester.runtime.swt.internal.util.PathStringTokenizerUtil.tokenize;
+import static com.windowtester.runtime.swt.internal.util.TextUtils.*;
+
+public class NewContactEmbeddedSwingTest extends UITestCaseSWT {
+
+	/**
+	 * Main test method.
+	 */
+	public void testNewContactSwingDialog() throws Exception {
+		IUIContext ui = getUI();
+		ui.click(new MenuItemLocator("File/New Contact...(Embedded AWT Frame)"));
+		ui.wait(new ShellShowingCondition(""));
+		
+		IUIContext uiSwing = (IUIContext) ui.getAdapter(UIContextSwing.class);
+		uiSwing.enterText("Mary");
+		uiSwing.keyClick(KeyEvent.VK_TAB);
+		uiSwing.enterText("Higgins");
+		uiSwing.click(new LabeledTextLocator("Street: "));
+		uiSwing.enterText("No 1 Vermont St");
+		uiSwing.click(new LabeledTextLocator("City: "));
+		uiSwing.enterText("Vermont");
+		
+		ui.click(new ButtonLocator("&Finish"));
+		ui.wait(new ShellDisposedCondition(""));
+		ui.click(2, new TableItemLocator("Higgins,Mary", new ViewLocator(
+		"com.instantiations.example.contactmanager.rcp.view")));
+	}
+
+}

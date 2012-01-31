@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="product_all">
+	
+	<!-- ================================================= -->
+	<target name="set_recorder"
+	        if="recorder.file"
+	        depends="read_build_properties">
+		<property name="recorder.level" value="info" />
+		<echo>recorder file ${build.root}/${recorder.file} loglevel = ${recorder.level}</echo>
+		<record name="${build.root}/${recorder.file}"
+		        loglevel="${recorder.level}" />
+	</target>
+
+	<!-- ================================================= -->
+	<target name="read_build_properties">
+		<read_product_properties />
+		<mkdir dir="${build.root}"/>
+	</target>
+
+	<!-- ================================================= -->
+	<target name="setup_workspace"
+	        if="setup.workspace"
+	        depends="read_build_properties">
+		<init_cc_workspace />
+	</target>
+
+	<!-- ================================================= -->
+	<target name="product_init"
+	        depends="read_build_properties, set_recorder, setup_workspace">
+		<checkEclipseRunning />
+		<checkEclipseClasspathVariable varname="ECLIPSE30_HOME" />
+		<checkEclipseClasspathVariable varname="ECLIPSE31_HOME" />
+		<checkEclipseClasspathVariable varname="ECLIPSE32_HOME" />
+		<checkEclipseClasspathVariable varname="ECLIPSE33_HOME" />
+		<checkEclipseClasspathVariable varname="ECLIPSE34_HOME" />
+		<init_product_properties eclipsesource="3.3" />
+	</target>
+
+	<!-- ================================================= -->
+	<target name="product_all" depends="product_init">
+
+		<property name="build.target" value="build_all" />
+		<build_bundle project="com.windowtester_test" />
+		<build_bundle project="com.windowtester.runtime.junit4_test" />
+		<build_bundle project="com.windowtester.swt.gef_test" />
+		<ant dir="../ContactManagerSwing" antfile="build-bundle.xml" target="build_example" />
+		<build_bundle project="com.windowtester.swing.runtime_test" />
+
+		<mkdir dir="${e.common.zip.dir}" />
+		<copy todir="${e.common.zip.dir}" failonerror="false">
+			<fileset dir="./zipContent"/>
+		</copy>
+
+		<zip_product targetfilePrefix="${product.name}Test" prefix="" eclipseTarget="3.4">
+		</zip_product>
+		<zip_product targetfilePrefix="${product.name}Test" prefix="" eclipseTarget="3.3">
+		</zip_product>
+		<zip_product targetfilePrefix="${product.name}Test" prefix="" eclipseTarget="3.2">
+		</zip_product>
+
+		<finalize_build_product />
+	</target>
+
+</project>

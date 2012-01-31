@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   
+     <extension
+         point="org.eclipse.debug.core.launchModes">
+      <launchMode
+            label="Record"
+            mode="record"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchGroups">
+      <launchGroup
+            bannerImage="icons/full/obj16/run_wizban.gif"
+            label="Record"
+            mode="record"
+            image="icons/full/obj16/run_wiz.gif"
+            id="com.windowtester.ui.recorderLauchGroup"/>
+   </extension>
+   
+   
+   <!-- 3.3 does away with the SWT Application launch type, but we need it! --> 
+   <!-- $if eclipse.version >= 3.3.0 $ -->
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+          <launchConfigurationType
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            name="SWT Application"
+            sourcePathComputerId="org.eclipse.pde.ui.swtSourcePathComputer"
+            modes="record"
+            id="org.eclipse.pde.ui.swtLaunchConfig">
+      </launchConfigurationType>
+ 	</extension>
+      <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+               <launchConfigurationTypeImage
+            icon="icons/full/obj16/swt_launcher.gif"
+            configTypeID="org.eclipse.pde.ui.swtLaunchConfig"
+            id="org.eclipse.pde.ui.swtLaunchImage">
+      </launchConfigurationTypeImage>
+   </extension>
+   <!-- $endif$ -->
+   
+   
+      <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="com.windowtester.eclipse.ui.launcher.RecorderSwingLaunchConfDelegate"
+            id="com.windowtester.eclipse.ui.recordSwinglJavaLaunchDelegate"
+            modes="record"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"
+            type="org.eclipse.jdt.launching.localJavaApplication"/>
+
+      <!-- swtLaunchConfig did not exist prior to 3.1; in 3.2, we use the PDE contributed SWT App launch config, in 3.3+ we contribute
+      it ourselves (since it is absent) -->
+
+      <!-- $if eclipse.version > 3.1.0 $ -->
+      <launchDelegate
+            delegate="com.windowtester.eclipse.ui.launcher.RecorderSWTLaunchConfDelegate"
+            id="com.windowtester.eclipse.ui.recordSwtAppLaunchDelegate"
+            modes="record"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"
+            type="org.eclipse.pde.ui.swtLaunchConfig"/>
+	  <!-- $endif$ -->
+
+      <launchDelegate
+            delegate="com.windowtester.eclipse.ui.launcher.RecorderWorkbenchLaunchConfDelegate"
+            id="com.windowtester.eclipse.ui.recordWorkbenchLaunchDelegate"
+            modes="record"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"
+            type="org.eclipse.pde.ui.RuntimeWorkbench"/>
+            
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+         
+      <!-- This block comments out undesirable TabGroup implementation for Workbench launcher -->
+      
+	  <!-- $if eclipse.version >= 3.3.0 $ -->
+      <launchConfigurationTabGroup
+            class="com.windowtester.eclipse.ui.pde.launcher.WorkbenchLaunchConfigurationTabGroup"
+            id="com.windowtester.ui.wbLaunchConfigurationTabGroup"
+            type="org.eclipse.pde.ui.RuntimeWorkbench">
+         <launchMode mode="record"/>
+      </launchConfigurationTabGroup>
+      <!-- $elseif eclipse.version == 3.2.0 $
+      <launchConfigurationTabGroup
+            class="com.windowtester.eclipse.ui.pde.launcher.WorkbenchLaunchConfigurationTabGroup"
+            id="com.windowtester.ui.wbLaunchConfigurationTabGroup"
+            type="org.eclipse.pde.ui.RuntimeWorkbench">
+         <launchMode mode="record"/>
+      </launchConfigurationTabGroup>	
+       $elseif eclipse.version < 3.2.0 $
+      <launchConfigurationTabGroup
+            class="org.eclipse.pde.internal.ui.launcher.WorkbenchLauncherTabGroup"
+            id="com.windowtester.ui.wbLaunchConfigurationTabGroup"
+            type="org.eclipse.pde.ui.RuntimeWorkbench">
+         <launchMode mode="record"/>
+      </launchConfigurationTabGroup>
+      $endif$ -->
+
+      <launchConfigurationTabGroup
+            class="org.eclipse.jdt.internal.debug.ui.launcher.LocalJavaApplicationTabGroup"
+            id="com.windowtester.ui.javaLaunchConfigurationTabGroup"
+            type="org.eclipse.jdt.launching.localJavaApplication">
+         <launchMode mode="record"/>
+      </launchConfigurationTabGroup>
+      
+      <!-- $if eclipse.version >= 3.1.0 $ -->
+      <launchConfigurationTabGroup
+            class="com.windowtester.eclipse.ui.pde.launcher.SWTLauncherTabGroup"
+            id="com.windowtester.ui.swtLaunchConfigurationTabGroup"
+            type="org.eclipse.pde.ui.swtLaunchConfig">
+         <launchMode mode="record"/>
+      </launchConfigurationTabGroup>
+      <!-- $endif$ -->
+            
+      
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="WindowTester"
+            visible="true"
+            id="org.eclipse.ui.recorderActionSet">
+         <action
+               hoverIcon="icons/full/obj16/manual_run_wiz.gif"
+               toolbarPath="org.eclipse.debug.ui.launchActionSet/debug"
+               label="Record"
+               class="com.windowtester.eclipse.ui.actions.RecordToolbarAction"
+               icon="icons/full/obj16/manual_run_wiz.gif"
+               pulldown="true"
+               id="org.eclipse.ui.recordAction"/>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.core.classpathVariableInitializer">
+      <classpathVariableInitializer
+            class="com.windowtester.eclipse.ui.jdt.WintesterRuntimeClasspathVariableInitializer"
+            variable="WINDOWTESTER_RUNTIME"/>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.core.classpathContainerInitializer">
+      <classpathContainerInitializer
+            class="com.windowtester.eclipse.ui.jdt.ClasspathContainerInitializer"
+            id="com.windowtester.eclipse.ui.runtimeClasspathContainer"/>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.ui.classpathContainerPage">
+      <classpathContainerPage
+            class="com.windowtester.eclipse.ui.jdt.RuntimeClasspathContainerPage"
+            id="com.windowtester.eclipse.ui.runtimeClasspathContainerPage"
+            name="Window Tester Runtime"/>
+   </extension>
+   
+   <!-- Example Project(s) -->
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="com.windowtester.eclipse.ui.example"
+            name="WindowTester"
+            />
+      <wizard
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.wizard.NewExampleProjectWizard:ContactManagerSwing"
+            icon="icons/full/etool16/newprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.newContactManagerSwing"
+            name="Contact Manager Swing Example Project">
+      </wizard>
+      <wizard
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.wizard.NewExampleProjectWizard:ContactManagerRCP"
+            icon="icons/full/etool16/newprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.newContactManagerRcp"
+            name="Contact Manager RCP Example Project">
+      </wizard>
+      <wizard
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.wizard.NewExampleProjectWizard:AddressBookSWT"
+            icon="icons/full/etool16/newprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.newAddressBookSWT"
+            name="AddressBook SWT Example Project">
+      </wizard>
+      <wizard
+            canFinishEarly="false"
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.target.NewTargetProvisionerWizard"
+            hasPages="true"
+            icon="icons/full/etool16/newftrprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.target.provisioner"
+            name="WindowTester Target Provisioner"
+            project="false">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="com.windowtester.eclipse.ui.example"
+            name="WindowTester"/>
+      <wizard
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.wizard.NewExampleProjectWizard:ContactManagerSwing"
+            icon="icons/full/etool16/newprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.newContactManagerSwing"
+            name="Contact Manager Swing Example Project"/>
+      <wizard
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.wizard.NewExampleProjectWizard:ContactManagerRCP"
+            icon="icons/full/etool16/newprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.newContactManagerRCP"
+            name="Contact Manager RCP Example Project"/>
+      <wizard
+            category="com.windowtester.eclipse.ui.example"
+            class="com.windowtester.eclipse.ui.wizard.NewExampleProjectWizard:AddressBookSWT"
+            icon="icons/full/etool16/newprj_wiz.gif"
+            id="com.windowtester.eclipse.ui.wizard.newAddressBookSWT"
+            name="AddressBook SWT Example Project"/>
+   </extension>
+   <extension
+         id="windowtester.pref.transfer"
+         point="org.eclipse.ui.preferenceTransfer">
+      <transfer
+            icon="icons/full/obj16/run_wiz.gif"
+            id="com.windowtester.eclipse.ui.prefs.transfer"
+            name="WindowTester">
+         <mapping
+               scope="instance">
+            <entry
+                  node="com.windowtester.swt.runtime"></entry>
+         </mapping>
+         <description>
+            Preferences for WindowTester
+         </description>
+      </transfer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.windowtester.eclipse.ui.views"
+            name="WindowTester">
+      </category>
+      <view
+            category="com.windowtester.eclipse.ui.views"
+            class="com.windowtester.eclipse.ui.views.RecorderConsoleView"
+            icon="icons/full/obj16/record.gif"
+            id="com.windowtester.eclipse.ui.recorder.console"
+            name="Recorder">
+      </view>
+   </extension>
+   
+   
+      
+   <!-- ============================= Preferences ============================= -->
+
+   
+   <!-- Console view preference page -->
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.windowtester.eclipse.ui.preferences.WTUIPreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.windowtester.swt.runtime.preferences.GeneralPreferencePage"
+            class="com.windowtester.eclipse.ui.preferences.WTUIPreferencePage"
+            id="com.windowtester.eclipse.ui.preferences.WTUIPreferencePage"
+            name="Recorder UI">
+      </page>
+   </extension>
+   
+     <!-- ======================================================================== -->
+   
+
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="context.xml"
+            plugin="com.windowtester.eclipse.help">
+      </contexts>
+   </extension>
+   <!--extension
+         point="org.eclipse.pde.ui.targetProvisioners">
+      <provisioner
+            class="com.windowtester.eclipse.ui.target.DependenciesProvisionerWizard"
+            id="com.windowtester.eclipse.ui.targetProvisioner"
+            name="WindowTester Development">
+         <description>
+            This provisioner adds plugins required for doing WindowTester development into your target platform.
+         </description>
+      </provisioner>
+   </extension-->
+
+
+<!-- ============================= Popup Menus ============================= -->
+
+<!-- ======== Create Target Files ======== -->
+	
+	<extension
+		point="org.eclipse.ui.popupMenus">	
+      <objectContribution
+            id="com.windowtester.eclipse.ui.contribution1"
+            nameFilter="*.target"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="com.windowtester.eclipse.ui.menu1"
+               label="WindowTester"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="com.windowtester.eclipse.ui.target.CreateTargetFileAction"
+               enablesFor="1"
+               id="com.windowtester.eclipse.ui.CreateTargetFileAction"
+               label="Create Recording Target"
+               menubarPath="com.windowtester.eclipse.ui.menu1/group1">
+         </action>
+      </objectContribution>
+      <!--objectContribution
+            id="com.windowtester.eclipse.ui.convert.proj"
+            objectClass="org.eclipse.jdt.core.IJavaProject">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTConvertAPIAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.convert.proj.action"
+               label="%convertCode.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="com.windowtester.eclipse.ui.convert.pkgroot"
+            objectClass="org.eclipse.jdt.core.IPackageFragmentRoot">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTConvertAPIAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.convert.pkgroot.action"
+               label="%convertCode.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="com.windowtester.eclipse.ui.convert.pkg"
+            objectClass="org.eclipse.jdt.core.IPackageFragment">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTConvertAPIAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.convert.pkg.action"
+               label="%convertCode.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="com.windowtester.eclipse.ui.convert.compunit"
+            objectClass="org.eclipse.jdt.core.ICompilationUnit">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTConvertAPIAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.convert.compunit.action"
+               label="%convertCode.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution-->
+      <!--objectContribution
+            id="com.windowtester.eclipse.ui.apiUsage.proj"
+            objectClass="org.eclipse.jdt.core.IJavaProject">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTAPIUsageAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.apiUsage.proj.action"
+               label="%apiUsage.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="com.windowtester.eclipse.ui.apiUsage.pkgroot"
+            objectClass="org.eclipse.jdt.core.IPackageFragmentRoot">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTAPIUsageAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.apiUsage.pkgroot.action"
+               label="%apiUsage.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="com.windowtester.eclipse.ui.apiUsage.pkg"
+            objectClass="org.eclipse.jdt.core.IPackageFragment">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTAPIUsageAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.apiUsage.pkg.action"
+               label="%apiUsage.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="com.windowtester.eclipse.ui.apiUsage.compunit"
+            objectClass="org.eclipse.jdt.core.ICompilationUnit">
+         <action
+               class="com.windowtester.eclipse.ui.convert.ui.WTAPIUsageAction"
+               enablesFor="+"
+               id="com.windowtester.eclipse.ui.apiUsage.compunit.action"
+               label="%apiUsage.label"
+               menubarPath="wt/convert"
+               tooltip="Convert WindowTester code in the selected project(s) to use the new API">
+         </action>
+      </objectContribution-->
+   </extension>
+   
+  
+</plugin>

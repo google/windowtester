@@ -1,0 +1,42 @@
+<title>International Keyboard Support</title>
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+h2. Using International (Non-US) Keyboards
+
+In order to enable locale specific keyboard for testing, insert the following statement at the beginning of the test 
+
+bc.. WT.setLocaleToCurrent();
+p. 
+
+To reset the keyboard setting to its default settings, insert
+
+bc.. WT.resetLocale()
+p. 
+
+at the end of the test.
+
+A test case's @setUp()@ and @tearDown()@ methods are good places for these actions; alternatively this might be done in a custom @Suite@.
+
+
+h2. Supported Languages
+
+We currently have support for the following languages:
+
+* English
+* German (Germany)
+* Dutch (Belgium)
+* French (France)
+* Spanish (Spain)
+* Swedish (Sweden)
+* Japanese (Japan)
+
+h2. Adding New Language Support
+
+If the language/locale of the keyboard you are using is not currently on the list, with your help, we can add support for it. Support for non-US keyboards can be implemented by adding the corresponding key maps to the database. In order to do this please make sure you are using the latest build and follow the steps below:
+
+# Download the "MapGenerator":../../../download/MapGenerator.java.txt java application.
+# Rename the file to MapGenerator.java.
+# Run this application on your machine with the non-US keyboard attached. It will generate one or more @*.map@ files.
+# Please send these @*.map@ files to Support and we will fold them into the WindowTester Pro runtime.
+# We will then let you know when a new build of WindowTester Pro is available for you to try.
+

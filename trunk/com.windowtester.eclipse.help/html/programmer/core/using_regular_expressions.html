@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Using Regular Expressions</title>
+<link href="../../../stylesheets/book.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><h1>Using Regular Expressions</h1>
+<p>
+WindowTester Pro supports wild cards&nbsp;based&nbsp;on
+the regular expression support
+provided by
+Java. </p>
+<p>For an example of how this looks in the wild here is a snippet from
+one of our helper tests:
+
+</p><pre>//linux safe<br>ui.click(new MenuItemLocator("New\t(Shift\\+Alt|Alt\\+Shift)\\+N/Project...");<br>ui.wait(new ShellShowingCondition("New Project"));<br>ui.click(new TreeItemLocator("(Simple|General)/Project")); //3.* safe path</pre>
+
+</body></html>

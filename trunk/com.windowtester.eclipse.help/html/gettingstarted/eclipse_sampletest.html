@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Eclipsetest</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><h1>Record and Playback a Sample Plug-in Test</h1>
+<p>Basic steps in recording and playing back UI tests for the eclipse IDE:</p>
+<ol>
+	<li><a href="#step1">Launch recording session and record user interactions.</a></li>
+	<li><a href="#step2">Stop recording and save recorded test.</a></li>
+	<li><a href="#step3">Play back the recorded&nbsp;test.</a></li>
+	<li><a href="#step4">Slower playback (optional).</a></li>
+</ol>
+
+<ol>
+<h3><li><a name="step1">Launch recording session and record user interactions</a></li></h3>
+<ol type="a">
+	<li>Look for a tool item (<img src="../../images/icons/record_pulldown_menu.gif">)
+that looks like the run arrow with a little console under it (should be
+next to external tools). From its pull-down menu, select "<b><b>Record Configurations...</b></b>" to open the Record launch configuration window.<br><img alt="Open Record Configuration" src="../../images/open_record_configurations.png" border="0"></li>
+	<li>In the left navigation of the launch configuration dialog, select <b>Eclipse Application</b> then click <b>New </b>(<img src="../../images/icons/eclipse_new_config.gif" alt="New Config icon">).<br><img src="../../images/eclipse_record_config_main.png" alt="Record Launch Configuration Dialog"></li>
+	<li>In the <b>Name</b> field, type <b>Eclipse</b> as the name of the launch configuration.</li><li>Optionally, you can edit the <b>Workspace Data Location</b> to match the name of your launch configuration. Let's go ahead and change it to <b>/runtime-Eclipse.</b></li>
+	<li>Select the <b>Clear</b> check box to clear the runtime workspace before recording.</li>
+	<li>Clear the <b>Ask for confirmation  before clearing</b> check box.</li>
+		<li>By default, the   <b>Program to Run</b> is set to<b> Run a product</b> and Eclipse IDE is selected. Leave the default values since we are testing against the Eclipse workbench.</li><li>In the Plug-ins tab, select <b>All workspace and enabled
+		target plug-ins.</b> If you are using a custom Target Platform, see <a href="targets.html">Customizing PDE Targets.</a><br>
+		<img src="../../images/eclipse_record_config_plugins.png" alt="Record Launch Configuration Dialog"></li>
+		<li>When you're ready, click <b>Apply</b> then click <b>Record</b>.
+		<p>A new instance of Eclipse is launched and the <a href="../../html/ui/recording_control.html">recorder
+		control</a> opens in your development environment.</p>
+		<img src="../../images/recorder_controller_record.jpg" alt="Recorder Controll"></li>
+	<li>When you're ready to start recording, click the <b>record button </b>(red ball) in the recorder control.
+		<p>At this point, any user interactions performed within the
+		runtime Eclipse workbench will be recorded. As you record, recorded events are
+		displayed in the <a href="../../html/ui/recording_console.html">recorder console</a> as shown below.</p>
+		<img alt="Recording control view" src="../../images/create_project_console.png"><p> For our test, let's  create a new Java Project.</p></li>
+	<li>First, if the Welcome screen is open, go ahead and close it by clicking the <b>X</b> on the right side of the Welcome text.<br><img src="../../images/close_welcome.png" alt="Close Welcome Window"></li>
+	<li>Next, open the Java Perspective. Select <b>Window &gt; Open Perspective &gt; Other...</b></li>
+	<li>In the <b>Open Perspective</b> dialog, select <b>Java</b> and click <b>Next</b>.</li>
+	<li>Next,  select <b>File &gt; New &gt; Project...</b></li>
+	<li>In the <b>New Project</b> wizard, expand <b>Java</b> and select <b>Java Project</b> then click <b>Next</b>.</li>
+	<li>In the <b>Project name</b> field, type <b>SampleProject</b> then click <b>Finish</b>. Do not exit Eclipse yet.</li>
+	
+</ol>
+<h3><li><a name="step2">Stop recording and save recorded test</a></li></h3>
+<ol type="a">
+	<li>In the <b>Recorder control</b>, click <b>Pause</b>.<br><img alt="Pause" src="../../images/recorder_controller_pause.jpg"></li>
+	<li>To close Eclipse, select <b>File &gt; Exit</b>. The <b>Recorder control</b> should disappear and the <b>New UI Test dialog</b> appears.
+	See the <a href="../ui/codegen.html">Code Generation page</a> for more information about the superclass and the handler options.
+	<br><img src="../../images/eclipse_new_uitest.png" alt="New UI Test Dialog"></li>
+	<li>In the <b>New UI Test dialog</b>, type <b>MyProjectTest/src</b> in the <b>Source folder</b> field. It is recommended that tests be placed into a project separate from the code under test.</li>
+	<li>In the <b>Package</b> field, type <b>my.app.tests</b> as the name of the package. </li>
+	<li>In the <b>Name</b> field, type <b>CreateProject</b> as the name of the test class.</li>
+	<li>Click <b>Finish</b>.<p>You
+should now have a test project and a test class created and shown in
+the Package Explorer. Your test script should look like the following
+depending on your Eclipse version: </p><img src="../../images/create_project_test.png"></li>
+</ol>
+<h3><li><a name="step3">Play back the recorded test</a></li></h3>
+<ol type="a">
+	<li>To run your test, create a&nbsp;<b>Test launch configuration</b>. In the <b>Package Explorer</b> view, right-click the test file, <b>CreateProject.java</b>,  and select <b>Run As &gt; Run Configurations...</b><br><img src="../../images/run_as_junit_plugin_test.png" alt="Run Test" align="middle"></li>
+ 	<li>In the Run Configurations dialog, double-click JUnit Plug-in Test to create a new configuration. In the <b>Test tab</b>, <b>Run a single test</b> must be selected. If the <b>Project</b> and <b>Test class</b> names are not automatically populated, you can manually type the names or use the <b>Browse</b> and <b>Search</b> buttons to locate them. For our <b>Test runner</b>, let's use <b>JUnit 3</b>.<br><img src="../../images/junit_plugin_run_configurations.png" alt="Run Test" align="middle"></li>
+ 		
+	<li>Click the <b>Main</b> tab. Since we are testing against the Eclipse IDE, the <b>Program to Run</b> option must be set to Eclipse (should be selected by default). Let's use the default JRE.<br><img src="../../images/run_main_configurations.png" alt="Run Test" align="middle"></li>
+	<li>When you're ready, click the <b>Run button</b>.
+Let go of the mouse and watch the tests run. The application under
+test, (Eclipse in this case), should be launched, and the UI tests are
+played back.</li>
+</ol>
+<h3><li><a name="step4">Slower playback (optional)</a></li></h3>
+<p>You can slow down the playback by enabling the <a href="../reference/preferences/playback.html">playback delay preference.&gt;</a>
+</p></ol>
+<h3>Related Topic:</h3>
+<h3>Adding Assertions (Optional)</h3> 
+<p>Assertions can be generated at recording time using the assertion inspector tool. The assertion inspector is activated by clicking the inspector tool item on the recording controller. 
+	See the <a href="../ui/assertionsUI.html">Assertion Inspector</a> documentation.</p>
+
+
+</body></html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+     <extension-point id="controller_action" name="Controller Action" schema="schema/controller_action.exsd"/>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup class="com.windowtester.swt.event.recorder.EarlyStartup"/>
+   </extension>
+   <extension
+         id="SwtBootstrapApplication"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run class="com.windowtester.swt.bootstrap.SwtBootstrapApplication"/>
+      </application>
+   </extension>
+   <!--extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="recording"
+            visible="true"
+            id="event.recorder.actionSet">
+         <action
+               label="W"
+               icon="icons/write.gif"
+               class="com.windowtester.swt.event.recorder.actions.WriteRecordingAction"
+               tooltip="Write Recording"      
+               toolbarPath="recorderGroup"
+               id="recorder.actions.WriteAction">
+         </action>
+         <action
+               label="!"
+               icon="icons/stop.gif"
+               class="com.windowtester.swt.event.recorder.actions.StopRecorderAction"
+               tooltip="Stop Recording"      
+               toolbarPath="recorderGroup"
+               id="recorder.actions.StopAction">
+         </action>
+         <action
+               label=">"
+               icon="icons/start.gif"
+               class="com.windowtester.swt.event.recorder.actions.StartRecorderAction"
+               tooltip="Start Recording"      
+               toolbarPath="recorderGroup"
+               id="recorder.actions.StartAction">
+         </action>
+         <action
+               label="L"
+               icon="icons/full/obj16/run_wiz.gif"
+               class="com.windowtester.swt.event.recorder.actions.LaunchControllerAction"
+               tooltip="Show/Hide Event Recorder Control Panel"      
+               toolbarPath="recorderGroup"
+               id="recorder.actions.LaunchControllerAction">
+         </action>
+      </actionSet>
+   </extension-->
+
+
+</plugin>

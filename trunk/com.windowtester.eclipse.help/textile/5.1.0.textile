@@ -1,0 +1,39 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 5.1</h1>
+ 
+This document contains descriptions of some of the more interesting or significant changes in the *WindowTester Pro v5.1* release.
+
+{toc}
+
+<hr/>
+
+
+
+h2. Eclipse 3.6 Support 
+
+WindowTester Pro v5.1  provides full support for Eclipse 3.6 (Helios).
+
+
+h2. Improved Widget Locator Support
+
+A number of new locators and assertions have been added such as
+* Parameterized Tool Item Locator
+* Pull-Down Menu Item Index State Assertions 
+* Pull-Down Menu Item State Assertions 
+
+h2. Better Usability
+
+A variety of items have been addressed to improve the user experience including
+* Enhancing support for named combos
+* TreeItem context click reveal and check selections, 
+* Combo item recording
+* Playback delay settings
+* International keyboards
+* JLabels in tooltips
+
+<hr/>
+
+Notes for the *5.0.0 release* can be found "here":5.0.0.html.
+

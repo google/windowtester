@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Writing Widgetlocator</title>
+<link href="../../../stylesheets/book.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><h1>Widget Search Algorithm</h1>
+<p>If you want to write your own WidgetLocator, you need to understand how the widget finder works.</p><p>
+
+The widget finder searches the current active window for
+matches. Locators might match multiple widgets (whether this
+case is exceptional depends on whether you use <code>IUIContext.find(..)</code>
+or
+<code>IUIContext.findAll(..))</code>. As a simple
+example, new
+<code>ButtonLocator("OK")</code> identifies a Button labeled
+"OK" in the current
+active window. If there is more than one such button in the
+active window, you can disambiguate the search by embellishing the
+locator with information about the Button's location in the widget
+containment hierarchy. For instance, if the "OK" button of
+interest is the child of a Composite (and none other is), </p><pre>new ButtonLocator("OK", new SWTWidgetLocator(Composite.class))</pre>
+will uniquely identify it. Wherever possible, you should name
+widgets that require disambiguation. For more on matching by
+containment look at the
+<code>SWTWidgetLocator</code> javadocs.<p></p>
+
+</body></html>

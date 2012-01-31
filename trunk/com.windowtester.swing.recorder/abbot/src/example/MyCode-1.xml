@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Various components and assertions">
+  <component class="javax.swing.JButton" id="Button" tag="Button" />
+  <component class="javax.swing.JLabel" id="Dynamic" tag="Dynamic" title="My Code" />
+  <component class="javax.swing.JOptionPane" id="JOptionPane Instance" />
+  <component class="javax.swing.JDialog" id="Message" tag="Message" title="Message" />
+  <component class="javax.swing.JFrame" id="My Code" tag="My Code" title="My Code" />
+  <component class="javax.swing.JTextField" id="My Text Field" name="My Text Field" title="My Code" />
+  <component class="javax.swing.JButton" id="OK Button" tag="OK" title="Message" />
+  <component class="javax.swing.JLabel" id="Static" tag="Static" title="My Code" />
+  <component class="javax.swing.JMenuItem" id="Submenu item" tag="Submenu item" title="My Code" />
+  <fixture filename="MyCode-fixture.xml"/>
+  <assert component="Button" method="getText" value="Button" />
+  <assert component="Static" method="getText" value="Static" />
+  <action args="Button" class="javax.swing.JButton" desc="Click button 'Button'" method="actionClick" />
+  <wait args="Message" class="abbot.tester.ComponentTester" method="assertFrameShowing" />
+  <assert component="JOptionPane Instance" method="getMessage" value="My Dialog Message" />
+  <annotation component="Message" userDismiss="true" x="47" y="71"><![CDATA[<html>The next step will fail<br> because the dialog's text is not <i>"My Old Message"</i></html>]]></annotation>
+  <!--This step will fail -->
+  <assert component="JOptionPane Instance" method="getMessage" value="My Old Message" />
+  <action args="OK Button" class="javax.swing.JButton" desc="Click button 'OK'" method="actionClick" />
+  <wait args="Message" class="abbot.tester.ComponentTester" invert="true" method="assertFrameShowing" />
+  <action args="My Text Field,3,7" class="javax.swing.JTextField" desc="Click on ${My Text Field} (JTextField)" method="actionClick" />
+  <action args="My Text Field,Get outta here" class="javax.swing.JTextField" desc="Text input 'Get outta here'" method="actionText" />
+  <assert component="My Text Field" method="getText" value="Get outta here" />
+</AWTTestScript>
+

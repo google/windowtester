@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Generating Tests for SWT Application</title>
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h1>Record and Playback a Sample SWT&nbsp;Test</h1>
+<p><b>WindowTester Pro SWT</b> records
+and playback UI tests for SWT applications. The following describes how
+to generate and play back a UI test for SWT applications.</p>
+
+<p><b>Prerequisite: This
+tutorial requires either RCP Developer v2.7.0 and above or WindowTester Pro
+2.2.0 and above.&nbsp;</b></p>
+
+<ol>
+	<li><a href="#step1">Create&nbsp; the Sample SWT project in	your workspace.</a></li>
+	<li><a href="#step2">Setup a recording configuration and record user interactions.</a></li>
+	<li><a href="#step3">Stop recording and save recorded test.</a></li>
+	<li><a href="#step4">Playback the recorded test.</a></li>
+	<li><a href="#step5">Slower playback (optional).</a></li>
+</ol>
+<h3><a name="step1">1. Import the Address Book SWT example project</a></h3>
+<ul>
+	<li>Select <b>File &gt;
+	Import</b> from the main menu.</li>
+	<p><img
+	src="../../images/swttestwiz1.gif" alt="File Impoort"></p>
+	<li>From the list of wizards, select <strong>WindowTester Pro
+	&gt; AddressBookSWT Example Project</strong>.&nbsp;<b>Please note, this wizard is only
+	available in WindowTester Pro v2.2.0 and above.</b></li>
+	<li>Click <strong>Next</strong>.</li>
+	<p><img	src="../../images/swttestwiz2.gif"></p>
+	<li>Click <strong>Finish.&nbsp;</strong>The <b>AddressBookSWT </b>example project is
+	now created in your workspace.</li>
+</ul>
+<h3><a name="step2">2. Set up a recording configuration and
+record user interactions</a></h3>
+<p>Look for a tool item ( <img
+	src="../../images/icons/record_pulldown_menu.gif">) that looks like the
+run arrow with a little console under it (should be next to external
+tools).</p>
+<ul>
+	<li>From its pull-down menu select <b>"Record
+	Configurations..."</b>.</li>
+	<p><img
+	src="../../images/record_e33_pulldown.gif"
+	alt="Eclipse 3.3 Record pull down menu"></p>
+	<p><img
+	src="../../images/swtrecordconfig.gif" alt="SWT Record Configuration"></p>
+	<li>Select <b>SWT Application</b>
+	on the left navigation.</li>
+	<li>Click the New (<img
+		src="../../images/icons/eclipse_new_config.gif" alt="New Config icon">)
+	icon.</li>
+	<li>Name: Enter <b>AddressBookUI</b></li>
+	<li>Project: Click Browse... and select the <b>AddressBookSWT</b> project</li>
+	<li>Main class: Click Browse and select&nbsp;<b>com.demo.AddressBookUI</b></li>
+	<li>Click the <b>Record</b> button.&nbsp;This will run the
+	AddressBook SWT application&nbsp; in recording mode and opens the <a
+		href="../ui/recording_control.html">recording control</a> shown below.</li>
+	<p><img
+	src="../../images/recorder_controller_record.jpg"
+	alt="Recorder Controller"> <img alt="Recording control view"
+	src="../../images/recorder_control_view.jpg"></p>
+	<li>To start recording, click on the <b>record button</b> (red ball) in the
+	recorder.&nbsp;Perform user interactions by entering some text in the
+	text fields.</li>
+</ul>
+<em>Note: The buttons in the
+AddressBook application is non-functional. This is just to demonstrate
+how you can enter and record text entries.</em>
+<h3><a name="step3">3. Stop recording and save the recorded test</a></h3>
+<p>To stop the recording, just close your&nbsp;application. A New UI Test dialog will open.</p>
+<p><img
+	src="../../images/swttestconfig.gif" alt="Test Configuration"></p>
+<p>Fill in the following:</p>
+<ul>
+	<li><b>Source folder:</b> This is
+	the source folder of your test plug-in project.&nbsp;<b>We recommend
+	that tests be placed into a project separate from the code under test.</b></li>
+	<li><b>Create folder
+	automatically if they do not exist</b> - If the Source folder does not
+	exist and this option is checked,&nbsp;it will automatically create the
+	test project with the src and bin folders. <b>If your project structure does not
+	have a separate src and bin folders,&nbsp;uncheck this option and make
+	sure your test project exists.</b></li>
+	<li><b>Package</b>: The package
+	in&nbsp;your test&nbsp;project where you want to save the tests.</li>
+	<li><b>Name</b>: A name to call
+	your test class.</li>
+	<li>Click <b>Finish </b>to save
+	your test.</li>
+</ul>
+<h3><a name="step4">4. Play back the recorded&nbsp;test</a></h3>
+<p><b>SWT&nbsp;UI tests</b> must be run as <b>JUnit Tests</b>.
+<p><img src="../../images/swttestrunconfig.gif"></p>
+<ul>
+	<li>Right click on the newly recorded test class.</li>
+	<li>Select "<b>Run As &gt; JUnit Test</b>"</li>
+	<li>The recorded test is played back. You should now see the
+	AddressBookSWT&nbsp;application with the user interactions that you
+	recorded.</li>
+</ul>
+<b>If you change the Test runner
+to JUnit 4, you also need to add the junit4 jar to your project's build
+path.
+</b>
+<h3><a name="step5">5.&nbsp;Slower playback (optional)</a></h3>
+<p>You can slow down the playback by enabling the
+<a href="../reference/preferences/playback.html">playback delay
+preference</a>
+.</p>
+<em>Note: If you receive something like the following errors when you
+playback your test, then see the corresponding FAQ entries for possible
+solutions:</em>
+<p><a href="../faq/faq_swt.html#security_exception"><b>java.lang.SecurityException: class
+"junit.extensions.TestDecorator"'s...</b></a>
+<br>
+<a href="../faq/faq_swt.html#debug_tracer"><b>java.lang.NoClassDefFoundError:
+com/instantiations/eclipse/debug/Tracer</b></a>
+<br>
+<a href="../faq/faq_swt.html#unsatisfied_link"><b>java.lang.UnsatisfiedLinkError</b>" or <b>"java.lang.NoClassDefFoundError</b></a>
+<br>
+<a href="../faq/faq_swt.html#device_disposed"><b>org.eclipse.swt.SWTException: Device
+is disposed</b></a>
+<br>
+<a href="../faq/faq_swt.html#invocationtarget_exception"><b>java.lang.reflect.InvocationTargetException</b></a>
+</p>
+<h3>Related Topic:</h3>
+<h3>Adding Assertions (Optional)</h3> 
+<p>Assertions can be generated at recording time using the assertion inspector tool. The assertion inspector is activated by clicking the inspector tool item on the recording controller. 
+	See the <a href="../ui/assertionsUI.html">Assertion Inspector</a> documentation.</p>
+
+</body>
+</html>

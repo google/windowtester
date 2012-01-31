@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.windowtester.server.ui"
+      label="WindowTester Server UI"
+      version="0.0.0"
+      provider-name="Google"
+      plugin="com.windowtester.server.ui">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import feature="com.windowtester.server.core" version="0.0.0"/>
+      <import feature="org.eclipse.jdt" version="3.4.1.r341_v20080709-0800-7o7tEAfEF_U5qyUgrb2HAp539P97"/>
+      <import feature="org.eclipse.pde" version="3.4.1.r341_v20080731-7T7U0E9mlRIuGUYviF_VP"/>
+      <import feature="org.eclipse.pde.p2" version="1.0.0.v20080522-1--7w3119171503111"/>
+      <import feature="org.eclipse.platform" version="3.4.1.r341_v20080731-9I96EiDElYevwz-p1bP5z-NlAaP7vtX6Utotqsu"/>
+      <import feature="org.eclipse.rcp" version="3.4.100.r341_v20080814-989JESIEdAciFYfkZZsBfSwQ2341"/>
+      <import feature="org.eclipse.sdk" version="3.4.1.R34x_v20080827-7O7S78C2J40sK2o_ALcK8tLN_yZSJeg0P-3EtL4Ra90kv"/>
+      <import feature="org.eclipse.help" version="1.0.1.R34x_v20080827-7r7xEIxEI6Zu5nEqN7M3UBpglaat"/>
+   </requires>
+
+   <plugin
+         id="com.windowtester.server.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   
+   <!-- Editor: GEF Flow Editor -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            default="true"
+            name="GEF Flow Example"
+            extensions="flow"
+            icon="icons/view.gif"
+            class="org.eclipse.gef.examples.flow.ui.FlowEditor"
+            contributorClass="org.eclipse.gef.examples.flow.actions.FlowActionBarContributor"
+            id="GEF Flow Editor">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: GEF Flow Wizard -->
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="GEF Team Examples"
+            parentCategory="org.eclipse.ui.Examples"
+            id="org.eclipse.gef.examples">
+      </category>
+      <wizard
+            name="Flow Diagram"
+            icon="icons/view.gif"
+            category="org.eclipse.ui.Examples/org.eclipse.gef.examples"
+            class="org.eclipse.gef.examples.flow.ui.FlowCreationWizard"
+            id="org.eclipse.gef.examples.flow.wizard.new.file">
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+   
+   <!-- Editor: GEF Logic Editor -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            default="true"
+            name="Logic Graphical Editor"
+            extensions="logic"
+            icon="icons/logic.gif"
+            class="org.eclipse.gef.examples.logicdesigner.LogicEditor"
+            contributorClass="org.eclipse.gef.examples.logicdesigner.actions.LogicActionBarContributor"
+            id="Logic Graphical Editor">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: GEF Logic Wizard -->
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="%GEF_example_wizard_category_name"
+            parentCategory="org.eclipse.ui.Examples"
+            id="org.eclipse.gef.examples">
+      </category>
+      <wizard
+            name="Logic Diagram"
+            icon="icons/logic.gif"
+            category="org.eclipse.ui.Examples/org.eclipse.gef.examples"
+            class="org.eclipse.gef.examples.logicdesigner.LogicCreationWizard"
+            id="org.eclipse.gef.examples.logic.wizard.new.file">
+         <description>
+            A wizard that creates a sample Logic file
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.logic"
+            id="org.eclipse.gef.examples.logic">
+         <action
+               label="Print"
+               class="org.eclipse.gef.examples.logicdesigner.actions.LogicPrintAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.eclipse.gef.examples.logic.print">
+         </action>
+      </objectContribution>
+   </extension>
+   
+   
+   
+   
+   <!-- Editor: GEF Shapes Editor -->
+   <extension point="org.eclipse.ui.editors">
+      <editor name="GEF Shapes Example"
+              extensions="shapes"
+              icon="icons/shapes.gif"
+              default="true"
+              class="org.eclipse.gef.examples.shapes.ShapesEditor"
+              contributorClass="org.eclipse.gef.examples.shapes.ShapesEditorActionBarContributor"
+              id="GEF Shapes Editor">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: GEF Shapes Wizard -->
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="GEF Team Examples"
+                parentCategory="org.eclipse.ui.Examples"
+                id="org.eclipse.gef.examples"/>
+      <wizard name="Shapes Diagram"
+              icon="icons/shapes.gif"
+              category="org.eclipse.ui.Examples/org.eclipse.gef.examples"
+              class="org.eclipse.gef.examples.shapes.ShapesCreationWizard"
+              id="org.eclipse.gef.examples.shapes.ShapesCreationWizard">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+   
+   
+   <!-- Editor: GEF Text Editor -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.gef.examples.text.TextEditor"
+            icon="icons/text.gif"
+            default="true"
+            contributorClass="org.eclipse.gef.examples.text.actions.TextActionBarContributor"
+            name="GEF WYSIWYG Document Editor"
+            id="org.eclipse.gef.TextEditor"
+            extensions="text">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: GEF Text Wizard -->
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="GEF Team Examples"
+                parentCategory="org.eclipse.ui.Examples"
+                id="org.eclipse.gef.examples"/>
+      <wizard
+            name="GEF WYSIWYG Document Example"
+            icon="icons/text.gif"
+            category="org.eclipse.ui.Examples/org.eclipse.gef.examples"
+            class="org.eclipse.gef.examples.text.wizard.TextEditorWizard"
+            id="org.eclipse.gef.examples.text.wizard.TextEditorWizard">
+         <description>
+            A wizard that creates a sample GEF-based WYSIWYG document
+         </description>
+      </wizard>
+   </extension>
+
+   <!-- Other Extensions: GEF Text Wizard -->
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            parentId="org.eclipse.ui.contexts.window"
+            description="WYSIWYG Text Editing"
+            name="WYSIWYG Text Editing"
+            id="org.eclipse.gef.textContext">
+      </context>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Format"
+            description="Format"
+            id="org.eclipse.gef.category.format">
+      </category>
+
+      <command
+            name="Left to Right"
+            description="Left to Right"
+            categoryId="org.eclipse.gef.category.format"
+            id="org.eclipse.gef.text.ltr">
+      </command>
+      
+      <command
+            name="Right to Left"
+            description="Right to Left"
+            categoryId="org.eclipse.gef.category.format"
+            id="org.eclipse.gef.text.rtl">
+      </command>
+      
+      <command
+            name="Left"
+            description="Align left"
+            categoryId="org.eclipse.gef.category.format"
+            id="org.eclipse.gef.text.alignLeft">
+      </command>
+
+      <command
+            name="Center"
+            description="Align center"
+            categoryId="org.eclipse.gef.category.format"
+            id="org.eclipse.gef.text.alignCenter">
+      </command>
+      
+      <command
+            name="Right"
+            description="Align right"
+            categoryId="org.eclipse.gef.category.format"
+            id="org.eclipse.gef.text.alignRight">
+      </command>
+
+      <command
+			name="Bold"
+			description="Embolden text"
+			categoryId="org.eclipse.ui.category.edit"
+			id="org.eclipse.gef.text.bold">
+      </command>
+      
+      <command
+			name="Italics"
+			description="Italicize text"
+			categoryId="org.eclipse.ui.category.edit"
+			id="org.eclipse.gef.text.italic">
+      </command>
+
+      <command
+			name="Underline"
+			description="Underline text"
+			categoryId="org.eclipse.ui.category.edit"
+			id="org.eclipse.gef.text.underline">
+      </command>
+   </extension>
+   
+	<extension point="org.eclipse.ui.bindings">
+		<key
+			contextId="org.eclipse.gef.textContext"
+			sequence="M1+B"
+			commandId="org.eclipse.gef.text.bold"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+		</key>
+		<key
+			contextId="org.eclipse.gef.textContext"
+			sequence="M1+I"
+			commandId="org.eclipse.gef.text.italic"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+		</key>
+		<key
+			contextId="org.ecipse.gef.textContext"
+			sequence="M1+U"
+			commandId="org.eclipse.gef.text.underline"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+		</key>
+	</extension>
+   
+   
+   
+   
+   
+   <!-- Editor: Caterpillar-Shapes Editor -->
+   <extension point="org.eclipse.ui.editors">
+      <editor name="GEF Shapes Example"
+              extensions="catshapes"
+              icon="icons/shapes.gif"
+              default="true"
+              class="com.windowtester.internal.customer.cat.shapes.ShapesEditor"
+              contributorClass="com.windowtester.internal.customer.cat.shapes.ShapesEditorActionBarContributor"
+              id="Cat GEF Shapes Editor">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: Caterpillar-Shapes Wizard -->
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="WindowTester GEF Examples"
+                parentCategory="org.eclipse.ui.Examples"
+                id="com.windowtester.gef.examples"/>
+      <wizard name="Cat Shapes Diagram"
+              icon="icons/shapes.gif"
+              category="org.eclipse.ui.Examples/com.windowtester.gef.examples"
+              class="com.windowtester.internal.customer.cat.shapes.ShapesCreationWizard"
+              id="org.eclipse.gef.examples.shapes.ShapesCreationWizard">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+   
+   <!-- Editor: Class Diagram Editor -->
+   <extension point="org.eclipse.ui.editors">
+      <editor
+              class="com.windowtester.examples.gef.uml.editor.ClassDiagramEditor"
+              default="true"
+              extensions="cd"
+              icon="icons/class.gif"
+              id="GEF Class Diagram Editor"
+              name="GEF Class Diagram Example">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: Class Diagram Wizard -->
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="WindowTester GEF Examples"
+                parentCategory="org.eclipse.ui.Examples"
+                id="org.eclipse.gef.examples"/>
+      <wizard name="Class Diagram"
+              icon="icons/class.gif"
+              category="org.eclipse.ui.Examples/com.windowtester.gef.examples"
+              class="com.windowtester.examples.gef.uml.wizards.ClassDiagramCreationWizard"
+              id="org.eclipse.gef.examples.uml.UMLCreationWizard">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+   
+   <!-- View: Draw 2D DND View -->
+   <extension
+         point="org.eclipse.ui.views">
+        <view
+            class="com.windowtester.gef.test.views.DNDDraw2DView"
+            id="com.windowtester.gef.test.views.DNDDraw2DView"
+            name="Draw 2D DND View"/>
+   </extension>
+   
+   <!-- Editor: Schema Editor -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="%editor.name"
+            icon="icons/editor.gif"
+            extensions="schema"
+            class="com.realpersist.gef.editor.SchemaDiagramEditor"
+            contributorClass="com.realpersist.gef.action.SchemaActionBarContributor"
+            id="Schema Editor">
+      </editor>
+   </extension>
+   
+   <!-- Wizard: Schema Diagram Editor -->
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="WindowTester GEF Examples"
+            parentCategory="org.eclipse.ui.Examples"
+            id="org.eclipse.gef.examples">
+      </category>
+      <wizard
+            availableAsShortcut="true"
+            name="Schema Diagram Editor"
+            icon="icons/editor.gif"
+            category="org.eclipse.ui.Examples/com.windowtester.gef.examples"
+            class="com.realpersist.gef.editor.wizard.SchemaDiagramWizard"
+            id="com.realpersist.gef.editor.wizard.wizard.new.file">
+         <description>
+           	Wizard to create an empty or pre-populated schema diagram file
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+
+</plugin>

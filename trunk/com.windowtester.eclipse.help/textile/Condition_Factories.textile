@@ -1,0 +1,26 @@
+<title>Condition Factories</title>
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+h2. What are Condition Factories?
+
+<a href="../../reference/conditions.html">Conditions</a> are used to test properties.  Locator-specific properties can be tested through special conditions that are surfaced via __condition factory__ methods.  Surfacing conditions this way makes building assertions in the IDE easy.  For instance, if we are testing properties of a button, the IDE's content assist proposes the following conditions:
+
+!condition_factory.jpg!
+
+Continuing with this example, if the test we are writing is of enablement, our resulting assertion could look like this:
+
+bc.. ui.assertThat(new ButtonLocator("OK").isEnabled());
+p. 
+
+h2. Implementing a Condition Factory
+
+Implementing a condition factory is as simple as adding an instance method that returns an @ICondition@ to a locator.  For example, the @ButtonLocator@'s enablement condition factory might be written like this:
+
+bc.. public ICondition isEnabled() {
+	return new IsEnabledCondition(this, true);
+}
+p. 
+
+Here the @IsEnabledCondition@ is responsible for testing whether the locator's target widget is in fact enabled (in simple cases this might just be done in line).
+
+

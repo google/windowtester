@@ -1,0 +1,9 @@
+<title>Frequently Asked Questions</title>
+
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet"></head>
+
+h1. Frequently Asked Questions
+
+* <a href="faq.html#General">General</a>
+* <a href="faq.html#Recording">Recording</a>
+* <a href="faq.html#Runtime">Runtime/Playback</a>

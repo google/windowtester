@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contexts>
+   <context id="target_provisioner" title="WindowTester Pro Target Provisioners">
+      <description>WT target provisioners package WT required plugins for inclusion in custome PDE targets.</description>
+      <topic href="html/gettingstarted/targets.html" label="WT PDE Targets"/>
+   </context>
+   <context id="recording_console">
+      <description>The recording console supports user interaction with the recording process.</description>
+      <topic href="html/ui/recording_console.html" label="Recording Console Reference"/>
+   </context>
+   <context id="newTest_wizard">
+      <description>This wizard helps you to create a new UI test case.</description>
+      <topic href="html/ui/newTestType.html" label="New Test Type Wizard"/>
+   </context>
+      <context id="api_migration" title="API Migration">
+      <description>API migration tooling enables legacy tests to be updated to the latest API.</description>
+      <topic href="html/reference/API_Migration.html" label="API Migration Overview"/>
+   </context>
+</contexts>

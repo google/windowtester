@@ -1,0 +1,12 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import static com.windowtester.runtime.condition.TimeElapsedCondition.milliseconds;
+import com.windowtester.runtime.swt.UITestCaseSWT;
+
+public class SleepTest3 extends UITestCaseSWT {
+
+	public void testSleep() throws Exception {
+		getUI().wait(milliseconds(3000));
+	}
+		
+}

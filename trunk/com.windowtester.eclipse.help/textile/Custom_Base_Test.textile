@@ -1,0 +1,125 @@
+
+h2. Creating a Custom Base Test
+
+Actions that are commonly performed during set up and tear down of tests can be extracted into a common base test class.  Base tests reduce duplicated logic in tests making them easier to maintain and make creating new robust tests easier.
+
+{toc}
+
+<hr/>
+
+
+h2. Example Base Test (Eclipse/RCP)
+
+When a fresh workbench is opened, the Eclipse "Welcome" page is shown.  In the general case, your are not testing this page and want to dismiss it first thing. To capture this, we create a new subclass of @UITestCaseSWT@ that looks like this:
+
+bc.. public class BaseTest extends UITestCaseSWT {
+	@Override
+	protected void setUp() throws Exception {
+		closeWelcomePageIfNecessary();
+	}
+}
+p. 
+
+h3. Closing the Welcome Page
+
+Handling the "Welcome" page involves the following steps:
+
+# Test if it is visible
+# If it is visible, dismiss it
+
+The @closeWelcomePageIfNecessary()@ method does just that:
+
+bc.. protected void closeWelcomePageIfNecessary() throws WidgetSearchException {
+	IUIContext ui = getUI();
+	IWidgetLocator[] welcomeTab = ui.findAll(new CTabItemLocator("Welcome"));
+	if (welcomeTab.length == 0)
+		return;
+	ui.close(welcomeTab[0]);
+}
+p. 
+
+h3. Saving Dirty Editors
+
+Another common behavior might be to ensure that there are no dirty editors at test finish.  (This is useful since the workbench will not close cleanly with unsaved edits.)
+
+The first thing we need is a condition to test for dirty editors.
+
+bc.. public class DirtyEditorCondition implements ICondition {
+
+	public boolean test() {
+		final boolean result[] = new boolean[] { false };
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				result[0] = anyUnsavedChanges0();
+			}
+		});
+		return result[0];
+	}
+
+	protected static boolean anyUnsavedChanges0() {
+		IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
+		for (int i = 0; i < windows.length; i++) {
+			IWorkbenchPage[] pages = windows[i].getPages();
+			for (int j = 0; j < pages.length; j++) {
+				IEditorReference[] editorRefs = pages[j].getEditorReferences();
+				for (int k = 0; k < editorRefs.length; k++) {
+					IEditorReference each = editorRefs[k];
+					if (each.isDirty())
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+}
+p. 
+
+(The details are unsurprising.  The one thing to note is that we need to ensure that we safely access the workbench windows on the UI thread.)
+
+With our @DirtyEditorCondition@ in hand, we can hook into teardown like this:
+
+bc.. public class BaseTest extends UITestCaseSWT {
+	... same as above
+	@Override
+	protected void tearDown() throws Exception {
+		saveAllIfNecessary();
+	}
+	protected void saveAllIfNecessary() throws WidgetSearchException {
+		if (anyUnsavedChanges())
+			getUI().click(new MenuItemLocator("File/Save All"));
+	}
+	private boolean anyUnsavedChanges() {
+		return new DirtyEditorCondition().test();
+	}
+}
+
+h2. Using the Base Test
+
+Leveraging our custom base test is a simple matter of subclassing it.
+
+bc.. public class MyTest extends BaseTest {
+	public void testSomething() throws Exception { ... }
+}
+p. 
+
+h3. Adding Setup and Teardown Behavior
+
+If you want to add setup or teardown behavior, you can override @setUp()@ and @tearDown()@ respectively.  Do take care to call the super class methods however (unless you do not want them to get called).  For instance:
+
+bc.. public class MyTestWithAdditionalSetUpAndTearDown  extends BaseTest {
+	@Override 
+	protected void setUp() throws Exception {
+		super.setUp();
+		//additional setup here
+  	}
+	@Override 
+	protected void tearDown() throws Exception {
+		//additional teardown here
+		super.tearDown();
+  	}
+
+	public void testSomething() throws Exception { ... }
+}
+p. 
+
+

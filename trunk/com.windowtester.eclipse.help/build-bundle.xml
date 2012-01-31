@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_all">
+	
+	<!-- ================================================= 
+		Build the javadoc for the receiver and place it into the local project structure
+		so that it can be tested in the development environment 
+		*and* used as part of the build process.
+		
+		This is used as part of a larger build process,
+		but can also be called by itself to generate into the developer's workspace.
+	-->
+	<target name="build_javadoc">
+		<checkEclipseRunning/>
+		<property name="javadoc.out" location="html/reference/javadoc"/>
+		<property name="javadoc-old.out" location="${javadoc.out}/../javadoc-old"/>
+		
+		<fileset dir="${eclipse.home}/plugins/" id="plugins.fs">
+			<include name="org.eclipse.swt*.jar"/>
+			<include name="org.eclipse.jface*.jar"/>
+			<include name="**/junit.jar"/>
+			<exclude name="**/org.junit4_*/**"/>
+		</fileset>
+	
+		<!-- Generate javadoc for new API -->
+		
+		<mkdir dir="${javadoc.out}"/>
+		<javadoc destdir="${javadoc.out}" overview="../com.windowtester.runtime/src/overview.html" stylesheetfile="stylesheets/book.css">
+			<classpath>
+				<pathelement location="${java.home}/lib/rt.jar"/>
+				<fileset refid="plugins.fs" />
+				<pathelement location="../com.windowtester.runtime/bin"/>
+				<pathelement location="../com.windowtester.swt.runtime/bin"/>
+				<pathelement location="../com.windowtester.swing.runtime/bin"/>
+				<pathelement location="../com.windowtester.swt.runtime.gef/bin"/>
+			</classpath>
+			<fileset dir="../com.windowtester.runner/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+				<exclude name="**/Internal*.java"/>
+			</fileset>
+			<fileset dir="../com.windowtester.runtime/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+				<exclude name="**/Internal*.java"/>
+			</fileset>
+			<fileset dir="../com.windowtester.swt.runtime/src">
+				<include name="com/windowtester/runtime/swt/**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+				<exclude name="**/Internal*.java"/>
+			</fileset>
+			<fileset dir="../com.windowtester.swing.runtime/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+				<exclude name="**/Internal*.java"/>
+			</fileset>
+			<fileset dir="../com.windowtester.swt.runtime.gef/src">
+				<include name="**/*.java"/>
+				<exclude name="**/internal/**/*.java"/>
+				<exclude name="**/Internal*.java"/>
+			</fileset>
+		</javadoc>
+		
+		<!-- Generate javadoc for old API -->
+		
+		<mkdir dir="${javadoc-old.out}"/>
+		<javadoc destdir="${javadoc-old.out}" overview="../com.windowtester.swt.runtime/src/overview.html" stylesheetfile="stylesheets/book.css">
+			<classpath>
+				<pathelement location="${java.home}/lib/rt.jar"/>
+				<fileset refid="plugins.fs" />
+				<pathelement location="../com.windowtester.runtime/bin"/>
+				<pathelement location="../com.windowtester.swt.runtime/bin"/>
+				<pathelement location="../com.windowtester.swing.runtime/bin"/>
+			</classpath>
+			<fileset dir="../com.windowtester.swt.runtime/src">
+				<include name="junit/extensions/UITestCase.java"/>
+				<include name="com/windowtester/swt/IWidgetLocator.java"/>
+				<include name="com/windowtester/swt/IWidgetLocatorVisitor.java"/>
+				<include name="com/windowtester/swt/WidgetLocator.java"/>
+				<include name="com/windowtester/swt/IUIContext.java"/>
+				<include name="com/windowtester/swt/WidgetSearchException.java"/>
+				<include name="com/windowtester/swt/WidgetNotFoundException.java"/>
+				<include name="com/windowtester/swt/MultipleWidgetsFoundException.java"/>
+				<include name="com/windowtester/swt/condition/ICondition.java"/>
+				<include name="com/windowtester/swt/condition/IConditionHandler.java"/>
+				<include name="com/windowtester/swt/condition/IHandler.java"/>
+				<include name="com/windowtester/swt/condition/WidgetDisposedCondition.java"/>
+				
+				<include name="com/windowtester/swt/util/StringComparator.java"/>
+								
+				<include name="com/windowtester/swt/monitor/IUIThreadMonitor.java"/>
+				<include name="com/windowtester/swt/monitor/IUIThreadMonitorListener.java"/>
+								
+				<include name="com/windowtester/swt/condition/IConditionMonitor.java"/>
+				
+				<include name="com/windowtester/swt/condition/eclipse/*.java"/>
+				<include name="com/windowtester/swt/locator/eclipse/*.java"/>
+					
+				<include name="com/windowtester/swt/locator/LabeledLocator.java"/>
+				
+				<include name="com/windowtester/swt/condition/shell/IShellCondition.java"/>
+				<include name="com/windowtester/swt/condition/shell/IShellConditionHandler.java"/>
+				<include name="com/windowtester/swt/condition/shell/IShellMonitor.java"/>
+				<include name="com/windowtester/swt/condition/shell/ShellCondition.java"/>
+																									
+			</fileset>
+		</javadoc>
+
+		<!-- Refresh the local workspace with the changes -->
+				
+		<eclipse.convertPath filesystempath="${javadoc-old.out}" property="javadoc-old.res"/>
+		<eclipse.convertPath filesystempath="${javadoc.out}" property="javadoc.res"/>
+		<eclipse.refreshLocal resource="${javadoc-old.res}" depth="infinite"/>
+		<eclipse.refreshLocal resource="${javadoc.res}" depth="infinite"/>
+
+	</target>
+
+	<!-- ================================================= 
+		Build elements common for all versions of Eclipse 
+		and place them into ${build.temp}/common/${Project-Name}/out
+	-->
+	<target name="build_common" depends="build_javadoc">
+		<init_properties />
+		<read_manifest/>
+		<read_build />
+
+		<dir_bundle eclipseTarget="common" type="plugins">
+			<fileset dir="." includes="${Project-CommonFiles}" />
+		</dir_bundle>
+		<zip destfile="${build.out}/install-image/E-common/eclipse/plugins/${Project-Id}_${Project-Version}/doc.zip">
+			<zipfileset dir="." includes="html/**" />
+			<zipfileset dir="." includes="images/**" />
+		</zip>
+	</target>
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.2
+		and place them into ${build.temp}/3.2/${Project-Name}/out
+	-->
+	<target name="build_3.2" depends="build_common" if="build.for.32.flag">
+		<dir_bundle eclipseTarget="3.2" type="plugins" />
+	</target>
+
+
+	<!-- ================================================= 
+		Build elements for Eclipse 3.3
+		and place them into ${build.temp}/3.3/${Project-Name}/out
+	-->
+	<target name="build_3.3" depends="build_common" if="build.for.33.flag">
+		<dir_bundle eclipseTarget="3.3" type="plugins" />
+	</target>
+	
+	<!-- ================================================= 
+		Build elements for Eclipse 3.4
+		and place them into ${build.temp}/3.4/${Project-Name}/out
+	-->
+	<target name="build_3.4" depends="build_common" if="build.for.34.flag">
+		<dir_bundle eclipseTarget="3.4" type="plugins" />
+	</target>
+	
+	<!-- ================================================= 
+		Build elements for Eclipse 3.5
+		and place them into ${build.temp}/3.5/${Project-Name}/out
+	-->
+	<target name="build_3.5" depends="build_common" if="build.for.35.flag">
+		<dir_bundle eclipseTarget="3.5" type="plugins" />
+	</target>
+
+	<!-- ================================================= 
+		Build elements for all versions of Eclipse
+	-->
+	<target name="build_all" depends="build_3.5, build_3.4, build_3.3, build_3.2">
+	</target>
+
+</project>

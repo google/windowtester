@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Conditions</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type=
+"text/css" />
+</head>
+
+<body><p><title>Conditions</title><h1>Conditions and Handlers</h1>
+<p>Conditions and handlers are good ingredients for writing robust tests.  </p><ol style="list-style: none;"><li><a href="#Conditions">Conditions</a><ol style="list-style: none;"><li><a href="#ConditionFactories">Condition Factories</a></li><li><a href="#ConditionsandAssertions">Conditions and Assertions</a></li></ol></li><li><a href="#Handlers">Handlers</a><ol style="list-style: none;"><li><a href="#SwingConditionHandling">Swing Condition Handling</a></li></ol></li></ol><p><hr/></p><h3 id="Conditions">Conditions</h3><p>A <strong>Condition</strong> encapsulates tests to determine whether a particular situation exists, while a <strong>Handler</strong> encapsulates actions to be taken when a particular <strong>Condition</strong> is determined to be true. <strong>Conditions</strong> can be used to keep test execution in sync with the application being tested or to assert a particular situation is true for test validation. A <strong>Condition</strong> and <strong>Handler</strong> pair can be used to react to known but unpredictable situation making the test more robust. Conditions implement <a href="javadoc/com/windowtester/runtime/condition/ICondition.html">ICondition</a> or <a href="javadoc/com/windowtester/runtime/condition/IUICondition.html">IUICondition</a> while handlers and condition/handler pairs implement <a href="javadoc/com/windowtester/runtime/condition/IHandler.html">IHandler</a> and <a href="javadoc/com/windowtester/runtime/condition/IConditionHandler.html">IConditionHandler</a> respectively.</p><p>For example, when waiting for the UI thread to finish processing, rather than ...</p><p><pre><strike>Thread.sleep(5000);</strike></pre></p><p>... </p><p>it is better to use a <strong>Condition</strong> as in ...</p><pre><code>ui.wait(new ShellShowingCondition("My Dialog"));
+ui.wait(new ShellDisposedCondition("My Dialog"));
+ui.wait(new IsEnabledCondition(new ButtonLocator("Finish")));
+ui.wait(new FileExistsCondition("MyProject/newFile.txt")), true);
+</code></pre><p>... or in Swing ...</p><pre><code>ui.wait(new WindowShowingCondition("My Dialog"));
+ui.wait(new WindowDisposedCondition("My Dialog"));
+ui.wait(new IsEnabledCondition(new JButtonLocator("Finish")));
+</code></pre><p></p><p>More interfaces and various implementers of <a href="javadoc/com/windowtester/runtime/condition/ICondition.html">ICondition </a>and <a href="javadoc/com/windowtester/runtime/condition/IUICondition.html">IUICondition </a>can be found in ...</p><ul><li><a href="javadoc/com/windowtester/runtime/condition/package-summary.html"><tt>com.windowtester.runtime.condition</tt></a></li><li><a href="javadoc/com/windowtester/runtime/swing/condition/package-summary.html"><tt>com.windowtester.runtime.swing.condition</tt></a></li><li><a href="javadoc/com/windowtester/runtime/swt/condition/package-summary.html"><tt>com.windowtester.runtime.swt.condition</tt></a></li><li><a href="javadoc/com/windowtester/runtime/swt/condition/eclipse/package-summary.html"><tt>com.windowtester.runtime.swt.condition.eclipse</tt></a></li><li><a href="javadoc/com/windowtester/runtime/swt/condition/shell/package-summary.html"><tt>com.windowtester.runtime.swt.condition.shell</tt></a></li><li><a href="javadoc/com/windowtester/runtime/swing/condition/package-summary.html"><tt>com.windowtester.runtime.swing.condition</tt></a></li></ul><h4 id="ConditionFactories">Condition Factories</h4><p>An alternative way to create conditions is through condition factories.  Condition factories associate conditions with their <i>host</i> locators.  For example, asserting enablement for an SWT <code>Button</code> could look like this:</p><pre><code>ui.assertThat(new ButtonLocator("OK").isEnabled());
+</code></pre><p></p><p>For more on condition factories see this <a href="../programmer/core/Condition_Factories.html">document</a>.</p><h4 id="ConditionsandAssertions">Conditions and Assertions</h4><p><strong>Conditions</strong> can also be used to assert or ensure that the application being tested is in a valid state using the <code>ui.assertThat(...)</code> or <code>ui.ensureThat(..)</code> methods respectively.  For more on assertions see <a href="assertions.html">here</a>. </p><h3 id="Handlers">Handlers</h3><p>A <strong>Condition/Handler</strong> pair is registered with the <a href="javadoc/com/windowtester/runtime/condition/IConditionMonitor.html">IConditionMonitor</a> or <a href="javadoc/com/windowtester/runtime/swt/condition/shell/IShellMonitor.html">IShellMonitor</a> to react to unpredictable events, thus making the test more robust. For example, an application that displays a license dialog sometime during application execution make cause tests that normally pass to fail. To address this situation, add a <code>Condition</code> to detect this situation associated with a <code>Handler</code> to react to the situation ...</p><pre><code>monitor = (IConditionMonitor) ui.getAdapter(IConditionMonitor.class);
+monitor.add(new ShellShowingCondition("License*"), new IHandler() {
+      	 public handle(IUIContext ui) {
+		 ui.click(new ButtonLocator("OK")); 
+	}
+});
+</code></pre><p></p><p>Conditions are processed before each UI action is performed.  For example:</p><pre><code>//conditions processed before menu selection
+ui.click(new MenuItemLocator("New/File"));
+//conditions processed during wait
+ui.wait(New ShellShowingCondition("New File"));
+//conditions processed before click
+ui.click(new ButtonLocator("Cancel"));
+//conditions processed during wait
+ui.wait(new ShellDisposedCondition("New File"));
+</code></pre><p></p><h4 id="SwingConditionHandling">Swing Condition Handling</h4><p>The same approach is used to deal with unpredictable events in Swing applications. To address a condition where a Swing dialog may pop up unexpectedly, add a Condition to detect this situation and associate a Handler to react to this situation</p><pre><code>monitor = (IConditionMonitor)ui.getAdapter(IConditionMonitor.class);
+monitor.add(new WindowShowingCondition("License*"), new IHandler() {
+	 public handle(IUIContext ui) {
+		 ui.click(new JButtonLocator("OK")); 
+	}
+});
+</code></pre><p></p></body></html>

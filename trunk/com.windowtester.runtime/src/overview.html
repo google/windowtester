@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+</head>
+
+<body style="background-color: white;">
+
+
+Provides classes and interfaces for writing UI tests using the WindowTester API.
+<p>
+WindowTester test cases are subclasses of {@link com.windowtester.runtime.common.UITestCaseCommon} which is a
+special JUnit test case, tailored for running User Interface (UI) tests.  These test cases interact with
+the UI using an instance of {@link com.windowtester.runtime.IUIContext} which is retrieved from
+the <code>UITestCase</code> using it's {@link com.windowtester.runtime.common.UITestCaseCommon#getUI()} method.
+<code>IUIConext</code> supports common UI actions like entering text,
+clicking widgets, dragging and dropping components and so on.
+</p><p>
+UI Tests are made robust using <em>Conditions</em>.  Conditions implement the
+{@link com.windowtester.runtime.condition.ICondition} interface.
+
+Common uses for Conditions include:
+
+<ul>
+  <li> <b>waiting</b> - tests can be paused until a condition is satisfied using the {@link com.windowtester.runtime.IUIContext#wait(ICondition)} method; 
+  		for example, one might want to pause test execution until a file is created in the file system, a job is complete, a widget is updated and so on. 
+  </li>
+  <li> <b>asserting</b> - properties of the system can be asserted using the {@link com.windowtester.runtime.IUIContext#assertThat(ICondition)} method;
+  		for example, one might want to assert that a particular widget is visible, has focus, has text that matches an expected String and so on.
+  </li>
+</ul>
+
+Conditions can also be registered
+with the runtime's {@link com.windowtester.runtime.condition.IConditionMonitor} and used
+to trigger {@link com.windowtester.runtime.condition.IHandler} instances.  Shell Conditions
+(implemented as {@link com.windowtester.runtime.swt.condition.shell.IShellCondition} instances) are
+special conditions used to test conditions on shells.  Registering handlers to
+handle shell conditions is helpful in cases where shell appearances are hard to predict
+(such as progress monitors).  Shell handlers are associated with the runtime through
+the UI Context's {@link com.windowtester.runtime.swt.condition.shell.IShellMonitor} instance.
+Finally conditions can also be used to <em>ensure that</em> properties are true using the {@link com.windowtester.runtime.IUIContext#ensureThat(IConditionHandler)} method.
+
+<!--h2>Package Specification</h2-->
+
+<!--ul>
+  <li><a href="">##### REFER TO ANY FRAMEMAKER SPECIFICATION HERE #####</a>
+</ul-->
+
+</p><h2>Related Documentation</h2>
+
+For overviews, tutorials, examples, guides, and tool documentation, please see:
+<ul>
+  <li><a href="../../../html/overview/index.html">WindowTester Overview</a>
+  </li><li><a href="../../../html/gettingstarted/rcp_sampletest.html">WindowTester RCP Tutorial</a>
+</li></ul>
+
+<!-- Put @see and @since tags down here. -->
+
+
+
+
+
+
+
+
+
+
+</body></html>

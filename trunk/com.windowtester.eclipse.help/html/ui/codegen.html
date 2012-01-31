@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Code Generation</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type=
+"text/css" />
+</head>
+<body>
+<h1>Code Generation</h1>
+<p>Once a test is recorded, there are a number of ways the
+generated test can be specialized.</p>
+<ol style="list-style: none;">
+<li><a href="#SelectingaCustomBaseTestClass">Selecting a Custom
+Base Test Class</a></li>
+<li><a href="#SpecifyingSetupHandlers">Specifying Setup
+Handlers</a></li>
+</ol>
+<hr />
+<h2 id="SelectingaCustomBaseTestClass">Selecting a Custom Base Test
+Class</h2>
+<p>It often makes sense to create <a href=
+"../programmer/core/Custom_Base_Test.html">reusable base test
+classes</a> that define reusable fixture setup logic. These base
+tests can be specified in the <b>New UI Test</b> wizard.</p>
+<p><img border="0" src="superclass-ss.png" /></p>
+<h2 id="SpecifyingSetupHandlers">Specifying Setup Handlers</h2>
+<p>Robust tests are independent in that they depend very little on
+pre-established application state. Test independence can be
+promoted by capturing all of the test&rsquo;s expectations about
+the application under state in <i>setup condition handlers</i>
+defined in the test&rsquo;s <code>setUp</code> method. Common
+conditions can be selected in the <b>New UI Test</b> wizard.</p>
+<p><img border="0" src="setup-ss.png" /></p>
+</body>
+</html>

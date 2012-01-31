@@ -1,0 +1,16 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import static com.windowtester.runtime.condition.TimeElapsedCondition.milliseconds;
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swt.UITestCaseSWT;
+
+public class SleepTest extends UITestCaseSWT {
+
+	private static final int A_BIT = 3000;
+
+	public void testSleep() throws Exception {
+		IUIContext ui = getUI();
+		ui.wait(milliseconds(A_BIT));
+	}
+		
+}

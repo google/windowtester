@@ -1,0 +1,384 @@
+<title>WindowTester Pro FAQ</title>
+
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+
+<h2>WindowTester Pro FAQ</h2>
+
+{toc}
+
+<hr/>
+
+h2. About this FAQ
+
+
+
+
+h2. General
+
+
+h3. I installed WindowTester Pro but I don't see the record pull-down toolbar item and there is no WindowTester Pro preference. What happened?
+
+It's most likely an installation/configuration problem. Start by re-installing on a fresh copy of Eclipse and a new workspace. If you're installing under Eclipse 3.4, you are probably running into a p2 bug. See the <a href="../installation/eclipse34_p2bug.html">Eclipse 3.4 cache problem workaround.</a>
+
+h3. What Operating Systems does WindowTester Pro support?
+
+WindowTester Pro currently runs on Windows and Linux-GTK. See the <a href="../installation/windowTesterRequirements.html">System Requirements</a> section. It has some preliminary Mac support. We suggest giving it a try on the Mac and if you run into problems let us know and we'll try to work with you to get things working.
+
+h3. I'm getting random errors trying to generate tests, what should I do?
+
+If *WindowTester* fails to work properly (indicated by throwing a random exception), it is more likely an installation problem. Try the following:
+
+# Clean your Eclipse @configuration@ directory (found in your eclipse home directory). If you are installing into Eclipse 3.2 or 3.3, delete the @org.eclipse.*@ subdirectories in the @configuration@ directory (they are recreated at startup). Make sure that you do not delete the @config.ini@ file. Restart Eclipse with the @-clean@ option.
+# Check that only one version of *WindowTester* (one set of @com.windowtester.*@ plugins and features) is installed. If you have an older version also installed (indicated by an earlier version number), delete those plugins and features and repeat step number one above. Make sure that you don't have *WindowTester* installed both locally within your Eclipse @/plugins@ directory and remotely through a @.link@ file (check your Eclipse @/links@ directory).
+# Check your project for classpath problems and your code for compilation problems.
+# Try refreshing and rebuilding your project using the *Project>Clean* command.
+# If the problem persists, check your Eclipse @.log@ file (found in your @<workspace>\.metadata@ directory) for any recorded exceptions.
+# If Eclipse locks up repeatedly, you might try running Eclipse with the @-debug@ command line option. You can then press *Ctrl+Break* in the console to look at the thread dump which may show where the system is locking up. Send that thread dump to us.
+# If you're still having problems after checking all of the above, post a description of your issue on our product forum. Please describe what you were doing when the exception occurred. Also please provide the Eclipse .log file, a test case and/or screen shots as appropriate.
+
+
+h3. How do I enable tracing?
+
+To enable tracing:
+
+# open your launch configuration
+# switch to the *Tracing* tab
+# check *Enable tracing for the selected plug-ins*
+# click the *Select All* button and click *Apply*.
+
+
+h3. Where can I find code samples?
+
+For starters, look at the "WT-Commons project":http://code.google.com/p/wt-commons/ which collects useful snippets and examples.  The <a href="../reference/javadoc/overview-summary.html">API Reference</a> and FAQ alse contain various code snippets and examples. Finally, there are also a number of examples posted on the forum.
+
+h3. I've updated versions and now the compiler compiler complains that a class is missing.  Help!
+
+We are in the process of cleaning up and consolidating our legacy API.  See this <a href="../reference/Legacy_API_Phase_Out.html">document</a> for more details.
+
+
+h3. Does WindowTester Pro support GEF/Draw2D?
+
+WindowTester Pro has basic GEF recording and playback support. This functionality is continuously evolving. Please send us feedback!
+
+h3. What versions of GEF does WindowTester Pro Support?
+
+WindowTester Pro requires GEF version 3.2.100 or later.
+
+
+h3. Does WindowTester Pro support Swing or JGo?
+
+Swing is fully supported in the WindowTester Pro  or WindowTester Pro Swing product. We are researching JGo support for a future consideration.
+
+h3. Our eRCP application (customized eWorkbench with SWT implementation) won't start when starting a recording, what should I do ?
+
+Try modifying the Eclipse config.ini to include J2SE-1.3 like so:
+
+sgi.framework.executionenvironment = CDC-1.1/Foundation-1.1, J2SE-1.3, J2SE-1.4, J2SE-1.5
+
+Without J2SE-1.3, the application does not launch.
+
+
+h3. How do I integrate WindowTester Pro into our Continuous build system?
+
+See the <a href="../overview/continuous_test.html">Continuously Running WindowTester Pro Tests</a> page for more information.
+
+
+h3. Is there a way to generate reports after the tests are run?
+
+If you run your tests using Ant you can generate such a report using the JUnit task. See this article for more information: <a class="moz-txt-link-freetext" href="http://junit.sourceforge.net/doc/faq/faq.htm#running_6">http://junit.sourceforge.net/doc/faq/faq.htm#running_6</a>
+
+h3. I am using Ant to run the tests, how do I create HTML test reports?
+
+__(Submitted by: Eric Armstrong and Steffen Gemkow)__
+
+* 1. Ensure that Ant's @optional.jar@ file is either in your @CLASSPATH@ or exists in your @$ANT_HOME/lib@ directory.
+* 2. Add an @ANT@ property for the directory containing the HTML reports:
+
+bc.  property name="test.reports" value="./reports" /;
+ 
+* 3. Define the Ant task for running JUnit and generating reports:
+bc.. <target name="test-html">
+	<junit fork="yes" printsummary="no" haltonfailure="no"> 
+		<batchtest fork="yes" todir="${test.reports}" > 
+			<fileset dir="${classes}"> 
+				<include name="**/*Test.class" /> </fileset> 
+			</batchtest> 
+		<formatter type="xml" /> 
+		<classpath refid="test.classpath" /> 
+	</junit> 
+	<junitreport todir="${test.reports}"> 
+		<fileset dir="${test.reports}"> 
+			<include name="TEST-*.xml" /> 
+		</fileset> 
+		<report todir="${test.reports}" /> 
+	</junitreport>
+</target>
+p. 
+
+* 4. Run the test:
+
+bc.. ant test-html
+p. 
+
+Refer to the <a href="http://ant.apache.org/manual/OptionalTasks/junit.html">JUnit Ant Task</a> for more information. 
+
+h3. Does WindowTester Pro support JUnit4 tests?
+
+JUnit4 Support is being actively researched. The current show-stopper is due to a bug in the Eclipse Test Framework. If this feature is valuable to you, consider voting for the <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=153429">bug</a>.
+
+h3. Does WindowTester Pro work with JDK 1.4?
+
+WindowTester Pro fully supports testing of applications that are compiled with JDK 1.4, but you must compile and execute your WindowTester Pro tests using JDK 1.5 or higher. The last version of WindowTester Pro to support JDK 1.4 is 3.9.0.  If you need to run tests on 1.4, please install version 3.9.0.
+
+h3. How can I can add my RCP app to my Testing plug-in classpath so that I can access classes from my RCP app?
+
+This is a standard Eclipse issue. If you want plug-in A to access classes in plug-in B, then modify the plug-in A's manifest to be dependent upon plug-in B. In addition you must modify plug-in B's manifest to export those packages you want visible to plug-in A.
+
+
+h3.  Can WindowTester Pro tests be run from the command line?
+
+The short answer is yes, since WindowTester Pro tests are just JUnit plugin tests, they can be run the same way that eclipse plug-in tests are run using the Eclipse Testing Framework. To get started with the Eclipse Testing Framework, see this <a href="http://www.eclipse.org/articles/Article-PDE-Automation/automation.html">article</a>.
+
+h3. How can I generate an HTML test result file from my JUnit generated test-result.xml file?
+
+Use the junitreport Ant task (http://ant.apache.org/manual/OptionalTasks/junitreport.html) to gather several test result .xml files into a single test result .html report. The sample code below gathers all test-result.xml files in various subdirectories, generates a test-summary.xml file with the combined results, then generates a test summary html file from that combined xml file.
+
+bc.. 	
+<junitreport todir="${output-root}" tofile="test-summary.xml">
+        <fileset dir="${output-root}">
+            <include name="*/test-result.xml" />
+        </fileset>
+        <report todir="${output-root}" />
+</junitreport>
+p. 
+
+h3. How can I get more help?
+
+Start with the various <a href="../gettingStarted.html">Getting Started examples</a>, the <a href="../programmer/index.html">Programmer's Guide</a> and <a href="../samples/index.html">Samples</a> section. You might also read through the various topics in our support forum. If you still have issues, post a question to our support forum.
+
+
+h3. What information should I send when contacting support?
+
+
+
+* Development environment information such as: 
+** Hardware Architecture
+** OS version
+** Eclipse version 
+** JDK version
+** WindowTester Pro Build#
+* Eclipse .log file located in your @<workspace>\.metadata@ directory.
+* Additional log for SWT applications under test.  Example location:
+
+bc.. C:\Eclipse\workspace\.metadata\.plugins\com.windowtester.eclipse.ui\swt-launch-workspace\.metadata
+p. 
+
+* WindowTester Pro screen shots associated with the failing test located in your project's @\wintest@ directory: 
+** If it is an error in test playback, please enable tracing, run your test to generate the runtime log output and send the runtime .log file located usually in your Eclipse installation directory. You can check the location of the log file from your launch configuration's Main tab (Ex: @${workspace_loc}/../runtime-contactmanager.product/.metadata@).
+** For instructions on how to enable tracing, see "How do I enable tracing?":#HowdoIenabletracing.
+* If possible, it would be extremely helpful if you could send a sample test that we could use to re-create the problem.  See this "document":../reference/repros.html for more on creating effective samples.
+
+For more general advice about writing good bug reports, see this excellent reference "here":http://www.chiark.greenend.org.uk/~sgtatham/bugs.html.
+
+h3. How do I bypass the login screen?
+
+WindowTester Pro starts recording only after the RCP application workbench is launched. The workaround is to bypass the login dialog. To do that, you need to specify the user name and password and any other arguments as VM args in your launch configuration, for eg. -Duser.name=someuser and -Dpassword=somepassword and -DconnectProfile=url. This needs to be done in your recording and playback launch configuration.
+
+
+h2. Recording
+
+h3. Why is the recorder not visible when I try to record?
+
+# If you're recording a plug-in or RCP standalone application and you're not using a custom target platform, in your <b>record launch configuration's Plug-ins tab</b>, select <b>"Launch with all workspace and enabled external/target plug-ins" or include the <a href="#min_plugins">minimal set of WindowTester Pro plug-ins</a> required.</b>
+# If your RCP application has external dependencies like dlls and/or other libraries, in your <b>record launch configuration's Arguments tab</b>, make sure the <b>Working directory is the same as the RCP application launch configuration's Working directory.</b>
+# If you are using a custom target platform, see the <a href="../gettingstarted/targets.html">Adding WindowTester Pro Plug-ins to custom PDE targets</a> document .
+
+<a name="#changed_target_platform"/>
+
+h3. Why is the recorder not visible and playback of generated JUnit test code fails when the target platform is changed?
+
+This usually happens when the product is installed using the .link approach. This scheme does not work when the eclipse installation is pointed to as a target platform.
+
+Here's what you need to do to be able to set the Target Platform to a different installation of eclipse.
+
+Get the WindowTester Pro installation zip file for your eclipse version and unzip into the Target platform eclipse installation. This should take care of things and load the WindowTester Pro plugins.  
+
+Alternatively, you can follow the steps described under <a href="../gettingstarted/targets.html">Adding WindowTester Pro Plug-ins to custom PDE targets</a>.
+
+<a name="min_plugins"/>
+
+h3. What is the minimal set of plugins required in the recording launch configuration?
+
+
+The recording launch configuration requires the following plugins: 
+
+* com.instantiations.common.core
+* com.instantiations.common.ui
+* com.instantiations.eclipse.debug
+* com.instantiations.eclipse.util
+* com.windowtester.runtime
+* com.windowtester.swing.runtime
+* com.windowtester.swt.recorder
+* com.windowtester.swing.recorder
+* com.windowtester.swt.runtime
+
+The rest can safely be excluded (unless they are required by the application under test).
+
+h3. The recorder is not finding a widget and I'd like to hand-code a WidgetLocator; any pointers?
+
+If the source of the component in question is under your control, your best bet is to <a href="../programmer/core/naming_widgets.html">name the widget</a>. Alternatively, you can also "write your own widget locator":../programmer/core/Creating_a_Custom_Locator.html.
+
+
+h3. Does WindowTester Pro support native dialogs like File Open, File Save, etc.?
+
+Native dialogs like "File Open", "File Save" etc... are not supported by the recorder. You can, however, workaround it with by manually coding entering the complete file path and pressing the enter key like so:
+
+bc.. //Enter the complete path of the file
+ui.enterText("C:\\temp\\files\\myfile.text");
+//press the enter key
+ui.keyClick(WT.CR); 
+p. 
+
+For Windows, the following classes comprise our current support:
+
+* <a href="../reference/javadoc/com/windowtester/runtime/swt/condition/NativeShellShowingCondition.html">NativeShellShowingCondition</a>
+* <a href="../reference/javadoc/com/windowtester/runtime/swt/condition/NativeShellDisposedCondition.html">NativeShellDisposedCondition</a>
+* <a href="../reference/javadoc/com/windowtester/runtime/swt/locator/MessageBoxLocator.html">MessageBoxLocator</a>
+
+h3. What types of widgets are currently not supported by the WindowTester Pro Recorder?
+
+We're in the process of making a number of fixes in this area. As it stands, known recorder limitations include: 
+
+* ToolItem Action Menu Pull-downs -- in progress
+* Drag and Drop
+* Form Editor actions (e.g., hyperlinks)
+* GEF/Draw2D (now has basic GEF support.)
+* Custom widget subclasses are also "not fully supported".
+
+h3. What should I do if ui.close() is causing TimeOutException?
+
+The close call essentially calls close() on the underlying shell. In this case, it does not seem to be the right thing to do. In fact, in general, we discourage calling close() unless absolutely necessary. (Note that you also generally don't need to explicitly call the exit menu action either as the PDE test runner closes the workspace for you already.) To avoid recording the close action, you might click the pause button on the recorder controller before exiting the application under test. In case you do record it, you can safely remove the calls from the generated class.  See the forum for examples.
+
+
+h3. Why are keystrokes like Ctrl+A and Ctrl+S not being recorded?
+
+See "Simulating Keyboard Events":../programmer/core/simulating_keystrokes.html. 
+
+
+h3. Drag and Drop from a Viewer onto a Canvas misses the Selection (DragSource). What can I do? 
+
+Native drag and drop is tricky and the recorder is at times a bit finicky. To ensure that the start of your drag is properly noticed, explicitly click the drag source item (mouse up and down) before beginning the drag. 
+
+
+
+
+
+
+
+
+
+
+
+
+h2. Runtime
+
+h3. I'm getting a MultipleWidgetsFoundException when I wasn't before, what gives?
+
+This happens in cases where the widget hierarchy is different at the time of playback than it was at recording. This presents a problem because the information that the recorder used to disambiguate the widget at recording-time is no longer sufficient to uniquely identify the widget. To remedy this, you have several alternatives. You can:
+
+* Re-record the snippet of the test in question.
+* Write a more descriptive locator by hand (see: this description of the "widget finding algorithm":../programmer/core/Finding_Widgets.html for a jumping off point).
+* If the source for the widget in question is your own, you can name the widget. This name will be used in widget identification. See <a href="../programmer/core/naming_widgets.html"> naming widgets</a> for more information.
+
+
+
+h3. I'd like to test the state of a widget in my test but I keep getting an SWTException (Invalid thread access). Help!
+
+As described in the <a href="../reference/assertions.html">Assertions</a> section, you're seeing this exception because many of the methods on @org.eclipse.swt.Widget@ and its subclasses require that they be called from the UI thread. WindowTester Pro tests, however, are run in a non-UI thread. To remedy this, you can wrap your calls in a runnable and pass it to the display to be executed by the UI. See the <a href="../reference/assertions.html">Assertions </a>section for more details.
+
+
+h3. Every once in a while an unexpected dialog pops up and breaks my test. What can I do?
+
+Create shell condition and handler for the dialog and register it with the shell monitor. See the <a href="../reference/conditions.html">Conditions</a> documentation for more.
+
+h3. What are WidgetLocators?
+
+Widget locators are abstractions used to identify widgets at runtime.
+
+h3. What is a WidgetNotFoundException?
+
+A @WidgetNotFoundException@ is thrown when a search is performed for a widget that cannot be found in the application under test. Note that only *visible* widgets can be found.
+
+h3. How do I slow down playback?
+
+<a name="slowdownplayback"/>
+
+Open the <a href="../reference/preferences/playback.html">Playback preference</a> and turn the *Delay* option on. You can specify delays for keystrokes, widget clicks and mouse movements.
+
+
+h3. We aren't using a clean workspace for our test runs. How do you do that?
+
+Go to the test's launch configuration (*Run>Run...*) and in the *Main* tab for your test, select "Clear workspace data before launching".
+
+h3. My test passes but I see an error in the console (Exception in thread "WorkbenchTestable" java.lang.NullPointerException), is this a problem?
+
+This exception appears to be caused in cases where the workspace is being shut down by test code (e.g., by selecting the "Exit" menu item or closing the main @Shell@) at the same time as the PDE test runner is itself also closing down the application. Note that you do not need to explicitly exit the application at the end of your tests since that will be done for you by the test runner. If this describes your case, remove the explicit calls to exit the application and you should be OK. If it doesn't tell us more!
+
+h3. What should I do if I encounter an UnsatisfiedLinkError when trying to playback my tests?
+
+<a name="unsatisfiedlinkerror"/>
+
+The Eclipse SWT DLL (which can be found in the @$ECLIPSE$\plugins\org.eclipse.swt.win32_x.x.x\os\win32\x86\@ directory or in the @org.eclipse.swt.win32.win32.x86_3.x.x.jar@ file) needs to be on your path. Placing it into your @windows/system32@ directory is the easiest thing to do.
+
+For Linux, you need to locate the corresponding Eclipse SWT @*.so@ files contained in the SWT GTK plugin.
+
+h3. Does WindowTester Pro support closing and re-starting applications?
+
+Currently no. If you need to run multiple tests, you need to keep your application running.
+
+
+h3. Why does my test stop playing after it opens the "Confirm Exit" dialog?
+
+When you close an RCP/Eclipse-based application to end a recording session, you get the "Confirm Exit" dialog. WindowTester Pro records these events but when you play it back it opens the dialog but does not recognize the pressing of the "OK" @Button@.  The script generated looks something like this:
+
+bc.. ui.wait(new ShellShowingCondition("Confirm Exit"));
+ui.click(new ButtonLocator("OK"));
+ui.wait(new ShellDisposedCondition("Confirm Exit"));
+ui.wait(new ShellDisposedCondition("Eclipse SDK"));
+p. 
+
+The eclipse testing framework tears down the application (eclipse) when the tests are done running. This means that the attempt to
+close the app in the test is not succeeding. And so, the shell you are waiting for is never showing up.
+
+Sadly, this is just a fact of life.
+
+You can either remove these lines from the test or not record them at all by clicking on the pause button in the recorder before exiting.
+
+
+h3. Why is my working directory different when I run my tests?
+
+Normally, when you launch your application, Eclipse sets the working directory to the directory containing the application (typically the "eclipse" directory itself). When you launch a JUnit Plugin Test, Eclipse sets the working directory to the project containing the test being executed. This is default Eclipse behavior. If you want to change the working directory when launching your JUnit Plugin Test, open your test launch configuration. Switch to the Arguments tab, under the *Working directory* section, select *Other* and enter the directory you want.
+
+!../../images/working_dir.png!
+
+
+h3. Why is my test throwing WidgetNotFoundException when a nested dialog is closed?
+
+When a button is clicked within the first dialog it opens another dialog. After closing the second dialog, the test stops and throws a @WidgetNotFoundException@. This happens because the first dialog does not get the focus back. Make sure when the second dialog is closed the focus goes back to the first dialog.
+
+h3. How do I delete the contents of a Text widget?
+
+You can simulate a Shift+Click+Delete key like so...
+
+bc.. ui.click(2, new LabeledTextLocator("textLabel"), WT.SHIFT);
+ui.keyClick(WT.DEL);
+p. 
+
+h3. How do I make menu selections generic across different versions of Eclipse?
+
+Some menu items across different versions of Eclipse are slightly different e.g. *Window>Preferences...* in 3.3 vs. *Window>Preferences* (without the dots) in 3.4. If you want to be able to run your tests in 3.3 and 3.4 you need to modify your test script like so:
+
+bc.. ui.click(new MenuItemLocator("Window/&amp;Preferences(...)?"));
+p. 
+

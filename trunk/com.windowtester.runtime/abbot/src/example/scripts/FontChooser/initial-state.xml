@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Verify the component's initial state">
+  <component class="javax.swing.JComboBox" id="JComboBox Instance" title="Font Chooser unit test" />
+  <component class="javax.swing.JTextField" id="JTextField Instance" title="Font Chooser unit test" />
+  <component class="javax.swing.JLabel" id="The quick brown fox jumped over the lazy dog" tag="The quick brown fox jumped over the lazy dog" title="Font Chooser unit test" />
+  <component class="javax.swing.JCheckBox" id="bold" tag="bold" title="Font Chooser unit test" />
+  <component class="javax.swing.JCheckBox" id="italic" tag="italic" title="Font Chooser unit test" />
+  <fixture filename="fixture.xml" />
+  <assert component="JComboBox Instance" method="getSelectedItem" value="Serif" />
+  <assert component="JTextField Instance" method="getText" value="10" />
+  <assert component="The quick brown fox jumped over the lazy dog" method="getText" value="The quick brown fox jumped over the lazy dog" />
+  <assert component="bold" invert="true" method="isSelected" />
+  <assert component="italic" invert="true" method="isSelected" />
+</AWTTestScript>
+

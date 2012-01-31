@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+</head>
+
+
+<body style="background-color: white;">
+
+Provides classes and interfaces for custom widget resolvers.
+<p>In the WindowTester runtime, widgets can be resolved in three
+ways:
+</p>
+
+<ol>
+
+  <li> <em>Named widgets</em> are identified and
+retrieved by their names which are set using the {@link
+org.eclipse.swt.widgets.Widget#setData(java.lang.String,
+java.lang.Object)} method where the name key is the String "name". For
+example, naming a widget "my.widget" could be done as follows:
+    <pre> Widget w = ...;<br> w.setData("name", "my.widget");<br> </pre>
+
+Having named this widget this way, it can be retrieved from the
+UIContext by this name:
+    <pre> IUIContext ui = ...;<br> Widget myWidget = ui.find("my.widget");<br> <br> //guaranteed to be true<br> TestCase.assertEquals(w, myWidget);<br> </pre>
+
+  </li>
+
+  <li> Widgets with associated <em>Widget Resolvers</em>
+are found using custom resolvers, classes that implement the {@link
+com.windowtester.swt.resolver.IWidgetResolver} interface. Resolvers
+that are registered with the UIContext are associated with handles that
+can be used to make the widget they identify appear as if it were named
+to the test writer. Widget resolvers are registered with the UIContext
+using the {@link com.windowtester.swt.resolver.IWidgetResolverService}.
+  </li>
+
+  <li> Finally, widgets can be identified by their <em>location</em>
+in the widget hierarchy. Widget locations are described by instances of
+the {@link com.windowtester.swt.WidgetLocator} class. <code>WidgetLocator</code>s
+are also registered with the UIContext (see: {@link
+com.windowtester.swt.IUIContext#register(String, WidgetLocator)}). Once
+a widget locator is registered to a String handle with the UIContext,
+the widget it describes can be retrieved from the UIContext by its
+handle. </li>
+
+</ol>
+
+Like locators, widget resolvers provide a means to identify widgets
+that were not named by the application developer. Resolvers are
+especially useful when there is a convenient (and potentially
+efficient) means to resolve a widget or in situations where uniquely
+identifying location information is overly cumbersome or brittle.
+</body>
+</html>

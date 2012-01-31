@@ -1,0 +1,3142 @@
+2005-12-08  Timothy Wall  <twall@users.sf.net>
+
+	* script/Call.java: Set accessibility on protected methods.
+
+2005-11-29  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java: Avoid NPE when getName is called on components
+	which are not yet fully initialized but depend on initialized
+	state in order to produce a name.
+
+2005-11-28  Timothy Wall  <twall@users.sf.net>
+
+	* script/Launch.java: Ensure the class loader is installed when it
+	is accessed prior to launch.
+
+2005-11-14  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JComboBoxTester.java: Watch for nulls in the combo box list.
+
+2005-10-12  Timothy Wall  <twall@users.sf.net>
+
+	* BugReport.java: Include PLAF info in bug report.
+
+2005-10-08  Timothy Wall  <twall@users.sf.net>
+
+	* script/AppletSecurityManager.java: Disallow applet exit.
+
+2005-10-07  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Capture mouse motion events to more
+	accurately detect input-readiness for windows.  Ensure motion is
+	generated in active areas (i.e. excludes window decorations).
+	* tester/JToolBarTester.java: New.  Float/unfloat a JToolBar.
+	* util/AWT.java: Only post ESCAPE keypress if a window is showing
+	and has focus.
+
+2005-10-03  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Rename invokeAction to invokeLater to avoid
+	confusion; invokeAction implies a synchronized "action" method,
+	which it is not.
+
+2005-09-27  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Put a timeout on the wait for idle when
+	posting an invocation event.  This avoids a lockup on fast linux
+	systems (although the source of the event queue blockage has not
+	yet been determined).
+	(waitForIdle): don't start a thread to check for active AWT popup
+	on windows, since we now time out.
+	
+2005-09-16  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Add selection of menu item by path.
+	* tester/Robot.java: Add jitter when activating a submenu, fixes
+	bug on w32 menu activation.
+
+2005-08-30  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTextFieldTester.java: Add text commit actions.
+
+2005-06-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java: Fix NPE when renderer has null text.
+	* tester/JListTester.java: Ditto.
+
+2005-06-10  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTextComponentTester.java: Ensure text fields scroll to
+	visibility. 
+	* script/Annotation.java (showAnnotation): Allow method to be
+	invoked from the EDT (e.g. triggered by a button press).
+
+2005-06-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java: Only do XML validation if the XSD file is
+	available. 
+
+2005-05-19  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JScrollBarTester.java (actionScrollTo): wait for idle
+	after action. 
+
+2005-05-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/MapGenerator.java: Avoid double clicks on the title bar
+	(OSX, w32).
+
+2005-05-07  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (Robot): Allow for delays > 1s.
+
+2005-04-02  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java (load): Ensure file is a file and not a
+	directory before reading.
+
+2005-03-23  Timothy Wall  <twall@oculustech.com>
+
+	* tester/JTableTester.java: Fix NPE (patric dumais).
+
+2005-03-23  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java (runStep): When encountering both an EDT
+	exception and an exception on the test thread, throw the one that
+	was first caught.
+
+2005-03-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Post accessible actions on the appropriate
+	context. 
+	* util/AWT.java (getPath): Always return full path, otherwise we
+	won't match a full path specification.
+
+2005-02-19  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java: Only restore system state on
+	terminate().  Dispose windows on terminate.  Optionally provide a
+	saved UI state on creation.
+	* script/Launch.java: Only remove context on terminate; don't need
+	to dispose of windows.
+	* util/AWTFixtureHelper.java: Moved here from
+	junit.extensions.abbot.  Core should not use things defined in the
+	junit package.
+	
+	* tester/JSplitPaneTester.java: Use max divider location instead
+	of component size.
+	* tester/JListTester.java: Perform selection even if the selection
+	is already the same.
+	* tester/JTreeTester.java: Check result of
+	JTree.convertValueToText before using it.
+	* tester/AWTConstants.java: Extract common constants to avoid
+	Robot class instantiation if not necessary.
+	* script/ForkedStepRunner.java: Catch premature forked application
+	exit and throw an error.
+
+2005-02-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java (JTreeTester): Add assertion for tree
+	path existence. 
+
+2005-01-28  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Add actionMouseMove,
+	actionMousePress actions based on ComponentLocation.
+	* tester/JComponentTester.java (scrollToVisible): Only fail if the
+	upper left of a rectangle can't be made visible.
+	* tester/JTextComponentTester.java: Ditto.
+	
+2005-02-03  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java (makeVisible): Use a more widely
+	effective method of making parents visible.
+
+2005-01-24  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTextComponentTester.java: Don't use drag/drop methods.
+
+2005-01-23  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java (Script): Ensure relative directory gets set
+	prior to load (opeongo).
+
+2005-01-21  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JComboBoxTester.java: Only explicitly trigger popup if
+	it's not already showing.
+
+2005-01-20  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (drop): Ensure drag events have a chance to
+	register with InputState.
+
+2005-01-18  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java(waitForIdle): Always post at least one idle
+	event, to allow anything currently processing on the EDT to finish.
+
+2005-01-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/*Location.java: Move common encoding/parsing code for
+	index and value into ComponentLocation. 
+
+2005-01-05  Timothy Wall  <twall@user.sf.net>
+
+	* tester/JTextComponentTester.java (scrollToVisible): i18n some
+	messages. 
+	* tester/JLabelTester.java (JLabelTester): Removed superfluous
+	"convenience" function.  If a method serves only to act as an
+	alias for another method, it does more obfuscation than
+	clarification.  Removed cast-less convenience functions since
+	preferred usage is to directly create a new instance of the
+	desired Tester type.
+	* tester/JTextComponentTester.java: Ditto.
+	* tester/JMenuItemTester.java: Ditto.
+	* tester/JButtonTester.java: Fix inheritance.
+	* finder/matchers/JMenuItemMatcher.java: Renamed from
+	MenuItemMatcher.  
+	
+2005-01-04  Tom Roche  <tlroche@users.sf.net>
+
+	* tester/JLabelTester.java: Added convenience method for castless
+	getting. 
+	* tester/JMenuItemTester.java: Added convenience method for
+	castless getting. 
+	* tester/ComponentTester.java: Extracted private class
+	MenuItemMatcher.
+	* finder/matchers/MenuItemMatcher.java: New.
+
+2005-01-03  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java (actionSelectRow): Fix incorrect
+	argument to location lookup failure.
+
+2004-12-30  Tom Roche  <tlroche@users.sf.net>
+
+	* tester/JButtonTester.java: New. Convenience.
+	* tester/JTextComponentTester.java: Add convenience static 
+	JTextComponentTester getTester(JTextComponent).
+
+2004-12-27  Timothy Wall  <twall@users.sf.net>
+
+	* util/ExtendedComparator.java: Fix array indexing bug.
+
+2004-12-06  Timothy Wall  <twall@users.sf.net>
+
+	* tester/KeyStrokeMap.java (findMap):  Use plain keymap names.
+	* tester/keymaps: Add de_DE map. Rename keymaps for readability.
+	
+2004-11-17  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java (makeVisible): Give tree nodes some time
+	to populate if they aren't immediately displayed.
+
+2004-11-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Add actionDragOver (bigmike_f).
+	* tester/JTreeLocation.java: Make findMatchingPath public.  Fix so
+	it works with an object-based treepath as well.
+	
+2004-10-28  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java (getPath): Enable selection of popup
+	menu items by path.
+
+2004-10-31  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JInternalFrameTester.java: Invoke doDefaultCloseAction(),
+	which is the closest thing to a user close, instead of
+	setClosed(), which actually sets the JInternalFrame's closed state.
+
+2004-10-26  Timothy Wall  <twall@users.sf.net>
+
+	* script/ForkedStepRunner.java (runStep): Wait for the forked
+	process to finish (christian heldstab).
+
+2004-10-13  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (ArgumentParser): Fix parsing of
+	empty arguments.
+
+2004-09-21  Timothy Wall  <twall@users.sf.net>
+
+	* tester/TextComponentTester.java (actionSelectText): Add required
+	delay after text selection on Linux and w32.
+
+2004-09-19  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTabbedPaneLocation.java (indexToPoint): Account for tabs
+	in a popup on OSX.
+
+	* tester/JTextComponentTester.java (startSelection): Clear
+	selection before starting a new one, to avoid auto-dragging
+	selected text.
+
+2004-09-19  Timothy Wall  <twall@users.sf.net>
+
+	* finder/AWTHierarchy.java (AWTHierarchy): Traverse the "dock" to
+	find iconified internal frames.
+
+2004-09-18  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTableLocation.java: Throw an exception if a desired cell
+	value cannot be found, instead of returning null.
+
+2004-09-17  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Avoid spurious matches when the
+	preferred component is detached from the hierarchy.  Remove
+	Resolver side effects from Constructors.
+
+
+2004-09-01  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JListTester.java (actionSelectItem): Add convenience
+	method (bigmike_f).
+	* tester/JFileChooserTester.java (actionApprove): Handle null
+	approve button text (jim.mcmaster).
+
+2004-08-18  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTextComponentTester.java: Don't fail if selection is
+	made from end to start.
+
+2004-08-16  Timothy Wall  <twall@users.sf.net>
+
+	* util/Bugs.java: Extract and test for some OSX VM bugs.
+
+2004-08-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JSplitPaneTester.java: Visually activate the split pane
+	divider.  Fix sporadic failures on w32.
+
+2004-08-10  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Remove deprecated methods which
+	refer to modifier masks with a String.
+	* script/StepRunner.java: Move "script does not exist" checking
+	here where it is more appropriate...
+	* script/Script.java: ...instead of here.  Always load on creation.
+	
+2004-08-05  Timothy Wall  <twall@users.sf.net>
+
+	* script/AppClassLoader.java: Ensure AppletSecurityManager is
+	loaded by the proper ClassLoader.
+	* util/PathClassLoader.java: Change loadClass to proper protected
+	access. 
+	* util/NonDelegatingClassLoader.java: Ditto.
+	* script/Launch.java: Provide a default terminate method.  Move
+	applet SM stuff to Appletviewer.
+	* script/Appletviewer.java: Customize the terminate method.
+	Ensure proper class loader is used for the applet security manager
+	and that the SM is actually installed.  Use more robust
+	appletviewer disposal.
+	* util/AWT.java: move applet lookup here...
+	* finder/AWTHierarchy.java: ...from here.
+	
+2004-08-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/Appletviewer.java: Ensure html file gets deleted.
+
+2004-08-02  Timothy Wall  <twall@users.sf.net>
+
+	* script/init.bsh: Provide convenience functions for component access.
+	* script/Interpreter.java: Do all script setup in the ctor...
+	* script/Script.java: ...instead of here.
+	
+2004-07-30  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java: Account for primitive arrays, which
+	cannot be cast to Object[].
+	* script/Assert.java: Use string comparison for object arrays
+	underlying TreePaths.
+	* tester/Robot.java: Throw failure on drag method if in w32
+	service mode to avoid CPU lockup.
+	* script/init.bsh: Add beanshel init script as resource.  Use this
+	to predefine imports and built-in functions.
+	
+2004-07-27  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Cache non-showing matches
+	separately, per-lookup.  cache is similar to failure cache, but
+	keeps track of cached matches which are non-showing.  Fixes a
+	freeze more dreadful than the one fixed by the failure cache.
+
+	* script/Expression.java: New.  Evaluate arbitrary expressions.
+	* tester/InputState.java: Keep track of drag origin.
+	* tester/Robot.java: Use more movement when starting drag to aid
+	in recording.  Fix drag threshold offsets.
+
+2004-07-26  Timothy Wall  <twall@users.sf.net>
+
+	* tester/keymaps/*.map: character <--> keycode maps.
+	* tester/KeyStrokeMapProvider.java: Renamed from
+	KeyStrokeMapGenerator. 
+	* tester/KeyStrokeMap.java: Read keymap properties files if available.
+	* tester/Robot.java: Allow for skipping robot verification.
+	* util/Launcher.java (open): Fix browser launch under unix.
+
+2004-07-23  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Add description of method naming
+	conventions. 
+	* tester/TextComponentTester.java: Add support for
+	java.awt.TextComponent. 
+	* tester/Robot.java: Allow short-form event modifiers.
+	* tester/*Tester.java: Remove many deprecated methods.
+	* tester/JSplitPaneTester.java: New.
+	* tester/JScrollBarTester.java: New.
+	
+2004-07-22  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java: Filter window only after other event
+	listeners have a chance to process the WINDOW_CLOSE event.
+
+	* tester/JTreeLocation.java: Provide for indicating the tree node
+	expansion location for a given path/row.
+	* tester/JTreeTester.java: Use a TreePath of String when creating
+	a new JTreeLocation, rather than the original objects.
+	* script/ArgumentParser.java: Check for @hashcode rather than
+	class name, since one object might invoke toString on another
+	(e.g. DefaultMutableTreeNode).
+	* tester/JListTester.java: Don't use default toString from renderer.
+	* tester/JTableTester.java: Ditto.
+	
+2004-07-21  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java: Defer conversion of properties to
+	string until they're actually referred to.
+	* script/Sample.java: Save properties as Object instead of String.
+
+2004-07-20  Timothy Wall  <twall@users.sf.net>
+
+	* i18n/Strings.java: Provide for multiple bundles.
+	* script/Script.java: Add AWT mode switch (mtrumpler).
+	* util/Launcher.java: Add automatic email/browser handling.
+	* util/ProcessOutputHandler.java: Update to more robust version.
+	* tester/*Tester.java: Don't generate default custom tags for
+	custom components.
+	
+2004-07-19  Timothy Wall  <twall@users.sf.net>
+
+	* util/Bugs.java: Add checking for linux locking key state
+	detection bug.
+	* util/SystemState.java: Fall back to robot-generated keystrokes
+	if we can't programmatically set locking keys (linux).
+
+2004-07-19  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java: Auto-filter *all* disposed windows,
+	not just those that are obviously transient.
+
+2004-07-18  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java: Provide a ctor which does not
+	automatically ignore existing components.
+
+2004-07-16  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (ArgumentParser): Detect default
+	toString representations.
+	* tester/JListTester.java (valueToString): Avoid NPE when list
+	values are null.
+	* tester/JTableTester.java (valueToString): Ditto for table values.
+	
+2004-07-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/FileComparator.java (compare): Use BufferedInputStream to
+	improve performance when comparing files (Udo Borkowski).
+
+2004-07-06  Timothy Wall  <twall@users.sf.net>
+
+	* finder/AWTHierarchy.java: Make non-visible scrollbars available
+	in the hierarchy.
+
+2004-06-26  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java: Remove reference map synchronization and
+	change to modify the map reference on write.  Creating compnent
+	references recursively will hit the AWT tree lock; if we were to
+	hold a lock when that happens then any EDT-based code which asks the
+	script for its contents would deadlock.
+	* script/ComponentReference.java: Remove deprecated ctors.
+	Generate "tag" attribute for new refs (but only for non-standard
+	components).
+	* tester/Robot.java: Update javadoc.
+	* tester/ComponentTester.java: Fix sporadic menu selection bug on
+	w32. 
+	
+2004-06-24  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Clear cached failure before
+	disambiguating. 
+	* util/AWT.java: Only w32 blocks on PopupMenu.show, so make it the
+	exception, not the rule.
+	
+2004-06-23  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Make setEventMode public.  Throw an exception
+	if the requested state is not supported.
+
+	* tester/ListTester.java: New.  Add basic java.awt.List support.
+
+2004-06-22  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java: Auto-switch to robot mode (if possible) to
+	dismiss AWT popups.  Provide static method for obtaining component
+	coordinates. 
+
+2004-06-21  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java: Don't modify references map while verifying
+	them. 
+	* tester/ComponentTester.java: Add "waitForIdle" appropriate for
+	AWT menu selections.
+
+2004-06-20  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ChoiceTester.java (actionSelectIndex): Make ChoiceTester
+	work reliably on OSX.
+
+	* util/Bugs.java: Consolidate bugs tracking here.
+
+2004-06-17  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java: Auto-detect changes to reference IDs.
+
+	* script/ComponentReference.java: Cache failed lookups as well as
+	successful ones.  This increases lookup time by orders of magnitude.
+
+2004-06-16  Timothy Wall  <twall@users.sf.net>
+
+	* Platform.java: Update javadoc.
+	* util/AWT.java: Add detection of active AWT popup menus (sort of).
+	Track and distinguish duplicate AWT MenuItems.
+
+	* tester/Robot.java: Avoid conflicts with active AWT popup menus.
+	* tester/ComponentTester.java: Rename some methods.
+	
+2004-06-15  Timothy Wall  <twall@users.sf.net>
+
+	* script/Action.java: Avoid exceptions thrown getting the default
+	description if the method name *doesn't* start with "action".
+
+2004-06-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (Robot): Defer robot verification to avoid
+	class initialization conflicts.
+
+2004-06-11  Timothy Wall  <twall@users.sf.net>
+
+	* Platform.java: Add more bug flags.
+
+2004-03-04  Timothy Wall  <twall@users.sf.net>
+
+	* Log.java: Change timestamp format.
+	* util/SystemState.java: Preserve locking keys state.
+	* util/NamedTimer.java: New. Enhanced Timer.
+	* finder/TestHierarchy.java: Name anonymous inner class.
+	* tester/Robot.java: Move locking key clearing to SystemState.
+	* tester/WindowTracker.java: Use NamedTimer to protect against
+	exceptions thrown in TimerTasks.
+	* util/EventNormalizer.java: Facilitate GC of bits.
+	
+2004-06-05  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Allow PAINT events to indicate window
+	ready (test).
+
+2004-06-04  Timothy Wall  <twall@users.sf.net>
+
+	* DefaultComponentFinder.java: Removed deprecated class.
+	* ComponentFinder.java: Ditto.
+	* Resolver.java: Ditto.
+	* script/Tags.java: Ditto.
+	* build.xml: Use batchtest so that junitreport gives individual
+	results.  This slows things down, since every test suite gets
+	forked, but it makes the reports clearer.  Need to really either
+	make this an option or figure out how to make batchtest do all its
+	subtests in the same VM which is different from the ant VM.
+	
+2004-05-12  Timothy Wall  <twall@users.sf.net>
+
+	* util/EventNormalizer.java: Clean up WeakAWTEventListener usage.
+
+2004-05-02  Timothy Wall  <twall@users.sf.net>
+
+	* script/Launch.java: Indicate when the framework is active so the
+	editor can tell if its being launched under test.
+
+2004-04-27  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Check whether the parent window
+	is showing rather than the component itself, since components such
+	as JTabbedPane may set some of their components not visible.
+
+2004-04-24  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java (getFile): Fix class cast exception when
+	looking up file/line of a step.
+
+2004-03-27  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java (disable): Workaround menu disable bug on OSX.
+
+2004-03-24  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (waitForIdle): Don't bother posting a wait for
+	idle event unless the queue is non-empty.
+
+2004-03-23  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTableTester.java (valueToString): Avoid NPE if the table
+	has null values.
+	* tester/JListTester.java (valueToString): Ditto.
+	
+2004-03-23  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java (isFiltered): filtered weak hash map
+	should not store component as a value, or it won't be GC'd.
+
+2004-03-22  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java (noteClosed): Use Boolean.TRUE in maps
+	instead of null.  Fix one case of storing the key as a value in
+	the openWindows map.
+
+2004-03-18  Timothy Wall  <twall@users.sf.net>
+
+	* script/Launch.java: Invalidate class loader when classpath
+	changes.  Ensure the launch step's class loader is used even if it
+	hasn't yet been added to a Script.
+	* util/PathClassLoader.java: Return full filename for path
+	elements, not just the base name.
+
+2004-03-17  Timothy Wall  <twall@users.sf.net>
+
+	* AssertionFailedError.java: Provide file/line information for
+	step failures.
+	* Script.java: Calculate script file/line information.
+	
+2004-03-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Fix multi-click bug (thanks, tests).
+
+2004-03-14  Timothy Wall  <twall@users.sf.net>
+
+	* BugReport.java: Include robot dispatch mode in bug report.
+
+2004-03-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JComponentTester.java: Avoid ActionMap/InputMap allKeys
+	may return null.
+
+2004-03-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JComponentTester.java: Ensure target has focus prior to
+	sending input map keystroke.
+
+2004-03-11  Timothy Wall  <twall@users.sf.net>
+
+	* tester/RobotVerifier.java (verify): Extract from
+	abbot.util.AWT.  Use a non-decorated dialog on OSX.
+
+2004-03-12  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: If a cached lookup is not
+	showing, attempt a regular lookup before using it.  Only use it as
+	a last resort among otherwise matching components.
+	
+	* script/Annotation.java: Only record user changes to size/position.
+	* tester/ComponentTester.java: Deprecate methods using
+	string-based button modifiers.
+	
+2004-03-12  Timothy Wall  <twall@users.sf.net>
+
+	* script/Sample.java: Consistently String-encode sample result.
+
+	* BugReport.java: Include abbot version in bug report.
+
+2004-03-11  Timothy Wall  <twall@users.sf.net>
+
+	* script/ForkedStepRunner.java: Ensure full stack trace is
+	included in failures/errors.
+
+	* script/Launch.java: Don't install the context class loader until
+	the step actually runs, but otherwise make the class loader available.
+
+2004-03-08  Timothy Wall  <twall@users.sf.net>
+
+	* script/Step.java (createStep): Don't use SUT class loader to
+	load script steps! this must have been left over from framework
+	self-test experiments.
+
+	* util/EventNormalizer.java (delegate): Account for missing
+	KEY_TYPED events on OSX.
+
+2004-03-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Don't need to check for mouse settings bug on XP.
+	* tester/BugChecker.java: Move bug checking here.  Add test for
+	OSX button mapping bug.
+	* script/ComponentReference.java: Use the non-canonical class name
+	to disambiguate references, but don't use numeric class names.
+
+2004-03-05  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java: Click on the row icon to select, in
+	case the tree is editable.
+
+2004-03-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/Step.java: Resolve classes using the resolver context
+	class loader, instead of that of the current thread.
+
+	* tester/JTabbedPaneTester.java: Fix selection bug (ensure
+	ComponentLocation method signature is tried before deprecated
+	version). 
+	
+	* script/Appletviewer.java: New.  Auto-launcher for applets.
+
+2004-02-26  Timothy Wall  <twall@users.sf.net>
+
+	* WeakHashMaps keep a strong reference to their values.  oops.
+	So WeakHashMap.put(obj, obj) doesn't work like I thought it did.
+	Thanks to a little unit testing to expose this artifact.
+	* DefaultComponentFinder.java
+	* finder/TestHierarchy.java
+	* script/AppClassLoader.java
+	* tester/WindowTracker.java
+	* util/EventNormalizer.java
+	* util/ThreadTerminatingSecurityManager.java
+	
+2004-02-24  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java: Do robot verification on OSX, but in this case to
+	ensure tests don't begin until the AWT subsystem is active.
+	* tester/Robot.java (drag): Add delay for OSX so that sliders work
+	properly.  Also fixes several other drag/drop test failures.
+	* tester/FileDialogTester.java: Make it work on OSX.
+	
+2004-02-24  Timothy Wall  <twall@users.sf.net>
+
+	* script/Action.java: Properly select between actionKeyStroke methods.
+	* tester/FileDialogTester.java: Ensure FileDialog.accept *always*
+	works on Windows (using some event queue hackery).
+	* tester/Robot.java: Only verify the robot once per class load.
+	* tester/WindowTracker.java: Use a weak event listener to allow
+	the tracker to be GC'd.
+	* util/AWT.java: Avoid NPE in popup tests (caused by bugs in
+	JInternalFrame, but better to not fail due to that).
+	* util/EventNormalizer.java: Use weak listener for AWT.
+	
+2004-02-22  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (mouseRelease): Provide more reliable mouse
+	release in AWT mode when mousePress component has disappeared.
+
+2004-02-20  Timothy Wall  <twall@users.sf.net>
+
+	* script/Annotation.java: Continue after user dismiss.
+
+2004-02-18  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Replace string-based key methods
+	with integer-based virtual key code versions.
+	* script/Action.java: Parse virtual key code and modifier mask
+	arguments so that the underlying method doesn't have to accept
+	strings. 
+	* script/Annotation.java: Suspend execution while annotation
+	window is still showing.
+
+2004-02-17  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTextComponentTester.java (JTextComponentTester): Fix
+	text selection on X11.
+
+2004-02-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Provide descriptive names for root, layered,
+	and glass panes.
+	* tester/JFileChooserTester.java: New.
+
+2004-02-12  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java: Make default description "Untitled" if the
+	file is a temporary one.
+	* script/Annotation.java: Provide minimal synchronization.
+	
+2004-02-11  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java: Add predicate for tooltips.
+	* tester/Robot.java: Add toString variants for tooltips.
+	
+2004-02-09  Timothy Wall  <twall@users.sf.net>
+
+	* finder/AWTHierarchy.java (getComponents): Make sure iconified
+	internal frames only appear once.
+
+2004-02-06  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Catch windows opening after they've
+	been disposed.  WINDOW_OPENED events are only generated once
+	(could've sworn the OPEN flag was reset after dispose).
+
+2004-02-05  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java: Ensure event listener is GC'd at the
+	appropriate time.
+	
+2004-02-04  Timothy Wall  <twall@users.sf.net>
+
+	* script/AppClassLoader.java: Don't reload framework classes, it
+	causes more trouble than it solves.
+	* finder/MultipleComponentsFoundException.java: Show path to
+	component as well as toString output.
+	* i18n/Strings.java: Remove redundant fallbacks.
+	* script/ComponentReference.java: Don't throw errors when looking
+	to match an existing reference, fail to match instead.
+	* tester/ComponentTester.java: Deprecate
+	assertFrameShowing/waitForFrameShowing, since they're not reliable
+	without an explicit context.
+	
+2004-02-03  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java: Provide method to look up containing Window of
+	any component.  For popups/menus, this is the window of the
+	invoker; for a Window it is the Window itself.
+	* finder/TestHierarchy.java: Properly filter popup menu components.
+	* tester/Robot.java: Use a static value for the currently active
+	drag button state.
+
+2004-01-30  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Restore original toString, since
+	it is used when displaying the reference table.
+
+2004-01-29  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java: Auto-remove transient dialogs from
+	the hierarchy (JOptionPane, JFileChooser, et al.).
+	* finder/AWTHierarchy.java: Track down iconified JInternalFrames.
+	* tester/Robot.java (focus): Avoid NPE when there is no current
+	focus owner.  Move "isOnPopup" to AWT.
+	* util/AWT.java: Only perform the robot verification on w32.
+	Clean up transient popup checking.
+	(isTransientDialog): Detect JFileChooser/JOptionPane-generated
+	dialogs. 
+	* script/StepRunner.java: Add back deprecated ctor.
+	* script/ComponentReference.java: Clean up failing tests.
+	Now consider non-showing components in search (less complicated
+	that way).  Explicitly save the default swing frame.  Always save
+	component parent; don't save window indices.  Clean up menu/popup
+	handling.  Make remaining implicit assumptions explicit, and
+	remove those that no longer make sense.
+	* script/XMLConstants.java: add root tag.
+	
+2004-01-26  Timothy Wall  <twall@users.sf.net>
+
+	* script/Annotation.java: Fix NPE.
+	* tester/JTreeLocation.java: Toggle handles aren't considered part
+	of a path/row, so properly convert points accordingly.
+	* tester/JTreeTester.java: Only make the path visible if the click
+	coordinates correspond to a path. 
+
+	* tester/Robot.java: Use ComponentReference to generate
+	descriptive names (was part of expensive getTag).
+
+2004-01-25  Timothy Wall  <twall@users.sf.net>
+
+	* finder/TestHierarchy.java: Filter *after* disposing.
+	
+	* script/ComponentReference.java: Refactor to make TAG usage
+	explicit.  The major change here is that attributes previously
+	used as the TAG will not receive as high a weighting.  While it
+	doesn't affect existing tests, it may have effects in real-world
+	environments. 
+	* doc/abbot.xsd: Add more ComponentReference attributes.
+	* script/XMLConstants.java: Ditto.
+	* tester/ComponentTester.java: Mark get/deriveTag as deprecated.
+	* finder/AWTHierarchy.java: Recursively dispose windows.  Move
+	close method to Robot.
+	* finder/Hierarchy.java: Remove unnecessary "close" method.
+	
+2004-01-24  Timothy Wall  <twall@users.sf.net>
+
+	* ExitException.java: Log full stack trace on creation.
+	* NoExitSecurityManager.java: Log full stack trace of where the
+	security manager was created when an ExitException is thrown.
+	
+	* tester/InputState.java: Provide a "reset" method.
+	* tester/Robot.java (resetPointer): Reset input state in AWT mode.
+	
+	* DefaultComponentFinder.java: Deprecated.  Functionality split
+	out into Hierarchy, ComponentFinder, and AWT util parts.
+	* ComponentFinder.java: Deprecated.
+	* finder/ComponentSearchException.java: Moved from root package.
+	* finder/MultipleComponentsFoundException.java: Ditto.
+	* finder/ComponentNotFoundException.java: Ditto.
+	* finder/Hierarchy.java: Start refactoring ComponentFinder into
+	search/match and hierarchy components.
+	* finder/AbstractFinder.java: Ditto.
+	* finder/AWTHierarchy.java: Basic AWT hierarchy lookup.
+	* finder/TestHierarchy.java: Test hierarchy lookup.
+	* finder/Matcher.java: Component matching interface.
+	* finder/MultiMatcher.java: Component matching interface.
+	* script/Condition.java: Moved from root package.
+	* script/NoSuchReferenceException.java: Ditto.
+	* script/WaitTimedOutError.java: Ditto.
+	* script/Annotation.java: Move filtering into StepRunner, which
+	has the appropriate context to do it.
+	* script/ArgumentParser.java: Rely on ComponentReference context
+	to do lookup rather than passing it in.
+	* script/ComponentReference.java: Remove ComponentFinder
+	references; use a Hierarchy context from the Resolver instead.
+	Provide a "getComponent" method to do lookups with the appropriate
+	context. 
+	* script/Resolver.java: Add a Hierarchy context.
+	* script/Script.java: Ditto.
+	* script/ForkedStepRunner.java: Provide an explicit Hierarchy context.
+	* script/Step.java: Remove ComponentFinder references.
+	* script/StepRunner.java: Maintain a Hierarchy context.
+	* tester/ComponentTester.java: Remove ComponentFinder references.
+	* tester/*: Ditto.
+	* tester/Robot.java: Increase multi-click interval.  Remove
+	ComponentFinder references.
+	* util/AWT.java: Move lookup utilities here from
+	DefaultComponentFinder. 
+	
+2004-01-18  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JSliderTester.java: New.
+	* tester/JSpinnerTester.java: New.  Support for JSpinner.
+	* tester/JComboBoxTester.java: Click appropriately for editable
+	combo boxes.
+
+2004-01-16  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Return a clone of the set of queues
+	(chirlian). 
+
+2004-01-15  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java: Clean up argument parsing.
+
+	* tester/JTabbedPaneLocation.java: Provide all options in bad
+	format warning.
+	* tester/JTableLocation.java: Ditto.
+	* tester/JTreeLocation.java: Ditto.
+	* tester/JListLocation.java: Ditto.
+	
+2004-01-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeLocation.java: Enable regexp matches in tree paths.
+	Account for hidden root nodes.
+	* tester/JTreeTester.java: When generating a new location, drop
+	the root from a TreePath if it is not visible.
+	* tester/Robot.java: Export drag threshold.
+	
+2004-01-14  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ButtonTester.java: Provide AWT-mode activation of
+	java.awt.Button. 
+	* DefaultComponentFinder.java: Always dispose on the event
+	dispatch thread so exceptions can be caught (VM1.3).
+	* script/Call.java: Reload method references in case of class
+	loader conflict (appletviewer).
+	* tester/WindowTracker.java: Only add root windows to context
+	tracking. 
+	
+	* tester/JComboBoxTester.java: Make jlist lookup independent of
+	order of children.
+	* DefaultComponentFinder.java: Use Set instead of ArrayList/List
+	to ensure no duplicate components.
+	* script/ComponentReference.java: Use Set instead of Collection;
+	no duplicate Components are allowed.
+	
+	* tester/JTreeTester.java: Add missing parseLocation method.
+	Route all methods through the ComponentLocation version.
+	* tester/JTreeLocation.java: Properly convert paths from
+	string-based paths to treemodel-based paths.
+	* ExitSecurityManager.java: Use a better message for the
+	ExitException. 
+	* script/AppClassLoader.java: Interrupt applet viewer event
+	dispatch thread so it exits.
+	* script/ArgumentParser.java: Only trim double quotes from String
+	arguments.  Don't trim spaces from String arguments, defer
+	trimming from all other arguments until evaluation.  Don't split
+	strings (Single or double-quoted) when parsing arguments.
+	
+2004-01-09  Timothy Wall  <twall@users.sf.net>
+
+	* DefaultComponentFinder.java: Post WINDOW_CLOSING event to the
+	proper event queue.
+	* tester/WindowTracker.java: Provide event queues for all root
+	level components.
+	* tester/Robot.java: Wait idle on all queues.  Post to the proper
+	queue for a given component (ignoring app context).
+	
+2004-01-08  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java: Don't terminate after a successful
+	script run; the presence of a Terminate step already takes care of
+	that. 
+
+	* util/AbstractEventExceptionHandler.java: Don't bother forwarding
+	the exception if there's a user exception handler installed, and
+	be less verbose about it.
+
+	* tester/Robot.java (createRobot): Only do service mode check on w32.
+	* tester/WindowTracker.java: Fix race condition when marking a
+	pending window to be ready.  The pending task might be running
+	when it is canceled, so it needs to check to see if it was
+	canceled before marking the window ready.
+	
+2004-01-07  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Ensure window is showing before
+	marking it ready.
+	* script/Script.java: Optimize addition of components.  Reduced
+	lookup time for ~500 components by about 80%.  Use TreeMap only on
+	output. 
+	* script/ComponentReference.java: Optimize component lookup.
+	Use TreeMap only on output.
+	* script/Step.java: Use TreeMap only on output.
+	
+2004-01-05  Timothy Wall  <twall@users.sf.net>
+
+	* script/ForkedStepRunner.java: Use abbot.class.path if available
+	when launching the VM to ensure the framework is available in the
+	class path. 
+	* script/AppClassLoader.java: Save framework class path in
+	abbot.class.path if java.class.path is modified.
+	* tester/Robot.java: Avoid spurious multi-clicks in AWT mode.
+	Avoid redundant motion events.
+	* tester/JTreeTester.java: Allow row toggling when the tree toggle
+	click count is zero by asking the PLAF UI to toggle instead.
+
+2003-12-31  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Target AWT-mode events to the proper
+	component if subcomponents aren't listening (e.g. JLabel events go
+	to its ancestor).
+	(simulateMouseExitEnter): Don't need to be so precise about
+	enter/exit locations.
+	
+2003-12-29  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Automatically kick into AWT mode when in w32
+	"service mode" (non-functional robot).
+	* Reset locking keys on startup.
+	
+2003-12-22  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Provide component lookup from an
+	arbitrary root component.
+
+	* tester/Robot.java: Bug fixes for awt mode.
+
+2003-12-03  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Ensure key modifier mask is set properly in AWT
+	mode.  Avoid getLocationOnScreen calls where possible.
+
+2003-11-19  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Clean up "property" method
+	retrieval. 
+	* tester/*Location.java,*Tester.java: Refactor to encapsulate value
+	lookup logic.
+	
+2003-11-16  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java: Avoid selection action only if *only*
+	the given row is already selected.
+	* tester/JListTester.java: Ditto.
+	* tester/JTableTester.java: Ditto.
+	
+2003-11-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java (ComponentTester): Add
+	component-specific key operations.  Add abstracted location
+	variants of all click-based actions, which means that we don't
+	have to write three or four routines for every click action for
+	each derived Tester class, i.e. all derived classes can use the
+	core actions and provide a context-specific location.
+	* tester/JTree|JTable|JListTester.java: Provide methods to obtain
+	the String representation of a given value.  Provide
+	ComponentLocation-based methods.
+	* tester/*Location.java: Add component substructure locations to
+	avoid a proliferation of API methods (popup menu, select, click,
+	etc.) based on each location type.  
+	* script/Action.java: Account for new ComponentLocation usage.
+	* script/ArgumentParser.java: Avoid substitution on null arguments.
+	* script/Call.java: Facilitate custom evaluation of parameters.
+	* Resolver.java: Add context class loader access.
+	* script/Script.java: Ditto.  Eventually make it valid prior to
+	SUT launch.
+	* script/Step.java: Use resolver class loader context.
+	
+2003-11-12  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JInternalFrameTester.java: Enable maximize on iconified
+	frames, throw action failed on normalize of an iconified frame.
+
+2003-11-04  Timothy Wall  <twall@users.sf.net>
+
+	* util/SystemState.java: Consolidate save/restore of various
+	things that StepRunner/ComponentTestFixture used to track.
+	Add save/restore of LAF setting (daniel.kasmeroglu).
+	* script/StepRunner.java: Use SystemState to save/restore state.
+
+2003-11-04  Timothy Wall  <twall@users.sf.net>
+
+	* DefaultComponentFinder.java: Catch all exceptions caused by
+	disposing of windows.
+
+2003-11-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/AppClassLoader.java: Use synchronization only where
+	necessary. 
+
+	* tester/Robot.java: Use improved focus checking to avoid
+	instances of hasFocus returning an incorrect state with applets.
+	* util/AWT.java: Provide access to AppContext and true focus
+	state. 
+	
+2003-10-20  Timothy Wall  <twall@users.sf.net>
+
+	* script/ForkedStepRunner.java (main): Pass runner flags on to
+	forked version.
+	* script/StepRunner.java: Ditto.
+	
+2003-10-10  Timothy Wall  <twall@users.sf.net>
+
+	* util/AWT.java: Add utility function to access AWT PopupMenus
+	added to components.
+	* tester/Robot.java: Enable java.awt.PopupMenu actions.
+
+	* script/ComponentReference.java (disambiguate): Avoid stack
+	overflow. 
+
+2003-10-09  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Provide alternate
+	ComponentReference ctor w/o reverse lookup overhead.
+
+2003-10-08  Timothy Wall  <twall@users.sf.net>
+
+	* script/Annotation.java (showAnnotation): Fix background color on
+	user-dismissed annotations.
+
+2003-10-07  Timothy Wall  <twall@users.sf.net>
+
+	* editor/ScriptEditor.java: Remove redundant code.
+	* tester/InputState.java: Clean up drag tracking.
+	* tester/Robot.java: Remove extraneous debug output.
+	
+2003-10-06  Timothy Wall  <twall@users.sf.net>
+
+	* converter: Renamed to...
+	* script/parsers: ...this package.  All XXXConverter.convert
+	instances are now XXXParser.parse.
+
+2003-10-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/Assert.java: Remove deprecated code which would require
+	the class loader context be installed as the assert is created,
+	which fails on load from disk.
+
+	* converter/ColorConverter.java: Make sure an exception is thrown
+	if the color cannot be parsed.
+
+	* script/StepRunner.java: Leave app in its current state after a
+	stop. 
+	Don't use a stack for launch steps; restrict total launch steps to
+	one. 
+	
+2003-09-26  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (key): Don't send KEY_TYPED if there is no
+	keychar. 
+
+2003-09-16  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (keyRelease): Use proper event ID.
+	* tester/InputState.java (getMouseComponent): Track component as
+	per events, rather than the ultimate component.  Make the ultimate
+	component a separate method.
+
+2003-09-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Ensure AWT mode properly waits for components
+	to be showing before input.
+
+2003-09-15  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Fix drop bug on w32 (need delay between final
+	move and button release.
+
+	* util/ThreadTerminatingSecurityManager.java: A thread's group may
+	be null if it has terminated.
+
+2003-09-14  Timothy Wall  <twall@users.sf.net>
+
+	* util/ExtendedComparator.java (equals): Fix NPE.
+
+2003-09-11  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Don't rely on Frame.getFrames.
+	* tester/Robot.java: Clean up toString.
+	* tester/ComponentTester.java: Add a focus listener to work around
+	a possible bug where Applets receive FOCUS_GAINED events but still
+	return false for hasFocus.
+
+	* tester/ComponentTester.java: Don't use FrameTester for a custom
+	class that happens to be named "Frame".
+
+2003-09-05  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (substitute): Fix some variable
+	substitution bugs.
+
+2003-09-05  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java: Always terminate and tear down after
+	running a script, even on errors.  Allow instantiations to
+	override this setting in order to keep an app up after failure. 
+	* NoExitSecurityManager.java: Rename terminate method to
+	exitCalled for clarity.
+	
+	* script/Assert.java: Rename methods for readability.
+	* script/Action.java: Consolidate multiple method lookups.
+	* script/PropertyCall.java: Ditto.
+	* script/Launch.java: Ditto.
+	* script/Call.java: Ditto. Add debug instrumentation.  
+	* script/StepRunner.java (ProtectedPrintStream): Add missing write
+	method.  This would have allowed writes to a supposedly closed
+	stream.   
+	* tester/Robot.java: Provide predicate for whether a window is
+	user-movable. 
+	* tester/WindowTester.java: Disallow move actions if the component
+	is not user-movable.
+
+	* tester/JComboBoxTester.java: Use same method of finding a value
+	as the recorder.
+
+2003-09-04  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java (getMatchWeight): Fix NPE bug.
+
+2003-09-04  Timothy Wall  <twall@users.sf.net>
+
+	* util/AbstractEventExceptionHandler.java: Make installation API
+	more simple (we only ever expect one of these to be installed).
+
+2003-08-27  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (eval): Check for an array before
+	checking for a custom converter (ravikulkarni).
+
+2003-08-18  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java: Make available a run method for running
+	individual steps (i.e. no setup/teardown).
+
+2003-08-26  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java (flush): Preserve System.out/err state
+	between runs (seisenriech).
+
+2003-08-25  Timothy Wall  <twall@users.sf.net>
+
+	* script/StepRunner.java: Keep a stack of launch steps, not just
+	one. 
+
+2003-08-23  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (drag): Fix drag action (dherron).
+
+2003-08-15  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (substitute): Replace with ${} with
+	System.getProperty, if available.
+
+2003-08-16  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java: Wait for component availability, not
+	for whether it's showing.
+
+2003-08-14  Timothy Wall  <twall@users.sf.net>
+
+	* tester/FileDialogTester.java: Test cross-platform.  actionAccept
+	still broken on w32.
+
+	* script/Call.java: Fix javadoc.  Call doesn't support the
+	property tag (use Sample instead).
+
+2003-08-13  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (Robot): Don't do user motion if the component
+	is not user resizable.  Provide "isResizable(Component)".
+	* tester/FileDialogTester.java: New.  Support for native FileDialog.
+	* tester/Robot.java: Catch NPE, since FileDialog returns null for
+	getLocationOnScreen. 
+	
+	* util/EventNormalizer.java: Avoid duplicate modifier key events
+	on w32.
+
+2003-08-12  Timothy Wall  <twall@users.sf.net>
+
+	* tester/InputState.java (updateState): Avoid
+	Robot.toString(Component). 
+	* script/ComponentReference.java: Ditto.  Restore old toString
+	method, which should be human-readable, NOT xml.
+
+2003-08-12  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentFinder.java: Change interface method names to be more
+	accurate. 
+	* DefaultComponentFinder.java: Move remaining component matching
+	logic to ComponentReference.
+	* MultipleComponentsFoundException.java: Add components found to
+	descriptive string.
+	* script/AppClassLoader.java: Avoid delegation only when
+	absolutely necessary.
+	* script/ArgumentParser.java: Throw component not found instead of
+	wait timed out.
+	* script/ComponentReference.java: Move component matching logic
+	here from DefaultComponentFinder.
+	* script/EventExceptionHandler.java: Change some log messages to
+	debugs. 
+	* script/Launch.java: Don't care about appletviewer here.
+	* script/Script.java: Rename method for clarity.
+	* script/StepRunner.java: Fix comments.
+	* tester/ComponentTester.java: Make toString on wait action clearer.
+	* tester/Robot.java: Add default AWT name to toString(Component).
+	* util/AbstractEventExceptionHandler.java: Improve debug output.
+	* util/NonDelegatingClassLoader.java: Improve javadoc.
+	
+2003-07-30  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java (eventDispatched): Remove 1.4 dependencies.
+
+2003-07-19  Timothy Wall  <twall@users.sf.net>
+
+	* script/ForkedStepRunner.java (trackScript): Ensure errors and
+	failures are properly propagated.
+
+	* script/Step.java (setScriptError): Fix sense of test; only save
+	the error if none exists already.
+
+2003-07-18  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Handle other modifiers in click.
+
+	* tester/Comparator.java: Moved to...
+	* util/RegexpComparator.java: ...here.
+	* ComponentFinder.java: Remove some stuff from the interface.
+	* DefaultComponentFinder.java: Return multiple matches to findWindow.
+
+2003-07-18  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Prefer enabled components when
+	multiple matches are found.  Add docBase attribute.
+	Add check for component focused.  Remove deprecated attributes.
+	
+2003-07-17  Timothy Wall  <twall@users.sf.net>
+
+	* script/Step.java: Ensure attributes are predictably ordered.
+	* script/ComponentReference.java: Ditto.
+	* script/*.java (all steps): Ditto.  Use Map instead of HashMap.
+	
+	* script/ComponentReference.java: Simplify, simplify, simplify.
+	Add params, docbase, horder, and vorder (mostly for applet
+	support).  Make it easier to add new attributes.
+	Move component matching criteria here from DefaultComponentFinder.
+	(ComponentReference): Save window references rather than title
+	attributes, which will be easier to maintain.
+	* DefaultComponentFinder.java: Move component matching out.
+	* script/Script.java: Propagate cref changes.
+	* script/StepRunner.java: Ditto.
+	
+	* tester/WindowTracker.java: Pick up frames for existing
+	windows/applets that might not be available in the current
+	context. 
+
+	* DefaultComponentFinder.java: Use class name to filter java
+	plugin console window.
+	
+2003-07-16  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Don't fail miserably if the class
+	loader barfed (if applet and boot class path have the framework,
+	then ComponentTester.class may have a null package).
+	
+	* DefaultComponentFinder.java: Filter java plugin console window.
+	
+	* tester/WindowTracker.java (cancelPendingReady): Remove from
+	pending list.  Add WindowWatcher to existing windows, remove it as
+	ComponentListener on window close.
+
+	* tester/InputState.java: Avoid Robot.toString if possible.
+	* util/EventNormalizer.java: Ditto.
+	
+	* util/AbstractEventExceptionHandler.java: Reword warning.
+	
+2003-07-16  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Ensure everyone uses the same
+	WindowTracker, otherwise you get sporadic failures as the trackers
+	time the windows' readiness with slight offsets.  Eventually this
+	should be an interface passed into the ComponentFinder/Tester.
+
+2003-07-11  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (click): Restore the auto-delay setting
+	*prior* to the final mouse release on a multiple click.
+
+	* script/Launch.java (runStep): Ensure threaded launch has proper
+	class loader installed.
+
+2003-07-10  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (Robot): Warn when java.awt.Robot is unavailable.
+
+	* tester/Robot.java (simulateMouseExitEnter): Avoid avoidable
+	exceptions when calculating enter/exit events.
+	* tester/InputState.java: Make getComponentAt private; since it
+	calls getLocationOnScreen (which grabs the AWTTreeLock) we want to
+	be very careful where it's used.
+	
+2003-07-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java: Generate MOUSE_CLICKED where appropriate.
+	Generate proper modifier masks.
+	(getBorderIntersection): Fix bugs in border intersection checks.
+	Add workaround for bug in VM 1.4.1 Rectangle.contains/outcode.
+	* tester/InputState.java: mouse press/release contains only the
+	active button in the mask.
+
+2003-07-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java (windowReadyDelay): Add a delay
+	between WINDOW_OPENED and window ready for input.  This only seems
+	to be needed on the first window open (as peers are readied) on
+	systems where the GUI is not tightly coupled with the rest of the
+	code (i.e. non-w32).
+	* tester/ComponentTester.java: Ensure component is "ready", not
+	just showing.
+	* tester/Robot.java: Test for component "ready" instead of just
+	showing. 
+	* DefaultComponentFinder.java: Provide generic "isReady" test for
+	components, since isShowing doesn't cut it.
+
+2003-07-09  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java (load): Enable XML validation on load (ckoelle).
+
+2003-07-08  Timothy Wall  <twall@users.sf.net>
+
+	* script/ComponentReference.java: Avoid known reverse lookup
+	failures for certain classes of components.
+
+	* tester/JInternalFrameTester.java: Implement full functionality.
+	* tester/Robot.java: Expose some location routines to derived
+	classes.  Allow move/resize of Container, not just Window.
+	* DefaultComponentFinder.java: Remove extraneous filter check,
+	which would hide JInternalFrames on COMPONENT_HIDDEN (apparently
+	the parent is set null prior to the event).
+	* util/AWT.java: Add test for LAF components of a JInternalFrame.
+
+2003-07-07  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTracker.java: Track showing windows as well as root
+	windows.  Refactor to be more accurate with HIDDEN/OPEN events.
+
+2003-07-06  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (maximize): Fake maximize where it's not supported.
+	* script/ArgumentParser.java (parseArgumentList): When final
+	argument is returned, remove escapes.
+
+2003-07-02  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (waitForIdle): Wait for idle once before
+	checking for a null event queue (jimdoyle).
+
+	* script/ArgumentParser.java (parseArgumentList): Auto-trim spaces
+	on all arguments, except where protected by quoting. 
+
+2003-07-01  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (parseArgumentList): Fix bug parsing
+	escaped commas within an array.
+
+2003-06-28  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java (addContent): Enforce ordering of component
+	references, which affects consistency of XML output (javajosh).
+
+2003-06-27  Timothy Wall  <twall@users.sf.net>
+
+	* script/Script.java (setProperty): Allow setProperty(name, null).
+
+2003-06-25  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java (eval): Trim numeric arguments to
+	avoid spurious errors due to extra spaces in arg lists.
+
+2003-06-22  Timothy Wall  <twall@users.sf.net>
+
+	* script/Call.java (encode): Don't escape commas within array
+	arguments, must assume them to already be incorrectly encoded.
+	Consider auto-encoding to be a newbie aid that doesn't have to be
+	applied in all circumstances.
+	
+	* script/StepRunner.java (StepRunner): Preserve system properties
+	across invocations.
+
+2003-06-16  Timothy Wall  <twall@users.sf.net>
+
+	* util/AbstractEventExceptionHandler.java (install): Set the event
+	handler back to whatever it was originally set to (including null).
+
+2003-06-11  Timothy Wall  <twall@users.sf.net>
+
+	* script/Event.java (Event): Allow changes to event component.
+
+2003-05-27  Timothy Wall  <twall@users.sf.net>
+
+	* util/AbstractEventExceptionHandler.java (install): Override OSX
+	default exception handler.  Don't print warnings when overwriting
+	it, except on the very first installation.
+
+2003-05-26  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTableTester.java: Add per-cell popups.
+	* tester/JListTester.java: Ditto.
+	* tester/JTreeTester.java: Add per-row popups.
+	
+2003-05-25  Timothy Wall  <twall@users.sf.net>
+
+	* script/ArgumentParser.java: Add property substitution support.
+
+2003-05-24  Timothy Wall  <twall@users.sf.net>
+
+	* Resolver.java: Add property support.
+	* script/PropertyCall.java: New. Abstract meta class for
+	Sample/Assert.  Method call may be on either a component or a
+	tester. 
+	* script/Sample.java: New. Save result of call into a property.
+	* script/Assert.java: Derive from PropertyCall.
+	* script/Action.java: Clean up method/class resolution.
+	* script/Step.java: Ditto.
+	* util/AWT.java: Account for null-parented components.  Detect
+	lightweight popups.
+	* script/ArgumentParser.java: moved here from abbot.tester package.
+	* script/Event.java: Remove legacy code.
+	* script/Script.java: Provide property support.
+	* script/Tags.java: Add property/sample properties.
+	
+2003-05-22  Timothy Wall  <twall@users.sf.net>
+
+	* tester/InputState.java: Don't try to update the mouse position
+	if the screen coordinates are not available.
+
+	* DefaultComponentFinder.java (getComponentMatchWeight): Make
+	exact class matches match better than inexact ones.
+
+2003-05-21  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java (getTester): class loaders must
+	match only for tester extensions.
+
+	* util/EventNormalizer.java (eventDispatched): Avoid NPE when
+	recording is stopped.
+
+2003-05-20  Timothy Wall  <twall@users.sf.net>
+	
+	* util/AWT.java: Check for lightweight transient popups.
+
+	* tester/ChoiceTester.java: Make work on w32.
+	* tester/Robot.java: Use a fake mouse entry if we can't calculate
+	one. 
+
+	* script/Call.java (escapeCommas): Escape commas when stringifying
+	an argument list.
+
+	* tester/InputState.java (updateState): Don't print warnings all
+	the time.
+
+	* script/ForkedStepRunner.java (ForkedStepRunner): Extend
+	launch/terminate timeouts.
+
+2003-05-19  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (selectMenuItem): Lengthen popup/component
+	delays and allow setting via property.
+
+	* tester/ChoiceTester.java (actionSelectIndex): Add support for
+	AWT combo box.  
+
+	* util/AWT.java (AWT): Extend test for transient popups.
+	* util/AbstractEventExceptionHandler.java (install): Report the
+	offending installed handler's name.
+	* tester/Robot.java: Use AWT utility for detecting popups.
+	
+2003-05-18  Timothy Wall  <twall@users.sf.net>
+
+	* util/AbstractEventExceptionHandler.java: Renamed from
+	EventExceptionHandler.java.  Provide delegation to other handlers.
+	* script/EventExceptionHandler.java: Concrete implementation for
+	general use in tests.
+	* script/AppClassLoader.java: Change method signature for event
+	thread exception handling.
+	
+2003-05-14  Timothy Wall  <twall@users.sf.net>
+
+	* tester/ComponentTester.java: Add doc for documentation properties.
+	* tester/extensions/ArrowButtonTester.java (ArrowButtonTester):
+	Set documentation properties directly.
+
+2003-05-13  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentFinder.java (ComponentFinder): getFrames is now
+	getRootWindows. 
+	* DefaultComponentFinder.java: Ditto.
+	* tester/WindowTracker.java: Ditto.
+	
+	* script/Annotation.java (showAnnotation): Track annotation window
+	size as well as position.
+
+2003-05-10  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (maximize): Add maximize/normalize (ckoelle).
+	* tester/FrameTester.java: Add corresponding actions.
+	
+2003-05-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/Robot.java (Robot): Provide a variable delay between
+	posting robot events and seeing them on the event queue.
+	Clean up some old bug fixes.
+	
+2003-05-05  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JTreeTester.java (actionClickRow): Throw an
+	ActionFailedException if the tree row can not be made visible. 
+
+2003-05-04  Timothy Wall  <twall@users.sf.net>
+
+	* util/EventExceptionHandler.java (installOnCurrent): Only try to
+	install if the event exception handler has not already been set.
+
+	* script/StepRunner.java (StepRunner): Call clearErrors when
+	launching. 
+
+2003-05-03  Timothy Wall  <twall@users.sf.net>
+
+	* util/EventNormalizer.java: Get rid of obsolete hierarchy
+	listener code.
+	
+	* util/PreloadingClassLoader.java: Refactor for clarity.
+	* script/AppClassLoader.java: Ditto.
+	* util/SingleThreadedEventListener.java: Remove synch blocks on
+	dispatch for now. 
+	
+	* tester/Robot.java (selectMenuItem): Allow selection of menu
+	items when menu is already showing.
+	* util/SingleThreadedEventListener.java (action): Ensure events
+	are safely processed in the presence of multiple simultaneous
+	event dispatch threads.  Fix race condition on access to
+	deferredEvents. 
+	* Resolver.java: Add a method to directly add component
+	references. 
+	* script/Script.java: Add new method.
+	
+2003-05-01  Timothy Wall  <twall@users.sf.net>
+
+	* script/Annotation.java (addListener): Catch exceptions when the
+	annotation window is not visible.
+
+2003-05-01  Timothy Wall  <twall@users.sf.net>
+
+	* tester/InputState.java: Add synchronization blocks to account
+	for multiple simultaneous event dispatch threads.
+
+2003-04-30  Timothy Wall  <twall@users.sf.net>
+
+	* util/EventNormalizer.java: Moved artificial component event
+	generation here.  Make start/stop listening explicit.
+	* Platform.java: Now we always use component show/hide events.
+	* tester/InputState.java: Use EventNormalizer.
+	
+2003-04-26  Timothy Wall  <twall@users.sf.net>
+
+	* Platform.java: Rename some bug detection methods.
+	* i18n/Strings.java: Flag keys with no values.
+	* tester/ComponentTester.java: Convert -1,-1 on popups.
+	* tester/Robot.java: Move bug detection to Platform.java.
+	
+2003-04-25  Timothy Wall  <twall@users.sf.net>
+
+	* tester/InputState.java: Allow arbitrary state updating for use
+	by the robot.
+	* tester/Robot.java: Add border intersection support to allow
+	accurate mouse enter/exit events to be generated.  When in AWT
+	event-generation mode, explicitly update the input state so that
+	the robot and input state are in synch w/r/t where they think the
+	mouse is.  Simplify the enter/exit generation.
+	
+2003-04-17  Timothy Wall  <twall@users.sf.net>
+
+	* tester/JComponentTester.java (scrollToVisible): Don't scroll if
+	rect is already visible.
+	* util/EventNormalizer.java: Renamed from SpuriousEventCatcher.
+	* script/Step.java: fix stringification of Comment steps.
+	* tester/ComponentTester.java: Add idle waits on drag/drop.
+	* tester/InputState.java: Simplify.
+	* tester/JTableTester.java: Add a drag/drop at cell action.
+	* tester/Robot.java: Add drag/drop methods.  Add AWT event
+	generation for drag/drop.
+	
+2003-04-09  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTester.java (WindowTester): Use Robot methods for
+	move/resize. 
+	* tester/FrameTester.java: Remove obsolete resize/move actions.
+	* tester/DialogTester.java: Remove obsolete resize/move actions.
+	
+2003-04-06  Timothy Wall  <twall@users.sf.net>
+
+	* script/Annotation.java: Set a background color.
+
+2003-04-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/AppletSecurityManager.java: Prevent appletviewer from
+	exiting during a test.
+	* script/Launch.java: Ditto.
+	
+2003-04-03  Timothy Wall  <twall@users.sf.net>
+
+	* script/Assert.java (doCheck): Rethrow target exception.
+	* tester/FileComparator.java (compare): Throw exceptions if files
+	don't exist or are directories.
+	* converter/FileConverter.java: Provide for a relative directory.
+	* script/Script.java (runStep): Convert file pathnames relative to
+	the script directory. 
+	* tester/ArgumentParser.java: Allow for extension converters.
+	* script/AppClassLoader.java (isExtension): Include converter
+	extensions. 
+
+2003-04-01  Timothy Wall  <twall@users.sf.net>
+
+	* DefaultComponentFinder.java: Factor out frame tracking...
+	* tester/WindowTracker.java: New. ...into this class.
+	* script/Annotation.java: Provide access to display delay time.
+	* tester/ComponentTester.java: -1 is no longer a "code" for
+	component center.
+	* tester/InputState.java: Keep track of more state.
+	* tester/Robot.java: Add preliminary AWT-stuffing support (not
+	done yet).  
+	(resize/move/iconify): Don't muck with window managers.  Just do
+	the operations directly.
+	* util/Properties.java: Provide default string property value.
+	
+2003-03-31  Timothy Wall  <twall@users.sf.net>
+	
+	* DefaultComponentFinder.java: Return proper parent when given a
+	JPopupMenu. 
+
+	* util/SpuriousEventCatcher.java (isSpuriousEvent): Discard
+	duplicate modifier keypresses (seen on w32).
+
+	* script/Assert.java (getDefaultDescription): Print timeout in
+	seconds if greater than 5000ms.
+	* util/EventExceptionHandler.java: Recognize ExitException by
+	name, not by class.
+	
+2003-03-29  Timothy Wall  <twall@users.sf.net>
+
+	* util/SpuriousEventCatcher.java: New.  Discard spurious events so
+	we never have to deal with them.
+	
+	* tester/JTextComponentTester.java (JTextComponentTester): All
+	arguments must be of type Component, not a derived class.
+	* tester/JListTester.java: Ditto.
+
+2003-03-27  Timothy Wall  <twall@users.sf.net>
+
+	* tester/WindowTester.java: Add actionClose.
+	* util/EventExceptionHandler.java: Don't depend on DummyException
+	having the same class loader.
+	
+2003-03-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/AppClassLoader.java (install): Avoid deadlock when
+	installing the custom event queue (pickens).
+
+	* util/Properties.java: New.  Convenience property functions.
+	* script/Annotation.java: New.  Provide annotations to facilitate
+	user tutorials. 
+	* script/Launch.java (runStep): Add global deadlock-prevention for
+	pre-1.4 VMs.
+	* script/Script.java: Load slow delay from global property.
+	* tester/Robot.java: User property facilities.
+	
+2003-03-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* *.java: Clean up imports.
+
+2003-03-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* InputState.java: New. Track state of input devices.
+	
+2003-03-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (filterComponent): No need to queue
+	window disposal (Window.dispose does this already).
+	* script/Event.java (Event): Renamed from SendEvent to match
+	new auto-construct conventions.
+	* script/SendEvent.java: Obsolete.
+	
+2003-02-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Call.java (getMethod): Allow any return type.
+
+2003-01-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (ComponentTester): Modifiers
+	argument to actionClick must be a String, which then gets
+	converted internally to the proper modifier mask.
+	* tester/JListTester.java (JListTester): Ditto.
+	* tester/JTreeTester.java (actionToggleRow): Ditto.
+	* tester/JTableTester.java (actionClickCell): Ditto.
+
+2003-01-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Assert.java (getTarget): Ensure proper target is returned.
+	* script/DynamicClassLoader.java: Obsolete.  Renamed to...
+	* script/AppClassLoader.java: New.
+	* tester/TesterClassLoader.java: Obsolete.  Functionality added to
+	AppClassLoader. 
+	* script/StepRunner.java (terminate): DynamicClassLoader name
+	changed to AppClassLoader.
+	* script/Launch.java: Ditto.
+	* util/PathClassLoader.java: Simple class loader to convert a
+	String path into a set of URLs for a URL class loader.
+	* util/PreloadingClassLoader.java: Provide for loading a class
+	*before* the parent class loader gets a chance to.
+	
+2003-01-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/StepRunner.java (run): Avoid w32 drive a: bug.
+
+2003-01-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java (Platform): Move more platform-specific bug
+	detection code here.
+	* tester/Robot.java (resizeBy, moveBy): Add delay between edge/title
+	grab and move if appropriate.
+	
+2002-12-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ImageComparator.java (convertToJPEGFile): Delete temp
+	file on VM exit.
+
+2002-12-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java (hasMultiClickFrameBug): w32 still has multi-click bug.
+	* tester/JListTester.java (JListTester): Don't select if already
+	selected. 
+
+2002-12-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/JTreeTester.java (actionSelectPath): Add more Tree
+	operation support.
+	* converter/TreePathConverter.java: Convert from strings to
+	TreePath objects.
+	
+2002-12-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java: Add check for multi-click on multi-frame bug.
+	* script/Scirpt.java: Ensure temporary files are deleted on VM
+	exit. 
+	* NoExitSecurityManager.java: Add explanatory comments for why
+	terminate() is necessary.
+	
+2002-12-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Action.java: Add invalid script exception to some method
+	signatures. 
+	* script/Assert.java: Ditto.
+	* script/Call.java: Ditto.
+	* script/Launch.java: Ditto.
+	* script/SendEvent.java: Ditto.
+	* script/Step.java: Ditto.
+	* tester/ComponentTester.java (getTester): Ensuer the given class
+	is derived from java.awt.Component.
+	
+2002-12-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* util/EventExceptionHandler.java: Spit errors to console, even if
+	they come from the editor.  Only hide NPEs if they truly come from
+	a hierarchy bug error.
+	* tester/JComboBoxTester.java: Implement getContents property
+	accessor. 
+	* tester/ComponentTester.java: Asserts need not be static.
+	* script/StepRunner.java: Make run method explicitly accept only
+	Script arguments.  Note that this prevents nested scripts from
+	being forked (that was never intended to be a feature).
+	* script/ComponentReference.java: Add ctor with only the class.
+	* ComponentFinder.java: Provide method to ignore all existing
+	components. 
+	* DefaultComponentFinder.java: Ditto.
+	* script/Call.java (getTargetClass): Ditto.  Provide direct access
+	to "target class".
+	* script/Assert.java (getTargetClass): Ditto.
+	* script/Action.java (getTargetClass): Ditto.
+	* script/Launch.java (getTargetClass): Ditto.
+
+2002-12-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Assert.java (getTarget): Make sure the proper target
+	is used for assert methods.
+	* Reflector.java: Don't puke if a field name isn't found, just
+	provide a dummy.
+	* tester/ComponentTester.java: actionMultipleClick superseded by
+	additional argument to actionClick.  Punt click w/duration.
+	* tester/JComponentTester.java: Implement mousePress instead of
+	click. 
+	* tester/JListTester.java: Distinguish actionClick and
+	actionSelect.  Use value if possible when recording.
+	* tester/JTableTester.java: Distinguish actionClick and
+	actionSelect. 
+	* tester/JTreeTester.java: Ditto.
+	* tester/Robot.java: add count to click.
+	
+2002-12-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ForkedStepRunner.java (readMessage): Fix buffer offset bug.
+	* script/Script.java (load): Throw an error if an included file
+	does not exist.  Add dirty test.
+
+2002-12-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/TesterClassLoader.java (loadClass): Load any abbot
+	classes with the framework class loader.  Remove extraneous
+	complexity loading tester extensions.  Should really be named.
+	* script/Script.java: Clean up relative path/directory usage.
+	* script/DynamicClassLoader.java: When installing the class
+	loader, install a new event queue with an event exception
+	handler. 
+	* script/Launch.java: Change class loader method signature.
+	* script/Step.java: Ensure scripts always use themselves as the
+	resolver. 
+	* script/StepRunner.java: Refactor threaded launch and catch
+	errors. 
+	* tester/ArgumentParser.java: Add more descriptive exception
+	message. 
+	* util/AWT.java: Provide transient popup check.
+	
+2002-12-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java (save): Only output full contents when saving
+	to disk, otherwise just report the filename attribute.  Ensure all
+	children scripts are set relative to this one.
+	
+2002-12-01  Timothy Wall  <twall@users.sourceforge.net>
+	
+	* DefaultComponentFinder.java: Track when windows are *really* open.
+	* ComponentFinder.java: Add to IF.
+	* tester/JComponentTester.java: Make actions work on XP.  There
+	are some differences between 1.3 and 1.4 usage, make work with both.
+	* Platform.java: Don't forget to parse version.  Change manifest
+	version numbers to reflect hex scheme.
+
+2002-11-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java: Add keyboard delays for OSX.
+	* tester/JTextComponentTester.java: Was using wrong text for length.
+	
+2002-11-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Assert.java: Use more reliable method lookup.
+
+2002-11-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/JTextComponentTester.java (actionText): Explicitly invoke
+	select all.  Provide selection actions.
+	* tester/JComponentTester.java: Add support for action maps.
+	* script/Script.java: Allow temporary, throwaway scripts.
+	* tester/ArgumentParser.java: Allow null and empty string arguments.
+	
+2002-11-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java (Platform): Fix bug in XP detection method.
+	* tester/Robot.java (activate): Move mouse as well as toFront for
+	pointer-based focus.
+
+	* DefaultComponentFinder.java: Boolean expression for checking
+	window visibility was within the wrong set of parens, leaving some
+	invisible components to be found.
+	* script/ComponentReference.java: Fix potential NPE.
+	
+2002-11-21  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Call.java (invoke): Renamed from MethodInvocation.  Fix
+	bug causing the first method invocation failure to be cached
+	indefinitely. 
+	* script/Step.java (createStep): add Call generation.
+	* script/Tags.java: Add call.
+	
+2002-11-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java: Fix cacheing bug.
+	* tester/ComponentTester.java: Add explicit OSX keyboard delay.
+	* converter/FileConverter.java: Add conversion for String->File.
+	
+2002-11-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java: Simplify version comparisons.
+	* script/ScriptFilter.java: Ditto.
+	* util/AWT.java: New.  Misc AWT utilities.
+	* ExitException.java: Move out from ScriptEditor, since it needs
+	to be used by the StepRunner in setting up the test environment.
+	* NoExitSecurityManager.java: Refactor internal class
+	functionality for use in StepRunner.
+	* script/StepRunner.java: Install NoExitSecurityManager to prevent
+	code under test from exiting when not using the editor.
+	
+2002-11-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java: Add getDirectory to interface.
+	* Resolver.java: Ditto.
+	* converter/FileConverter.java: new.
+	* tester/ImageComparator.java: Export buffer save to file.
+	* tester/Robot.java: Add note about custom cursors and image
+	capture. 
+	* script/Assert.java: Ensure all boolean expressions expect "true".
+	
+2002-11-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/StepRunner.java (init): Ensure windows already existing on
+	launch don't get disposed later.
+	* script/Assert.java: Only need documentation for options specific
+	to "wait".
+	* tester/ComponentTester.java: Provide explicit image assert method.
+	* tester/ImageComparator.java: Make JPEG file conversion available
+	outside the class.
+	* tester/Robot.java: Make image capture static.
+	
+2002-11-06  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/Robot.java (capture): Provide simple component contents
+	capture. 
+	* tester/FileComparator.java: New. Compare file contents.
+	* tester/ImageComparator.java: Compare BufferedImages.
+	
+2002-11-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ComponentReference.java: Provide an easier-to-use manual
+	ctor for hand-coded tests.
+	* DefaultComponentFinder.java (isFiltered): Include checks
+	for ancestors.
+	* Platform.java: Extend java version checking.
+
+2002-10-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Platform.java: Add checks for XP.
+	* tester/Robot.java (iconify): Adjust for w32/XP.
+	(moveBy): Ditto.
+	(toString): Add mouse coords to mouse event print.
+	
+2002-10-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Step.java: Ensure a resolver is always provided.
+	* tester/ComponentTester.java: waitforidle doesn't work on OSX,
+	explicitly check for focus instead.
+	
+2002-10-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (findDescendent): Frames/Dialogs
+	will store their own titles, so don't compare against the parent's.
+
+2002-10-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (findWindowByName): Ensure all
+	frames/dialogs are searched, not just top-level ones.
+
+2002-10-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java (findClass): Define package, if
+	not already.
+
+2002-10-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/AppletSecurityManager.java: Make own class so we can
+	instantiate it easily.
+	* script/DynamicClassLoader.java: Don't scan files for java.*
+	packages. 
+	* script/ForkedStepRunner.java: Expect runner to throw.
+	* script/Launch.java: Use AppletSecurityManager, loaded by the
+	proper class loader.
+	* script/Assert.java, Comment.java, MethodInvocation.java: runStep
+	is now protected.
+	* script/Script.java: Allow StepRunner control over running
+	children.  Make sure lazy loading isn't too lazy.
+	* script/Sequence.java: Ditto.
+	* script/StepRunner.java: Delegate step iteration to sequence,
+	which does the iteration and passes control back to the runner.
+	
+2002-10-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/StepRunner.java: Check for stop after firing step start.
+	* DefaultComponentFinder.java: Change property name.
+	
+	* script/StepRunner.java: Moved event generation here.
+	* script/ForkedStepRunner.java: Moved forking functionality here from
+	ForkedScript: 
+	* script/Step.java: Make runStep protected, for use only by derived
+	classes.  capture parse errors.  no longer keep failure/error with
+	step, separating out execution instance data.  move step event
+	generation to the StepRunner.
+	* script/Assert.java, Comment.java, Launch.java, MethodInvocation.java,
+	SendEvent.java, Terminate.java: Update runStep signature.
+	* script/ForkedScript.java: Obsolete.
+	* script/Script.java, Sequence.java: No longer listen to step events.
+	* script/StepEvent.java: No longer use depth.  Add failure/error.
+	
+2002-10-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/MethodInvocation.java: Make string array argument access
+	public. 
+	* tester/Robot.java: Make focus work with multiple frames.  Use
+	toFront to effect window activation.
+	
+2002-10-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/Robot.java (bugCheck): Use BUTTON2_MASK for the bug
+	check, so that we don't wind up with a w32 popup if the event
+	misses the window.  Optionally generate KEY_TYPED events when the
+	keystroke map is unavailable.  Use robot delay when posting events
+	to the queue.  Make more Robot methods non-static.  Ensure the bug
+	check only happens once.
+	* tester/KeyStrokeMap.java: Only use the keystroke map in US/UK
+	locale. 
+	* script/ScriptFilter.java: i18n.
+	* script/DynamicClassLoader.java (isBootstrapClass): Instead of
+	specifying excluded classes, check what's in the boostrap
+	classpath, since that's what we will want to delegate.
+
+2002-10-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/SendEvent.java (runStep): Don't require a modifier for
+	mouse motion/enter/leave events.
+
+2002-10-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/TesterClassLoader.java (getClassLoaderPath): Use proper
+	method lookup.
+	* script/DynamicClassLoader.java: Set java.class.path when setting
+	context class loader.
+	* tester/Robot.java (bugCheck): Add check for w32 robot bugs
+	(ptardif@tiersolutions.com). 
+
+2002-10-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ForkedScript.java (fork): Add support for VM arguments
+	(e.g. -X, -D, etc).
+	* script/Script.java: Ditto.
+	
+2002-10-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/Robot.java (selectMenuItem): Don't apply OSX menu bar fix
+	to popups.
+
+2002-10-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Step.java: Don't save description if it's the same as the
+	default. 
+	* DefaultComponentFinder.java: Keep track of multiple AppContexts.
+	* tester/JListTester.java: Provide property-like methods to access
+	the list structure.
+
+2002-10-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Assert.java: Note method name generation is deprecated.
+	* script/Step.java: parseAttributes -> parseStepAttributes.  Make
+	usage store the exception in the step instead of throwing.
+	* script/Script.java: Make sure attributes get loaded.
+	* script/Action.java: Deprecate dropped "action" prefix.
+
+2002-10-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/*.java: More i18n (framework).
+	
+2002-10-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java (getDefaultDescription): toString shouldn't
+	provide too long a string.
+	* script/Wait.java (runStep): Obsolete.  Functionality moved into
+	assert.  Wait makes more sense as additional functionality in an
+	assert when variations of the base assert are considered.
+	* script/Assert.java: Wait functions moved here.
+	* script/Step.java: Create Assert and set its wait flag.
+	* tester/Robot.java: Provide image capture functions.
+
+2002-10-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* i18n/Resources.java: New.  Framework i18n support.
+	* tester/Robot.java: i18n.
+	
+2002-09-28  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java: Mark not loaded when file is changed.
+	Fix child loading to allow comments.
+	* script/Sequence.java: Fix child loading to allow comments.
+	* script/Step.java: Don't trim description.
+	* script/Tags.java: Add comment tag.
+	* tester/Robot.java: Print InputMethod events.
+	
+	* script/Action.java: Provide accessors for editors.
+	* script/Assert.java: Ditto.
+	* script/Launch.java: Ditto.
+	* script/MethodInvocation.java: Ditto.
+	
+2002-09-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/MethodInvocation.java: Provide getters/setters.
+	* script/Action.java, Assert.java, Launch.java: Update signatures.
+
+2002-09-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Action.java: Remove obsolete cruft.
+	* script/Terminate.java: Ditto.
+	* script/ComponentReference.java: Update to use jdom.
+	* script/InvalidScriptException.java: Ditto.
+	* script/MethodInvocation.java: Ditto.  Still needs some code cleanup.
+	* script/Parser.java: Obsolete, removed.
+	* script/Script.java: Use jdom.  Ensure proper encodings when
+	reading from/writing to file.
+	* script/ScriptFilter.java: Restrict bug workaround to platform
+	and version (OSX 1.3.1).
+	* script/SendEvent.java: No need to encode.
+	* script/Sequence.java: Update to use jdom.
+	* script/Step.java: Ditto.
+	* script/XMLifiable.java: Ditto.  Make the editable string
+	accessor explicit, instead of hacking around to get it.
+	
+2002-09-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ComponentReference.java: Make sure XML is utf-8 encoded.
+	* script/Step.java: Ditto.  Encode characters outside of
+	ASCII range. 
+	* script/Script.java: Add XML tag to start of file.
+	
+	* tester/Robot.java (toString): Provide toString for MenuComponent.
+	(selectAWTMenuItem): Add placeholder for AWT menu selection.
+	(selectMenuItem): Fix screenMenuBar on OSX.
+	* tester/ArgumentParser.java (eval): Add a wait to ensure a
+	component is available before using it as an argument.
+
+2002-09-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Condition.java: Abstract test interface.
+	* Platform.java: Add java version checking.
+	* WaitTimedOutError.java: Moved here from script package.
+	* script/*.java (Step.java): Make some methods public to
+	facilitate gui for step editing.
+	* script/Script.java: Add slow playback option.
+	* tester/ArgumentParser.java: Recognize component references.
+	* tester/ComponentTester.java: Add component showing assert.
+	* tester/Robot.java: Add genericized wait functionality.
+	
+2002-09-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ForkedScript.java: New.  Allow scripts to be run in a
+	separate VM.
+	* util/ProcessOutputHandler.java: New.  Handle stdout/stderr from a
+	launched process.
+	* Log.java: Add debug output for throwable.
+	* DynamicClassLoader.java: Use bootstrap path from system
+	properties instead of making one up.
+	* script/MethodInvocation.java: Don't fill in stack trace on
+	invocation exceptions.
+	* script/Script.java: Allow no-arg ctor for non-file-based
+	scripts.  Add fork flag.  Enable load/save with Reader/Writer.
+	* script/Step.java: Add debug output.
+	* script/StepEvent.java: Add javadoc.
+	* script/Tags.java: Add forked tag.
+	* tester/ComponentTester.java: Track testers by component class
+	name instead of class object.
+	
+2002-09-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java (DynamicClassLoader): Get a
+	canonical bootstrap path.
+
+	* tester/ComponentTester.java: Optimize method loading.
+	* script/MethodInvocation.java (invoke): Don't overwrite the stack
+	trace. 
+
+2002-09-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java (DynamicClassLoader): Add
+	unexcluded paths.
+
+	* script/*.java: Break ComponentFinder dependencies.
+	* script/ComponentReference.java: Clean up references.
+	* Resolver.java: Change ref lookup method signature.
+	* tester/Robot.java: Wait for popup is now encapsulated in
+	ComponentFinder.findActivePopup. 
+	* DefaultComponentFinder.java (DefaultComponentFinder): Provide
+	property timeout when looking for an active popup menu.
+
+2002-09-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java (DynamicClassLoader): Prevent
+	infinite classpath search recursion.
+	* tester/TesterClassLoader.java (getPathElements): Update sig.
+	* ComponentFinder.java: Break more ComponentFinder interdependencies.
+	* DefaultComponentFinder.java: Ditto.
+	* script/ComponentReference.java: Ditto.
+	* script/Script.java: Ditto.
+	* tester/Robot.java: Ditto.
+	* tester/*Tester.java: Ditto.
+	* tester/ComponentTester.java: Ditto.  Make sure getTag and
+	getTester don't show up as property methods.
+	
+2002-09-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/DialogTester.java: Move/resize by absolute, not relative.
+	* tester/FrameTester.java: Move/resize by absolute, not relative.
+	* tester/Robot.java: Add absolute move/resize.  Rename relative
+	versions. 
+	* script/*.java (Step): Remove ComponentFinder linkage for steps.
+	* Log.java: Allow logging of Throwable, not just Exception.
+	
+2002-09-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/WindowTester.java (actionResize): Add resize action.
+	* Log.java: Don't abbreviate, "abbot" is short enough.
+	* script/DynamicClassLoader.java: Refactor into TesterClassLoader.
+	(DynamicClassLoader): clean up install/uninstall.
+	* script/Terminate.java: terminate step now does nothing except
+	indicate to the Script that it should terminate; actual
+	termination code is handled by the script itself.
+	* script/Script.java: Do all termination here.
+	* tester/TesterClassLoader.java: New. Ditto.  Handle all tester-related
+	stuff. 
+	* script/Launch.java: Use TesterClassLoader.
+	* script/MethodInvocation.java: No need to cache method lookups.
+	* script/Assert.java: Obtain the method from the class in question
+	to ensure the proper one is used.
+	* script/Action.java: Update signatures.
+	
+2002-09-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java: Rework to get proper class
+	reloading behavior for the framework itself (don't use the app
+	class loader or a dynamic class loader as a parent -- use only the
+	bootstrap loader).  DCL now loads base ComponentTesters only when
+	chaining from an extension.  Extensions are the only class that
+	needs to be loaded in the class loader for the code under test
+	(aside from the code under test itself, which is taken care of by
+	the context class loader set up in Launch).
+	* script/Launch.java: Don't need to provide a parent for the
+	DynamicClassLoader.
+	* script/Sequence.java: Clarify control flow.
+	* script/Step.java: Use context class loader to resolve class.
+	* tester/ComponentTester.java: Use strings instead of packages,
+	which for some reason seem to be null on freshly-created classes
+	from the DynamicClassLoader.
+	* tester/Robot.java: Simplify simpleClassName.
+	
+	* script/Assert.java(assertEquals): Clean up code.
+	* script/Sequence.java (runStep): Ensure that a final
+	error/exception is thrown if stoponfailure/stoponerror is not set
+	and one or more failures/errors is encountered.
+	* tester/Comparator.java: New. Extract comparison functions from
+	ComponentTester and ArgumentParser.
+	* tester/ComponentTester.java: Move methods out.
+	* tester/ArgumentParser.java: Move methods out.
+	* DefaultComponentFinder.java: Propagate changes.
+	* tester/*Tester.java: Ditto.
+	
+2002-09-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (ComponentTester): Optimize method
+	loading. 
+
+2002-09-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (ComponentTester): Revise class
+	loading to load testers from the current class loader and custom
+	testers from the code under test.  getTester cacheing and tester
+	generation moved here...
+	* DefaultComponentFinder.java: ...from here.  Set flag so editor
+	under test knows when to dispose.
+	* ComponentFinder.java: Remove tester access from interface.
+	* script/SendEvent.java (resolveTester): Propagate method change.
+	* script/Step.java (resolveTester): Ditto.
+	* DefaultComponentFinder.java: 
+	* script/DynamicClassLoader.java (installContext): Fix NPE when
+	uninstalling custom class loader.  Remove abbot testers from
+	excluded list. 
+
+2002-09-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java: Provide methods for
+	install/uninstall into current context and event dispatch context.
+	* script/Launch.java: Use encapsulated class loader install.
+	* script/Terminate.java: Use encapsulated class loader uninstall.
+	* script/Script.java (terminate): Ensure custom class loader is
+	removed. 
+
+2002-09-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java (loadClass): Allow loading
+	excluded classes if the parent/bootstrap class loaders can't find
+	them.  Add more excluded classes.
+	* script/Launch.java: Set the context class loader for the event
+	dispatch thread, or threads spawned there will get the wrong class
+	loader. 
+	* script/Terminate.java: Restore the context class loader on the
+	current thread and/or the event dispatch thread.
+	
+2002-09-06  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/ComponentRecorder.java (parseMenuSelection): Fix
+	recorder on popup mask when no popup is present.
+	
+2002-09-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ArgumentParser.java: New.  Factor out eval/parse
+	functions. 
+	* tester/ComponentTester.java: Move out eval/parse functions.
+	* script/Tags.java (Tags): Re-enable launch threading.
+	* script/Launch.java: Ditto.
+	
+2002-09-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JTableRecorder.java: New recorder for JTables.
+	* tester/JListTester.java: Clean up list item selection.
+	* tester/JTableTester.java: Clean up table cell selection.
+	* tester/JTreeTester.java: New. JTree support.
+	
+2002-09-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java (Script): Don't save the filename when
+	writing the script.
+	* script/Launch.java (Launch): Extend security manager class from
+	what appletviewer expects.
+	
+2002-08-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (setFilterEnabled): Catch Sun NPE
+	bugs on window dispose.
+	* recorder/Recorder.java: Remove unused methods.
+	* tester/ComponentTester.java: Remove deprecated methods.
+	
+2002-08-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (ComponentTester): Add a duration
+	click. 
+	* tester/Robot.java (close): Add window close operation.
+
+2002-08-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java (runStep): Ensure that we use the proper
+	parent for the DynamicClassLoader (in case we're being run from
+	some environment that sets a context class loader).
+
+2002-08-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java: Condense tester initialization.
+	Move tester lookup to ComponentTester.java.
+	(DefaultComponentFinder): synchronize and use a single root
+	factory method.
+	* tester/ComponentTester.java: Remove finder/tester coupling.
+	Provide a sleep() method.  Add multiple click actions.  Add idle
+	waits to remaining actions.
+	* tester/JComboBoxTester.java: Depend on popup search instead of
+	JComboBox.isPopupShowing (which may return true before the popup
+	is actually findable).
+	* tester/*Tester.java (findComboList): Ditto.  Make all action
+	methods wait for idle after sending events.
+	* tester/Robot.java: Set OSX robot default auto delay to zero and
+	adjust event output appropriately.  Some additional bug
+	workarounds were required, but this reduces test playback time by
+	25% for the abbot unit tests and also avoids invisible buildup of
+	delays contributing to multiple click lossage.
+	(waitForIdle): Wait a bit before checking the queue to allow
+	just-generated events to post.
+	Set Linux default auto delay to zero; only frameResizeDelay needed
+	adjusting.   This cuts test playback time by 66%.
+	(Robot): Reduce w32 robot delay to zero, reducing playback time by
+	about 50%.
+
+2002-08-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/Robot.java: Add invokeAndWait method.
+	(resize): Fix linux/enlightenment frame move/resize bugs.
+	* tester/KeyStrokeMap.java: Add control keys, since these generate
+	KEY_TYPED events.
+	* tester/ComponentTester.java: Rename action methods to follow
+	established patterns.
+	* recorder/ComponentRecorder.java: Don't record Activate events.
+	* script/DynamicClassLoader.java (DynamicClassLoader): Use either
+	":" or ";" as a path separator -- don't link it to the platform. 
+	(DynamicClassLoader): Only add bootstrap path into initial path.
+
+2002-08-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Log.java (abbreviate): Revise log output format so that the
+	timestamp doesn't draw so much attention.
+	* tester/Robot.java: Sleep while waiting.  Use autoDelay as sleep
+	interval. 
+	* script/ComponentReference.java: Don't Log.warn on error, since
+	the error gets handled on its own.
+	* BugReport.java: Add ctor that includes a Throwable.
+	* recorder/ComponentRecorder.java (parse): Ensure failed step
+	creation doesn't propagate.
+	(parseClick): Don't wait for MOUSE_CLICKED events, since they are
+	not consistent across platforms and there's no spec to say when
+	they appear.  Ignore them entirely.
+
+2002-08-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* BugReport.java (BugReport): New.  Provide bug reporting
+	information. 
+	* recorder/EventRecorder.java (EventRecorder): Abstract recording
+	event mask for use in tester.
+	* tester/Robot.java: Provide menu shortcut mask/modifier string.
+	Add extra motion hack for moving/resizing frames on X11.  Reduce
+	robot interval to 50ms from 100ms.  The increased speed shows up
+	most w/key input, but shouldn't affect any existing tests (only
+	tested on OSX so far, though).  Provide access to robot delay from
+	a property.  Don't add one when determining component center to
+	ensure that extreme bounds (i.e. height/width of one) doesn't
+	generate out of bounds coordinates.  Added isModifier to test
+	keycode values, and a conversion from event mask to keycode.
+	
+2002-08-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/Robot.java (move): Make sure frame moves work on w32.
+	* recorder/EventRecorder.java (recorderClasses): Statically
+	initialize the base set of recorders.
+
+2002-08-22  Kyle Girard  <coach@klocwork.com>
+
+	* DefaultComponentFinder.java: Added all of the default testers 
+	to the testers hashmap upon creation to avoid having to dynamically
+	load them .... which according to JProfile is very slow
+
+2002-08-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java: Clarify class reload/delegation language.
+	* script/DynamicClassLoader.java: Ditto.
+	(scanPath): Don't use the default classpath if a classpath was
+	provided. 
+	(scanPath): Add jarfile class paths to scanned path.
+
+	* Platform.java: Convenience functions for checking the platform.
+	* recorder/ComponentRecorder.java: Use Platform functions.
+	* recorder/EventRecorder.java: Ditto.
+	* tester/Robot.java (getIconifyLocation): Add move/resize/iconfiy
+	support.  Use Platform functions.  Make robot functions public
+	(though not static, since some Testers need to override them.
+	* tester/FrameTester.java (actionMove/Resize): Add new actions.
+	* tester/DialogTester.java (actionMove/Resize): Ditto.
+	* tester/WindowTester.java: Windows support accessibility, so use
+	that to derive a tag if possible.
+	* tester/ComponentTester.java: Provide generic AccessibleContext
+	support in the base class, since certain AWT components also
+	support accessibility.
+	* tester/JComponentTester.java: Moved accessible functionality to
+	ComponentTester. 
+	
+2002-08-20  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/DynamicClassLoader.java (findResources): Fix Jar URL path
+	generation. 
+
+	* tester/Robot.java (getModifiers): Add mask and string for
+	tertiary button.  Sleep instead of delay().  Save/restore
+	POPUP/TERTIARY instead of explicit button 2/3, which makes things
+	more cross-platform (although I only just added saving additional
+	button modifiers in the recorder).
+	* recorder/ComponentRecorder.java (createClick): Don't die if
+	there's no popup.  Save modifiers with click.
+	* script/Step.java (Step): Ampersand needs encoding.
+	(getAttributes): Use a hash map so that all attributes can be
+	processed at once (and encoded, if necessary).
+	* script/Wait.java (getAttributes): Update method signature.
+	* script/MethodInvocation.java (getAttributes): Ditto.
+	* script/Action.java (getAttributes): Ditto.
+	* script/Assert.java (getAttributes): Ditto.
+	* script/Script.java (getAttributes): Ditto.
+	* script/SendEvent.java (parseEvent): Ditto.
+
+	* script/ComponentReference.java: Encode IDs, which are often
+	derived from tags.
+	* script/DynamicClassLoader.java (DynamicClassLoader): Renamed
+	from LaunchedClassLoader.  Cleaned up findClass/loadClass so that
+	the order of operations is clearer.
+	* Log.java: Update to latest rev; lots of cleanups and optimizations.
+	* tester/Robot.java: New. Extract event-generation stuff from
+	ComponentTester. 
+	* Reflector.java: New. Extract reflection stuff from ComponentTester.
+	
+2002-08-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/JTabbedPaneTester.java: New JTabbedPane support.
+	* recorder/JTabbedPaneRecorder.java: Ditto.
+	* recorder/JComponentRecorder.java: New, mostly for a consistent
+	hierarchy. 
+	* script/LaunchedClassLoader.java (LaunchedClassLoader): Implement
+	findResource so that we can pick up icons and such from the custom
+	class path.
+
+2002-08-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java: Rename isOnPopup method (not
+	supposed to use the bean signature except on assertion methods).
+	* recorder/ComponentRecorder.java (createKey): Include modifiers
+	in keystroke.  Normally, we don't expect to get key_typed for
+	anything other than shift, but for now this catches those that
+	would otherwise be missed.
+
+2002-08-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (ComponentTester): Add an explicit
+	frame wait method, since this fairly common in hand-coded tests.
+	* script/Launch.java: Default to non-reloading class loader.
+	Remove no longer used timeout setting.
+	* script/LaunchedClassLoader.java: Add reload option to ctor.
+	* script/Tags.java: Add reload tag.
+	
+2002-08-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JListRecorder.java (createClick): Ensure component
+	class is saved in recorded action.
+	* recorder/JComboBoxRecorder.java (createClick): Ditto.
+	* recorder/AbstractButtonRecorder.java (createClick): Ditto.
+
+2002-08-06  Timothy Wall  <twall@users.sourceforge.net>
+
+	* recorder/JComboBoxRecorder.java (JComboBoxRecorder): Implement
+	recording for a combo box.
+	* recorder/ComponentRecorder.java: Factor event parsing into
+	smaller pieces.
+	Implement isFinished() properly.
+	* recorder/EventRecorder.java: Account for JCombo box composition
+	on OS X.
+	* recorder/SemanticRecorder.java: Make init function indicate the
+	required semantic event recording type.  Make isFinished abstract.
+	* script/ComponentReference.java: Move isOnPopup from here...
+	* tester/ComponentTester.java: ...to here and make it public.
+	
+2002-08-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (toString): Abstract generation of
+	a platform-independent class.
+	* script/ComponentReference.java: Ditto.
+	
+2002-08-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Resolver.java: Rename getComponentReference to resolveID, which
+	is more descriptive.
+	* script/LaunchedClassLoader.java: Exclude abbot (except for
+	tester extensions) and junit packages from reload.  Get rid of the
+	dummy class loader.
+	* script/Launch.java: Set the context class loader for the launch
+	thread. 
+	* script/Action.java: Don't resolve class immediately.  Defer
+	until invocation.  This allows us to store steps that are
+	(temporarily) not resolved.  Store the class name instead of the
+	actual class.
+	* script/Assert.java: Ditto.
+	* script/ComponentReference.java: Store the class name, not the
+	actual class.
+	* script/Parser.java: New.  Use a single DOMParser.
+	* script/Script.java (isScript): Use an array comparison instead
+	of creating Strings on each file, which is slow.  Track matched
+	components for quicker lookup of existing references.
+	* (save): Don't write to file until the entire 	script has been
+	converted to XML.  This avoids truncating the file on
+	xml-generation errors. 
+	* recorder/EventRecorder.java (coalesceKeyStrokes): Capture
+	numeric keypad keycodes.
+	* DefaultComponentFinder.java (componentsMatch): Distinguish
+	between exact, strong, and weak matches.  Make sure all matching
+	implementation details are internal to the class.  Optimize open
+	window lookup (Arrays.asList is very slow).
+	* ComponentFinder.java: Modify match interface.  Don't make public
+	the internals of how a match is made.
+	* tester/ComponentTester.java (deriveTag): Don't ever use empty
+	strings for tags.
+	(deriveTag): Attempt to generate a tag based on an ancestor if no
+	other exists.
+	* script/Step.java: Provide class and tester resolution functions,
+	to ensure the proper class loader is used.
+	* tester/ComponentTester.java: Don't use default tag derivation
+	for AWT TextComponents either.
+	(getEventID): Optimize event ID toString translation (avoids field
+	name lookup).
+	(toString(Component)): Provide a default name for the Swing dummy
+	frame. 
+	(getFieldName): Optimize for speed.
+	* tester/DialogTester.java: Don't return null or empty string for
+	tag (only ComponentTester.deriveTag should ever return null).
+	* tester/FrameTester.java: Ditto.
+	* tester/JComponentTester.java: Ditto.
+	* tester/JLabelTester.java: Ditto.
+	* tester/JRootPaneTester.java: Ditto.
+	* tester/JComboBoxTester.java: Ditto.  Remove deprecated methods.
+	* tester/JListTester.java: Ditto.
+	
+2002-07-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java: Update comments re: class loading.
+	* script/LaunchedClassLoader.java: Defer component loading to the
+	system loader.
+	
+2002-07-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (DefaultComponentFinder): Clean up
+	class lookup, looking for testers in abbot.tester and
+	abbot.tester.extensions. 
+
+2002-07-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (deriveTag): Don't use text as tag
+	for JTextComponents.
+
+2002-07-23  Kyle Girard  <kgirard@klocwork.com>
+
+	* DefaultComponentFinder.java: Changed the componentsMatch function
+	to use a weight system to locate components
+	* ComponentFinder.java: Added a getComponentMatchWeight function
+	* script/ComponentReference.java: ComponentsReferences now use many 
+	tags to find a match
+	* tester/AbstractButtonTester.java: added a check for null when getting
+	the text from a button
+
+2002-07-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (isTertiaryButton): Fix tertiary
+	button, which is *not* the popup button.
+	* ComponentFinder.java: Update javadoc.
+	* DefaultComponentFinder.java (findWindowByName/Title): Only return
+	windows by name/title if they are showing.
+
+2002-07-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java: Ensure custom classpath is properly captured
+	and set up in class loader.  Don't bother loading the class until
+	time to launch (lazy load).
+	* script/LaunchedClassLoader.java: Call it JRE classpath instead
+	of System classpath.  Add some debug output.
+	
+2002-07-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java (resolveMethod): Use class name string
+	instead of trying to get it from the class itself, which may not
+	yet be loaded.
+
+2002-07-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java (runStep): Install a default security manager
+	if there is none, but only when running sun.applet.AppletViewer.
+	* script/LaunchedClassLoader: Append default VM classpath to
+	specified classpath.  No classpath is equivalent to
+	java.class.path plus the VM classpath.
+	* tester/ComponentTester.java: Provide tertiary mouse button test.
+	
+2002-07-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/SendEvent.java (SendEvent): encode/decode keychars.
+
+2002-07-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/LaunchedClassLoader.java (getDefaultClasspath): Add
+	rt.jar to default classpath, so we can pick up
+	sun.applet.AppletViewer. 
+	(defaultExclusions): Exclude javax.* from reloading.
+
+2002-07-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java (Launch): Add classpath setting, so that the
+	class path of the editor doesn't have to include the application
+	under test.  Reload class under test on every launch.
+	* script/Tags.java: Add classpath.
+	* DefaultComponentFinder.java (disposeWindows): discard/filter the
+	component prior to disposing it.  This helps the script editor
+	frame to determine who's trying to dispose of it.
+
+2002-07-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/JComboBoxTester.java: Note deprecated methods.
+	* tester/JListTester.java: Note deprecated methods.
+	* tester/ComponentTester.java (stripHTML): Provide a method to
+	remove all HTML tags from a string.
+	* tester/AbstractButtonTester.java (deriveTag): Strip HTML from
+	tag if present.
+	* tester/JLabelTester.java (deriveTag): Ditto.
+	* script/ComponentReference.java (toXML): Encode/decode tag values
+	that might need it.
+	* script/Script.java (Script): Encode/decode XML as needed.
+	* script/Step.java: Added XML encoding/decoding functions, so that
+	attributes which might otherwise botch XML can be saved and
+	restored properly. 
+	(decode): Explicitly indicate which characters need encoding.
+
+	* script/Action.java: Ditto.
+	* script/Wait.java: Ditto.
+	* script/Assert.java: Ditto.
+	* script/Launch.java: Ditto.
+	* script/MethodInvocation: Ditto.
+	
+2002-07-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Script.java (getUniqueID): Don't ever use an empty string
+	for the ID.
+	* tester/*Tester.java: Provide no-arg constructors.
+	* tester/ComponentTester.java (toString): Use factory method to
+	obtain a ComponentFinder.
+	* DefaultComponentFinder.java (getFinder): Provide factory methods
+	so that everyone (usually) uses the same ComponentFinder.
+
+2002-07-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/KeyStrokeMap.java: New.  Refactor string to key stroke
+	mapping functionality into its own class.
+	* tester/ComponentTester.java: Moved keystroke mapping out.
+
+2002-07-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (generateKeyStrokeMappings): Add
+	mapping for ESC.
+
+2002-06-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentFinder.java: Clarify some method names.
+	* DefaultComponentFinder.java: Ditto.
+	* script/ComponentReference.java: Use new finder method names.
+	* tester/ComponentTester.java: Elaborate component toString method.
+	* tester/FrameTester.java: Add iconify/deiconify actions.
+	* tester/WindowTester.java: Iconify/deiconify are frame actions.
+	While a window can also be iconified, we don't currently have any
+	way of doing so within java.
+	
+2002-06-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (toString): Remove redundant class
+	information. 
+	(ComponentTester): Note that popups on win32 are triggerd on mouse
+	release, not mouse press.
+
+2002-06-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (titlesMatch): Only do a regexp match
+	when the regexp is explicit (bounded by /regexp/).
+	(filterComponent): Don't filter swing's invisible dialog/window
+	parent. 
+	(titlesMatch): Use stringsMatch from ComponentTester.
+	* script/Launch.java: Show more meaningful class not found
+	exception.  NOTE: this needs a better UI.
+	* tester/ComponentTester.java: Provide a better toString for
+	components.   Make regexp matching be explicit.
+	(stringsMatch): Fix regexp match to strip delimiters.
+
+2002-06-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (findDescendents): Optimize
+	component lookup; jedit searches don't take forever any more.
+	Use a method of examining a protected class that doesn't make the
+	compiler complain.
+	
+2002-06-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java: Remove threading.
+	* script/MethodInvocation.java: Ditto.
+	* script/Assert.java: Fix javadoc.
+	* script/Script.java (run): Disallow running of scripts from the
+	event dispatch thread.
+	* DefaultComponentFinder.java (findDescendent): Optimize search to
+	avoid descending into a hierarchy if the window titles don't match.
+	Avoid comparing against non-showing components.
+	(getWindows): Auto-filter Popup containers.
+	Refactor duplicate code for descendent lookup.
+	
+2002-06-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/SendEvent.java (SendEvent): Capture component for key
+	press/release events.
+
+2002-06-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java: Show key typed string when printing
+	KEY_TYPED events.
+
+2002-06-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ComponentReference.java: Document internal fields.
+	* script/MethodInvocation.java: Export actual method name.
+	
+2002-06-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ComponentReference.java (getInvokerReference): Lookup
+	invoker reference, if any.
+	* tester/ComponentTester.java: Print null components.
+	* DefaultComponentFinder.java (componentsMatch): Fix popup menu
+	matching, particularly for dynamically-generated ones.
+	
+2002-06-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (mouseMove): Add debug output for
+	OSX menu lookups.  Add click with a depress delay.
+	* DefaultComponentFinder.java (componentsMatch): Allow matches on
+	non-showing components (i.e. menus, duh!).
+
+2002-06-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Log.java (assertTrue): Change assert->asserts for 1.4 compatibility.
+
+2002-06-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* build.xml: Fix javadoc target.
+	* NoSuchReferenceException.java: New.  More precise than
+	ComponentNotFoundException. 
+	* Resolver.java: Use new exception.
+	* script/Script.java: Ditto.
+	* script/ComponentReference.java (ComponentReference): Add
+	comments for more extensive attribute checking.
+	* DefaultComponentFinder.java: Throw
+	MultipleComponentsFoundException as well as ComponentNotFound, so
+	that we are aware of multiple matches.
+	* ComponentFinder.java: New signature on findComponent includes
+	MultipleComponentsFoundException. 
+	* script/Step.java: Ditto.
+	* tester/ComponentTester.java (showPopupMenu): Use new exceptions
+	instead of generic RuntimeException.
+	* tester/ComponentMissingException.java: New.  Support failed
+	actions. 
+	* tester/ComponentNotShowingException.java: New.  Support failed
+	actions. 
+	* tester/ActionFailedException.java: New class to represent
+	failure to invoke a component action.
+	* script/Tags.java: Add index tag.
+	* tester/JComponentTester.java: Always scroll before clicking.
+	* tester/JListTester.java: Add "property" for contents of entire
+	list. 
+	* script/MethodInvocation.java: Change "launch" to "invoke".
+	* script/Action.java: Ditto.
+	* tester/JComboBoxTester.java: Change action names to distinguish
+	them from Component methods.  "SetSelectedX" should be "SelectX",
+	to more closely represent a user action versus a programmatic
+	task. 
+	* tester/JListTester.java: Ditto.
+	* tester/JTableTester.java: Add scroll to make cell visible, since
+	actionSelectCell only ensures that the cell can be clicked in, not
+	that it's entirely visible.
+	
+2002-06-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java (getTester): Use simpleClassName
+	from ComponentTester.
+	* script/Step.java (simpleClassName): Ditto.
+
+	* tester/ComponentTester.java (ComponentTester): w32 uses
+	BUTTON3_MASK for popups, not BUTTON2_MASK.  Duh.
+
+2002-06-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ComponentBrowser.java: Add a property filter to make the
+	property list easier to scan (javajeffg).
+	* editor/ComponentPropertyModel.java: Add a default set of
+	preferred properties to display when filtering properties (javajeffg).
+	* editor/ScriptEditor.java: Move Tester action documentation
+	strings here from ComponentTester.java; built-in support should be
+	added here, while add-in testers should add doc string properties
+	in their static initializers.
+	* tester/ComponentTester.java: Moved doc string properties to the
+	editor, where they more appropriately belong.
+	* tester/JComboBoxTester.java: Ditto.
+	* tester/JComponentTester.java: Ditto.
+	* tester/JListTester.java: Ditto.
+	
+2002-05-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/JListTester.java (actionSetSelectedIndex): Add required
+	waitForIdle between scroll and click.
+
+2002-05-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (ComponentTester): Add invokeLater
+	function for performing operations on GUI components.  The
+	operation is abstracted to provide for implementation changes.
+	(foucs): Use invokeLater.
+	* tester/AbstractButtonTester.java: Use invokeLater.
+	* tester/JComponentTester.java: Add scroll function (kgirard).
+	* tester/JListTester.java (actionSetSelectedIndex): Use new scroll
+	feature instead of key events (kgirard).
+
+2002-05-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/ScriptFilter.java (accept): Show directories with script
+	file chooser (Patch from kgirard).
+
+2002-05-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ComponentRecorder.java (createStep): Specify component
+	class for Activate action.
+	(parse): Don't use WINDOW_CLOSED as a close event (it's not, since
+	you can get one CLOSE per dispose call).  Use OPEN, since we might
+	get an OPEN without a hierarchy event.
+	(isShow/Hide): Make sure event source is a window.
+
+	* editor/EventRecorder.java: Fix bug which would lose semantic
+	events at the tail of a semantic recorder that didn't consume
+	them. 
+	* script/Action.java (launch): Read from property whether to auto
+	wait for idle.
+	* script/Sequence.java (runStep): Make sure sequence doesn't stop
+	on errors/failures if appropriate.
+	* editor/Recorder.java (enableHierarchyEvents): Remove hierarchy
+	listeners when window is disposed.  This avoids a swing NPE bug.
+	Test against class name, since some compilers don't allow 'X
+	instanceof <protected class/interface>'.
+	* tester/ComponentTester.java: Clean up menu selection.  Show
+	showing state when printing event.
+	
+2002-05-28  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/WindowTester.java: Implement window ACTIVATE.
+	* editor/AbstractButtonRecorder.java: New.  Record a basic click
+	on a button.
+	* editor/Recorder.java: Provide a means to enable HierarchyEvents
+	on every window.
+	* editor/EventRecorder.java (createStep): Remove SHIFT+ESC event
+	from stream, since we don't ever want it recorded.  Remove key
+	modifiers on OSX which are used to simulate buttons.
+	Use an explicit event mask instead of -1.
+	* editor/ComponentRecorder.java (createStep): Added drag/drop
+	recording.  Note that these are two separate steps.
+	(ComponentRecorder): Fix window event recording to work on pointer
+	focus systems.  Clean up to use HierarchyEvent, which, while it
+	takes a hack to activate it, is more reliable than any other event.
+	(parse): Fix show/hide/activate recording on w32 (still doesn't
+	work on my machine, but I think my setup is screwed b/c I can't
+	get popup menus to show).
+	* editor/ScriptEditor.java: Warn if recording and the GUI has no
+	windows.  Log all events using the ComponentTester event stringifier.
+	(startListening): Use an explicit mask instead of -1.  Enable
+	hierarchy events when recording.
+	* editor/SemanticRecorder.java: Record at maximum one event/step.
+	Synchronize when getting a step, since it might trigger step
+	creation. 
+	* script/Action.java: Enable waitForIdle, now that it actually
+	works as advertised.
+	* script/SendEvent.java: Switch back to only handling key/mouse
+	events. 
+	* tester/ComponentTester.java: Add docs for drag/drop.  Split
+	drag/drop into two distinct actions.  Implement a *true*
+	waitForIdle.  Use better event diagnostic printing.  Print
+	hierarchy events.
+	* tester/WindowTester.java: Use actionFocus to activate a window.
+	
+2002-05-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* tester/ComponentTester.java (waitForIdle): Make it *really* wait
+	for idle.  The Robot method is insufficient.
+
+2002-05-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ComponentRecorder.java (parse): Capture different window
+	show/hide variations, since OPENED/CLOSED are not always sent.
+
+2002-05-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Package moved to abbot.  JUnit-specific stuff is now in
+	junit.extensions.abbot. 
+
+2002-04-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/Launch.java (Launch): Add threading on by default.
+	* script/MethodInvocation.java: Add threading option.
+
+2002-04-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ScriptEditor.java (addStep): Add cursor for script editor
+	table. 
+
+2002-04-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* script/MethodInvocation.java: Use array of strings rather than
+	vector to benefit from type checking.
+	* script/Script.java: Make scripts more self-sufficient.
+	* AWTTestSuite.java (AWTTestSuite): Ditto.
+	* AWTTestCase.java: Ditto.
+	* editor/ScriptEditor.java (setTestSuite): Edit scripts directly
+	instead of futzing around with JUnit tests.
+	
+2002-04-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* AWTTestCase.java (runBare): Keep finders in proper order.
+	* DefaultComponentFinder.java: Don't keep static global context;
+	rely on ctor passed parent instead.
+	* editor/ComponentNode.java: Load on demand.	
+	
+2002-04-02  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ScriptEditor.java (renameScript): Catch exit from aut.
+	* script/Sequence.java (Sequence): Need a better equals/hashcode.
+	* script/Script.java (Script): Provide better equals/hashcode.
+
+2002-03-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* DefaultComponentFinder.java: Use isShowing, not isVisible.
+	* editor/ButtonClickRecorder.java: This is a click in a component,
+	not always a GUI button.
+	* editor/ScriptEditor.java: Fix a few bugs.  Bring frame to front
+	again after a recording.
+	* script/Script.java: Load prior to firing START action.
+	* tester/ComponentTester.java: Provide access to robot delay.
+	
+2002-03-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/ScriptEditor.java: Remove AWT prefix.
+	* editor/ScriptFilter.java: Ditto.
+	* script/Script.java: Ditto.
+	* AWTTestCase.java: Use explicit
+	launch/terminate methods instead of overloading setup/teardown.
+	* AWTTestSuite.java: Ditto.
+	* ComponentFinder.java: Add method to get the
+	tested class for a tester.  Temporary, should probably be returned
+	by the tester itself instead.
+	* ComponentManager.java: Interface only.
+	Implementation moved to DefaultComponentManager.
+	* DefaultComponentManager.java: Default impl
+	for ComponentManager.
+	* DefaultComponentFinder.java: getTag renamed
+	to deriveTag.
+	* FilteredComponentManager.java: Derive from
+	default.
+	* editor/*Recorder.java: Use deriveTag.
+	* script/Action.java: Support class attribute.
+	* script/Assert.java: Fill out usage.
+	* script/ComponentReference.java: Use deriveTag.
+	* script/ScriptStep.java: Always assume stop on failure.
+	* script/Step.java: Ditto.
+	* tester/*Test.java: Use deriveTag.
+	* tester/ComponentTester.java: Javadoc.  Provide property checks. 
+	
+2002-03-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* editor/AWTScriptEditor.java: Fix icon loading.
+	* editor/icons: Icons for editor.
+

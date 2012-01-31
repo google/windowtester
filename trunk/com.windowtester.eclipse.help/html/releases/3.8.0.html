@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>What&rsquo;s New</title>
+<link rel="stylesheet" type="text/css" href=
+"../../stylesheets/book.css" />
+</head>
+<body>
+<h1>What's New in 3.8.0</h1>
+<p>This document contains descriptions of some of the more
+interesting or significant changes in the <strong>WindowTester Pro
+v3.8.0</strong> release.</p>
+<ol style="list-style: none;">
+<li><a href="#Runtime">Runtime</a></li>
+<li><a href="#Recording">Recording</a></li>
+<li><a href="#CodeGeneration">Code Generation</a></li>
+<li><a href="#StabilityMaintenance">Stability/Maintenance</a></li>
+</ol>
+<hr />
+<h2 id="Runtime">Runtime</h2>
+<p>The WindowTester Pro core runtime has evolved to support a new
+notion of condition handling.</p>
+<ul>
+<li><i>Ensuring Conditions</i> - UI contexts now support the
+<code>ensureThat(..)</code> protocol. Ensuring conditions is a
+useful ingredient in writing communicative and robust tests. See
+our expanded <a href="../reference/assertions.html">assertions
+documentation</a> for more details.</li>
+</ul>
+<h2 id="Recording">Recording</h2>
+<p>In concert with the runtime, the recorder has been improved to
+leverage conditions and handlers.</p>
+<ul>
+<li><i>Welcome Handling in RCP Applications</i> - The RCP recorder
+now recognizes opportunities to improve recorded interactions by
+inserting a &ldquo;Welcome&rdquo; page handler into the recorded
+event stream.</li>
+</ul>
+<h2 id="CodeGeneration">Code Generation</h2>
+<p>Code generation has been enhanced to take advantage of the new
+recording and runtime capabilities.</p>
+<ul>
+<li><i>SetUp Handling</i> - The code generator builds an
+appropriate <code>setUp()</code> method that establishes test
+preconditions as determined by the recorder.</li>
+</ul>
+<p><img border="0" src="../ui/setup-ss.png" /></p>
+<ul>
+<li><i>Custom Base Test Selection</i> - At test creation time,
+users can now select user-defined custom base tests for generated
+test classes to extend.</li>
+</ul>
+<p><img border="0" src="../ui/superclass-ss.png" /></p>
+<h2 id="StabilityMaintenance">Stability/Maintenance</h2>
+<p>This release also contains a number of fixes to improve the
+overall stability of the product.</p>
+<ul>
+<li><i>Linux Stability Issues</i> - A number of Linux stability
+issues have been addressed.</li>
+</ul>
+<ul>
+<li><i>Embedded Swing Components</i> - The Swing widget finder has
+been improved to handle AWT/Swing components that are embedded in
+SWT Controls.</li>
+</ul>
+<ul>
+<li><i>Swing UI Context mouseMove Support</i> - The Swing
+implementation of <code>IUIContext.mouseMove(..)</code> has been
+fixed.</li>
+</ul>
+<ul>
+<li><i>Menu Tracking on Mac OS X</i> - A bug in our menu tracking
+strategy was fixed to better handle cascading menus on OS X.</li>
+</ul>
+<hr />
+<p>Notes for the <strong>3.7.0 release</strong> can be found
+<a href="3.7.0.html">here</a>.</p>
+</body>
+</html>

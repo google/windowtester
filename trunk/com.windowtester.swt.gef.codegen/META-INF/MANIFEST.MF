@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.windowtester.swt.gef.codegen;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-Vendor: %providerName
+Require-Bundle: com.windowtester.runtime,
+ com.windowtester.swt.runtime,
+ com.windowtester.swt.runtime.gef,
+ com.windowtester.swt.codegen,
+ com.windowtester.swt.recorder
+Export-Package: com.windowtester.swt.gef.codegen
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin

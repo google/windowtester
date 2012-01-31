@@ -1,0 +1,51 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 3.7.0</h1>
+
+ 
+This document contains descriptions of some of the more interesting or significant changes in the *WindowTester Pro v3.7.0* release.
+
+{toc}
+
+<hr/>
+
+h2. Stability/Maintenance
+
+This release contains a number of fixes to improve the overall stability of the product.
+
+* __Compound Keystroke Dispatch Fixes__ - Certain compound keystrokes (e.g., @WT.SHIFT|WT.ARROW_RIGHT@) were not being posted properly on some machines.  A fix has been introduced to make this dispatch more reliable.
+
+* __XY calculation in figure dragTo operations__ - The XY offset of figure drag operations was wrongly being calculated from the target figure's center. This has now been fixed to be based on the (expected) top left corner. 
+
+* __TreeCellLocator fixes__ - A bug preventing qualified locators (e.g., cells in views) from being properly constructed has been fixed. 
+
+h2. Documentation 
+
+A number of improvements have been made to the product documentation.
+
+* A new "programmer's guide":programmer/index.html has been added to the product documentation.
+
+* __API Quick Reference Card__ - A new "API Quick Reference Card":programmer/core/wtQuickRef.pdf has been added to the documentation.
+
+* __Javaodc fixes__ - Due to malformed html in a package description, the API Summary doc was not being properly built; this has now been fixed. 
+
+
+h2. Runtime
+
+WindowTester Pro core runtime improvements include the following.
+
+* __ComboLocator__ - A new @ComboLocator@ has been introduced that can be used to conveniently assert @Combo@ text values. 
+
+* __Legacy API Migration__  - Legacy API consolidation and migration has begun.  See this "document":reference/Legacy_API_Phase_Out.html for more details.
+
+* __Bundle Infrastructure updates__ - In order to take advantage of OSGi bundle management best practice, we have begun the process of creating (and migrating to) bundle manifests for all the WindowTester Pro bundles. Note: API clients should not be affected by this move. Please let us know if you are! 
+
+* __TreeItemLocator improvements__ - @TreeItemLocator@ implements @HasText@ and provides a @hasText(..)@ condition factory method.
+ 
+
+<hr/>
+
+Notes for the *3.6.0 release* can be found "here":3.6.0.html.
+
+
