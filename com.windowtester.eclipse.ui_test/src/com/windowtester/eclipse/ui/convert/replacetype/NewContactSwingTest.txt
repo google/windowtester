@@ -1,0 +1,52 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import java.awt.event.KeyEvent;
+
+import junit.extensions.ActivePDETestSuite;
+import junit.extensions.ActiveWorkbenchTestSuite;
+import junit.extensions.AssertUtils;
+import junit.extensions.EclipseLogUtil;
+import junit.extensions.ForkedPDETestCase;
+import junit.extensions.ForkedPDETestCase2;
+import junit.extensions.PDETestFixture;
+import junit.extensions.UIAssertionHelper;
+import com.windowtester.runtime.swt.UITestCaseSWT;
+import junit.extensions.UITestCaseCommon;
+import junit.extensions.UITestCaseSwing;
+
+import com.windowtester.internal.swing.UIContextSwing;
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.swing.condition.*;
+import com.windowtester.runtime.swing.locator.JButtonLocator;
+import com.windowtester.runtime.swing.locator.LabeledTextLocator;
+import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.TableItemLocator;
+import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+
+public class NewContactSwingTest extends com.windowtester.runtime.swt.UITestCaseSWT {
+	
+	/**
+	 * Main test method.
+	 */
+	public void testNewContactSwingDialog() throws Exception {
+		IUIContext ui = getUI();
+		ui.click(new MenuItemLocator("File/New Contact...(Swing Dialog)"));
+		
+		IUIContext uiSwing = (IUIContext) ui.getAdapter(UIContextSwing.class);
+		uiSwing.wait(new WindowShowingCondition("New Contact"));
+		uiSwing.enterText("John");
+		uiSwing.keyClick(KeyEvent.VK_TAB);
+		uiSwing.enterText("Doe");
+		uiSwing.click(new LabeledTextLocator("Street: "));
+		uiSwing.enterText("789 Washington Ave");
+		uiSwing.click(new LabeledTextLocator("City: "));
+		uiSwing.enterText("New York");
+		uiSwing.click(new JButtonLocator("Finish"));
+		uiSwing.wait(new WindowDisposedCondition("New Contact"));
+		ui.pause(100);
+		
+		ui.click(2, new TableItemLocator("Doe,John", new ViewLocator(
+		"com.instantiations.example.contactmanager.rcp.view")));
+	}
+
+}

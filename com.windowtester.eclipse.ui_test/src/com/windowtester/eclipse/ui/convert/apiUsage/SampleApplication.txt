@@ -1,0 +1,10 @@
+
+WindowTester API Usage Report
+==========================================================
+    0 projects scanned
+    0 compilation units scanned
+    0 compilation units scanned that referenced WindowTester types
+
+API Usage:
+
+Plugins:

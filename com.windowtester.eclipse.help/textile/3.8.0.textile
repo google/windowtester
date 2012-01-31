@@ -1,0 +1,55 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 3.8.0</h1>
+
+ 
+This document contains descriptions of some of the more interesting or significant changes in the *WindowTester Pro v3.8.0* release.
+
+{toc}
+
+<hr/>
+
+
+h2. Runtime
+
+The WindowTester Pro core runtime has evolved to support a new notion of condition handling.
+
+* __Ensuring Conditions__ - UI contexts now support the @ensureThat(..)@ protocol.  Ensuring conditions is a useful ingredient in writing communicative and robust tests.  See our expanded "assertions documentation":../reference/assertions.html for more details. 
+
+h2. Recording
+
+In concert with the runtime, the recorder has been improved to leverage conditions and handlers.
+
+* __Welcome Handling in RCP Applications__ - The RCP recorder now recognizes opportunities to improve recorded interactions by inserting a "Welcome" page handler into the recorded event stream.
+
+h2. Code Generation
+
+Code generation has been enhanced to take advantage of the new recording and runtime capabilities.
+
+* __SetUp Handling__ - The code generator builds an appropriate @setUp()@ method that establishes test preconditions as determined by the recorder.
+
+!../ui/setup-ss.png!
+
+* __Custom Base Test Selection__ - At test creation time, users can now select user-defined custom base tests for generated test classes to extend.
+
+!../ui/superclass-ss.png!
+
+h2. Stability/Maintenance
+
+This release also contains a number of fixes to improve the overall stability of the product.
+
+* __Linux Stability Issues__ - A number of Linux stability issues have been addressed.
+
+* __Embedded Swing Components__ - The Swing widget finder has been improved to handle AWT/Swing components that are embedded in SWT Controls.
+
+* __Swing UI Context mouseMove Support__ - The Swing implementation of @IUIContext.mouseMove(..)@ has been fixed.
+
+* __Menu Tracking on Mac OS X__ - A bug in our menu tracking strategy was fixed to better handle cascading menus on OS X.
+
+
+<hr/>
+
+Notes for the *3.7.0 release* can be found "here":3.7.0.html.
+
+

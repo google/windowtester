@@ -1,0 +1,66 @@
+<title>Bug Reporting with Reproductions</title>
+
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+<h1>Effective Bug Reporting Through Reproduction Test Cases</h1>
+
+The key to a high-bandwidth interaction with the support team is the effective communication of the issue you are experiencing.  The best way to communicate issues with the WindowTester Pro runtime is through a testcase that we can run on our end that demonstrates the problem. Once we can __feel your pain__ we can more easily diagnose and address it.
+
+
+{toc}
+
+<hr/>
+
+h2. Writing Good Reproductions
+
+There are a few ingredients that make up a good test reproduction.  Good reproductions are:
+
+* **Isolated** -- the test should be runnable in isolation.  Tests that expect the workspace to be in a particular state when run violate this premise.
+* **Standalone** -- the test should be as stand-alone as possible.  Ideally the test should be a single class (or package) that can be imported into a developer's workspace. If necessary, the test might also be parceled up in a new project.  
+* **Lean** -- the test should be as minimal as possible.  This means:
+** it should be as simple as possible and
+** it should introduce a minimal set of dependencies (ideally none).
+
+h3. The Shared Test Environment
+
+As a baseline environment tests should be written against the most recent GA of the standard Eclipse IDE.  For example all of the following bits of UI are fair game:
+
+* Basic Workbench views (__Problems__, __Error Log__, etc), wizards, preferences, and so on
+* JDT  tools (wizards, natures, etc.)
+* PDE tools
+* ...
+
+As you can see this is quite a rich palette for writing tests!
+
+
+h2. This goes for Features Too! 
+
+In addition to communicating about bugs, this is also an effective way to communicate about feature ideas too.  Feature requests that are fleshed out with reproduction driver tests are much easier for developers to dig into, assess and estimate.  They also provide a good shared language for exchanging ideas.  
+
+For example, suppose we are exploring a new feature for a text editor locator enhancement that adds support for clicking specified locations in an editor's document and a customer submits something like this:
+
+bc.. 
+public class EditorMarginLocatorTest extends UITestCaseSWT {
+
+	private static class TextAtRowColEqualsCondtion implements IUICondition { ... }
+       	private static String TEST_TEXT = "text to enter";
+	
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		createAndOpenDocument();
+	}
+
+	private void createAndOpenDocument() { ... }
+
+	public void testDrive() throws Exception {
+		IUIContext ui = getUI();
+		ui.click(new EditorLocator().atRowCol(12, 3)); //new API?
+		ui.enterText(TEST_TEXT);
+		ui.assertThat(new TextAtRowColEqualsCondition(12,3, TEST_TEXT));		
+	}
+p. 
+
+This makes for happy developers! :-) Communicating with a test that drives us up to this snippet is a great jumpstart for exploring the implementation of the feature and is a good starting point for a conversation about the proposed API.
+
+

@@ -1,0 +1,22 @@
+
+
+11/1/06
+
+1. Finder - search only in active window.
+2. Change widget locator creation scheme - tag along parent info if more than one of same class.
+3. Implement new IWidgetFinder i/f
+4. Use adapter factory to convert ffrom abbot matchers to wt and vice versa.
+5. JTabbedPane support - new semantic event and recording, playback.
+6. Swing app - do not use exit 0.
+7. Use labeledlocator matchers to get text fields.
+8. Runtime support for demo
+
+12/6/06
+1. System exit - detect close of app
+2. UITestCase
+
+12/12/06
+1. Indexing scheme
+2. Locator for text fields
+3. AbstractPathLocator - doClick , offset ?
+4. Component tester details - keep to UIDriver?

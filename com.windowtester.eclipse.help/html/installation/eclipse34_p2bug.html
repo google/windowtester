@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Eclipse 3.4 Cache Problem</title>
+<link href="../../stylesheets/common-docs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Eclipse 3.4 Cache Problem</h1>
+
+<p>Due to a <a	href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=232094">p2 bug in Eclipse 3.4</a>, every time you&nbsp;uninstall or move a plugin or .link
+file you need to do the following to clear the Eclipse cache:</p>
+
+<p>The best solution is to start with a fresh copy of Eclipse but if you don't want to do that, try the following:</p>
+
+<p>1. Uninstall/delete plugin and .link files. The .link files are located in your eclipse\dropins directory. </p>
+<p>2. Restart Eclipse with the -clean option to clear the cache.</p>
+<p>3. Open the bundles.info file in your Eclipse configuration\directory
+to verify that references to the old installations are gone. If for some
+reason, it's still there, you'll have to unzip a fresh copy of Eclipse.</p>
+<p>4. Install plugin as usual and start Eclipse.</p>
+<p>If that does not work try restoring
+the&nbsp;\eclipse\configuration and \eclipse\p2 directories from the
+original eclipse zip file.</p>
+<p><strong>If that still doesn't work, your best bet is to
+start with a fresh copy of Eclipse.</strong></p>
+</body>
+</html>

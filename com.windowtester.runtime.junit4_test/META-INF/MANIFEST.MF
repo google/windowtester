@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JUnit4 Support Test Plug-in
+Bundle-SymbolicName: com.windowtester.runtime.junit4_test
+Bundle-Version: 1.0.0
+Bundle-Vendor: Google
+Require-Bundle: org.junit4,
+ com.windowtester.runtime.junit4,
+ com.windowtester.swt.runtime,
+ org.eclipse.swt

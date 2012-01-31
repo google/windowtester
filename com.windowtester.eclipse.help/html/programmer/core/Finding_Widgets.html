@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 2 April 2007), see www.w3.org" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<link rel="stylesheet" type="text/css" href=
+"../../../stylesheets/book.css" />
+<title>Finding Widgets</title>
+</head>
+
+<body><h2 id="FindingWidgets">Finding Widgets</h2><p>Before a widget can be selected (e.g., with a <code>ui.click(..)</code> call) it needs to be found.  This document provides an overview of the important concepts in WindowTester Pro&#8217;s widget search strategy.</p><ol style="list-style: none;"><li><a href="#FindingWidgets">Finding Widgets</a></li><li><a href="#MatchersandLocators">Matchers and Locators</a></li><li><a href="#SearchScope">Search Scope</a><ol style="list-style: none;"><li><a href="#AnExampleSWT">An Example (SWT)</a></li><li><a href="#DebuggingSWT">Debugging (SWT)</a></li></ol></li><li><a href="#WidgetMatching">Widget Matching</a><ol style="list-style: none;"><li><a href="#QualifyingMatches">Qualifying Matches</a></li><li><a href="#NamedWidgets">Named Widgets</a></li></ol></li></ol><p><hr/></p><h2 id="MatchersandLocators">Matchers and Locators</h2><p>Widget matchers (implementers of <code>IWidgetMatcher</code>) specify criteria for widget matching.  The interface for matching is simple:</p><pre><code>public interface IWidgetMatcher {
+	boolean matches(Object widget);
+}
+</code></pre><p></p><p>Widget locators are matchers.  In other words:</p><pre><code>public interface IWidgetLocator extends  IWidgetMatcher { ... }
+</code></pre><p></p><h2 id="SearchScope">Search Scope</h2><p>The WindowTester Pro runtime delegates widget finding to a <i>widget finder</i>.  The finder roots its search in the current active application window.  If there is there is no window (or <code>Shell</code>) owned by the application under test that is active, the finder will throw an exception indicating that it was unable to find a root widget.</p><p>Notice that since search is rooted in the active shell this greatly reduces the search space when modal dialogs are open.  This helps keep locators as simple as possible (without surrendering robustness).</p><h3 id="AnExampleSWT">An Example (SWT)</h3><p>To get a better sense for how this works, let&#8217;s step through an example.</p><p>Suppose we have a widget hierarchy that looks like this:</p><p><img border="0" src="widget-search.png"/></p><p>Search through this hierarchy starts at the top shell and proceeds to the first composite, its components (the button, label, text and the second composite and finally the last text widget).</p><h3 id="DebuggingSWT">Debugging (SWT)</h3><p>A useful utility class for SWT, <code>SWTDebugHelper</code>, can be used to dump the widget hierarchy to standard out.  For example, suppose you are puzzling over a widget lost in the Eclipse &#8220;About&#8221; window.  This snippet will dump the relevant details.</p><pre><code>public void testSpelunkAboutWindow() throws Exception {
+	IUIContext ui = getUI();
+	ui.click(new MenuItemLocator("Help/About Eclipse SDK"));
+	ui.wait(new ShellShowingCondition("About Eclipse SDK"));
+	new DebugHelper().printWidgets();
+	ui.click(new ButtonLocator("OK"));
+	ui.wait(new ShellDisposedCondition("About Eclipse SDK"));
+}
+</code></pre><p></p><p>Running it will dump something like this to the console:</p><pre><code>Shell {About Eclipse SDK}&lt;HC|6771254&gt;
+ Menu {}&lt;HC|28076680&gt;
+ Composite {}&lt;HC|8795318&gt;
+  Composite {}&lt;HC|12491256&gt;
+   Composite {}&lt;HC|15645926&gt;
+    Composite {}&lt;HC|25411128&gt;
+     Label {}&lt;HC|4034280&gt;
+     ScrolledComposite {}&lt;HC|24202381&gt;
+      ScrollBar {}&lt;HC|22595578&gt;
+      ScrollBar {}&lt;HC|28381082&gt;
+      Composite {}&lt;HC|24600030&gt;
+       StyledText {}&lt;HC|28562961&gt;
+        Menu {}&lt;HC|28076680&gt;
+   Label {}&lt;HC|28551878&gt;
+   Composite {}&lt;HC|9490666&gt;
+    Composite {}&lt;HC|27996002&gt;
+     Button {}&lt;HC|30542569&gt;
+     Button {}&lt;HC|13264564&gt;
+     Button {}&lt;HC|1886296&gt;
+     Button {}&lt;HC|27593078&gt;
+     Button {}&lt;HC|1070095&gt;
+     Button {}&lt;HC|33468967&gt;
+     Button {}&lt;HC|6435309&gt;
+     Button {}&lt;HC|12319308&gt;
+    Label {}&lt;HC|28561116&gt;
+  Composite {}&lt;HC|24017036&gt;
+   ToolBar {}&lt;HC|19776029&gt;
+    ToolItem {} No ActionContributionItem &lt;HC|6646123&gt;
+   Composite {}&lt;HC|19084516&gt;
+    Button {&amp;Feature Details}&lt;HC|32253010&gt;
+    Button {&amp;Plug-in Details}&lt;HC|4491675&gt;
+    Button {&amp;Configuration Details}&lt;HC|27672070&gt;
+    Label {}&lt;HC|20060277&gt;
+    Button {OK}&lt;HC|31697654&gt;
+</code></pre><p></p><p>(Note: &#8220;HC&#8221; indicates the widget&#8217;s hashcode.)</p><h2 id="WidgetMatching">Widget Matching</h2><p>The widget finder navigates the widget hierarchy looking for matches.  Locators might match multiple widgets (whether this case is exceptional depends on whether you use <code>IUIContext.find(..)</code> or <code>IUIContext.findAll(..))</code>. </p><ul><li><code>IUIContext.find(ILocator)</code> throws a <code>MultipleWidgetsFoundException</code> in case there is more than one match.</li><li><code>IUIContext.click(ILocator)</code> delegates to <code>IUIContext.find(ILocator)</code> and so throws a <code>MultipleWidgetsFoundException</code> in case there is more than one match.</li><li><code>IUIContext.findAll(ILocator)</code> returns an array of matches.</li></ul><p>The snippet:</p><pre><code>ui.find(new ButtonLocator("OK"));
+</code></pre><p></p><p>finds the &#8220;OK&#8221; button (and throws an exception if there is none or more than one).</p><p>In contrast:</p><pre><code>ui.findAll(new ButtonLocator("OK"));
+</code></pre><p></p><p>collects all of the &#8220;OK&#8221; buttons into an array which may or may not be empty.</p><h3 id="QualifyingMatches">Qualifying Matches</h3><p>Commonly it is enough to specify a widget&#8217;s class and text to uniquely identify it.  For instance, <code>new ButtonLocator("OK")</code> is usually sufficient since it is uncommon to have more than one &#8220;OK&#8221; <code>Button</code> visible at a time.  If there is more than one such <code>Button</code> in the active window, you can disambiguate the search by embellishing the locator with information about the <code>Button</code>'s location in the widget containment hierarchy. For instance, if the &#8220;OK&#8221; button of interest is the child of a <code>Composite</code> (and none other is),</p><pre><code>new ButtonLocator("OK", new SWTWidgetLocator(Composite.class))
+</code></pre><p></p><p>will uniquely identify it. </p><h3 id="NamedWidgets">Named Widgets</h3><p>Qualification as described above is not the only way to disambiguate widgets.  Another even more robust way of disambiguating widgets is to tag them with unique names at development-time.</p><p>Naming widgets is the most robust way to identify widgets at runtime. Widgets can be named using the <code>Widget.setData(key,value)</code> method on widgets.  That is, if a widget has been named like this:</p><pre><code>widget.setData("name", "widgetName");
+</code></pre><p></p><p>in a test case, the following will work:</p><pre><code>NamedWidgetLocator widgetLocator = new NamedWidgetLocator("widgetName");
+IWidgetReference widgetRef = (IWidgetReference)ui.find(widgetLocator);
+assertNotNull(widgetRef);
+ui.click(widgetLocator); //if you want to click the widget
+</code></pre><p></p><p>Wherever possible, you should name widgets that require disambiguation. For more on matching by containment look at the <code>SWTWidgetLocator</code> javadocs.</p></body></html>

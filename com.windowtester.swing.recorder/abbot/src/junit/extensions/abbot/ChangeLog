@@ -1,0 +1,277 @@
+2005-11-18  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTestFixture.java: Indicate explicitly exceptions which
+	came from the EDT.
+
+2005-11-14  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptTestSuite.java: Add a no-arg constructor for use with Ant
+	(Paul King).
+
+2005-03-23  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTestFixture.java (runBare): When exceptions are
+	encountered *both* on the main test thread and on the EDT, throw
+	the one that was caught first.
+
+2005-01-05  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTestFixture.java: Set TestCase fields to null
+	automatically if they are Components or ComponentTesters, which
+	allows for garbage collection w/o requiring explicit setting to
+	null on TestCase tear down.
+	
+2004-11-06  Timothy Wall  <twall@users.sf.net>
+
+	* ResolverFixture.java (runBare): Ensure exceptions thrown by
+	fixture teardown don't interfere with test exceptions.
+	* ComponentTestFixture.java: Refactor UI setup/teardown...
+	* AWTFixtureHelper.java: ...to here.  New.
+	* ScriptFixture.java: Derive from TestCase instead of
+	ComponentTestFixture, since scripts handle their own setup/teardown of
+	components. 
+	
+	* ScriptFixture.java: Don't ignore extant components on startup
+	unless the script has a launch step.  Don't dispose any
+	components, leaving that up to the Terminate step (if any).
+
+2004-10-31  Timothy Wall  <twall@users.sf.net>
+
+	* TestHelper.java: Allow no-arg ctor for tests.
+
+2004-08-18  Timothy Wall  <twall@users.sf.net>
+
+	* TestHelper.java: Refactor to allow RepeatHelper to extend.
+	* RepeatHelper.java: Extend from TestHelper to make use of core
+	functionality. 
+	
+2004-08-13  Timothy Wall  <twall@users.sf.net>
+
+	* ScriptTestCollector.java: Scan jar files for test classes.  Use
+	current launch classpath to find available test classes, but also
+	including java.class.path.
+
+2004-07-18  Timothy Wall  <twall@users.sf.net>
+
+	* ResolverFixture.java: Provide a hook for derived classes to use
+	a different Hierarchy.  This allows a derived class to avoid the
+	default behavior of ignoring all existing components at test start.
+
+2004-06-26  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTestFixture.java: Fix hideWindow (wait for window
+	hide/close events), add disposeWindow.
+
+2004-06-11  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTestFixture.java: Use sleep instead of yield, since
+	apparently yield doesn't always allow the GUI to run.
+	* Refactor base fixtures to make setup/teardown of the fixture
+	explicit, instead of simply overriding runBare().  
+	
+2004-03-04  Timothy Wall  <twall@users.sf.net>
+
+	* ResolverFixture.java: Facilitate GC after test runs.
+
+2004-05-12  Timothy Wall  <twall@users.sf.net>
+
+	* TestHelper.java (runTests): re-enable verbose printing to
+	account for changes in junit 3.8.1.
+
+	* ComponentTestFixture.java: Use WeakAWTEventListener.
+
+2004-02-05  Timothy Wall  <twall@users.sf.net>
+
+	* ComponentTestFixture.java: Provide isShowing test, which
+	replaces the functionality of ComponentTester.assertFrameShowing.
+
+2004-01-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Invoke GC after test completion to
+	clean up unreferenced components.
+
+2004-01-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Use an explicit Hierarchy.  
+	* ResolverFixture.java: Fixture providing a Resolver.
+	* ScriptFixture.java: Provide an explicit Hierarchy.
+	
+2003-12-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Add Thread.yield as appropriate for
+	spin-wait loops (clementcunin).
+
+2003-11-06  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: If the event dispatch thread throws
+	an exception, report it as an error even if the main test throws a
+	different exception.
+
+2003-11-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Use SystemState to save/restore state.
+
+2003-09-04  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (ExceptionCatcher): Update signature.
+
+2003-07-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (runBare): Save/restore system
+	properties across test invocations.
+	* ScriptFixture.java (runTest): Derive from ComponentTestFixture
+	to gain benefits of that class's auto-cleanup and catching of
+	event dispatch thread exceptions.
+
+2003-06-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Extend window listening to include
+	component show/hide events.
+
+2003-05-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Add popup installation.
+
+2003-05-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (runBare): Move disposeAllWindows
+	prior to any calls to setUp, just in case the user puts
+	window-showing calls in setUp.
+	(exceptionCaught): Don't treat an ExitException as an error.
+	
+2003-05-21  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Default position frames away from
+	display edges to avoid toolbars.  Clear event exceptions before
+	each test.
+
+2003-05-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (showPopup): Add support for showing
+	popups.  Don't fail if event exception handler can't be installed.
+
+2003-05-18  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Install an event exception handler
+	and throw an error if it catches anything.
+
+2003-05-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* Conditionally log selected events.
+
+2003-04-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Provide window show/hide methods.
+
+2003-04-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java: Provide event logging support for
+	debug. 
+	
+2003-01-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* TestHelper.java (runTests): Return non-zero exit values when
+	tests fail.
+	* RepeatHelper.java (runTests): Ditto.
+	* ScriptTestSuite.java (main): Ditto.
+
+2003-01-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (showFrame): Return frame (bug).
+
+2003-01-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (ComponentTestFixture): Provide for
+	setting the size of the frame.
+
+2002-12-19  Todd V. Jonker  <toddster@users.sourceforge.net>
+
+	* Fix bug #656520, save filenames, not files.
+
+2002-12-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestSuite.java (ScriptTestSuite): Restore getDirectory
+	method, which is used by the script editor.  
+
+2002-12-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestSuite.java: Refactor to use a common ctor.  Expand
+	javadoc.
+
+2002-12-16  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ComponentTestFixture.java (showFrame): Return a reference to the
+	frame. 
+
+2002-11-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCollector.java: Use ScriptFixture, not ScriptTestCase.
+	* ScriptTestSuite.java: Ditto.
+
+2002-11-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestSuite.java: Use the given class for new instances
+	instead of ScriptTestCase.
+	* ScriptTestCase.java (defaultSuite): Don't define a static
+	suite.  Provide a default suite method instead.
+
+2002-10-22  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java: Expect StepRunner to throw.  Fix bug in
+	script lazy loading.
+
+2002-10-19  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java: Use StepRunner.
+
+2002-10-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCollector.java: Use proper class loader when doing
+	class comparison.
+
+2002-10-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java (ScriptTestCase): Use script terminate
+	functions instead of looking up steps.
+
+2002-09-14  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java: Remove ComponentFinder linkage.
+
+2002-09-12  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java: Init log on startup.
+
+2002-08-27  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestSuite.java: Clean up error messages.
+
+2002-08-14  Kyle Girard  <kgirard@klocwork.com>
+
+	* ScriptTestSuite.java: made the accept method public
+
+2002-07-23  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java (ScriptTestCase): Provide a default main
+	method which aggregates a given list of test scripts into a suite.
+
+2002-07-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestSuite.java: Provide a main method which expects a list
+	of test scripts to run.
+
+2002-07-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java (ScriptTestCase): Use factory method to
+	obtain a component finder.
+
+2002-06-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java (runTest): Clean up after failed test cases.
+
+2002-06-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ScriptTestCase.java (getFinder): Provide access to ComponentFinder.
+
+
+	

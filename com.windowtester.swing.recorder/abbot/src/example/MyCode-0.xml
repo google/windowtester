@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Menu selections">
+  <component class="javax.swing.JButton" id="Button" index="2" tag="Button" title="My Code" />
+  <component class="javax.swing.JMenuItem" id="Copy" tag="Copy" title="My Code" />
+  <component class="example.DropTree" id="DropTree" index="0" name="DropTree" parent="JViewport Instance" window="My Code" />
+  <component class="javax.swing.JLabel" id="Dynamic" tag="Dynamic" title="My Code" />
+  <component class="javax.swing.JPopupMenu" id="Dynamic Popup" invoker="Dynamic" />
+  <component class="javax.swing.JMenuItem" id="Item 1" tag="Item 1" title="My Code" />
+  <component class="javax.swing.JLayeredPane" id="JLayeredPane Instance" index="1" parent="JRootPane Instance" window="My Code" />
+  <component class="javax.swing.JPanel" id="JPanel Instance" index="6" parent="My Pane" window="My Code" />
+  <component class="javax.swing.JRootPane" id="JRootPane Instance" index="0" parent="My Code" />
+  <component borderTitle="Over here" class="javax.swing.JScrollPane" id="JScrollPane Instance" index="1" parent="JPanel Instance" window="My Code" />
+  <component class="javax.swing.JViewport" id="JViewport Instance" index="0" parent="JScrollPane Instance" window="My Code" />
+  <component class="javax.swing.JDialog" id="Message" tag="Message" title="Message" />
+  <component class="javax.swing.JFrame" id="My Code" tag="My Code" title="My Code" />
+  <component class="javax.swing.JPanel" id="My Pane" index="0" name="My Pane" parent="JLayeredPane Instance" window="My Code" />
+  <component class="javax.swing.JLabel" id="Static" tag="Static" title="My Code" />
+  <component class="javax.swing.JMenuItem" id="Submenu item" tag="Submenu item" title="My Code" />
+  <component class="javax.swing.JTabbedPane" id="Tabbed Pane" index="9" parent="My Pane" window="My Code" />
+  <fixture filename="MyCode-fixture.xml" />
+  <action args="Item 1" class="javax.swing.JMenuItem" desc="Select menu item 'Item 1'" method="actionSelectMenuItem" />
+  <action args="Submenu item" class="javax.swing.JMenuItem" desc="Select menu item 'Submenu item'" method="actionSelectMenuItem" />
+  <action args="Copy" class="javax.swing.JMenuItem" desc="Select menu item 'Copy'" method="actionSelectMenuItem" />
+  <action args="Static,Black" class="javax.swing.JLabel" desc="Select popup menu item 'Black'" method="actionSelectPopupMenuItem" />
+  <action args="Static,White" class="javax.swing.JLabel" desc="Select popup menu item 'White'" method="actionSelectPopupMenuItem" />
+  <action args="Dynamic,Blue" class="javax.swing.JLabel" desc="Select popup menu item 'Blue'" method="actionSelectPopupMenuItem" />
+  <action args="Dynamic,32,4,Green" class="javax.swing.JLabel" desc="Select popup menu item 'Green'" method="actionSelectPopupMenuItem" />
+  <action args="Dynamic" class="javax.swing.JLabel" method="actionShowPopupMenu" />
+  <assert args="Dynamic Popup" class="abbot.tester.JPopupMenuTester" method="getMenuLabels" value="[/Invoked [0-9]* times/,Black,Blue,Orange,Other]" />
+  <action args="VK_ESCAPE" method="actionKeyStroke" />
+  <action args="Tabbed Pane,&quot;tab 1&quot;" class="javax.swing.JTabbedPane" method="actionSelectTab" />
+  <action args="Tabbed Pane,&quot;tab 2&quot;" class="javax.swing.JTabbedPane" method="actionSelectTab" />
+  <assert args="Tabbed Pane" class="abbot.tester.JTabbedPaneTester" method="getTabs" value="[tab 0,tab 1,tab 2,tab 3,tab 4,tab 5,tab 6,tab 7,tab 8,tab 9]" />
+</AWTTestScript>
+

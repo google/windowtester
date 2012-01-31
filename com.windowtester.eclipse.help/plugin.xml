@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml"
+            primary="true">
+      </toc>
+      <toc
+            file="tocinstallation.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="tocgettingstarted.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="tocprogrammer.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="tocreference.xml"
+            primary="false">
+      </toc>
+   </extension>
+   <extension
+         point="org.eclipse.pde.core.javadoc">
+      <javadoc
+            archive="true"
+            path="doc.zip!/html/reference/javadoc/">
+         <plugin
+               id="com.windowtester.runtime">
+         </plugin>
+         <plugin
+               id="com.windowtester.swt.runtime">
+         </plugin>
+         <plugin
+               id="com.windowtester.swing.runtime">
+         </plugin>
+         <plugin
+               id="com.windowtester.swt.runtime.gef">
+         </plugin>
+      </javadoc>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="context.xml">
+      </contexts>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.intro.configExtension">
+      <configExtension
+            content="intro/wt-overview.xml"
+            configId="org.eclipse.ui.intro.universalConfig">
+      </configExtension>
+      <configExtension
+            content="intro/wt-whatsNew.xml"
+            configId="org.eclipse.ui.intro.universalConfig">
+      </configExtension>
+      <configExtension
+            content="intro/wt-tutorials.xml"
+            configId="org.eclipse.ui.intro.universalConfig">
+      </configExtension>
+   </extension>
+   
+
+</plugin>

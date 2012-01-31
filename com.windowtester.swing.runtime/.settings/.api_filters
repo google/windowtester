@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="com.windowtester.swing.runtime" version="2">
+<resource path="src/com/windowtester/internal/swing/UIDriverSwing.java" type="com.windowtester.internal.swing.UIDriverSwing">
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.internal.swing.UIDriverSwing"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/com/windowtester/runtime/swing/SwingWidgetLocator.java" type="com.windowtester.runtime.swing.SwingWidgetLocator">
+<filter id="1142947843">
+<message_arguments>
+<message_argument value="3.8.1"/>
+<message_argument value="com.windowtester.runtime.swing.SwingWidgetLocator"/>
+</message_arguments>
+</filter>
+</resource>
+</component>

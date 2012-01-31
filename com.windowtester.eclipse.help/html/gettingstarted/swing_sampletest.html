@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta content="text/html" http-equiv="Content-Type">
+<title>Generating a Sample Test</title>
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h1>Record and Playback a Sample Swing&nbsp;Test</h1>
+<p>WindowTester Pro Swing records and playback UI tests for Swing
+applications. Follow these steps to record and playback a UI test for
+Swing applications:</p>
+<em>Prerequisite: This tutorial requires either RCP Developer
+v2.7.0 and above or WindowTester Pro 2.2.0 and above.&nbsp;</em>
+<ol>
+	<li><a
+		href="../../html/gettingstarted/swing_sampletest.html#step1">Create
+	the ContactManager Swing project.</a></li>
+	<li><a
+		href="../../html/gettingstarted/swing_sampletest.html#step2">Setup
+	a recording configuration and record user interactions.</a></li>
+	<li><a
+		href="../../html/gettingstarted/swing_sampletest.html#step3">Stop
+	recording and save recorded test.</a></li>
+	<li><a href="../../html/gettingstarted/swing_sampletest.html#step4">Update
+	build path - Applies to the Mac OS only.</a></li>
+	<li><a
+		href="../../html/gettingstarted/swing_sampletest.html#step5">Play
+	back the recorded&nbsp;test.</a></li>
+	<li><a href="../../html/gettingstarted/swing_sampletest.html#step6">Slower playback (optional).</a></li>
+</ol>
+<h3><a name="step1">1. Import the Contact Manager Swing example
+project</a></h3>
+<ul>
+	<li>Select <b>File &gt;
+	Import</b> from the main menu.<strong></strong></li>
+</ul>
+<p style="margin-left: 40px;"><img
+	src="../../images/swingTutorial1.gif"></p>
+<ul>
+	<li>From the list of wizards, select <strong>WindowTester Pro
+	&gt; Contact Manager Swing Example Project.&nbsp;</strong><em>Please note, this wizard is only
+	available in WindowTester Pro v2.2.0 and above.</em></li>
+	<li>Click <strong>Next</strong>.</li>
+<br><img
+	src="../../images/swingTutorial2.gif">
+	<li>Click <strong>Finish</strong>.&nbsp;The <b>ContactManagerSwing </b>example project
+	is now created in your workspace.</li>
+</ul>
+<h3><a name="step2">2. Set up a recording configuration and
+record user interactions</a></h3>
+<p>Look for a tool item ( <img alt=""
+	src="../../images/icons/record_pulldown_menu.gif">) that looks
+like the run arrow with a little console under it (should be next to
+external tools); <br>
+</p>
+<ul>
+	<li>From its pull-down menu select <b>"Record
+	Configurations..."</b>.</li>
+</ul>
+<p style="margin-left: 40px;"><img
+	src="../../images/record_e33_pulldown.gif"></p>
+<p style="margin-left: 40px;"><img
+	src="../../images/swingTutorial3.gif"></p>
+<ul>
+	<li>Select <b>Java
+	Application</b> from the list on the left navigation.</li>
+	<li>Click the New (<img
+		src="../../images/icons/eclipse_new_config.gif" alt="New Config icon">)
+	icon.</li>
+	<li>Name the launch configuration <b>ContactManagerSwing&nbsp;</b></li>
+	<li>Click the <b>Browse...</b>
+	button and select <b>ContactManagerSwing</b>
+	as the project</li>
+	<li>Click the <b>Search...</b>
+	button and select <b>contactmanager.ContactManagerSwing</b> for the <b>Main
+	Class</b></li>
+	<li>Click the <b>Apply</b> button.</li>
+	<li>Click the <b>Record</b> button.&nbsp;This will run the Contact
+	Manager Swing application&nbsp; in recording mode and opens the <a
+		href="../ui/recording_control.html">recording control</a> shown below.</li>
+<br><img src="../../images/recorder_controller_record.jpg"
+	alt="Recorder Controller"> <img alt="Recording control view"
+	<img src="../../images/recorder_control_view.jpg">
+	<li>To start recording, click on the <b>record button</b> (red ball) in the
+	recorder.&nbsp;Perform user interactions like adding a new contact.In
+	the Contact Manager application, select <b>File</b> &gt; <b>New
+	Contact</b>.</li>
+</ul>
+<h3><a name="step3">3. Stop the recording and define those
+interactions as a UI test case</a></h3>
+<p>To stop the recording simply exit from the application by
+	choosing the <b>File</b> &gt; <b>Exit</b> menu item.
+The Recorder disappears and a New UI Test dialog opens.</p>
+<img
+	src="../../images/swingTutorial4.gif"><br>
+<ul>
+	<li>Enter <b>ContactManagerSwingTests/src </b>as the Source
+	folder.&nbsp;<b>We
+	recommend that tests be placed into a project separate from the code
+	under test.</b>&nbsp;</li>
+	<li><b>Create folder
+	automatically if they do not exist</b> - If the Source folder does not
+	exist and this option is checked,&nbsp;it will automatically create the
+	test project with the src and bin folders. <b>If your project structure does not
+	have a separate src and bin folders,&nbsp;uncheck this option and make
+	sure your test project exists.</b></li>
+	<li>Enter <b>test </b>as the Package name.</li>
+	<li>Enter <b>NewEntryTest</b> as the test name.</li>
+	<li>Click&nbsp;<b>Finish</b> to generate this test.</li>
+</ul>
+<h3><a name="step4">4. Update build path</a></h3>
+<p><b>Notes: This is only necessary if you're using Mac OS X. 
+<br>If you're using Windows and you get a java.lang.NoClassDefFoundError: org/eclipse/swt/SWT during playback, you need to install the latest WindowTester Pro build to fix this problem. </b>
+</b></p>
+<br><img src="../../images/swingTutorial_buildPath.gif"><br>
+<ul>
+	<li>Right click on the newly created java project and select <b>Properties</b>.</li>
+	<li>Under on <b>Java Build Path</b>, select the <b>Libraries</b> tab.</li>
+	<li>Click <b>Add External Libraries...</b> and select the
+	<b>org.eclipse.swt.*.jar</b> jar file from your Eclipse directory.</li>
+</ul>
+<h3><a name="step5">5. Play back the recorded&nbsp;test</a></h3>
+<p><b>Swing UI tests</b> must be
+run as <b>JUnit tests</b>.
+</p>
+<br><img src="../../images/swingTutorial5.gif"><br>
+<ul>
+	<li>Right click on the newly recorded test class, <b>NewEntryTest.java</b>.</li>
+	<li>Select "<b>Run As &gt; JUnit Test</b>"</li>
+	<li>The recorded test is played back. You should now see the
+	Contact Manager Swing application with the user interactions that you
+	recorded.</li>
+</ul>
+<h3><a name="step6">6.&nbsp;Slower playback (optional)</a></h3>
+<p>You can slow down the playback by enabling the <a
+	href="../reference/preferences/playback.html">playback delay
+preference</a>.</p>
+<p>Note: If you encounter something like the following, please see the
+corresponding FAQ entries for possible solutions:
+<a href="../faq/faq_swt.html#security_exception"><br><br>java.lang.SecurityException: class
+"junit.extensions.TestDecorator"'s...</a>
+<br>
+<a href="../faq/faq.html#WhyistherecordernotvisiblewhenItrytorecord">Why is the recorder not
+visible when I try to record?</a>
+<br><a href="">java.lang.NoClassDefFoundError: org/eclipse/swt/SWT</a>
+</p>
+<h3>Related Topic:</h3>
+<h3>Adding Assertions (Optional)</h3> 
+<p>Assertions can be generated at recording time using the assertion inspector tool. The assertion inspector is activated by clicking the inspector tool item on the recording controller. 
+	See the <a href="../ui/assertionsUI.html">Assertion Inspector</a> documentation.</p>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<title>Assertions</title>
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+<h1>Assertions</h1>
+
+Interacting with an application under test (*AUT*) is only half of the story.  In order to __verify__ facts about the AUT, WindowTester Pro provides a rich assertion story.
+
+{toc}
+
+<hr/>
+
+h3. Asserting Conditions
+
+Conditions specify properties to assert.  For instance, to assert that a @Shell@ with text "Input Dialog" is active, one would write:
+
+bc.. ui.assertThat(new ShellShowingCondition("Input Dialog"));
+p. 
+
+The WindowTester Pro runtime offers a number of useful conditions for building assertions.
+
+h3. Common Widget Property Conditions
+
+
+WindowTester Pro provides a convenient way to test whether a particular UI component is enabled using <a href="javadoc/com/windowtester/runtime/condition/IsEnabledCondition.html" title="class in com.windowtester.runtime.condition">IsEnabledCondition</a>. Any locator that implements the <a href="javadoc/com/windowtester/runtime/condition/IsEnabled.html">IsEnabled</a> interface may be used with the <a href="javadoc/com/windowtester/runtime/condition/IsEnabledCondition.html" title="class in com.windowtester.runtime.condition">IsEnabledCondition</a> to determine whether a UI component is enabled. In addition, any locator that implements <a href="javadoc/com/windowtester/runtime/condition/HasText.html">HasText</a> can be used with<a href="javadoc/com/windowtester/runtime/condition/HasTextCondition.html" title="class in com.windowtester.runtime.condition">HasTextCondition</a> to determinewhether a UI component has specific text. Similarly, <a href="javadoc/com/windowtester/runtime/condition/IsSelected.html">IsSelected</a> can be used with <a href="javadoc/com/windowtester/runtime/condition/IsSelectedCondition.html">IsSelectedCondition</a> to test whether a given widget is selected.
+
+
+* "HasFocus":javadoc/com/windowtester/runtime/condition/HasFocus.html and "HasFocusCondition":javadoc/com/windowtester/runtime/condition/HasFocusCondition.html
+* "HasText":javadoc/com/windowtester/runtime/condition/HasText.html and "HasTextCondition":javadoc/com/windowtester/runtime/condition/HasTextCondition.html
+* "IsEnabled":javadoc/com/windowtester/runtime/condition/IsEnabled.html and "IsEnabledCondition":javadoc/com/windowtester/runtime/condition/IsEnabledCondition.html
+* "IsSelected":javadoc/com/windowtester/runtime/condition/IsSelected.html and "IsSelectedCondition":javadoc/com/windowtester/runtime/condition/IsSelectedCondition.html
+* "IsVisible":javadoc/com/windowtester/runtime/condition/IsVisible.html and "IsVisibleCondition":javadoc/com/windowtester/runtime/condition/IsVisibleCondition.html
+
+
+For example, if you wanted to assert that the Finish button was enabled or that the Wizard had a particular error message...
+
+bc.. ui.assertThat(new IsEnabledCondition(new ButtonLocator("Finished"), true)); 
+ui.assertThat(new HasTextCondition(new WizardErrorMessageLocator(), "some wizard message"));
+p. 
+
+... or ...
+
+bc..  ui.assertThat("Finish button should be enabled", new IsEnabledCondition(new ButtonLocator("Finished"), true));
+ui.assertThat("The error message is wrong", new HasTextCondition(new WizardErrorMessageLocator(), "some wizard message"));
+p. 
+
+In fact, any <a href="conditions.html">Condition</a> can be used in the test to assert that the application is in a valid state.
+
+h3. Assertion Factories
+
+For convenience, some locators provide factory methods that return appropriate condition instances for use in building assertions.
+
+
+For example, the above condition can be simplified like so:
+
+bc.. ui.assertThat(new ButtonLocator("Finished").isEnabled());
+ui.assertThat(new WizardErrorMessageLocator().hasText("some wizard message"));
+p. 
+
+For more on condition factories see "this document":../programmer/core/Condition_Factories.html. The javadocs for the locators also document the condition factories they support.  
+
+
+h3. Ensuring Condtions
+
+Some conditions can be used to **ensure** that certain properties are true.  Such conditions implement the @com.windowtester.runtime.condition.IConditionHandler@ interface and are passed in to the @IUIContext.ensureThat(..)@ method.
+
+h4. Example: Welcome Page Handling
+
+In RCP application testing it is often convenient to ensure that the Eclipse "Welcome" screen has been dismissed before proceeding with a test.  (Not dismissing this screen might cause the test to fail in case the test seeks to interact with widgets that are behind the Welcome.)  To handle this problem, the following idiom was adopted by many RCP testers[1].
+
+bc.. 	protected void closeWelcomePageIfNecessary() throws Exception {
+   	IWidgetLocator[] welcomeTab = getUI().findAll(new CTabItemLocator("Welcome"));
+	if (welcomeTab.length == 0)
+		return;
+	getUI().close(welcomeTab[0]);
+}
+p. 
+
+
+This method was in turn called in the @setUp()@ method of a common test base class like so:
+
+bc.. public class BaseTest extends UITestCaseSWT {
+	protected void setUp() throws Exception {
+		closeWelcomePageIfNecessary();
+	}
+}
+p. 
+
+Condition handlers improve this story.  Using the @view.isClosed()@ condition handler, the logic is simplified to this:
+
+bc.. public class BaseTest extends UITestCaseSWT {
+	protected void setUp() throws Exception {
+		getUI().ensureThat(view("Welcome").isClosed());
+	}
+}
+p. 
+
+
+
+
+
+
+h3. Manual Assertions
+
+If there is not a condition that is sufficient out-of-the-box, you can write assertions manually but care needs to be taken. Tests execute on a different thread from the user interface, so you must wrap your calls to component accessors in in a runnable and pass it to the display to be executed on the user interface thread. The accessors and conditions listed above handle those details for you automatically, but if you want to write other types of assertions they must be wrapped to safely access component information.Accessing a component in the test thread rather than the UI thread causes an @SWTException@ to be thrown. For example this hypothetical test case tests a drag and drop operation on a tree:
+
+bc.. //select a tree item  
+ui.click(new TreeItemLocator("treeItem2"));
+//drag and drop it on another
+ui.dragTo(new XYLocator(new TreeItemLocator("treeItem2"), 5, 5));
+//perform assertions safely on the UI thread
+Display.getDefault().syncExec( new Runnable() {
+	 public void run() {         
+		//get the tree widget
+		Tree tree = (Tree)((IWidgetReference)ui.find(new SWTWidgetLocator(Tree.class))).getWidget();
+		//the first item in the tree should now have the EXPECTED label
+		TestCase.assertEquals(EXPECTED_LABEL, tree.getItems()[0].getText());
+	 }
+});
+p. 
+
+h4. Refactoring to a Condition
+
+To make this verification more robust we should really wrap the test in a condition. Putting verification logic in a condition has two key advantages:
+
+# Property tests in conditions make more robust tests since they avoid many race conditions.
+# Custom conditions can be reused in other tests. 
+
+h3. Related Resources
+
+Information handy in writing manual assertions can be found in these documents:
+
+* "Test Execution":../programmer/core/Test_Execution.html explains the test threading story.
+* "Conditions":conditions.html summarizes WindowTester Pro conditions.
+
+fn1. As of WindowTester Pro v5.0, the @close(..)@ API has been removed.   The example however still motivates the improved handling using the @ensureThat(..)@ construct.

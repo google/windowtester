@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/book.css"/>
+
+h2. Embedded Swing Components
+
+The WindowTester Pro runtime supports testing RCP/SWT applications with embedded Swing components.
+
+{toc}
+<hr/>
+
+h3. SwingWidgetLocator
+
+WindowTester Pro provides a <a href="../../../html/reference/javadoc/com/windowtester/runtime/swing/SwingWidgetLocator.html">*SwingWidgetLocator*</a> to identify embedded Swing widgets.
+
+h3. Examples
+
+h4. Clicking widgets and entering text
+
+
+bc.. ui.click(new SwingWidgetLocator(JTextField.class, 5));
+ui.enterText("11001");
+p. 
+
+h4. Double-clicking widgets
+
+bc.. ui.click(2, new XYLocator(new SwingWidgetLocator(JTextField.class, 2), 20, 10));
+p. 
+
+h4. Tabbing into widgets and entering text
+
+The recorder generates code if you use the Tab key to navigate through the Swing widgets.
+
+bc..  ui.enterText("Jon");
+ui.keyClick(WT.TAB);
+ui.enterText("Doe");
+ui.keyClick(WT.TAB);
+ui.enterText("somewhere");
+p. 
+
+h4. Sample RCP application with embedded Swing components
+
+The sample ContactManagerRCP application that ships with WindowTester Pro has embedded Swing components. To import into your workspace, go to *File > New > Other > WindowTester Pro and select Contact Manager RCP*. Launch the RCP app and click *File > New Contact... (Embedded AWT Frame)*.
+
+h3. Recording interactions with Embedded Swing components  
+
+The recorder recognizes keystroke interactions with many Swing components (such as TABs used to navigate and text entry) mouse clicks on  embedded Swing components are currently not recognized.
+ 

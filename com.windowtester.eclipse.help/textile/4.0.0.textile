@@ -1,0 +1,88 @@
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheets/book.css"/>
+
+<h1>What's New in 4.0.0</h1>
+
+ 
+This document contains descriptions of some of the more interesting or significant changes in the *WindowTester Pro v4.0.0* release.
+
+{toc}
+
+<hr/>
+
+
+h2. SWT Runtime
+
+A number of improvements have been made to existing SWT widget locators.
+
+* __TableCellLocator column header support__ - the @TableCellLocator@ now supports  clicks on Table column headers.
+
+* __WizardPageLocator API__ -  API has been added for wizard page access (@com.windowtester.runtime.swt.locator.jface.WizardPageLocator@); an existing internal class (@com.windowtester.runtime.swt.internal.locator.jface.WizardPageLocator@) has been deprecated in favor of the new API.
+
+* __ContributedToolItems__  -  the @ContributedToolItemLocator@ now supports  ToolItems added via command contributions.
+
+
+In addition, assertion support has been tightened up in a number of areas.
+
+* __Assertions on combo items__ - the Combo (and CCombo) item locator returned @true@ to isVisible if the list could be found, now @true@ is returned only if the item itself is found in the list.
+
+* __Assertions on list items__ - the List item locator returned @true@ to isVisible if the list could be found, now @true@ is returned only if the item itself is found in the list.
+
+* __Assertions on tool item buttons__ - for some tool item buttons, isEnabled always returned @true@ if the tool item could be found, now @true@ is returned only if the button widget is enabled.
+
+* __Assertions on table items__ - selection state tests were not always accurate and have now been fixed.
+
+
+
+h2. Swing Runtime
+
+Swing runtime support has been expanded in a number of ways including:
+
+* __Improved embedded Swing locator handling__ - swing locators can now be used directly within an SWT UI context to handle Swing widgets that are embedded in an SWT application.
+
+* __Assertion API for Swing locators__  -  the appropriate Swing Locators now support the following assertion-supporting interfaces: @HasText@, @IsEnabled@, @IsSelected@, @HasFocus@ and @IsVisible@.
+
+* __Internal and nested classes__ -  Added Swing recorder and runtime support for internal and nested class. 
+
+
+h2. Recording
+
+The recording experience has been greatly improved with a new enhanced recorder UI.
+
+* __Recorder UI improvements__ a number of refinements have been made to the recorder console:
+** a recorder configuration (launcher) tool item has been added to the view toolbar.
+** keystrokes are now presented as strings (where appropriate) rather than individual keystrokes (e.g., __"Foo" entered__ rather than the sequence __'F' pressed__,  __'o' pressed__, __'o' pressed__).
+** events can now be deleted from the sequence using the  __DELETE__ key.
+** a special page is presented when there is no active recording with pointers to help launch new recordings.
+
+In addition to UI refinements, a number of core recorder fixes have been made.
+
+* __View Menu Recording__ - view menu selections are now properly handled by the recorder.
+
+* __Hyperlink recording__  - SWT hyperlink identification in the recorder has been improved.
+
+* __Link recording__  -  SWT link identification in the recorder has been improved.
+
+
+h2. Stability/Maintenance
+
+This release also contains a number of fixes to improve the overall stability of the product.
+
+* __Runtime performance fixes__ - performance has been optimized in a number of places to address severe performance issues seen with eclipse 3.5 on systems with hyper-threading enabled.
+
+* __Opening perspectives__  - WindowTester Pro will now correctly open perspectives in the same window (instead of spawning a new one).  
+
+* __Combo Item selection issues__ - combo selection logic has improved to handle dynamic combos.
+
+* __Circular dependency removed__ -  a fragment contributed by WindowTester Pro code coverage functionality was introducing a bundle dependency cycle; this cycle has now been removed.
+
+* __(Post context click) menu recording fix__ - a bug affecting the recording of top-level menu selections immediately after a context selection has been fixed.
+
+* __Codegen fix for tests with no setup handlers__ - tests generated with no setup handlers selected were causing errors to get reported to the log; this has now been fixed.
+
+
+<hr/>
+
+Notes for the *3.9.0 release* can be found "here":3.9.0.html.
+
+

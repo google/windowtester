@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Getting Started" link_to="toc.xml#gettingstarted">
+   <topic label="Tutorials">
+      <topic href="html/gettingstarted/eclipse_sampletest.html" label="Generating a Plugin Test">
+      </topic>
+      <topic href="html/gettingstarted/rcp_sampletest.html" label="Generating a RCP Test">
+      </topic>
+      <topic href="html/gettingstarted/swt_sampletest.html" label="Generating a SWT Test">
+      </topic>
+      <topic href="html/gettingstarted/swing_sampletest.html" label="Generating a Swing Test">
+      </topic>
+   </topic> 
+   <topic href="html/gettingstarted/targets.html" label="Customizing PDE targets">
+   </topic>
+   <topic href="html/gettingstarted/testing_deployed_app.html" label="Testing a deployed RCP app">
+   </topic>
+</toc>

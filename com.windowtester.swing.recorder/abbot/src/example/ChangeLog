@@ -1,0 +1,174 @@
+2005-04-02  Timothy Wall  <twall@users.sf.net>
+
+	* strip absolute paths from FontChooser fixture references.
+
+2005-02-22  Timothy Wall  <twall@users.sf.net>
+
+	* MyCodeStressTest.java: Revise code stress test to use fixtures.
+	* MyCodeTest.java: Use fixtures.
+	* MyCode-*.xml: Ditto.
+	* FontChooserTest.java: Ditto.
+	* scripts/FontChooser/*.xml: Ditto.
+	
+2005-01-04  Tom Roche  <tlroche@users.sf.net>
+
+	* CelsiusConverterTest.java: now has the same tests as
+	abbot.swt/CCT, all green-bar.
+	* CelsiusConverter.java: adds statics for output and UI framing
+	called by CelsiusConverterTest
+
+2005-01-03  Timothy Wall  <twall@users.sf.net>
+
+	* CelsiusConverter.java: Update to match SWT version.  Clean up
+	code organization.
+	* CelsiusConverter.properties: Add a few.
+	
+2004-12-30  Tom Roche  <tlroche@users.sf.net>
+
+	* CelsiusConverter.java: New.
+	* CelsiusConverterStrings.java: New.
+	* CelsiusConverter.properties: New.
+	* CelsiusConverterTest.java: New.
+
+2004-03-03  Timothy Wall  <twall@users.sf.net>
+
+	* MyCode.java: Add tabbed pane.
+
+2004-02-09  Timothy Wall  <twall@users.sf.net>
+
+	* LabeledList.java, LabeledListTest.java: Add code for tutorial 2.
+
+2003-09-11  Timothy Wall  <twall@users.sf.net>
+
+	* applet.xml: Use sun.applet.Main instead of AppletViewer (1.4.2).
+
+2003-04-02  Timothy Wall  <twall@users.sf.net>
+
+	* MyCode.java: Add a text area.
+
+2003-03-27  Timothy Wall  <twall@users.sf.net>
+
+	* SimpleApplet.java: Add a dialog.
+	* applet.xml: Show dialog in applet.
+	
+2003-01-25  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCodeStressTest.java (main): New.
+	* StressMyCode.xml: Script for repeated actions.
+	
+2003-01-13  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTester.java (actionRoll): Update to new mouse event
+	signature.
+
+2002-11-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTester.java (ArrowButtonTester): Don't fail if the
+	script editor isn't being used.  NOTE: maybe the method should be
+	moved to Robot or ComponentTester from ScriptEditor.
+
+2002-10-17  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode-2.xml: Add JTable method.
+
+2002-09-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode.java: Add a JTable.
+
+2002-09-20  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode-0.xml: stop on failure/error.
+
+2002-09-12  Timothy Wall  <twall@users.sourceforge.net>
+	
+	* scripts/FontChooser/initial-state.xml: Use class reloading.
+	* scripts/FontChooser/size-change.xml: Use class reloading.
+	
+2002-09-10  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode.java (main): Don't print to stdout.
+	* MyCode-*.xml: Use non-delegating class loader (class reloads on
+	each run).
+	
+2002-09-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTester.java (ArrowButtonTester): Add editor doc
+	properties for the provided actions.
+
+2002-09-05  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode.java: Add a table and fix the width of the window.
+
+2002-08-30  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTest.java (ArrowButtonTest): New.  Tutorial sample
+	test.
+
+2002-08-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* scripts/FontChooser/family-change.xml: Use regexps to match font
+	spec. 
+	* scripts/FontChooser/*.xml: Add class path.
+	* MyCode-0.xml: Update action method names.
+	* MyCode*.xml: Update class path.
+	
+2002-08-09  Timothy Wall  <twall@users.sourceforge.net>
+
+	* abbot.bat: Invoke splash screen version.
+	* MyCode-[012].xml: Add classpath.
+
+2002-08-03  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode-[012].xml: Remove extraneous component references, move
+	all menu stuff to MyCode-0.
+	
+2002-07-26  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTester.java (ArrowButtonTester): Put in tester
+	extensions package to distinguish it from built-in testers.  Use the
+	simpler default constructor.
+
+2002-07-24  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTester.java: Look up method dynamically rather than
+	casting until the class loader issue is fixed.
+
+2002-07-15  Timothy Wall  <twall@users.sourceforge.net>
+
+	* SimpleApplet.java: New. Simple applet example.
+	* SimpleApplet.xml: New. Simple applet script.
+	
+2002-06-11  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButton.java: Code cleanup.  damn this stuff is old (java
+	1.1 or prior).
+	* ArrowButtonTester.java: Add actionRoll.
+	* FontChooser.java: Add a frame border, resize the frame on font
+	size change.
+	* scripts/FontChooser/size-change.xml: Use the roll action.
+	
+2002-06-08  Timothy Wall  <twall@users.sourceforge.net>
+
+	* ArrowButtonTester.java: New. Sample custom ComponentTester.
+
+2002-06-07  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode.java (PopupAdapter): Detect popups on mouse press,
+	release, AND click.
+
+2002-05-31  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode.java (main): Add a scrolling list (kgirard).
+	* MyCode-2.xml: New. Show off list scrolling/selection (kgirard).
+
+2002-05-29  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode-1.xml: Use -1, -1 as popup target coords.
+	Fix tags on menu items to avoid mismatches.
+	* MyCode-0.xml: Ditto.
+
+2002-05-28  Timothy Wall  <twall@users.sourceforge.net>
+
+	* MyCode.java: Don't name components if they've got tags.
+	* MyCode-0.xml: Remove names from crefs, since the component don't
+	have them any more.

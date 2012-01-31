@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta http-equiv="Content-Language" content="en-us">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>WindowTester Pro - What's New</title>
+<!--   
+<style>
+td {
+border-top: solid thin black;
+}
+tr {
+vertical-align: top;
+}
+  </style>
+-->
+
+<link href="../../stylesheets/book.css" type="text/css" rel="stylesheet"></head>
+
+<body>
+
+<h1 class="helpHeader">What's New in 3.6.0</h1><p>This document contains descriptions of some of the more
+interesting or significant changes in the WindowTester Pro v3.6.0
+release.</p>
+
+      <ul><li><a href="#user_interface_group">User
+Interface</a></li><li><a href="#core_runtime_feature_group">Core
+Runtime</a></li></ul>
+<!-- ****************** START OF TABLE ****************** -->
+<table style="width: 700px;" border="0" cellpadding="5" cellspacing="0">
+
+  <tbody>
+
+    <tr valign="middle">
+
+      <td style="border-top: thin solid black; border-bottom: thin solid black;" colspan="2" valign="middle">
+      <h2><a name="user_interface_group">User Interface</a></h2>
+
+      </td>
+
+    </tr>
+
+    <tr valign="top">
+
+      <td align="right">
+      <p><b>Recorder Console</b></p>
+
+      </td>
+
+      <td><p>The once experimental recorder console has been promoted! The new WindowTester Pro
+			recording console displays recorded events giving users instant
+			feedback during the recording process.</p>
+		<p><a><img alt="Recorder Console" src="../../images/consoleSnapshot.jpg"></a></p>
+<p><a>Using the console, users can:</a></p>
+
+<ul>
+
+<a>        <li>Monitor and Edit Recorded Actions</li>
+
+        <li>Generate Multiple Tests during a Single Recording
+Session</li>
+
+        <li>Start and Stop the Recording Session</li>
+
+        <li>Add Assertion Hooks</li>
+
+      </a></ul>
+
+<p><a>More details can be found in the console </a><a href="../ui/recording_console.html">reference</a>.</p>
+
+      </td>
+
+    </tr>
+
+    <tr valign="top">
+
+      <td style="border-top: thin solid black;" align="right">
+      <p><b>Assertions UI</b></p>
+
+      </td>
+
+      <td style="border-top: thin solid black;"><p>Using the new Assertions UI, assertions can be
+generated at recording time using the assertion
+inspector tool. </p>
+
+      <img src="../../images/assertion_dialog_no_comment.jpg" alt=""><br>
+
+      <br>
+
+See this <a href="../ui/assertionsUI.html">reference</a>
+for more details.</td>
+
+    </tr>
+
+    <tr>
+
+      <td style="border-top: thin solid black; border-bottom: thin solid black;" colspan="2">
+      <h2><a name="core_runtime_feature_group"></a>Core
+Runtime</h2>
+
+      </td>
+
+    </tr>
+
+    <tr valign="top">
+
+      <td align="right">
+      <p><b>Condition Factories</b></p>
+
+      </td>
+
+      <td>
+      <p>A convenient approach to building conditions is to
+invoke
+locator-specific condition factory methods on a target locator.
+&nbsp;For
+example, <span style="font-family: monospace;"></span></p>
+      <p><span style="font-family: monospace;">&nbsp; &nbsp;new
+ButtonLocator("Ok").isEnabled()</span>
+&nbsp;</p>
+      <p>produces a condition that tests for the enablement of a
+button labeled
+"Ok". &nbsp; This release continues our evolution of this feature
+by adding
+a few new&nbsp; factory methods:</p>
+
+      <ul>
+
+        <li><span style="font-family: monospace;">TableCellLocator.hasText(..)
+          </span>- <span style="font-family: monospace;">TableCellLocator</span>s
+can now be used to create <span style="font-family: monospace;">HasTextConditions</span>
+(for example: <tt>ui.assertThat(new TableCellLocator("item 1",
+"Value").hasText("yyy"))</tt>). </li>
+
+        <li><span style="font-family: monospace;">TreeItemLocator.isSelected()
+          </span>- <span style="font-family: monospace;">TreeItemLocator</span>s
+now implement <tt>IsSelected </tt>and can now also be
+used to create <span style="font-family: monospace;">IsSelectedCondition</span>s
+to test for the check-state of a tree item (for example: <tt>ui.assertThat(new
+TreeItemLocator("Popeye").isSelected()</tt>).</li>
+
+      </ul>
+
+      </td>
+
+    </tr>
+
+    <tr valign="top">
+
+      <td style="border-top: thin solid black;" align="right">
+      <p><b>Locator Factories</b></p>
+
+      </td>
+
+      <td style="border-top: thin solid black;">
+      <p>Locator factories can be used to build readable tests
+and ease writing tests by hand.&nbsp; </p>
+
+      <p>Tests written using factories read more fluently than
+their explicit constructor counterparts. &nbsp;(Note: for maximum
+effect, factories&nbsp;are best imported statically.)&nbsp; As
+an example, take: </p>
+
+      <pre> ui.click(treeCell("foo/bar").at(column(3)).in(view("MyView"));</pre>
+
+and notice that it reads much like a specification.
+      <p>This approach to building locators is under active
+development. &nbsp;This release includes the following factories:</p>
+
+      <ul>
+
+        <li><span style="font-family: monospace;">SWTLocators
+          </span>- &nbsp;creates common
+SWT&nbsp;locators. </li>
+
+        <li><span style="font-family: monospace;">EclipseLocators
+          </span>-&nbsp;creates common Eclipse locators.</li>
+
+      </ul>
+
+      </td>
+
+    </tr>
+
+    <tr valign="top">
+
+      <td style="border-top: thin solid black;" align="right"><p><b>Pluggable ScreenCapture</b></p></td>
+
+      <td style="border-top: thin solid black;">
+      <p>The global screen capture policy now user-configurable.
+In addition,
+the default screen capture handling implementation has been improved to
+be more robust in the face of out of memory conditions.</p>
+
+      <p>See the <span style="font-family: monospace;">ScreenCapture</span>
+      <a href="../reference/javadoc/com/windowtester/runtime/util/ScreenCapture.html">javadocs</a>
+for examples and details.&nbsp;</p>
+
+      </td>
+
+    </tr>
+
+    
+
+    
+
+  </tbody>
+</table>
+
+
+
+
+
+</body></html>

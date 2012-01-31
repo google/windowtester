@@ -1,0 +1,36 @@
+/*******************************************************************************
+ *  Copyright (c) 2012 Google, Inc.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *  Google, Inc. - initial API and implementation
+ *******************************************************************************/
+package com.windowtester.runtime.swt.locator.forms;
+
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Control;
+
+import com.windowtester.internal.runtime.locator.IUISelector;
+import com.windowtester.runtime.locator.IWidgetReference;
+import com.windowtester.runtime.swt.internal.widgets.ISWTWidgetReferenceWithContextMenu;
+
+/**
+ * Refers to a hyperlink widget.
+ * @see HyperlinkLocator
+ * @noimplement This interface is not intended to be implemented by clients.
+ */
+public interface IHyperlinkReference extends IWidgetReference, IUISelector, ISWTWidgetReferenceWithContextMenu {
+
+	String getHref();
+	String getText();
+	Rectangle getDisplayBounds();
+	
+	boolean hasHRef(String href);
+	boolean hasText(String text);
+
+	Control getControl();
+
+}

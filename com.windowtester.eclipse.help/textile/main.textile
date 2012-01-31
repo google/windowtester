@@ -1,0 +1,20 @@
+<title>Preferences</title>
+ 
+<link href="../../../stylesheets/book.css" type="text/css" rel="stylesheet"/>
+
+
+h1. WindowTester Pro Preferences
+
+The WindowTester Pro preferences can be accessed from your *Window>Preferences* menu. This is the main WindowTester Pro preference page. It contains the version and build number, installation directory, contact resources.
+
+Detailed product preferences can be accessed from specific feature preference pages.
+
+* <a href="codegen.html">CodeGen</a>
+* <a href="playback.html">Playback</a>
+* <a href="recorder_ui.html">Recorder UI</a>
+
+<br/>
+
+
+!../../../images/preference_page.gif!
+

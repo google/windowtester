@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="generate-html">
+	
+	<!--import file="macros/groovy-macros.xml" />
+	<import file="macros/pdf-doclet-macros.xml" /-->
+		
+	<!--target name="build" 
+		depends="beta-history,refresh"/>
+	
+	<target name="beta-history" depends="compile">
+		<groovy src="src/history/current.groovy">
+		  <arg value="${basedir}/html/reference/history.html"/>
+		  <classpath>
+		    <pathelement location="bin"/>
+		  </classpath>
+		</groovy>
+	</target-->
+	
+	<property name="eclipse.home" location="C:\dev\eclipse\3.4.1\eclipse"/>
+	
+	
+	<path id="wikitext.classpath">
+		<!--fileset dir="${eclipse.home}/plugins"-->
+		<fileset dir="lib">
+			<include name="org.eclipse.mylyn.wikitext.*"/>
+		</fileset>
+	</path>
+
+	<!--taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" /-->
+
+
+	<!-- taskdef name="wikitext-to-html"
+	         classname="org.eclipse.mylyn.wikitext.core.util.anttask.MarkupToHtmlTask"
+	         classpathref="wikitext.classpath"/-->
+	
+	<target name="generate-html" description="Generate HTML from textile source">
+			
+		<fileset dir="${basedir}" id="textiles">
+		    <include name="**/*.textile"/>
+		</fileset>
+		<property name="files" refid="textiles"/>
+		<echo message="${files}"/>
+		
+		<wikitext-to-html markupLanguage="Textile">
+			<fileset refid="textiles" />
+			<!--stylesheet url="styles/main.css"/-->
+		</wikitext-to-html>
+
+		
+	</target>
+	
+
+</project>

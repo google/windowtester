@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="WindowTester Pro User Guide" topic="html/index.html">
+   <topic href="html/whatsnew.html" label="What&apos;s New">
+      <topic href="html/releases/index.html" label="Releases">
+      </topic>
+   </topic>
+   <topic href="html/overview/index.html" label="Overview">
+      <topic href="html/overview/windowtester.html" label="WindowTester Pro"/>
+      <topic href="html/overview/generating_tests.html" label="Generating Tests"/>
+      <topic href="html/overview/running_tests.html" label="Running Tests"/>
+      <topic href="html/overview/assertions_overview.html" label="Assertions"/>
+      <topic href="html/overview/automating_tests.html" label="Automating Tests"/>
+      <topic href="html/overview/continuous_test.html" label="Continuous Testing">
+      </topic>
+   </topic>
+   <topic href="html/installation.html" label="Installation">
+      <anchor id="install"/>
+   </topic>
+   <topic label="Getting Started" href="html/gettingStarted.html">
+      <anchor id="gettingstarted"/>
+   </topic>
+   <topic href="html/programmer/index.html" label="Programmer&apos;s Guide">
+      <anchor id="prog"/>
+   </topic>
+ 
+   <topic href="html/ui/index.html" label="Tools">
+      <topic href="html/ui/recording_control.html" label="Recording Control"/>
+      <topic href="html/ui/recording_console.html" label="Recording Console"/>
+      <topic href="html/ui/codegen.html" label="Code Generation Wizard">
+      </topic>
+      <topic href="html/ui/assertionsUI.html" label="Assertion Inspector"/>
+      <topic href="html/ui/apiusage.html" label="WindowTester Pro API Usage Report">
+      </topic>
+      <topic href="html/reference/API_Migration.html" label="API Migration">
+      </topic>
+      
+      
+   </topic>
+   
+      
+ 	
+   <topic label="Reference" href="html/reference.html">
+      <anchor id="reference"/>
+   </topic>
+   <topic href="html/samples/index.html" label="Samples">
+      <topic href="http://code.google.com/p/wt-commons/" label="WT Commons (site)"/>
+   </topic>
+   <topic href="http://groups.google.com/group/windowtester-pro/" label="User Support Forum">
+   </topic>
+   
+   <topic href="html/faq/faq.html" label="FAQ">
+   </topic>
+   <topic href="html/tos.html" label="Terms of Service">
+   </topic>
+</toc>

@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>What's New</title>
+<link rel="stylesheet" type="text/css" href=
+"../../stylesheets/book.css" />
+</head>
+<body>
+<h1>What&rsquo;s New in 4.0.0</h1>
+<p>This document contains descriptions of some of the more
+interesting or significant changes in the <strong>WindowTester Pro
+v4.0.0</strong> release.</p>
+<ol style="list-style: none;">
+<li><a href="#SWTRuntime">SWT Runtime</a></li>
+<li><a href="#SwingRuntime">Swing Runtime</a></li>
+<li><a href="#Recording">Recording</a></li>
+<li><a href="#StabilityMaintenance">Stability/Maintenance</a></li>
+</ol>
+<hr />
+<h2 id="SWTRuntime">SWT Runtime</h2>
+<p>A number of improvements have been made to existing SWT widget
+locators.</p>
+<ul>
+<li><i>TableCellLocator column header support</i> - the
+<code>TableCellLocator</code> now supports clicks on Table column
+headers.</li>
+</ul>
+<ul>
+<li><i>WizardPageLocator API</i> - API has been added for wizard
+page access
+(<code>com.windowtester.runtime.swt.locator.jface.WizardPageLocator</code>);
+an existing internal class
+(<code>com.windowtester.runtime.swt.internal.locator.jface.WizardPageLocator</code>)
+has been deprecated in favor of the new API.</li>
+</ul>
+<ul>
+<li><i>ContributedToolItems</i> - the
+<code>ContributedToolItemLocator</code> now supports ToolItems
+added via command contributions.</li>
+</ul>
+<p>In addition, assertion support has been tightened up in a number
+of areas.</p>
+<ul>
+<li><i>Assertions on combo items</i> - the Combo (and CCombo) item
+locator returned <code>true</code> to isVisible if the list could
+be found, now <code>true</code> is returned only if the item itself
+is found in the list.</li>
+</ul>
+<ul>
+<li><i>Assertions on list items</i> - the List item locator
+returned <code>true</code> to isVisible if the list could be found,
+now <code>true</code> is returned only if the item itself is found
+in the list.</li>
+</ul>
+<ul>
+<li><i>Assertions on tool item buttons</i> - for some tool item
+buttons, isEnabled always returned <code>true</code> if the tool
+item could be found, now <code>true</code> is returned only if the
+button widget is enabled.</li>
+</ul>
+<ul>
+<li><i>Assertions on table items</i> - selection state tests were
+not always accurate and have now been fixed.</li>
+</ul>
+<h2 id="SwingRuntime">Swing Runtime</h2>
+<p>Swing runtime support has been expanded in a number of ways
+including:</p>
+<ul>
+<li><i>Improved embedded Swing locator handling</i> - swing
+locators can now be used directly within an SWT UI context to
+handle Swing widgets that are embedded in an SWT application.</li>
+</ul>
+<ul>
+<li><i>Assertion API for Swing locators</i> - the appropriate Swing
+Locators now support the following assertion-supporting interfaces:
+<code>HasText</code>, <code>IsEnabled</code>,
+<code>IsSelected</code>, <code>HasFocus</code> and
+<code>IsVisible</code>.</li>
+</ul>
+<ul>
+<li><i>Internal and nested classes</i> - Added Swing recorder and
+runtime support for internal and nested class.</li>
+</ul>
+<h2 id="Recording">Recording</h2>
+<p>The recording experience has been greatly improved with a new
+enhanced recorder UI.</p>
+<ul>
+<li><i>Recorder UI improvements</i> a number of refinements have
+been made to the recorder console:
+<ul>
+<li>a recorder configuration (launcher) tool item has been added to
+the view toolbar.</li>
+<li>keystrokes are now presented as strings (where appropriate)
+rather than individual keystrokes (e.g., <i>&ldquo;Foo&rdquo;
+entered</i> rather than the sequence <i>&lsquo;F&rsquo;
+pressed</i>, <i>&lsquo;o&rsquo; pressed</i>, <i>&lsquo;o&rsquo;
+pressed</i>).</li>
+<li>events can now be deleted from the sequence using the
+<i>DELETE</i> key.</li>
+<li>a special page is presented when there is no active recording
+with pointers to help launch new recordings.</li>
+</ul>
+</li>
+</ul>
+<p>In addition to UI refinements, a number of core recorder fixes
+have been made.</p>
+<ul>
+<li><i>View Menu Recording</i> - view menu selections are now
+properly handled by the recorder.</li>
+</ul>
+<ul>
+<li><i>Hyperlink recording</i> - SWT hyperlink identification in
+the recorder has been improved.</li>
+</ul>
+<ul>
+<li><i>Link recording</i> - SWT link identification in the recorder
+has been improved.</li>
+</ul>
+<h2 id="StabilityMaintenance">Stability/Maintenance</h2>
+<p>This release also contains a number of fixes to improve the
+overall stability of the product.</p>
+<ul>
+<li><i>Runtime performance fixes</i> - performance has been
+optimized in a number of places to address severe performance
+issues seen with eclipse 3.5 on systems with hyper-threading
+enabled.</li>
+</ul>
+<ul>
+<li><i>Opening perspectives</i> - WindowTester Pro will now
+correctly open perspectives in the same window (instead of spawning
+a new one).</li>
+</ul>
+<ul>
+<li><i>Combo Item selection issues</i> - combo selection logic has
+improved to handle dynamic combos.</li>
+</ul>
+<ul>
+<li><i>Circular dependency removed</i> - a fragment contributed by
+WindowTester Pro code coverage functionality was introducing a
+bundle dependency cycle; this cycle has now been removed.</li>
+</ul>
+<ul>
+<li><i>(Post context click) menu recording fix</i> - a bug
+affecting the recording of top-level menu selections immediately
+after a context selection has been fixed.</li>
+</ul>
+<ul>
+<li><i>Codegen fix for tests with no setup handlers</i> - tests
+generated with no setup handlers selected were causing errors to
+get reported to the log; this has now been fixed.</li>
+</ul>
+<hr />
+<p>Notes for the <strong>3.9.0 release</strong> can be found
+<a href="3.9.0.html">here</a>.</p>
+</body>
+</html>

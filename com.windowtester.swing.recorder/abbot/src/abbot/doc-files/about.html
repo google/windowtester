@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>Elements of GUI Testing</title>
+<meta name="authors" content="Timothy Wall">
+<meta name="keywords" content="java, gui, test, software, automated, junit, record, playback, qa, quality">
+<meta name="description" content="How to write and test a GUI">
+<meta name="date" content="2003-11-16">
+</head>
+<body>
+<h1>
+<b><font color="#00CC00">A</font><font color="#FF0000">b</font><font color="#00CC00">b</font><font color="#000000">ot</font></b>
+<font size=-1><i>(with support from Costello)</i></font></h1>
+<hr WIDTH="100%">
+Applying what I learned with JUnit to writing GUI tests, and building a better
+'bot.<p>
+<!-- commentary on the design of abbot -- needs editing
+Should be a much more in-depth discussion than the overview.
+Should include some prior art, and especially
+* component lookup
+* script vs code
+* abstracted actions, basic events
+* event recording/parsing
+-->
+
+<h3>Contents</h3>
+
+<h3>The Pain (Problems and Goals)</h3>
+On the subject of why testing is so important, I won't repeat here what
+has been aptly described in 
+<a href=http://junit.sourceforge.net/doc/testinfected/testing.htm>Test
+Infected</a>.  If you haven't read that document, please do so before
+proceeding here.
+<p>
+Often a developer will want to make some optimizations to a piece of code on
+which a lot of user-interface behavior depends.  Sure, the new table sorter
+will be ten times faster and more memory efficient, but are you sure the
+changes won't affect the report generator?  Run the tests and find out.  A
+developer is much more likely to run a test that has encapsulated how to set
+up and test a report than he is to launch the application by hand and try to
+track down who knows how to do that particular test. 
+<p>
+To test a GUI, you need a reliable method of finding components of interest,
+clicking buttons, selecting cells in a table, dragging things about.  If
+you've ever used java.awt.Robot, you know that you need A Better 'Bot in order
+to perform any user-level actions.  The events the Robot provides are like
+assembly language for GUI testing.  To facilitate and encourage testing, you
+need a higher-level representation.  
+<p> 
+Describing expected behavior <i>before</i> writing the code can clarify the
+developer's goals and avoid overbuilding useless feature sets.  This principle
+applies to GUI component development as well as composite GUI development,
+since the process of writing tests against the API can elucidate and clarify
+what is required from the client/user point of view.
+<p>
+<h3>GUI Design</h3>
+First of all, any GUI component should provide a public API which can be
+invoked in the same manner via a system user event or programmatically.  Keep
+this in mind when writing new components.  In the case of Java's Swing
+components, the event handling is mixed up with complex component behavior
+triggers in the Look and Feel code.  It's not possible to execute the same
+code paths without triggering the originating events.  A better design would
+be to have the Look and Feel code simply translate arbitrary,
+platform-specific event sequences into public API calls provided by the
+underlying component.  Such a design enables the component to be operated
+equally as well by code, whether for accessibility or testing purposes.
+<p>
+<h3>GUI Testing</h3>
+GUIs need testing.  Contrary to some opinion, the problem is not always (or
+even commonly) solvable by making the GUI as stupid as possible.  GUIs that are
+sufficiently simple to not require testing are also uninteresting, so they do
+not play into this discussion.  Any GUI of sufficient utility will have some
+level of complexity, and even if that complexity is limited to listeners (code
+responding to GUI changes) and updates (GUI listening to code state changes),
+those hookups need to be verified.  
+<p>
+Getting developers to test is not easy, especially if the testing itself
+requires additional learning.  Developers will not want to learn the details
+of specific application procedures when it has no bearing on their immediate
+work, nor should they have to.  If I'm working on a pie chart graph, I don't
+really want to know the details of connecting to the database and making
+queries simply to get an environment set up for testing.  So the framework
+for testing GUIs should require no more special knowledge than you might need
+to use the GUI manually.  That means
+<ul>
+<li>Look up a component, usually by some obvious attribute like its label.
+<li>Perform some user action on it, e.g. "click" or "select row".
+</ul>
+<p>
+<h3>Scripts vs compiled code</h3>
+How can I test a GUI prior to writing code?  One alternative (and useful in
+certain cases) is developing a mockup in a RAD tool.  Unfortunately, the
+usefulness is relatively short-lived; it's not really possible (at this point
+in time) to automatically generate a very interesting interface.  If your
+entire interface consists of buttons and forms, you may not really need a gui
+tester anyway.  Mockups don't convert well to tests for the actual developed
+code, and RAD tool output usually requires some hand modification
+afterwards.
+<p>
+What a test script could plainly describe the GUI components of interest, and
+simply describe the actions to take on those components?  Providing you know
+the basic building blocks, you can edit the scripts by hand or if you don't
+know the building blocks, in a script editor.  No compilation necessary, which
+speeds development and maintenance of tests.
+<p>
+I wanted scripts to be hand-editable, with no separate compilation step.  I
+wanted to be able to drop scripts into directory hierarchies as needed, and
+have the test framework pick them up automatically, similar to how JUnit
+auto-generates test cases.
+<p>
+<h3>How to Test</h3>
+One issue in defining a GUI test is that you need to map from a semantic
+action (select the second item in the records table) onto a programmatic
+action (<code>myTable.setSelectedIndex(1)</code>).  This comprises two separate
+problems.  First, the target of the action, "records table", must be somehow
+translated into an actual code object.  Second, the semantic event "select the
+second item" must be translated into a programmatic action on that code
+object.  
+<p>
+<h4>Tracking components</h4>
+There are many methods of identifying a component in a GUI hierarchy.  We want
+the tests to be flexible enough to not break simply because another button or
+panel was added to the GUI layout. 
+<ul>
+<li><b>Component Names</b> Java provides for naming components, but since no
+one ever names them, this method of identification is mostly useless.  Worse,
+some auto-generated components (frames for otherwise frameless windows,
+windows for popup menus, and most dialog instantiations) have auto-generated
+names, which aren't particularly helpful, or even downright misleading if
+components get created in a different order than expected.<br>
+<li><b>Position in hierarchy</b> This method guarantess a unique match, but
+also guarantees your script will break when that hierarchy changes, even for 
+otherwise trivial modifications (like inserting a scrollpane).  Each component
+would need to store its parent reference and index within that parent.  Note
+that this implies each parent reference might need to store the same
+information for itself. 
+<li><b>Parent window title</b> This is useful as a first-pass discriminator in
+multi-window applications.
+<li><b>Component class</b> This helps discriminate from the available
+components list, but is not likely sufficient on its own to identify a
+component. 
+<li><b>Custom tags</b> Here's where the real component resolution is done.
+Many component classes will have some aspect or property that can be used to
+uniquely identify them, typically a label (the text of a button or menu, a
+labelFor component, a window's title), but potentially any identifying
+element may be used.  Abbot uses custom component testers to get the unique
+tag for any given component.  These testers are dynamically loaded, so we
+don't have to know a priori how to get a tag for a given component class.
+Combined with all the previous attributes, Abbot does a pretty good job of
+tracking components.
+</ul>
+
+<h4>Recording events</h4>
+Ideally, there would be a programmatic function on every component that
+performed a given user action, similar to the <code>doClick</code> method on
+<code>AbstractButton</code>.  Given that this is not the case, we want to
+provide for both implementing such functions and loading them dynamically, and
+constructing semantic events from low-level events when corresponding
+functions are not available.  Having dedicated semantic functions makes
+writing scripts easier, but supporting the low-level events means they are not
+absolutely required.<p> 
+
+The most basic events to support are those that correspond to low-level OS
+events for user input, namely<br>
+<ul>
+<li>Pointer motion<br>
+<li>Button press/release<br>
+<li>Key press/release<br>
+</ul>
+
+In addition, the most common semantic events that affect user input are
+windows opening and closing, so we throw in support for those (Alternatively,
+the time delta between events could be preserved for replay, but doing so has
+not yet proved useful in very many cases)<br>
+<ul>
+<li>Wait for window open/closed<br>
+</ul>
+
+The easiest way to write a script is to record a series of actions for later
+replay, adding checkpoints or assertions along the way to verify correctness.
+Eventually, you might want to add heuristics that strip out meaningless
+events, but keeping track of a few basic events is sufficient for good
+functionality.<p>
+
+Over and above event stream support, it's useful to have custom, class-based
+component functions that provide higher-level semantic events.  For example, a
+custom table might export a <code>select(int row, int col)</code> action to
+select a cell within the table, or <code>sortByColumn(int col)</code> to
+invoke a click on the column header which would cause a sort in the table.
+The custom actions use existing building blocks (low-level events or existing 
+semantic actions) to construct the higher-level semantic event.<p>
+
+</body>
+</html>
+<!-- 
+Local variables:
+eval: (add-hook 'write-file-hooks 'time-stamp)
+time-stamp-start: "<meta name=\"date\" content=\""
+time-stamp-format: "%:y-%02m-%02d"
+time-stamp-end: "\">"
+End:
+-->
+

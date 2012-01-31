@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<!-- 
+  Copyright 2002-2005 Timothy Wall
+-->
+</head>
+
+<!-- FIXME not sure how to get a title into the summary... -->
+<HR>
+<CENTER>
+<H2>Abbot Automated GUI Testing Framework, version 1.0.0rc1</H2>
+</CENTER>
+<body bgcolor="white">
+This document is the API specification for the
+<a href=http://abbot.sf.net>Abbot</a>
+automated GUI testing framework and associated support packages.
+<p>
+Abbot is a Java GUI testing framework and JUnit extension.  The framework may
+be invoked directly from Java code (unit tests), or in a more simple,
+structured way using XML-based scripts.  Both methods are designed to be used
+with the JUnit testing framework.  You can launch a GUI, invoke arbitrary user
+actions on it, and examine its state.  
+<p>
+The Abbot framework also includes the Costello editor, which facilitates
+editing scripts.  The editor supports recording arbitrary user actions
+into a script.
+<p>
+<a href=#navbar_top>Top</a>&nbsp;
+<a href=overview.html>Abbot Home</a>&nbsp;
+<a href=index.html target=_top>API w/FRAMES</a>&nbsp;
+<p>
+
+<h3>The Abbot Framework</h3>
+Abbot provides a framework for testing your GUI regardless of the current
+state of your code.  If you are doing test-first development with lots of unit
+testing, then Abbot can provide the developer the tools needed to write
+individual unit tests.  If you have an existing code base without existing
+unit tests, you can use the scripting level of Abbot to start building
+functional test scaffolding around your application until it is sufficiently
+stable to support refactoring and addition of unit tests.
+<p>
+In general, testing with Abbot consists of getting references to GUI
+components and either performing user actions on those components or making
+some assertions about their state.  To facilitate this process, the framework
+provides ComponentReferences to get a handle on a GUI component (even when it
+may not yet exist), and extended Robot-like objects, which know how to perform
+user-level actions on various GUI components.  These operations may be done
+from either a high-level script (useful for functional/acceptance testing) or
+directly from Java code (for example in a JUnit TestCase method).
+<p>
+<ul>
+<a name=Robot></a>
+<li><h4>Robot (the user event generator, and the root of all Testers)</h4>
+This is the fundamental component of Abbot, "A Better 'Bot".  It provides
+basic component-level events upon which more complex tester objects can be
+built.  In the absence of a specific tester object for a given component, the
+events provided by the {@link abbot.tester.Robot}
+class are sufficient to reconstruct any user actions.
+<p>
+For each {@link java.awt.Component} to be tested, there is a
+<a href={@docRoot}/abbot/tester/package-summary.html#package_description>Tester</a>
+class which provides user actions and tests (assertions) specific to that
+component.  This is the class to extend when you need to provide access to a
+custom GUI component.  The base class, abbot.tester.ComponentTester, provides
+default actions for most common user actions, including clicking a mouse
+button, selecting from a menu, and typing text.  The tester system is easily
+extensible to provide more specific actions or property lookup for custom
+components; for example, JTableTester provides an action which selects the
+cell at a given row, column location.  JPopupMenuTester provides a method
+which returns a list of all the menu items currently on a popup menu.
+<p>
+<a name=ComponentLocation></a>
+<li><h4>ComponentLocation</h4>
+Abbot represents locations within a given component with a dedicated data type,
+the <code>ComponentLocation</code>.  This means that any component with
+internal substructure (cells in a table, rows in a tree, items in a list, etc)
+may identify a substructure location with a class derived from
+<code>ComponentLocation</code>.  For example, a <code>JTableLocation</code>
+may be constructed with a <code>Point</code> (raw coordinates), a [row, col]
+pair, or a <code>String</code> representation of the value in the desired
+cell. Using these location types avoids a proliferation of API methods, so you
+can simply have one method per type of user action, like this:<br> 
+<code><pre>
+    public void actionClick(Component, ComponentLocation);
+    public void actionDrag(Component, ComponentLocation);
+    public void actionShowPopupMenu(Component, ComponentLocation);
+</pre></code>
+instead of many like this:<br>
+<code><pre>
+    public void actionClick(Component c, Point where);
+    public void actionClick[Cell](JTable c, int row, int col);
+    public void actionClick[Row](JTree c, int row);
+    public void actionClick[Value](JTable c, String value);
+    <span style='color:brown'>// Repeat for actionDrag, actionDrop, actionShowPopupMenuAt, etc</span>
+</pre></code>
+From a script, these are automatically generated as needed; in general you can
+use (x,y), [index], [row,col], or "value" notations depending on how you want
+to refer to a particular substructure element.  When recording, the
+<code>String</code> value of a location will be used by default. 
+<p>
+<a name=ComponentReferences></a>
+<li><h4>ComponentReferences</h4>
+ComponentReferences allow you to use a few known attributes of a component to
+refer to that component, whether or not the component currently exists or is
+visible.  The framework provides automatic lookup, so that you don't have to
+clutter your object API with accessors like <code>getOKButton</code> and
+<code>getCancelButton</code>. When tests are run, component references may be
+converted to the actual Component they represent just in time, at the point
+where the component itself is actually needed.  Component lookup is fuzzy,
+such that minor changes in attributes (such as position, parent or size of a
+component) generally won't break the script.  
+<p>
+<a name=Scripts></a>
+<li><h4>Scripts</h4>
+Scripts are the basic units of test execution in the Abbot framework.  In
+general these consist of <a
+href={@docRoot}/abbot/script/ComponentReference.html>component lookup
+information</a>,
+component actions (such as menu selections, typed text, etc.), and assertions
+regarding the GUI's state.  Scripts for unit tests may be very simple, while
+scripts for functional testing may be far more lengthy and complex.  See the
+<a href="{@docRoot}/abbot/script/package-summary.html#package_description">abbot.script</a>
+package for more details.  
+<p>
+When using a script, all information required to run the test is
+encapsulated within the script itself, to provide independence from any
+particular testing environment.  This facilitates running the scripts under
+either the script editor, JUnit, or some other harness. 
+<p>
+The {@link junit.extensions.abbot.ScriptFixture}
+provided for use with JUnit derives from {@link junit.framework.TestCase}
+and is a very simple wrapper to adapt the script to the JUnit testing
+framework. 
+Scripts may be grouped into a test suite by using the 
+{@link junit.extensions.abbot.ScriptTestSuite} class, which can automatically
+collect a group of tests into a suite based 
+on file hierarchy, filenames, or other criteria.  The preferred method of
+creating a suite is to derive your test class from ScriptFixture, then have
+the static "suite" method for that derived class create an instance of
+ScriptTestSuite which selects for the scripts you wish to group. See the 
+{@link junit.extensions.abbot.ScriptTestSuite} API documentation for details.
+<p> 
+<li><h4>Other Features</h4>
+<ul>
+<a name=Fixture></a>
+<li><h5>GUI Test Fixture</h5>
+A {@link junit.extensions.abbot.ComponentTestFixture} is provided for testing
+GUI components and groups of components directly from Java code.  This fixture
+extends {@link junit.framework.TestCase}, so you can manually write unit tests
+using any of the facilities of the framework.
+<p>
+This fixture takes care of providing a clean environment for instantiating,
+operating on, and examining GUI components, which includes properly disposing
+of all instantiated components at the end of each test.  This avoids the
+tediousness of having to keep track of everything you displayed and tracking
+down anything that might have been displayed that you didn't know about
+(common when testing already-developed code).  It also provides methods for
+looking up desired components in the hierarchy.
+<p>
+<a name=Editor></a>
+<li><h5>Editor (Costello)</h5>
+A <a href={@docRoot}/abbot/editor/package-summary.html#package_description>script
+editor</a> is provided to facilitate creation and maintenance of Abbot
+scripts.  The editor supports live recording of user events to facilitate
+writing scripts, and can also play them back for debugging.  
+<p>
+<a name=Recorders></a>
+<li><h5>Recorders</h5>
+<a href={@docRoot}/abbot/editor/recorder/package-summary.html#package_description>Recorders</a>
+provide a means for the script editor to capture high-level semantic
+information instead of basic mouse and key events.  Recorders are provided for
+most standard Swing components, but events will be captured properly even in
+the absence of a customized Recorder for a given component.  The editor
+supports plug-in recorders to support additional custom components.
+<p>
+The primary Recorder class is the
+{@link abbot.editor.recorder.EventRecorder},
+which calls out to specific instances of
+{@link abbot.editor.recorder.SemanticRecorder}
+to record component-specific actions.
+</ul>
+</ul>
+
+<hr>
+<h3>Goals of the Abbot Framework</h3>
+Aside from <em>the</em> primary goal of reliably automating tests of GUIs and
+GUI components, the Abbot framework has the following goals:<br> 
+<ul>
+<li><i>Reliable reproduction of user input for tests</i><br>
+One reason GUIs don't get tested is because it's usually not easy for a
+developer to simulate user input.  Problem solved, no more excuses for not
+unit testing your GUI components.
+<p>
+<li><i>Scripted control of actions and inspection</i><br>
+Rather than writing new code which requires compilation, the test scripts are
+dynamically interpreted, which is more appropriate for this level of tests.
+All functionality, of course, is available for direct invocation in Java unit
+test code. 
+<p>
+<li><i>Loose component bindings</i><br>
+GUI layouts tend to change over time.  A raw event recorder/playback
+mechanism will likely break if you're operating in absolute coordinates;
+different platforms generally size their components differently, so tests may
+not work cross-platform.  Abbot for the most part doesn't care where
+components are positioned, as long as it can look them up dynamically with a
+few tagging identifiers.
+<p>
+<li><i>Specify high-level semantic actions, but use low-level OS events to
+implement them.</i><br>
+The java.awt.Robot class is capable of directly reproducing user events.
+Unfortunately, it is far too basic to be easy to use for unit tests.  Abbot
+builds a level of abstraction on top of java.awt.Robot, mirroring the way
+Swing Components are a level of abstraction above basic windows.
+
+At this level, tests are much easier to maintain since you can deduce from a
+glance what a set of instructions will do.  It should be plain which of the
+following groups of instructions it is easier for a human to parse:
+<p>
+<blockquote>
+Click on 100, 100<br>
+Move to 110, 110<br>
+Press down key<br>
+Press down key<br>
+Click on 110, 110<br>
+<br>
+Select "blue" from the color list<br>
+</blockquote>
+<li><i>Support live recording of high-level semantic events.</i><br>
+While you can always write XML by hand, or edit each script step individually,
+it makes more sense to leave it to the computer to do the grunt work.  The
+Costello editor can automatically record a sequence of user actions and save
+them to a script.  
+<p>
+<li><i>Extensible user action recording and generation</i><br>
+Tester and Recorder objects (as well as several other framework components)
+are extensible to support any additional components you'd like to test,
+although the basic Robot support can be used to test just about anything
+without further modification.  What you gain by adding extensions is a layer
+of abstraction similar to calling ClickRow(10) instead of Click(x, y), where
+(x,y) is the center of row 10.
+</ul>
+<p>
+</body>
+</html>
+
+
+
+
+
+
+
+

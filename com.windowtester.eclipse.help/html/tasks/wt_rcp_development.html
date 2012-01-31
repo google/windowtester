@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>RCP Development with WindowTester Pro (In Progress -- DRAFT)</title>
+<meta http-equiv="Content-Type"
+	content="text/html; charset=windows-1252">
+<link href="../../stylesheets/book.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+
+<h2 id="">Introduction</h2>
+	
+This document describes setting up your development environment to use 
+WindowTester Pro on your RCP project.
+
+<h2 id="">Project Setup</h2>
+
+We assume that a custom target platform has been setup for the application under development.
+
+<blockquote>
+<p><img src="../../images/tip.gif" width="62" height="13"> 
+	<strong>Always use target platforms for your RCP development.</strong>
+	Target platforms aggregate all of the bundles that are available to your application, 
+	cleanly separating the application under development from the environment in which it is being 
+	developed.  Using target platforms enforces standardization at the level of the application 	(and not at the IDE).  This standardization is key to managing dependencies and the build 	
+	process.
+</p>
+</blockquote>
+
+Next, we expect that the target is managed using a <em>target definition file</em>.
+
+
+<blockquote>
+<p><img src="../../images/tip.gif" width="62" height="13"> 
+	<strong>Prefer managing your targets with a target definition file.</strong>
+	Target platforms aggregate all of the bundles that are available to your application, cleanly 
+	separating the application under development from the environment in which it is being 
+	developed.  Using target platforms enforces standardization at the level of the application
+	(and not at the IDE).  This standardization is key to managing dependencies and the build 
+	process.
+</p>
+</blockquote>
+
+
+<h2 id="">WindowTester Pro Target Provisioning</h2>
+
+
+<h2 id="">Adding WindowTester Pro-Provisioned Bundles</h2>
+
+
+<a name="sample_target"><b>Listing 1. Sample Target Definition</b></a><table border="0" cellspacing="0" cellpadding="5" width="100%" bgcolor="#CCCCCC">
+<tr><td>
+<pre>
+<code>
+&lt?xml version="1.0" encoding="UTF-8"?&gt
+&lt?pde version="3.2"?&gt
+
+&lttarget&gt
+
+<a name=""></a><img border="0" alt="1" src="../../images/callouts/tag_1.gif">&ltlocation path="C:\dev\eclipse\targets\eclipse-RCP-3.3.1.1-win32\eclipse"/&gt
+
+<a name=""></a><img border="0" alt="1" src="../../images/callouts/tag_2.gif">&ltcontent useAllPlugins="true"&gt
+      &ltplugins&gt
+      &lt/plugins&gt
+      &ltfeatures&gt
+      &lt/features&gt
+      &ltextraLocations&gt
+<a name=""></a><img border="0" alt="3" src="../../images/callouts/tag_3.gif">      &ltlocation path="C:\dev\eclipse\targets\wt"/&gt
+      &lt/extraLocations&gt
+   &lt/content&gt
+   
+&lt/target&gt</code></pre>	
+</td></tr>
+</table>
+
+
+	
+</body>

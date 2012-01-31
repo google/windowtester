@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<introContent>
+  	<extensionContent id="comwindowtestereclipseintro-introExtension" style="css/intro.css" name="WindowTester Pro" path="overview/@">
+		<group style-id="content-group" id="comwindowtestereclipseintro-introLink-group">
+       		<link label="WindowTester Pro" url="http://org.eclipse.ui.intro/showHelpTopic?id=/com.windowtester.eclipse.help/html/index.html" id="comwindowtestereclipseintro-introLink" style-id="content-link">
+          		<text>Find out how to write UI tests using WindowTester Pro</text>
+       		</link>
+       	</group>
+  	</extensionContent>
+</introContent>

@@ -1,0 +1,56 @@
+package com.windowtester.eclipse.ui.convert.original;
+
+import com.windowtester.runtime.swt.locator.ShellLocator;
+import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.locator.IWidgetLocator;
+import com.windowtester.runtime.swt.UITestCaseSWT;
+import com.windowtester.runtime.swt.locator.CTabItemLocator;
+import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+
+public class CloseTest extends UITestCaseSWT {
+
+    private static final CTabItemLocator WELCOME_TAB = new CTabItemLocator("Welcome");
+	private static final IWidgetLocator WELCOME_TAB2 = new CTabItemLocator("Welcome");
+	
+	
+	public void testSleep() throws Exception {
+		IUIContext ui = getUI();
+		ui.ensureThat(new CTabItemLocator("Welcome").isClosed());
+		ui.ensureThat(WELCOME_TAB.isClosed());
+		
+		IWidgetLocator[] tabs = ui.findAll(new CTabItemLocator("Welcome"));
+		ui.ensureThat(new CTabItemLocator("Welcome").isClosed());
+		
+		//TODO: add a call to file.close(); make it a file whose name is ui
+		//TODO: local method called close(..);
+		
+		new java.io.FileInputStream("").close();
+	}
+		
+	void close(IWidgetLocator loc){
+		getUI().ensureThat(loc.isClosed());
+		(getUI()).ensureThat(loc.isClosed());
+		getUI().click(new ShellLocator("Java - Eclipse SDK"));
+		getUI().click(new SWTWidgetLocator(Button.class, "OK"));
+	}	
+
+	private void closeView(IUIContext ui, View view) throws WidgetSearchException {
+		ViewLocator viewLocator = new ViewLocator(view.getViewID());
+		System.out.println("closing view: " + view.getViewID());
+		ui.ensureThat(viewLocator.hasFocus());
+		ui.ensureThat(viewLocator.isClosed());
+		ui.assertThat(viewLocator.isVisible(false));
+	}
+	
+	protected void closeWelcomePageIfNecessary()
+		throws WidgetSearchException
+	{
+		IWidgetLocator[] welcomeTab = getUI().findAll(new CTabItemLocator("Welcome"));
+		
+		if (welcomeTab.length == 0)
+			return;
+		
+		getUI().ensureThat(new CTabItemLocator("Welcome").isClosed());
+	}
+		
+}

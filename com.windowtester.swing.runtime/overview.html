@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+</head>
+
+<body style="background-color: white;">
+
+
+Provides classes and interfaces for writing UI tests using the WindowTester API.
+<p>
+WindowTester Swing test cases are subclasses of {@link com.windowtester.runtime.swing.UITestCaseSwing} which is a
+special JUnit test case, tailored for running User Interface (UI) tests.  These test cases interact with
+the UI using an instance of {@link com.windowtester.runtime.IUIContext} which is retrieved from
+the <code>UITestCaseSwing</code> using it's {@link com.windowtester.runtime.swing.UITestCaseSwing#getUIContext()} method.
+<code>IUIConext</code> supports common UI actions like entering text,
+clicking widgets, dragging and dropping components and so on.
+</p><p>
+UI Tests are made robust using <em>Conditions</em>.  Conditions implement the
+{@link com.windowtester.runtime.condition.ICondition} interface and are commonly
+used to cause tests to pause until some condition becomes true (for instance
+once a file is created on the filesystem).  Conditions can also be registered
+with the runtime's {@link com.windowtester.runtime.condition.IConditionMonitor} and used
+to trigger {@link com.windowtester.runtime.condition.IHandler} instances.&nbsp;
+
+<!--h2>Package Specification</h2-->
+
+<!--ul>
+  <li><a href="">##### REFER TO ANY FRAMEMAKER SPECIFICATION HERE #####</a>
+</ul-->
+
+</p><h2>Related Documentation</h2>
+
+For overviews, tutorials, examples, guides, and tool documentation, please see:
+<ul>
+  <li><a href="../../../html/overview/index.html">WindowTester Overview</a>
+  </li><li><a href="../../../html/gettingstarted/swing_sampletest.html">WindowTester Swing Tutorial</a>
+</li></ul>
+
+<!-- Put @see and @since tags down here. -->
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

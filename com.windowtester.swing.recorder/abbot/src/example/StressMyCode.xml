@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Menu selections">
+  <component id="Copy" class="javax.swing.JMenuItem" title="My Code" tag="Copy" />
+  <component id="Item 1" class="javax.swing.JMenuItem" title="My Code" tag="Item 1" />
+  <component id="Button" class="javax.swing.JButton" index="2" title="My Code" tag="Button" />
+  <component id="Static" class="javax.swing.JLabel" title="My Code" tag="Static" />
+  <component id="My Code" class="javax.swing.JFrame" title="My Code" tag="My Code" />
+  <component id="Message" class="javax.swing.JDialog" title="Message" tag="Message" />
+  <component id="Dynamic Popup" class="javax.swing.JPopupMenu" invoker="Dynamic" x="2" y="2" />
+  <component id="Submenu item" class="javax.swing.JMenuItem" title="My Code" tag="Submenu item" />
+  <component id="Dynamic" class="javax.swing.JLabel" title="My Code" tag="Dynamic" />
+  <fixture filename="StressMyCodeFixture.xml"/>
+  <action args="Item 1" class="javax.swing.JMenuItem" desc="Select menu item 'Item 1'" method="actionSelectMenuItem" />
+  <action args="Submenu item" class="javax.swing.JMenuItem" desc="Select menu item 'Submenu item'" method="actionSelectMenuItem" />
+  <action args="Copy" class="javax.swing.JMenuItem" desc="Select menu item 'Copy'" method="actionSelectMenuItem" />
+  <action args="Static,-1,-1,Black" class="javax.swing.JLabel" desc="Select popup menu item 'Black'" method="actionSelectPopupMenuItem" />
+  <action args="Static,-1,-1,White" class="javax.swing.JLabel" desc="Select popup menu item 'White'" method="actionSelectPopupMenuItem" />
+  <action args="Dynamic,-1,-1,Blue" class="javax.swing.JLabel" desc="Select popup menu item 'Blue'" method="actionSelectPopupMenuItem" />
+  <action args="Dynamic,32,4,Green" class="javax.swing.JLabel" desc="Select popup menu item 'Green'" method="actionSelectPopupMenuItem" />
+  <action args="Dynamic" class="javax.swing.JLabel" method="actionShowPopupMenu" />
+  <assert class="abbot.tester.JPopupMenuTester" args="Dynamic Popup" value="[/Invoked [0-9]* times/,Black,Blue,Orange,Other]" method="getMenuLabels" />
+  <action args="VK_ESCAPE" method="actionKeyStroke" />
+</AWTTestScript>
+

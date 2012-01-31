@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="docs_all">
+    <!-- $Id: build-web.xml,v 1.17 2009-02-07 03:02:16 gnebling Exp $ -->
+
+    <!-- ================================================= -->
+    <target name="set_recorder" if="recorder.file"
+            depends="read_build_properties">
+        <property name="recorder.level" value="info"/>
+        <echo>recorder file ${build.root}/${recorder.file}</echo>
+        <record name="${build.root}/${recorder.file}" loglevel="${recorder.level}"/>
+    </target>
+
+    <!-- ================================================= -->
+    <target name="read_build_properties">
+            <read_product_properties />
+    </target>
+
+    <!-- ================================================= -->
+    <target name="setup_workspace"
+            if="setup.workspace"
+            depends="read_build_properties">
+            <init_cc_workspace />
+    </target>
+
+    <!-- ================================================= -->
+    <target name="product_init"
+            depends="read_build_properties, setup_workspace">
+            <checkEclipseRunning />
+            <checkEclipseClasspathVariable varname="ECLIPSE_HOME"/>
+            <init_product_properties eclipseSource="3.3"/>
+    </target>
+
+    <!-- ================================================= -->
+    <target name="docs_all" depends="set_recorder, product_init">
+    	<ant antfile="build-bundle.xml" target="build_javadoc">
+    		<property name="javadoc.out" location="html/reference/javadoc"/>
+    	</ant>
+        <!-- WindowTester Pro  -->
+        <build_documentation primary = "com.windowtester.eclipse.help">
+        	<projects>
+				<project name="com.windowtester.eclipse.help">					
+					<fileset dir="${build.root}/com.windowtester.eclipse.help/html" >
+						<exclude name="**/Thumbs.db"/>
+						<exclude name="**/*.textile"/>
+					</fileset>
+					<fileset dir="${build.root}/com.windowtester.eclipse.help/images" />
+					<!-- Stylesheets directory -->
+					<fileset dir="${build.root}/com.windowtester.eclipse.help/stylesheets">
+						<include name="**/*.css" />
+					</fileset>
+					<fileset dir="${build.root}/com.windowtester.eclipse.help/download" />					
+				</project>	
+        	</projects>
+        </build_documentation>
+    	<!-- simplify things
+    	<replace dir="${build.out}/docs">
+    	    <replacetoken>book.css</replacetoken>
+    		<replacevalue>common-docs.css</replacevalue>
+    	</replace>  
+    	-->	    	    	
+        <finalize_build_product/>
+	</target>
+</project>

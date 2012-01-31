@@ -1,0 +1,12 @@
+<title>Recorder UI</title>
+<link href="../../../stylesheets/book.css" rel="stylesheet" type="text/css"/>
+
+h1. Recorder UI Preferences
+
+The Recorder UI preference page allows the user to select the Recorder UI Mode.
+
+!../../../images/console-prefs.jpg!
+
+h2. Recorder UI Mode preference
+
+<table style="width: 100%;" border="1"><tbody><tr><td style="text-align: center;"><span style="font-weight: bold;">Option</span> </td><td style="text-align: center;"> <span style="font-weight: bold;">Description</span></td><td style="text-align: center;"> <span style="font-weight: bold;">Default</span></td></tr><tr><td> <a href="../../ui/recording_console.html">Recording Console</a></td><td> This is the new and improved recording mode with a recording console.</td><td> On</td></tr><tr><td> <span style="font-weight: bold;">Classic Recorder</span></td><td> This is the&nbsp;floating recording mode that does not have a recording console.</td><td> Off</td></tr></tbody></table>

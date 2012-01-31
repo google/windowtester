@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WindowTester UI IDE Tests
+Bundle-SymbolicName: com.windowtester.eclipse.ui_test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Google
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.jdt.core,
+ org.junit,
+ com.windowtester.eclipse.ui,
+ org.eclipse.ltk.core.refactoring;bundle-version="3.5.0",
+ org.eclipse.ltk.ui.refactoring;bundle-version="3.4.100",
+ org.eclipse.swt,
+ com.windowtester.runtime,
+ com.windowtester.swt.runtime

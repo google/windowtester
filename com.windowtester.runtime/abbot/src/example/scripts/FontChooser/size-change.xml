@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="Change font size">
+  <component class="example.ArrowButton" id="DOWN" tag="DOWN" title="Font Chooser unit test" />
+  <component class="javax.swing.JTextField" id="JTextField Instance" title="Font Chooser unit test" />
+  <component class="example.ArrowButton" id="UP" tag="UP" title="Font Chooser unit test" />
+  <fixture filename="fixture.xml" />
+  <action args="JTextField Instance,select-all" class="javax.swing.JComponent" method="actionActionMap" />
+  <action args="JTextField Instance,10" method="actionKeyString" />
+  <action args="JTextField Instance,notify-field-accept" class="javax.swing.JComponent" method="actionActionMap" />
+  <action args="UP" class="example.ArrowButton" desc="Click on ${UP}" method="actionClick" />
+  <action args="UP" class="example.ArrowButton" desc="Click on ${UP}" method="actionClick" />
+  <action args="UP" class="example.ArrowButton" desc="Click on ${UP}" method="actionClick" />
+  <action args="UP" class="example.ArrowButton" desc="Click on ${UP}" method="actionClick" />
+  <assert component="JTextField Instance" method="getText" value="14" />
+  <action args="DOWN" desc="Click on ${DOWN}" method="actionClick" />
+  <action args="DOWN" desc="Click on ${DOWN}" method="actionClick" />
+  <action args="DOWN" desc="Click on ${DOWN}" method="actionClick" />
+  <action args="DOWN" desc="Click on ${DOWN}" method="actionClick" />
+  <assert component="JTextField Instance" method="getText" value="10" />
+  <action args="UP,5000" class="example.ArrowButton" desc="Roll the up arrow button for 5 seconds" method="actionRoll" />
+  <action args="DOWN,5000" class="example.ArrowButton" desc="Roll the down arrow button for 5 seconds" method="actionRoll" />
+</AWTTestScript>
+

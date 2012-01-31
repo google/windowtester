@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.windowtester.swt.runtime.osDelegate">
+      <osDelegate
+            class="com.windowtester.runtime.swt.internal.os.win32.Win32OSDelegate">
+      </osDelegate>
+   </extension>
+   <extension
+         point="com.windowtester.runtime.runtimeFactory">
+      <factory os="win32" ws="win32" arch="x86" priority="10"
+            class="com.windowtester.runtime.swt.internal.widgets.win32.win32.x86.WTRuntimeFactorySWT_win32_win32_x86"/>
+   </extension>
+
+</plugin>

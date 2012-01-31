@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Reference" link_to="toc.xml#reference">
+   <topic href="html/reference/preferences/main.html" label="Preferences">
+      <topic href="html/reference/preferences/codegen.html" label="CodeGen"/>
+      <topic href="html/reference/preferences/playback.html" label="Playback"/>
+      <topic href="html/reference/preferences/recorder_ui.html" label="Recorder UI"/>
+   </topic> 
+	<topic label="API Reference" 
+	   href="html/reference/javadoc/overview-summary.html"/>
+    <topic href="html/reference/assertions.html" label="Assertions"/>
+    <topic href="html/reference/conditions.html" label="Conditions and Handlers"/>
+ <topic href="html/reference/API_Migration.html" label="Legacy API Migration">
+ </topic>
+    <topic href="html/reference/Legacy_API_Phase_Out.html" label="Legacy API Compatability">
+    </topic>
+     <topic href="html/reference/repros.html" label="Writing Effective Reproductions">
+ </topic>
+	<topic label="Version History"  
+	   href="html/reference/history.html"> 
+	</topic>
+
+</toc>

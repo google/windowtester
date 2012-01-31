@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.windowtester.swt.runtime.linux.motif.x86;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.swt,
+ com.windowtester.swt.runtime
+Eclipse-PlatformFilter: (& (osgi.ws=motif) (osgi.os=linux) (osgi.arch=x86))
+Bundle-ClassPath: wt-linux-motif-x86.jar
+Bundle-Localization: plugin
