@@ -450,7 +450,7 @@ public class WindowTesterProProduct
 		PluginVersionIdentifier actual = PlatformInfo.getEclipseVersion();
 		PluginVersionIdentifier expected = getExpectedEclipseVersion();
 		
-		/* $codepro.preprocessor.if version > 3.7 $
+		/* $codepro.preprocessor.if version > 4.2 $
 			This preprocessor code exists to remind us to adjust the following things
 			once we start compiling against Eclipse 4.0.
 			
@@ -469,8 +469,9 @@ public class WindowTesterProProduct
 		 * when running code compiled for Eclipse 3.5 on Eclipse 3.6. Individual products
 		 * should override #warn_if_E34_running_on_E35 as appropriate.
 		 */
-		if (!warn_if_E36_running_on_E37()
-			&& actual.getMajorComponent() == 3 && actual.getMinorComponent() == 6
+		if (!warn_if_E37_running_on_E38_or_42()
+			&& ((actual.getMajorComponent() == 4 && actual.getMinorComponent() == 2)
+				|| (actual.getMajorComponent() == 3 && actual.getMinorComponent() == 8)) 
 			&& expected.getMajorComponent() == 3 && expected.getMinorComponent() == 7)
 			return true;
 		
@@ -490,9 +491,9 @@ public class WindowTesterProProduct
 	 * 
 	 * @return <code>true</code> the user should be warned, else false.
 	 */
-	protected boolean warn_if_E36_running_on_E37() {
-		// Our goal is to have all products including D2 building on Hudson and for E-3.7 by Feb 1st
-		return new GregorianCalendar().after(new GregorianCalendar(2011, 2, 1));
+	protected boolean warn_if_E37_running_on_E38_or_42() {
+		// Our goal is to have all products including D2 building on Hudson and for E-3.8 and E-4.2 by April 1st
+		return new GregorianCalendar().after(new GregorianCalendar(2012, 4, 1));
 	}
 
 	/**
