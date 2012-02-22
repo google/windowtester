@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.windowtester.example.contactmanager.rcp_test;singleton:=true
+Bundle-Version: 0.0.0
+Require-Bundle: org.junit,
+ com.windowtester.runtime,
+ com.windowtester.swt.runtime,
+ com.windowtester.swing.runtime,
+ org.eclipse.jface,
+ org.eclipse.core.runtime
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-Vendor: %providerName

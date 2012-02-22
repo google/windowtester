@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ContactManager RCP Example Plug-in
+Bundle-SymbolicName: com.windowtester.example.contactmanager.rcp;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.windowtester.example.contactmanager.rcp.ContactManagerRCPPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms,
+ org.eclipse.core.resources
+Bundle-ActivationPolicy: lazy
+Export-Package: com.swtdesigner,
+ com.swtdesigner.preference,
+ com.windowtester.example.contactmanager.rcp,
+ com.windowtester.example.contactmanager.rcp.action,
+ com.windowtester.example.contactmanager.rcp.editor,
+ com.windowtester.example.contactmanager.rcp.model,
+ com.windowtester.example.contactmanager.rcp.preferences,
+ com.windowtester.example.contactmanager.rcp.properties,
+ com.windowtester.example.contactmanager.rcp.wizards

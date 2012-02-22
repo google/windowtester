@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.windowtester.example.contactmanager.rcp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="com.windowtester.example.contactmanager.rcp.Perspective"
+            id="com.windowtester.example.contactmanager.rcp.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="View"
+            class="com.windowtester.example.contactmanager.rcp.View"
+            id="com.windowtester.example.contactmanager.rcp.view">
+      </view>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.windowtester.example.contactmanager.rcp.application"
+            name="ContactManager RCP Example">
+         <property
+               name="aboutText"
+               value="ContactManager RCP Example&#x0A;version 1.0.0&#x0A;&#x0A;Google Inc.&#x0A;&#x0A;Author: Keerti Parthasarathy"/>
+         <property
+               name="appName"
+               value="ContactManager RCP Example">
+         </property>
+      </product>
+   </extension>
+	<extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.windowtester.example.contactmanager.rcp.editor.ContactsEditor"
+            default="false"
+            icon="icons/sample.gif"
+            id="com.windowtester.example.contactmanager.rcp.editor"
+            name="Contacts Editor"/>
+   </extension>
+ <extension
+       point="org.eclipse.ui.preferencePages">
+    <page
+          class="com.windowtester.example.contactmanager.rcp.preferences.PreferencePage"
+          id="com.windowtester.example.contactmanager.rcp.preferences.PreferencePage"
+          name="Contacts Manager"/>
+ </extension>
+ <extension
+       point="org.eclipse.core.runtime.preferences">
+    <initializer class="com.windowtester.example.contactmanager.rcp.preferences.PreferenceInitializer"/>
+ </extension>
+ <extension
+       point="org.eclipse.ui.propertyPages">
+    <page
+          class="com.windowtester.example.contactmanager.rcp.properties.PropertiesPage"
+          id="com.windowtester.example.contactmanager.rcp.properties.samplePropertyPage"
+          name="Property Page">
+          <enabledWhen>
+              <adapt type="com.windowtester.example.contactmanager.rcp.model.Contact"/>
+          </enabledWhen> 
+     </page>
+ </extension>
+</plugin>

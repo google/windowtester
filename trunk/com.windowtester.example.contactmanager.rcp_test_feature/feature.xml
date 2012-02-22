@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.windowtester.example.contactmanager.rcp_test"
+      label="%featureName"
+      version="1.0.0"
+      provider-name="%providerName">
+
+   <description>
+      Tests for ContactManager RCP
+   </description>
+
+   <copyright>
+      Copyright (c) 2005 - ${build_year}, Google
+   </copyright>
+
+   <license>
+      Copyright (c) 2001 - ${build_year}, Google
+   </license>
+
+   <plugin
+         id="com.windowtester.example.contactmanager.rcp_test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
