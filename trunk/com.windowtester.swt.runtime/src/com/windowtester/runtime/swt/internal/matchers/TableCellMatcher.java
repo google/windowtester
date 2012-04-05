@@ -57,7 +57,7 @@ public class TableCellMatcher extends WidgetMatcher {
 	 * @see com.windowtester.runtime.swt.widgets.ISWTWidgetMatcher#matches(com.windowtester.runtime.swt.widgets.ISWTWidgetReference)
 	 */
 	public boolean matches(ISWTWidgetReference<?> ref) {
-		System.out.println(ref);
+//		System.out.println(ref);
 		Object w = ref.getWidget();
 		if (w instanceof TableItem){ // SWTHierarchyHelper.isVisible(w)
 			if (row != UNSPECIFIED && row != 0){
