@@ -7,6 +7,7 @@
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added checked condition
  *******************************************************************************/
 package com.windowtester.runtime.swt.locator;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.Callable;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
+import abbot.tester.swt.TableItemTester;
 import abbot.tester.swt.TableTester;
 
 import com.windowtester.runtime.IClickDescription;
@@ -23,6 +25,8 @@ import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.IUICondition;
+import com.windowtester.runtime.condition.IsChecked;
+import com.windowtester.runtime.condition.IsCheckedCondition;
 import com.windowtester.runtime.condition.IsSelected;
 import com.windowtester.runtime.condition.IsSelectedCondition;
 import com.windowtester.runtime.locator.IWidgetLocator;
@@ -41,7 +45,7 @@ import com.windowtester.runtime.util.StringComparator;
  * Locates {@link TableItem} widgets. Columns can be specified using {@link ColumnLocator}s.
  * @see ColumnLocator
  */
-public class TableItemLocator extends SWTWidgetLocator implements IModifiable, IsSelected /* NOTICE: does not implement! implements IItemLocator -- see ClickHelper for why */{
+public class TableItemLocator extends SWTWidgetLocator implements IModifiable, IsSelected, IsChecked /* NOTICE: does not implement! implements IItemLocator -- see ClickHelper for why */{
 	
 	private static final long serialVersionUID = 7952190473575351080L;
 
@@ -215,6 +219,15 @@ public class TableItemLocator extends SWTWidgetLocator implements IModifiable, I
 		return new TableTester().isSelected(table, item);
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see com.windowtester.runtime.condition.IsChecked#isChecked(com.windowtester.runtime.IUIContext)
+	 */
+	public boolean isChecked(IUIContext ui) throws WidgetSearchException {
+		TableItem item = (TableItem) ((IWidgetReference) ui.find(this)).getWidget();
+		return new TableItemTester().getChecked(item);
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	//
 	// Condition Factories
@@ -239,6 +252,22 @@ public class TableItemLocator extends SWTWidgetLocator implements IModifiable, I
 	public IUICondition isSelected(boolean expected) {
 		return new IsSelectedCondition(this, expected);
 	}
+
+	/**
+	 * Create a condition that tests if the given table item is checked.
+	 * Note that this is a convenience method, equivalent to:
+	 * <code>isChecked(true)</code>
+	 */
+	public IUICondition isChecked() {
+		return isChecked(true);
+	}
 	
-	
+	/**
+	 * Create a condition that tests if the given table item is checked.
+	 * @param expected <code>true</code> if the table item is expected to be checked, else
+	 *            <code>false</code>
+	 */            
+	public IUICondition isChecked(boolean expected) {
+		return new IsCheckedCondition(this, expected);
+	}
 }
