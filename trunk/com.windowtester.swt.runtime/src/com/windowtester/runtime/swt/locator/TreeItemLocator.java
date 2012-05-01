@@ -7,6 +7,7 @@
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added checked condition
  *******************************************************************************/
 package com.windowtester.runtime.swt.locator;
 
@@ -27,6 +28,8 @@ import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.HasText;
 import com.windowtester.runtime.condition.HasTextCondition;
 import com.windowtester.runtime.condition.IUICondition;
+import com.windowtester.runtime.condition.IsChecked;
+import com.windowtester.runtime.condition.IsCheckedCondition;
 import com.windowtester.runtime.condition.IsSelected;
 import com.windowtester.runtime.condition.IsSelectedCondition;
 import com.windowtester.runtime.locator.IItemLocator;
@@ -57,7 +60,7 @@ import com.windowtester.runtime.util.StringComparator;
  * ui.click(new TreeItemLocator("(Simple|General)/Project"));
  * </pre>
  */
-public class TreeItemLocator extends ControlRelativeLocator implements IItemLocator, IPathLocator, IModifiable, IsSelected, HasText {
+public class TreeItemLocator extends ControlRelativeLocator implements IItemLocator, IPathLocator, IModifiable, IsSelected, IsChecked, HasText {
 
 	private static final long serialVersionUID = -571020226870858459L;
 
@@ -343,6 +346,29 @@ public class TreeItemLocator extends ControlRelativeLocator implements IItemLoca
 		return new TreeItemTester().getChecked(item);	
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.windowtester.runtime.condition.IsChecked#isChecked(com.windowtester.runtime.IUIContext)
+	 */
+	public boolean isChecked(IUIContext ui) throws WidgetSearchException {
+		TreeItem item = (TreeItem) ((IWidgetReference) ui.find(this)).getWidget();
+		return new TreeItemTester().getChecked(item);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.windowtester.runtime.swt.locator.SWTWidgetLocator#getText(com.windowtester.runtime.IUIContext)
+	 */
+	public String getText(IUIContext ui) throws WidgetSearchException {
+		IWidgetReference ref = (IWidgetReference) ui.find(this);
+		TreeItem item = (TreeItem) ref.getWidget();
+		return UIProxy.getText(item, 0);
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	//
+	// Condition Factories
+	//
+	///////////////////////////////////////////////////////////////////////////
+	
 	/**
 	 * Create a condition that tests if the given tree item is selected.
 	 * Note that this is a convenience method, equivalent to:
@@ -363,22 +389,30 @@ public class TreeItemLocator extends ControlRelativeLocator implements IItemLoca
 	}
 	
 	/**
+	 * Create a condition that tests if the given tree item is checked.
+	 * Note that this is a convenience method, equivalent to:
+	 * <code>isChecked(true)</code>
+	 */
+	public IUICondition isChecked() {
+		return isChecked(true);
+	}
+	
+	/**
+	 * Create a condition that tests if the given tree item is checked.
+	 * @param expected <code>true</code> if the tree item is expected to be checked, else
+	 *            <code>false</code>
+	 */            
+	public IUICondition isChecked(boolean expected) {
+		return new IsCheckedCondition(this, expected);
+	}
+	
+	/**
 	 * Create a condition that tests if the given tree cell has the expected text.
 	 * @param expected the expected text
 	 *  (can be a regular expression as described in the {@link StringComparator} utility)
 	 */
 	public IUICondition hasText(String expected) {
 		return new HasTextCondition(this, expected);
-	}
-	
-
-	/* (non-Javadoc)
-	 * @see com.windowtester.runtime.swt.locator.SWTWidgetLocator#getText(com.windowtester.runtime.IUIContext)
-	 */
-	public String getText(IUIContext ui) throws WidgetSearchException {
-		IWidgetReference ref = (IWidgetReference) ui.find(this);
-		TreeItem item = (TreeItem) ref.getWidget();
-		return UIProxy.getText(item, 0);
 	}
 	
 }

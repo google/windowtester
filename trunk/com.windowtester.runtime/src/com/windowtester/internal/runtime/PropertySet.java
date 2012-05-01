@@ -7,6 +7,7 @@
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added checked property
  *******************************************************************************/
 package com.windowtester.internal.runtime;
 
@@ -19,6 +20,8 @@ import com.windowtester.runtime.IAdaptable;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.condition.HasFocus;
 import com.windowtester.runtime.condition.HasFocusCondition;
+import com.windowtester.runtime.condition.IsChecked;
+import com.windowtester.runtime.condition.IsCheckedCondition;
 import com.windowtester.runtime.condition.IsEnabled;
 import com.windowtester.runtime.condition.IsEnabledCondition;
 import com.windowtester.runtime.condition.IsSelected;
@@ -54,6 +57,7 @@ public class PropertySet implements Serializable {
 		
 		public static final PropertyMapping ENABLED  = PropertyMapping.withKey("isEnabled").withName("Is Enabled");
 		public static final PropertyMapping SELECTED = PropertyMapping.withKey("isSelected").withName("Is Selected");
+		public static final PropertyMapping CHECKED  = PropertyMapping.withKey("isChecked").withName("Is Checked");
 		public static final PropertyMapping VISIBLE  = PropertyMapping.withKey("isVisible").withName("Is Visible");
 		public static final PropertyMapping FOCUS    = PropertyMapping.withKey("hasFocus").withName("Has Focus");
 		public static final PropertyMapping TEXT     = PropertyMapping.withKey("hasText").withName("Has Text");
@@ -194,6 +198,9 @@ public class PropertySet implements Serializable {
 		if (locator instanceof IsSelected) {
 			mappings.add(PropertyMapping.SELECTED.withValue(isSelected(locator)));
 		}
+		if (locator instanceof IsChecked) {
+			mappings.add(PropertyMapping.CHECKED.withValue(isChecked(locator)));
+		}
 		if (locator instanceof HasFocus) {
 			mappings.add(PropertyMapping.FOCUS.withValue(hasFocus(locator)));
 		}
@@ -206,6 +213,10 @@ public class PropertySet implements Serializable {
 
 	private boolean isSelected(ILocator locator) {
 		return new IsSelectedCondition((IsSelected)locator).testUI(getUI());
+	}
+
+	private boolean isChecked(ILocator locator) {
+		return new IsCheckedCondition((IsChecked)locator).testUI(getUI());
 	}
 	
 	private boolean isEnabled(ILocator locator) {
@@ -300,11 +311,4 @@ public class PropertySet implements Serializable {
 		return new PropertySet(null, null);
 	}
 
-
-
-	
-
-	
-	
-	
 }
