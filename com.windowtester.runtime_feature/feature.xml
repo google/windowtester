@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.windowtester.runtime"
+      id="com.windowtester.runtime.feature"
       label="%featureName"
-      version="6.0.0"
+      version="6.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -288,7 +288,6 @@ COPYRIGHT ${build_year} Google
          version="0.0.0"
          unpack="false"/>
 
-   <!-- $if eclipse.version >= 3.5 $ -->
    <plugin
          id="com.windowtester.swt.runtime.macosx.cocoa"
          os="macosx"
@@ -297,6 +296,7 @@ COPYRIGHT ${build_year} Google
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
    <plugin
          id="com.windowtester.swt.runtime.macosx.cocoa.x86"
          os="macosx"
@@ -316,7 +316,6 @@ COPYRIGHT ${build_year} Google
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   <!-- $endif$ -->
 
    <plugin
          id="com.windowtester.swt.runtime.win32.win32.x86"
@@ -327,7 +326,6 @@ COPYRIGHT ${build_year} Google
          install-size="0"
          version="0.0.0"/>
 
-   <!-- $if eclipse.version >= 3.4 $ -->
    <plugin
          id="com.windowtester.swt.runtime.win32.win32.x86_64"
          os="win32"
@@ -336,7 +334,6 @@ COPYRIGHT ${build_year} Google
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-   <!-- $endif$ -->
 
    <plugin
          id="com.windowtester.swt.runtime.linux.gtk.x86"
@@ -346,16 +343,5 @@ COPYRIGHT ${build_year} Google
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-   <!-- $if eclipse.version >= 3.5 && eclipse.version <= 3.6 $ -->
-   <plugin
-         id="com.windowtester.swt.runtime.linux.motif.x86"
-         os="linux"
-         ws="motif"
-         arch="x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-   <!-- $endif$ -->
 
 </feature>
