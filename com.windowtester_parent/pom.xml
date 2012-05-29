@@ -18,8 +18,10 @@
 		<module>../com.windowtester.ide.gef_parent</module>
 		<module>../com.windowtester.runtime.gef_parent</module>
 		
+		<module>../com.windowtester_repository</module>
+		
 		<module>../com.windowtester.test_parent</module>
-		<!-- <module>../com.windowtester.gef.test_parent</module> -->
+		<module>../com.windowtester.gef.test_parent</module>
 	</modules>
 
 	<repositories>
