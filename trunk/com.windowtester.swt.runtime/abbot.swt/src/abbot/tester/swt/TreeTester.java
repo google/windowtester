@@ -260,11 +260,20 @@ public class TreeTester extends CompositeTester {
 		return result;	
 	}
 
+	public boolean isSelected(Tree tree, TreeItem item) {
+		TreeItem[] items = getSelection(tree);
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] == item)
+				return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Proxy for {@link Tree#getSelection()}.
 	 * <p/>
 	 * @param tree the tree under test.
-	 * @return the slected items.
+	 * @return the selected items.
 	 */
 	public TreeItem[] getSelection(final Tree tree) {
 		TreeItem[] result = (TreeItem[]) Robot.syncExec(tree.getDisplay(), new RunnableWithResult(){

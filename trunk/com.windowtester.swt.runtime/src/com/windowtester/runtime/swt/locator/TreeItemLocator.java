@@ -7,7 +7,7 @@
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
- *  Frederic Gurr - added checked condition
+ *  Frederic Gurr - added checked condition, fixed isSelected(IUIContext ui)
  *******************************************************************************/
 package com.windowtester.runtime.swt.locator;
 
@@ -19,6 +19,8 @@ import java.util.concurrent.Callable;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.Widget;
+
+import abbot.tester.swt.TreeTester;
 
 import com.windowtester.runtime.ClickDescription;
 import com.windowtester.runtime.IClickDescription;
@@ -343,7 +345,8 @@ public class TreeItemLocator extends ControlRelativeLocator implements IItemLoca
 	 */
 	public boolean isSelected(IUIContext ui) throws WidgetSearchException {
 		TreeItem item = (TreeItem) ((IWidgetReference)ui.find(this)).getWidget();
-		return new TreeItemTester().getChecked(item);	
+		Tree tree = UIProxy.getParent(item);
+		return new TreeTester().isSelected(tree, item);
 	}
 	
 	/* (non-Javadoc)
