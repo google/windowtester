@@ -1,6 +1,7 @@
 package com.windowtester.test.locator.swt;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.WT;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
 import com.windowtester.test.locator.swt.shells.TableTestShell;
 
@@ -14,6 +15,7 @@ import com.windowtester.test.locator.swt.shells.TableTestShell;
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added test for isChecked condition, improved selection test
  *******************************************************************************/
 public class TableItemlLocatorTest extends AbstractLocatorTest {
 
@@ -33,10 +35,18 @@ public class TableItemlLocatorTest extends AbstractLocatorTest {
 	public void testSelection() throws Exception {
 		IUIContext ui = getUI();
 		ui.click(new TableItemLocator("Item 1"));
-//		boolean selected = new TableItemLocator("Item 1").isSelected(ui);
-//		System.out.println(selected);
-		ui.assertThat(new TableItemLocator("Item 1").isSelected());	
+		assertTrue(new TableItemLocator("Item 1").isSelected(ui));
+		ui.assertThat(new TableItemLocator("Item 1").isSelected());
+		assertFalse(new TableItemLocator("Item 2").isSelected(ui));
+		ui.assertThat(new TableItemLocator("Item 2").isSelected(false));	
 	}
 	
-	
+	public void testIsChecked() throws Exception {
+		IUIContext ui = getUI();
+		ui.click(1, new TableItemLocator("Item 1"), WT.CHECK);
+		assertTrue(new TableItemLocator("Item 1").isChecked(ui));
+		ui.assertThat(new TableItemLocator("Item 1").isChecked());	
+		assertFalse(new TableItemLocator("Item 2").isChecked(ui));
+		ui.assertThat(new TableItemLocator("Item 2").isChecked(false));	
+	}
 }
