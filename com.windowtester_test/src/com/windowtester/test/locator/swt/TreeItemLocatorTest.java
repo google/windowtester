@@ -50,6 +50,7 @@ import com.windowtester.test.util.junit.RunOn;
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added tests for isSelected and isChecked condition
  *******************************************************************************/
 
 public class TreeItemLocatorTest extends AbstractLocatorTest {
@@ -441,7 +442,39 @@ public class TreeItemLocatorTest extends AbstractLocatorTest {
 //			assertTrue(new TreeItemTester().getExpanded(items[0]));
 	}
 	
+	public void testTreeItemSelection() throws Exception {
+		IUIContext ui = getUI();
+		
+		WidgetReference treeWidgetReference = new WidgetReference(getWindow().tree);
+		
+		ui.click(new TreeItemLocator("TreeItem (0) -0", treeWidgetReference));
+		assertTrue(new TreeItemLocator("TreeItem (0) -0").isSelected(ui));
+		ui.assertThat(new TreeItemLocator("TreeItem (0) -0").isSelected());
+		
+		ui.click(new TreeItemLocator("TreeItem (0) -0/TreeItem (1) -0/TreeItem (2) -0", treeWidgetReference));
+		assertTrue(new TreeItemLocator("TreeItem (0) -0/TreeItem (1) -0/TreeItem (2) -0").isSelected(ui));
+		ui.assertThat(new TreeItemLocator("TreeItem (0) -0/TreeItem (1) -0/TreeItem (2) -0").isSelected());
+		
+		assertFalse(new TreeItemLocator("TreeItem (0) -0").isSelected(ui));
+		ui.assertThat(new TreeItemLocator("TreeItem (0) -0").isSelected(false));	
+	}
 	
+	public void testTreeItemIsChecked() throws Exception {
+		IUIContext ui = getUI();
+		
+		WidgetReference checkTreeWidgetReference = new WidgetReference(getWindow().checkTree);
+		ui.click(1, new TreeItemLocator("parent 0", checkTreeWidgetReference), WT.CHECK);
+		
+		assertTrue(new TreeItemLocator("parent 0").isChecked(ui));
+		ui.assertThat(new TreeItemLocator("parent 0").isChecked());
+		
+		ui.click(1, new TreeItemLocator("parent 1/child\\/1", checkTreeWidgetReference), WT.CHECK);
+		assertTrue(new TreeItemLocator("parent 1/child\\\\/1").isChecked(ui));
+		ui.assertThat(new TreeItemLocator("parent 1/child\\\\/1").isChecked());
+
+		assertFalse(new TreeItemLocator("parent 2").isChecked(ui));
+		ui.assertThat(new TreeItemLocator("parent 2").isChecked(false));	
+	}
 
 	
 }

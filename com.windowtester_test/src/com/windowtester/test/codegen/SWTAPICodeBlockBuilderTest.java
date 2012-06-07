@@ -48,6 +48,7 @@ import com.windowtester.test.locator.swt.forms.HyperlinkLocatorTest;
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added tests for isEnabled, isSelected and isChecked condition
  *******************************************************************************/
 public class SWTAPICodeBlockBuilderTest extends BaseSWTAPICodeBlockCodegenTest {
 
@@ -283,6 +284,36 @@ public class SWTAPICodeBlockBuilderTest extends BaseSWTAPICodeBlockCodegenTest {
 		assertEquals("ui.assertThat(new ButtonLocator(\"OK\").isVisible());", block);
 	}
 	
+	public void testIsEnabledAssertion() throws Exception {
+		CodeBlock block = getBuilder().buildAssertion(new ButtonLocator("OK"), PropertyMapping.ENABLED.withValue(true));
+		assertEquals("ui.assertThat(new ButtonLocator(\"OK\").isEnabled());", block);
+	}
+	
+	public void testIsEnabledFalseAssertion() throws Exception {
+		CodeBlock block = getBuilder().buildAssertion(new ButtonLocator("OK"), PropertyMapping.ENABLED.withValue(false));
+		assertEquals("ui.assertThat(new ButtonLocator(\"OK\").isEnabled(false));", block);
+	}
+	
+	public void testIsSelectedAssertion() throws Exception {
+		CodeBlock block = getBuilder().buildAssertion(new TreeItemLocator("foo"), PropertyMapping.SELECTED.withValue(true));
+		assertEquals("ui.assertThat(new TreeItemLocator(\"foo\").isSelected());", block);
+	}
+
+	public void testIsSelectedFalseAssertion() throws Exception {
+		CodeBlock block = getBuilder().buildAssertion(new TreeItemLocator("foo"), PropertyMapping.SELECTED.withValue(false));
+		assertEquals("ui.assertThat(new TreeItemLocator(\"foo\").isSelected(false));", block);
+	}
+	
+	public void testIsCheckedAssertion() throws Exception {
+		CodeBlock block = getBuilder().buildAssertion(new TreeItemLocator("foo"), PropertyMapping.CHECKED.withValue(true));
+		assertEquals("ui.assertThat(new TreeItemLocator(\"foo\").isChecked());", block);
+	}
+
+	public void testIsCheckedFalseAssertion() throws Exception {
+		CodeBlock block = getBuilder().buildAssertion(new TableItemLocator("foo"), PropertyMapping.CHECKED.withValue(false));
+		assertEquals("ui.assertThat(new TableItemLocator(\"foo\").isChecked(false));", block);
+	}
+	
 	public void testPerspectiveActiveAssertion() throws Exception {
 		/*
 		 * NOTE this test must be run as a PDE test.  This is because PerspectiveLocators
@@ -295,7 +326,6 @@ public class SWTAPICodeBlockBuilderTest extends BaseSWTAPICodeBlockCodegenTest {
 	}
 	
 	public void testHasTextAssertion() throws Exception {
-		
 		CodeBlock block = getBuilder().buildAssertion(new TextLocator(), PropertyMapping.TEXT.withValue("foo"));
 		assertEquals("ui.assertThat(new TextLocator().hasText(\"foo\"));", block);
 	}

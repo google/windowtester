@@ -7,10 +7,12 @@
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - added checkboxes to table, added main method
  *******************************************************************************/
 package com.windowtester.test.locator.swt.shells;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
@@ -31,7 +33,7 @@ public class TableTestShell {
 	}
 
 	private void createContents() {
-		Table table = new Table (shell, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		Table table = new Table (shell, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.CHECK);
 		for (int i=0; i<12; i++) {
 			TableItem item = new TableItem (table, 0);
 			item.setText ("Item " + i);
@@ -41,6 +43,27 @@ public class TableTestShell {
 
 	public Shell getShell() {
 		return shell;
+	}
+	
+	/**
+	 * Launch the application
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		try {
+	 		TableTestShell window = new TableTestShell();
+			window.open();
+			
+	 		//new EventRecordingWatcher(window.getShell()).watch();
+	 			
+ 			final Display display = Display.getDefault();
+	 		while (!window.getShell().isDisposed()) {
+	 			if (!display.readAndDispatch())
+					display.sleep();
+	 		}
+	 	} catch (Exception e) {
+	 		e.printStackTrace();
+	 	}
 	}
 	
 }
