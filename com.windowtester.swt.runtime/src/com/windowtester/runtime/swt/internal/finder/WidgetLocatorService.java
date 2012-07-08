@@ -262,7 +262,7 @@ public class WidgetLocatorService {
 
 //	/**
 //	 * Takes an Info object and elaborates on its parentInfo. (Used to 
-//	 * disambiguate inof with multiple matches.
+//	 * disambiguate info with multiple matches.
 //	 * @param info - the info to elaborate.
 //	 * @param w - the widget being identified.
 //	 * @return elaborated WidgetLocator
@@ -305,14 +305,14 @@ public class WidgetLocatorService {
 
 	
 	/**
-	 * Check whether the root of the hierachy was reached in the last info elaboration.
+	 * Check whether the root of the hierarchy was reached in the last info elaboration.
 	 */
 	public boolean rootReached() {
 		return _nullParentCase;
 	}
 	
 //	/**
-//	 * Generates a Java string that when interepreted creates an object identical
+//	 * Generates a Java string that when interpreted creates an object identical
 //	 * to this one.  By default class names are unqualified.
 //	 * @return a Java string describing this object
 //	 */
@@ -321,7 +321,7 @@ public class WidgetLocatorService {
 //	}
 //	
 //	/**
-//	 * Generates a Java string that when interepreted creates an object identical
+//	 * Generates a Java string that when interpreted creates an object identical
 //	 * to this one.
 //	 * @param qualify - falg indicating whether to qualify class names.
 //	 * @return a Java string describing this object
@@ -480,7 +480,7 @@ public class WidgetLocatorService {
    	/**
    	 * Get the children of the given widget.
    	 * <p>
-   	 * (Taken from SWTHieracrhy and modified.)
+   	 * (Taken from SWTHierarchy and modified.)
    	 * @param w - the widget in question.
    	 * @return the list of children
    	 * @see abbot.finder.swt.SWTHierarchy

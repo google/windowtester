@@ -181,7 +181,7 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 			 * the locators themselves)
 			 * for now the logic is local
 			 */
-				
+
 			String name = UIProxy.getData(w, "name");
 			// added class to NamedWidgetLocator : 5/2/07 :kp
 			
@@ -343,7 +343,7 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 		if (isNamed(locator))
 			return;
 		
-		//yet ANOTHER TreeItem hack -- tree item implict scope
+		//yet ANOTHER TreeItem hack -- tree item implicit scope
 		//gets clobbered by  a view scope
 		//NOTE: this should be for Tables and Lists too?
 		if (locator instanceof TreeItemLocator) {
@@ -356,7 +356,7 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 		
 		
 		/*
-		 * the regular case climbs the stack and attachs scope to the top
+		 * the regular case climbs the stack and attaches scope to the top
 		 */
 		while (locator.getParentInfo() != null) {
 			locator = locator.getParentInfo();
@@ -530,7 +530,7 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 
 			//1. create a new parent
 			WidgetLocator newParent = getLocator(widgetParent);
-			//attatch it to our old top locator
+			//attach it to our old top locator
 			currentTopLocator.setParentInfo(newParent);
 			setIndex(currentTopLocator, currentWidget, widgetParent);
 			
@@ -605,7 +605,7 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 		if (locator == null)
 			locator = checkForNamedTreeCase(w);
 		
-		//if not labled case or item in named tree case, use the mapper
+		//if not labeled case or item in named tree case, use the mapper
 		if (locator == null)
 			locator = _mapper.map(w);
 		
@@ -705,7 +705,7 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 							found[0] = child == widget[0];
 							/*
 							 * only kick out if we've found it 
-							 * (there may be mutiple label text pairs in a composite) 
+							 * (there may be multiple label text pairs in a composite) 
 							 */
 							if (found[0])
 								return;
@@ -755,6 +755,4 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 		}
 	}
 
-	
-	
 }
