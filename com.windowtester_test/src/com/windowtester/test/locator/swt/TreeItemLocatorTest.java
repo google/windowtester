@@ -475,6 +475,12 @@ public class TreeItemLocatorTest extends AbstractLocatorTest {
 		assertFalse(new TreeItemLocator("parent 2").isChecked(ui));
 		ui.assertThat(new TreeItemLocator("parent 2").isChecked(false));	
 	}
-
 	
+	public void testIsCheckStyleBitSet() throws Exception {
+		IUIContext ui = getUI();
+		
+		assertFalse(new TreeItemLocator("TreeItem (0) -0").isCheckStyleBitSet(ui));
+		assertTrue(new TreeItemLocator("parent 0").isCheckStyleBitSet(ui));
+	}
+
 }

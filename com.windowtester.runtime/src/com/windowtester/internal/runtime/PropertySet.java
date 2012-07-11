@@ -198,7 +198,7 @@ public class PropertySet implements Serializable {
 		if (locator instanceof IsSelected) {
 			mappings.add(PropertyMapping.SELECTED.withValue(isSelected(locator)));
 		}
-		if (locator instanceof IsChecked) {
+		if (locator instanceof IsChecked && isCheckStyleBitSet(locator)) {
 			mappings.add(PropertyMapping.CHECKED.withValue(isChecked(locator)));
 		}
 		if (locator instanceof HasFocus) {
@@ -217,6 +217,10 @@ public class PropertySet implements Serializable {
 
 	private boolean isChecked(ILocator locator) {
 		return new IsCheckedCondition((IsChecked)locator).testUI(getUI());
+	}
+
+	private boolean isCheckStyleBitSet(ILocator locator) {
+		return new IsCheckedCondition((IsChecked)locator).testCheckStyleBit(getUI());
 	}
 	
 	private boolean isEnabled(ILocator locator) {
