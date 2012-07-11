@@ -393,9 +393,17 @@ public class TableTester extends CompositeTester{
 			res[i] = result[i].intValue();
 		return res;
 	}
-	
-	
-	
+
+	/** Checks if the SWT.CHECK style bit is set for the given table **/
+	public boolean isCheckStyleBitSet(final Table table) {
+		Boolean result = (Boolean) Robot.syncExec(table.getDisplay(),new RunnableWithResult(){
+			public Boolean runWithResult(){
+				return (table.getStyle() & SWT.CHECK) != 0;				
+			}
+		});
+		return result;
+	}
+
 	/** Move the mouse pointer over the given TableItem **/
 	protected synchronized void mouseMoveTableItem(final Table table, final TableItem item){
 		Robot.syncExec(table.getDisplay(),this,new Runnable(){

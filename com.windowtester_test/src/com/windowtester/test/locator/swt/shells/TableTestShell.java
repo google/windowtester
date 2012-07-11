@@ -27,18 +27,26 @@ public class TableTestShell {
 	public void open() {
 		shell = new Shell();
 		createContents();
-		shell.setSize (200, 200);
+		shell.setSize (250, 250);
 		shell.open ();
 		shell.layout();
 	}
 
 	private void createContents() {
-		Table table = new Table (shell, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.CHECK);
+		Table table = new Table (shell, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		for (int i=0; i<12; i++) {
 			TableItem item = new TableItem (table, 0);
 			item.setText ("Item " + i);
 		}
 		table.setSize (100, 100);
+		
+		Table checkedTable = new Table (shell, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.CHECK);
+		for (int i=0; i<12; i++) {
+			TableItem item = new TableItem (checkedTable, 0);
+			item.setText ("CheckedItem " + i);
+		}
+		checkedTable.setSize (100, 100);
+		checkedTable.setLocation(130, 0);
 	}
 
 	public Shell getShell() {
