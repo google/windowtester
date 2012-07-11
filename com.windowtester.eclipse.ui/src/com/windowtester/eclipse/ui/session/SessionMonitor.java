@@ -13,6 +13,9 @@ package com.windowtester.eclipse.ui.session;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.SafeRunner;
+import org.eclipse.jface.util.SafeRunnable;
+
 import com.windowtester.codegen.ExecutionProfile;
 import com.windowtester.recorder.ISemanticEventProvider;
 import com.windowtester.ui.internal.core.recorder.NullRecorder;
@@ -40,9 +43,13 @@ public class SessionMonitor implements ISessionMonitor {
 		return getCurrent() != nullSession();
 	}
 
-	public void sessionEnded(ISession session) {
-		for (ISessionListener listener: getListeners()) {
-			listener.ended(session);
+	public void sessionEnded(final ISession session) {
+		for (final ISessionListener listener: getListeners()) {
+			SafeRunner.run(new SafeRunnable() {
+				public void run() throws Exception {
+					listener.ended(session);
+				}
+			});
 		}
 		setSession(nullSession());
 	}
