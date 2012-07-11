@@ -358,6 +358,15 @@ public class TreeItemLocator extends ControlRelativeLocator implements IItemLoca
 	}
 	
 	/* (non-Javadoc)
+	 * @see com.windowtester.runtime.condition.IsChecked#isCheckStyleBitSet(com.windowtester.runtime.IUIContext)
+	 */
+	public boolean isCheckStyleBitSet(IUIContext ui) throws WidgetSearchException {
+		TreeItem item = (TreeItem) ((IWidgetReference) ui.find(this)).getWidget();
+		Tree tree = UIProxy.getParent(item);
+		return new TreeTester().isCheckStyleBitSet(tree);
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.windowtester.runtime.swt.locator.SWTWidgetLocator#getText(com.windowtester.runtime.IUIContext)
 	 */
 	public String getText(IUIContext ui) throws WidgetSearchException {

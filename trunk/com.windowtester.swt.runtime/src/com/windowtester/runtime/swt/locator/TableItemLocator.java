@@ -228,6 +228,15 @@ public class TableItemLocator extends SWTWidgetLocator implements IModifiable, I
 		return new TableItemTester().getChecked(item);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.windowtester.runtime.condition.IsChecked#isCheckStyleBitSet(com.windowtester.runtime.IUIContext)
+	 */
+	public boolean isCheckStyleBitSet(IUIContext ui) throws WidgetSearchException {
+		TableItem item = (TableItem) ((IWidgetReference) ui.find(this)).getWidget();
+		Table table = UIProxy.getParent(item);
+		return new TableTester().isCheckStyleBitSet(table);
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	//
 	// Condition Factories

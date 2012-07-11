@@ -4,6 +4,7 @@ package abbot.tester.swt;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.TreeListener;
 import org.eclipse.swt.graphics.Point;
@@ -391,5 +392,15 @@ public class TreeTester extends CompositeTester {
             }
         });
     }
+    
+	/** Checks if the SWT.CHECK style bit is set for the given tree **/
+	public boolean isCheckStyleBitSet(final Tree tree) {
+		Boolean result = (Boolean) Robot.syncExec(tree.getDisplay(),new RunnableWithResult(){
+			public Boolean runWithResult(){
+				return (tree.getStyle() & SWT.CHECK) != 0;				
+			}
+		});
+		return result;
+	}
 
 }

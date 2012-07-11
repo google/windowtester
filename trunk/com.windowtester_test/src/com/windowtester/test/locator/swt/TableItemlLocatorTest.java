@@ -43,10 +43,16 @@ public class TableItemlLocatorTest extends AbstractLocatorTest {
 	
 	public void testIsChecked() throws Exception {
 		IUIContext ui = getUI();
-		ui.click(1, new TableItemLocator("Item 1"), WT.CHECK);
-		assertTrue(new TableItemLocator("Item 1").isChecked(ui));
-		ui.assertThat(new TableItemLocator("Item 1").isChecked());	
-		assertFalse(new TableItemLocator("Item 2").isChecked(ui));
-		ui.assertThat(new TableItemLocator("Item 2").isChecked(false));	
+		ui.click(1, new TableItemLocator("CheckedItem 1"), WT.CHECK);
+		assertTrue(new TableItemLocator("CheckedItem 1").isChecked(ui));
+		ui.assertThat(new TableItemLocator("CheckedItem 1").isChecked());	
+		assertFalse(new TableItemLocator("CheckedItem 2").isChecked(ui));
+		ui.assertThat(new TableItemLocator("CheckedItem 2").isChecked(false));	
+	}
+
+	public void testIsCheckStyleBitSet() throws Exception {
+		IUIContext ui = getUI();
+		assertFalse(new TableItemLocator("Item 1").isCheckStyleBitSet(ui));
+		assertTrue(new TableItemLocator("CheckedItem 1").isCheckStyleBitSet(ui));
 	}
 }

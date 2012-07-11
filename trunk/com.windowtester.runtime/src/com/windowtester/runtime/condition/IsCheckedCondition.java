@@ -86,6 +86,15 @@ public class IsCheckedCondition implements IDiagnosticParticipant, IUICondition 
 		}
 	}
 
+	public boolean testCheckStyleBit(IUIContext ui) {
+		try {
+			return locator.isCheckStyleBitSet(ui);
+		} catch (WidgetSearchException e) {
+			exception = e;
+			return false;
+		}
+	}
+	
 	////////////////////////////////////////////////////////////////////////////
 	//
 	// IDiagnosticParticipant
