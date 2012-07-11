@@ -428,6 +428,8 @@ public class SWTSemanticEventInterpreter extends SemanticEventAdapter {
 	
 
 	private boolean lastEventWasAClickOnThisWidget(Widget widget) {
+		if (_lastMouseEvent == null)
+			return false;
 		boolean isMouseEvent = (_lastMouseEvent.type == SWT.MouseDown || _lastMouseEvent.type == SWT.MouseUp);
 		boolean isWidget = (widget == _lastMouseEvent.widget || widget == _lastMouseEvent.item || widget == _lastMouseEventDetail);
 		return isMouseEvent && isWidget;
