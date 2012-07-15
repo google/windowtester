@@ -15,6 +15,14 @@
   <version>6.1.0-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
 
+<repositories>
+    <repository>
+      <id>windowtester</id>
+      <layout>p2</layout>
+      <url>http://dl.google.com/eclipse/inst/windowtester/beta/3.7</url>
+    </repository>
+  </repositories>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -23,16 +31,25 @@
 				<version>${tycho-version}</version>
 				<configuration>
 			        <useUIHarness>true</useUIHarness>
+			        <useUIThread>true</useUIThread>
 			        <showEclipseLog>true</showEclipseLog>
+			        
 			        <product>org.eclipse.sdk.ide</product>
-					<application>org.eclipse.ui.ide.workbench</application>
-					<!-- <dependencies>
-						<dependency>
-							<type>p2-installable-unit</type>
-							<artifactId>org.eclipse.sdk.ide</artifactId>
-							<version>0.0.0</version>
-						</dependency>
-            		</dependencies> -->
+			        <application>org.eclipse.ui.ide.workbench</application>
+			       
+			       <dependencies>
+					<dependency>
+              			<type>p2-installable-unit</type>
+              			<artifactId>com.windowtester.runtime.feature.group</artifactId>
+              			<version>0.0.0</version>
+            		</dependency>
+					<dependency>
+						<type>p2-installable-unit</type>
+						<artifactId>org.eclipse.sdk.ide</artifactId>
+						<version>0.0.0</version>
+					</dependency>
+					
+          		   </dependencies>
 				</configuration>
 			</plugin>
 		</plugins>
