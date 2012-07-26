@@ -34,8 +34,23 @@
 			        <useUIThread>true</useUIThread>
 			        <showEclipseLog>true</showEclipseLog>
 			        
+			        <argLine>-Xms256m -Xmx512m -XX:MaxPermSize=256M</argLine>
+			        
 			        <product>org.eclipse.sdk.ide</product>
 			        <application>org.eclipse.ui.ide.workbench</application>
+			        
+			        <includes>
+			        	<!-- <include>**/codegen/*Test.*</include> WORKS-->
+			        	<include>**/locator/swt/**/*Test.java</include>
+			        </includes>
+			        
+					<excludes>
+						<exclude>**/Abstract*Test.java</exclude>
+						<exclude>**/Abstract*TestCase.java</exclude>
+						<exclude>**/DynamicSuiteSample.java</exclude>
+						<exclude>**/PopupStateTest.java</exclude>
+						<exclude>**/TreeItemLocatorCheckboxViewerDiagnosticTest.java</exclude>
+					</excludes>
 			       
 			       <dependencies>
 					<dependency>
