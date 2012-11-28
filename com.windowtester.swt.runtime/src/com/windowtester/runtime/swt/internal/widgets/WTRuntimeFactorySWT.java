@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2012 Google, Inc.
+ *  Copyright (c) 2012 Google, Inc., Phillip Jensen
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Phillip Jensen - added visitSlider method
  *******************************************************************************/
 package com.windowtester.runtime.swt.internal.widgets;
 
@@ -28,6 +29,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Scrollable;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Table;
@@ -222,7 +224,12 @@ public class WTRuntimeFactorySWT implements WTRuntimeFactory
 			reference = new CanvasReference<Hyperlink>(widget);
 
 		}
-		
+
+		@Override
+		public void visitSlider(Slider widget) {
+			reference = new SliderReference(widget);
+		}
+
 		public ISWTWidgetReference<?> findReference() {
 			SWTWidgetHierarchy.accept(widget, this);
 			return getReference();
