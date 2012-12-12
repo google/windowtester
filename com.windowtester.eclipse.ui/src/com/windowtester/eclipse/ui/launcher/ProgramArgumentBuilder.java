@@ -37,13 +37,13 @@ public final class ProgramArgumentBuilder {
 		HashSet notFound=new HashSet();
 		try{
 		
-		/* $if eclipse.version >= 3.6 $
+		/* $if eclipse.version >= 3.6 $ */
 		
 		return new ProgramArgumentBuilder36(notFound).getProgramArguments(configuration, requiredPluginsIds);
 		
-		$elseif eclipse.version == 3.5 $ */
+		/* $elseif eclipse.version == 3.5 $ */
 		
-		return new ProgramArgumentBuilder35(notFound).getProgramArguments(configuration, requiredPluginsIds);
+//		return new ProgramArgumentBuilder35(notFound).getProgramArguments(configuration, requiredPluginsIds);
 	
 		/* $elseif eclipse.version == 3.4 $
 		
