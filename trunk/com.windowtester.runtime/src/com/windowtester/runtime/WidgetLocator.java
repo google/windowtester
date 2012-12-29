@@ -56,6 +56,8 @@ public class WidgetLocator implements Serializable, IWidgetIdentifier, IAdaptabl
 	private int index;
 	/** The target's parent info */
 	private WidgetLocator parentInfo;
+	/** The target's ancestor info */
+	private WidgetLocator ancestorInfo;
 	/** A map for associated data key-value pairs */
 	private HashMap<String, String> map;
 	
@@ -170,6 +172,14 @@ public class WidgetLocator implements Serializable, IWidgetIdentifier, IAdaptabl
 	}
 	
 	/**
+	 * Get the <code>WidgetLocator</code> that describes one of the widget's ancestors.
+	 * @return the ancestor's <code>WidgetLocator</code> object.
+	 */
+	public WidgetLocator getAncestorInfo() {
+		return ancestorInfo;
+	}
+	
+	/**
 	 * Get the name or label String that helps identify this widget.
 	 * @return the subject's name or label
 	 */
@@ -212,6 +222,14 @@ public class WidgetLocator implements Serializable, IWidgetIdentifier, IAdaptabl
 	 */
 	public void setParentInfo(WidgetLocator parentInfo) {
 		this.parentInfo = parentInfo;
+	}
+
+	/**
+	 * Set the ancestor <code>WidgetLocator</code>.
+	 * @param ancestorInfo - the new ancestor <code>WidgetLocator</code>
+	 */
+	public void setAncestorInfo(WidgetLocator ancestorInfo) {
+		this.ancestorInfo = ancestorInfo;
 	}
 
 	/**
