@@ -213,7 +213,38 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 		matcherBuilder.specify(WidgetMatchers.named(name));
 		return this;
 	}
-	
+
+	/**
+	 * Similar to containedIn(int, SWTWidgetLocator), but expects a single matching Widgets.
+	 * Not always the same as containedIn(0, ancestor)!
+	 *
+	 * @param ancestor
+	 * @return This object
+	 *
+	 * @author Max Hohenegger
+	 * @see SWTWidgetLocator#containedIn(int, SWTWidgetLocator)
+	 */
+	public <T> T containedIn(SWTWidgetLocator ancestor) {
+		return containedIn(UNASSIGNED, ancestor);
+	}
+
+	/**
+	 * Similar to in(int, SWTWidgetLocator), but works with arbitrary ancestors.
+	 *
+	 *
+	 * @param index The index of the widget, since multiple widgets are expected to be found.
+	 * @param ancestor Ancestor of the Widget in question.
+	 * @return This object
+	 *
+	 * @author Max Hohenegger
+	 * @see SWTWidgetLocator#in(int, SWTWidgetLocator)
+	 */
+	public <T> T containedIn(int index, SWTWidgetLocator ancestor) {
+		setIndex(index);
+		setAncestorInfo(ancestor);
+		return (T) this;
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	//
 	// Access
@@ -233,7 +264,20 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 		super.setParentInfo(parentInfo);
 	}
 	
-	
+
+	/* (non-Javadoc)
+	 * @see com.windowtester.runtime.WidgetLocator#setParentInfo(com.windowtester.runtime.WidgetLocator)
+	 */
+	public void setAncestorInfo(WidgetLocator ancestorInfo) {
+		/*
+		 * this is a bit weird but since we're caching matchers, we need to invalidate them when parents
+		 * are added
+		 */
+		matcher = null;
+		super.setAncestorInfo(ancestorInfo);
+	}
+
+
 	///////////////////////////////////////////////////////////////////////////
 	//
 	// Matching criteria
@@ -280,13 +324,35 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 		String nameOrLabel           = getNameOrLabel();
 		int index                    = getIndex();
 		IWidgetMatcher<?> parentInfo = getParentInfo();
-				
+		IWidgetMatcher<?> ancestorInfo = getAncestorInfo();
+		
 		matcherBuilder.specify(ofClass(cls), visible());
 		
 		if (nameOrLabel != null) {
 			matcherBuilder.specify(withText(nameOrLabel));
 		}
-		
+
+		if (ancestorInfo != null) {
+			matcherBuilder.specify(new ISWTWidgetMatcher() {
+
+			public boolean matches(ISWTWidgetReference<?> widgetReference) {
+				if (getAncestorInfo().matches(widgetReference)) {
+					return true;
+				}
+
+				while (widgetReference != null) {
+					widgetReference = widgetReference.getParent();
+					if (widgetReference == null)
+						return false;
+					if (getAncestorInfo().matches(widgetReference))
+						return true;
+					}
+					return false;
+				}
+
+			});
+		}
+
 		if (parentInfo != null) {
 			matcherBuilder.scope(index, parentInfo);
 		}
@@ -295,8 +361,6 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 	}
 
 
-	
-	
 	///////////////////////////////////////////////////////////////////////////
 	//
 	// Finding
@@ -309,7 +373,16 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 	@Override
 	public IWidgetLocator[] findAll(IUIContext ui) {
 		ISWTWidgetMatcher matcher = buildMatcher();
-		return SWTWidgetFinder.forActiveShell().findAll(matcher);
+		ISWTWidgetReference<?>[] allWidgetsFound = SWTWidgetFinder.forActiveShell().findAll(matcher);
+		if (getIndex() == UNASSIGNED) {
+			return allWidgetsFound;
+		}
+		if (getIndex() > allWidgetsFound.length - 1) {
+			return new ISWTWidgetReference<?>[0];
+		}
+		ISWTWidgetReference<?>[] singleWidgetFound = new ISWTWidgetReference<?>[1];
+		singleWidgetFound[0] = allWidgetsFound[getIndex()];
+		return singleWidgetFound;
 //		return Finder.findWidgets(matcher).in(Finder.activeShell());
 	}
 	
@@ -871,4 +944,5 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 			return null;
 		return clsName;
 	}
+
 }
