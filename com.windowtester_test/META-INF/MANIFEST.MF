@@ -1,6 +1,6 @@
 Bundle-Name: %pluginName
-Bundle-Version: 0.0.0
-Bundle-SymbolicName: com.windowtester_test;singleton:=true
+Bundle-Version: 6.1.0.qualifier
+Bundle-SymbolicName: com.windowtester.test;singleton:=true
 Manifest-Version: 1.0
 Provide-Package: com.windowtester.test.eclipse,com.windowtester.test.license,com.windowtester.test.prefpage
 Require-Bundle: org.junit,
