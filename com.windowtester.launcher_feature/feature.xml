@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.windowtester.launcher"
+      id="com.windowtester.launcher.feature"
       label="%featureName"
-      version="6.0.0"
+      version="6.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
