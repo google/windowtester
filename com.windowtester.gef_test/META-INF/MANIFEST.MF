@@ -16,8 +16,8 @@ Require-Bundle: org.junit,
  com.windowtester.eclipse.ui,
  com.windowtester.swt.recorder,
  com.ibm.icu
-Bundle-Version: 0.0.0
-Bundle-SymbolicName: com.windowtester.gef_test;singleton:=true
+Bundle-Version: 6.1.0.qualifier
+Bundle-SymbolicName: com.windowtester.gef.test;singleton:=true
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName

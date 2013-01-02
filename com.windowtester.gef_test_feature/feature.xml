@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.windowtester.gef_test"
+      id="com.windowtester.gef.test.feature"
       label="%featureName"
-      version="1.0.0"
+      version="6.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -270,9 +270,10 @@ COPYRIGHT ${build_year} Google
    </requires>
 
    <plugin
-         id="com.windowtester.gef_test"
+         id="com.windowtester.gef.test"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
