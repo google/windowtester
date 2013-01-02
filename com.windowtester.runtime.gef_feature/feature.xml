@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.windowtester.runtime.gef"
+      id="com.windowtester.runtime.gef.feature"
       label="%featureName"
-      version="6.0.0"
+      version="6.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -252,14 +252,19 @@ COPYRIGHT ${build_year} Google
    </license>
 
    <requires>
-      <import feature="org.eclipse.gef" version="3.2.0" match="greaterOrEqual"/>
-      <import feature="com.windowtester.runtime" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="com.windowtester.swt.runtime"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.gef"/>
    </requires>
 
    <plugin
          id="com.windowtester.swt.runtime.gef"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="6.1.0.qualifier"/>
 
 </feature>
