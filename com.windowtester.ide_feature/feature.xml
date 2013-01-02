@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.windowtester.ide"
+      id="com.windowtester.ide.feature"
       label="%featureName"
-      version="6.0.0"
+      version="6.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -252,12 +252,31 @@ COPYRIGHT ${build_year} Google
    </license>
 
    <requires>
-      <import feature="com.windowtester.runtime" version="0.0.0" match="greaterOrEqual"/>
-            
-      <!-- $if eclipse.version >= 3.5 && eclipse.version <= 3.6 $ -->
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="com.windowtester.swing.runtime"/>
+      <import plugin="com.windowtester.swt.runtime"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.text"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.pde.core"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.help"/>
+      <import plugin="org.eclipse.ui.intro"/>
+      <import plugin="org.eclipse.ui.intro.universal"/>
+      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="org.eclipse.jdt.debug.ui"/>
+      <import plugin="org.eclipse.pde.ui"/>
+      <import plugin="org.eclipse.ltk.core.refactoring"/>
+      <import plugin="org.eclipse.ltk.ui.refactoring"/>
       <import feature="org.eclipse.pde" version="3.0.0" match="greaterOrEqual"/>
-      <!-- $endif$ -->
-      
    </requires>
 
    <plugin
