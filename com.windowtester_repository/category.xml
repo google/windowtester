@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.windowtester.ide.feature_6.1.0.qualifier.jar" id="com.windowtester.ide.feature" version="6.1.0.qualifier">
+   <feature url="features/com.windowtester.ide_6.1.0.qualifier.jar" id="com.windowtester.ide" version="0.0.0">
       <category name="com.windowtester.ide"/>
    </feature>
-   <feature url="features/com.windowtester.runtime.feature_6.1.0.qualifier.jar" id="com.windowtester.runtime.feature" version="6.1.0.qualifier">
+   <feature url="features/com.windowtester.runtime_6.1.0.qualifier.jar" id="com.windowtester.runtime" version="0.0.0">
       <category name="com.windowtester.runtime"/>
    </feature>
-   <feature url="features/com.windowtester.runtime.gef.feature_6.1.0.qualifier.jar" id="com.windowtester.runtime.gef.feature" version="6.1.0.qualifier">
-      <category name="com.windowtester.runtime.gef"/>
-   </feature>
-   <feature url="features/com.windowtester.ide.gef.feature_6.1.0.qualifier.jar" id="com.windowtester.ide.gef.feature" version="6.1.0.qualifier">
+   <feature url="features/com.windowtester.ide.gef_6.1.0.qualifier.jar" id="com.windowtester.ide.gef" version="0.0.0">
       <category name="com.windowtester.ide.gef"/>
    </feature>
-   <feature url="features/com.windowtester.launcher.feature_6.1.0.qualifier.jar" id="com.windowtester.launcher.feature" version="6.1.0.qualifier">
+   <feature url="features/com.windowtester.runtime.gef_6.1.0.qualifier.jar" id="com.windowtester.runtime.gef" version="0.0.0">
+      <category name="com.windowtester.runtime.gef"/>
+   </feature>
+   <feature url="features/com.windowtester.launcher_6.1.0.qualifier.jar" id="com.windowtester.launcher" version="0.0.0">
       <category name="com.windowtester.launcher"/>
    </feature>
    <category-def name="com.windowtester.ide" label="WindowTester IDE"/>
