@@ -277,6 +277,7 @@ COPYRIGHT ${build_year} Google
       <import plugin="org.eclipse.ltk.core.refactoring"/>
       <import plugin="org.eclipse.ltk.ui.refactoring"/>
       <import feature="org.eclipse.pde" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="com.windowtester.runtime"/>
    </requires>
 
    <plugin
