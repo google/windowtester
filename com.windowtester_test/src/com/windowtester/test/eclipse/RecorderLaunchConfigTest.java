@@ -28,6 +28,7 @@ import com.windowtester.runtime.swt.util.DebugHelper;
  *  
  *  Contributors:
  *  Google, Inc. - initial API and implementation
+ *  Frederic Gurr - fixed test for Eclipse 3.6+
  *******************************************************************************/
 public class RecorderLaunchConfigTest extends BaseTest {
 
@@ -51,8 +52,8 @@ public class RecorderLaunchConfigTest extends BaseTest {
 
 
 	private void clickMainClassText(IUIContext ui) throws WidgetSearchException {
-		//another annoying Eclipse version difference....
-		IWidgetLocator textLocator = EclipseUtil.isVersion_32() ? 
+		//another annoying Eclipse version difference.... (it was actually changed back again in Eclipse 3.6 (maybe also in Eclipse 3.5.1 or 3.5.2?!)
+		IWidgetLocator textLocator = EclipseUtil.isVersion_32() || EclipseUtil.isAtLeastVersion_36() ? 
 				new SWTWidgetLocator(Text.class, new SWTWidgetLocator(Group.class, "&Main class:")) : 
 					new SWTWidgetLocator(Text.class, new SWTWidgetLocator(Composite.class, new SWTWidgetLocator(Group.class, "&Main class:")));
 		ui.click(textLocator);
