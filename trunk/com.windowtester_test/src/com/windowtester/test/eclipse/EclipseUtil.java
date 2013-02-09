@@ -78,4 +78,8 @@ public class EclipseUtil
 	public static boolean isAtLeastVersion_35() {
 		return getMajor() >= 3 && getMinor() >= 5;
 	}
+
+	public static boolean isAtLeastVersion_36() {
+		return getMajor() >= 3 && getMinor() >= 6;
+	}
 }
