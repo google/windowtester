@@ -52,7 +52,8 @@ public class WindowTesterPrefPageTest extends BaseTest
 	public void testWindowTesterPrefPages() throws Exception {
 		IUIContext ui = getUI();
 		checkCodegenPage(ui);
-		checkLicensePage(ui);
+		//License page does not exist anymore
+//		checkLicensePage(ui);
 		checkPlaybackPage(ui);
 
 	}
@@ -75,10 +76,10 @@ public class WindowTesterPrefPageTest extends BaseTest
 		ui.click(new TreeItemLocator("WindowTester"));
 	}
 
-
-	private void checkLicensePage(IUIContext ui) throws WidgetSearchException {
-		ui.click(new TreeItemLocator("WindowTester/License"));
-	}
+	//License page does not exist anymore
+//	private void checkLicensePage(IUIContext ui) throws WidgetSearchException {
+//		ui.click(new TreeItemLocator("WindowTester/License"));
+//	}
 
 
 	private void checkPlaybackPage(IUIContext ui) throws WidgetSearchException {

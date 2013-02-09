@@ -44,9 +44,11 @@ public class WTProductScenario1
 		//suite.addTestSuite(ShellMonitorSmokeTest.class);
 		suite.addTestSuite(ContributedToolItemLocatorSmokeTest.class);
 		suite.addTestSuite(WindowTesterPrefPageTest.class);
-		suite.addTestSuite(CodeCoveragePrefPageTest.class);
-		suite.addTestSuite(CodeCoverageViewTest.class);
-		suite.addTestSuite(WindowTesterEvalRegTest.class);
+		//CodeCoverage plug-in is not included anymore
+//		suite.addTestSuite(CodeCoveragePrefPageTest.class);
+//		suite.addTestSuite(CodeCoverageViewTest.class);
+		//EvalRegistration is not used anymore, because windowtester is open source now!
+//		suite.addTestSuite(WindowTesterEvalRegTest.class);
 		suite.addTestSuite(ImportExampleProjectTest.class);
 
 		suite.addTestSuite(NewAPIScreenCaptureTest.class);
