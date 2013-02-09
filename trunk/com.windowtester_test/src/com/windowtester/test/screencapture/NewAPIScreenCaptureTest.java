@@ -11,6 +11,7 @@
 package com.windowtester.test.screencapture;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import abbot.Platform;
 
@@ -19,6 +20,7 @@ import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
@@ -26,6 +28,7 @@ import com.windowtester.runtime.swt.locator.ComboItemLocator;
 import com.windowtester.runtime.swt.locator.LabeledTextLocator;
 import com.windowtester.runtime.swt.locator.ListItemLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
+import com.windowtester.runtime.swt.locator.ShellLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 import com.windowtester.runtime.util.ScreenCapture;
@@ -260,11 +263,19 @@ public class NewAPIScreenCaptureTest extends BaseTest {
 		IUIContext ui = getUI();
 		ui.click(new MenuItemLocator("File/New/Project..."));
 		ui.wait(new ShellShowingCondition("New Project"));
-		ui.click(new TreeItemLocator("Java Project"));
+		ui.click(new TreeItemLocator("Java/Java Project"));
 		ui.click(new ButtonLocator("&Next >"));
 		ui.click(new LabeledTextLocator("&Project name:"));
 		ui.enterText(projectName);
 		ui.click(new ButtonLocator("Finish"));
+
+		//deal with "Open Associated Perspective?" dialog
+		ui.wait(new TimeElapsedCondition(TimeUnit.MILLISECONDS, 3000));
+		if(new ShellLocator("Open Associated Perspective?").isVisible(ui)){
+			ui.click(new ButtonLocator("Yes"));
+			ui.wait(new ShellDisposedCondition("Open Associated Perspective?"));
+		}
+		
 		ui.wait(new ShellDisposedCondition("New Java Project"));
 		}finally{
 			TypingLinuxHelper.restoreOriginalStrategy();			
