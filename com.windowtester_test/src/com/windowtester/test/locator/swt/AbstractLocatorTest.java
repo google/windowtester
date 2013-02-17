@@ -3,10 +3,8 @@ package com.windowtester.test.locator.swt;
 import java.util.Arrays;
 import java.util.Collection;
 
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.widgets.Display;
 
 import com.windowtester.runtime.condition.ICondition;
 import com.windowtester.runtime.internal.concurrent.VoidCallable;

@@ -5,7 +5,6 @@ import static com.windowtester.runtime.swt.locator.eclipse.EclipseLocators.view;
 import org.eclipse.ui.views.IViewDescriptor;
 
 import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.internal.condition.eclipse.ViewShowingConditionHandler;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 import com.windowtester.test.eclipse.BaseTest;
 

@@ -6,7 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.widgets.Display;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;

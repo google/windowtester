@@ -3,7 +3,6 @@ package com.windowtester.test.eclipse.condition;
 import static com.windowtester.runtime.swt.locator.eclipse.EclipseLocators.perspective;
 
 import com.windowtester.runtime.IUIContext;
-import com.windowtester.runtime.swt.internal.condition.eclipse.PerspectiveActiveConditionHandler;
 import com.windowtester.test.eclipse.BaseTest;
 
 /*******************************************************************************

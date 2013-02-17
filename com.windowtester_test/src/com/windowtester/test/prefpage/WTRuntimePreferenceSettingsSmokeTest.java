@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
@@ -61,7 +62,7 @@ public class WTRuntimePreferenceSettingsSmokeTest extends UITestCaseSWT {
 		WorkBenchHelper.openPreferences(ui);
 		ui.wait(new ShellShowingCondition("Preferences"));
 		ui.click(new FilteredTreeItemLocator("WindowTester/Playback"));
-		ui.pause(2000);
+		ui.wait(TimeElapsedCondition.milliseconds(2000));
 		ui.click(new ButtonLocator("Highlighting"));
 		ui.click(new ButtonLocator("OK"));
 		ui.wait(new ShellDisposedCondition("Preferences"));

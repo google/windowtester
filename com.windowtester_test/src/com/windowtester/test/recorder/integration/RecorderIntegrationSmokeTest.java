@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.ToolItem;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.locator.IWidgetReference;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
@@ -84,7 +85,7 @@ public class RecorderIntegrationSmokeTest extends BaseTest {
 		ui.wait(new ShellShowingCondition("New UI Test"));
 		//...
 		System.out.println("RecorderIntegrationSmokeTest.codegen()");
-		ui.pause(10000);
+		ui.wait(TimeElapsedCondition.milliseconds(10000));
 	}
 
 

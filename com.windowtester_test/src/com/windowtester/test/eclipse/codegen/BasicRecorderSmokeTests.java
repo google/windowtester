@@ -2,7 +2,6 @@ package com.windowtester.test.eclipse.codegen;
 
 
 import static com.windowtester.test.eclipse.helpers.WorkBenchHelper.openPreferences;
-import junit.framework.TestCase;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
@@ -15,6 +14,7 @@ import abbot.tester.swt.WidgetTester;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.locator.IWidgetReference;
 import com.windowtester.runtime.locator.WidgetReference;
 import com.windowtester.runtime.locator.XYLocator;
@@ -38,7 +38,6 @@ import com.windowtester.runtime.swt.locator.eclipse.ContributedToolItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
 import com.windowtester.runtime.util.ScreenCapture;
 import com.windowtester.test.eclipse.EclipseUtil;
-import com.windowtester.test.util.PlatformEventWatcherAndCodegenerator;
 
 /*******************************************************************************
  *  Copyright (c) 2012 Google, Inc.
@@ -178,7 +177,7 @@ public class BasicRecorderSmokeTests extends AbstractRecorderSmokeTest {
 		 *		ui.click(new TreeItemLocator("Ant/Editor"));
 		 */
 		ui.click(new TabItemLocator("Synta&x"));
-		ui.pause(2000);
+		ui.wait(TimeElapsedCondition.milliseconds(2000));
 		
 //		ui.click(new TableItemLocator("Text"));
 //		ui.click(new SWTWidgetLocator(TableItem.class, "Text"));
@@ -192,7 +191,7 @@ public class BasicRecorderSmokeTests extends AbstractRecorderSmokeTest {
 		ui.click(new ButtonLocator("Cancel"));
 		ui.wait(new ShellDisposedCondition("Preferences"));		
 		//ugly pause here! -- trying to remedy occasional failures when run in suite 
-		ui.pause(2000);		
+		ui.wait(TimeElapsedCondition.milliseconds(2000));
 		//conjecture: recorder hasn't had time to fully process events before moving on
 		//???: what might a condition look like?
 
@@ -248,7 +247,7 @@ public class BasicRecorderSmokeTests extends AbstractRecorderSmokeTest {
 		//ui.click(new SWTWidgetLocator(TableItem.class, "Object - java.lan.*"));
 		ui.click(new TableItemLocator("Object - java.lan.*"));	
 		
-		ui.pause(2000);
+		ui.wait(TimeElapsedCondition.milliseconds(2000));
 		// Take a screenshot so that if recording comparison fails to match we can determine why
 		ScreenCapture.createScreenCapture("OpenType");
 		ui.click(new ButtonLocator("OK"));

@@ -1,6 +1,5 @@
 package com.windowtester.test.locator.swt;
 
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolItem;
 
 import abbot.tester.swt.ItemTester;

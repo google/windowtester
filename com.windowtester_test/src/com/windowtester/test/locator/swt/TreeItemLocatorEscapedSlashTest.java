@@ -7,6 +7,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 
 /*******************************************************************************
  *  Copyright (c) 2012 Google, Inc.
@@ -31,7 +32,7 @@ public class TreeItemLocatorEscapedSlashTest extends AbstractTreeItemLocatorTest
 	public void testDrive() throws Exception {
 		IUIContext ui = getUI();
 		ui.click(treeItem("[Project:=testProject || Repository:=testProject_sw_rep || Category:=blocks\\Category1 || BlockDiagram:=copyblock.yfbm]"));
-		ui.pause(3000);
+		ui.wait(TimeElapsedCondition.milliseconds(3000));
 	}
 
 

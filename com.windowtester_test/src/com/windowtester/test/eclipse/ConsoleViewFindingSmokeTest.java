@@ -2,7 +2,6 @@ package com.windowtester.test.eclipse;
 
 
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
