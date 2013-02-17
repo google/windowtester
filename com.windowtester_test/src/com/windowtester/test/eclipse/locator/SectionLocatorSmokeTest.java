@@ -1,7 +1,6 @@
 package com.windowtester.test.eclipse.locator;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.SWTException;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -15,6 +14,7 @@ import org.eclipse.ui.forms.widgets.TableWrapData;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.internal.concurrent.VoidCallable;
 import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.swt.condition.eclipse.ActiveEditorCondition;
@@ -211,8 +211,7 @@ public class SectionLocatorSmokeTest extends BaseTest {
 		IWidgetLocator[] buttons = ui.findAll(locator);
 		assertEquals(testButtonLabels.length, buttons.length);
 		
-		
-		ui.pause(2000);		
+		ui.wait(TimeElapsedCondition.milliseconds(2000));
 		ui.click(new ButtonLocator("OK"));
 
 		

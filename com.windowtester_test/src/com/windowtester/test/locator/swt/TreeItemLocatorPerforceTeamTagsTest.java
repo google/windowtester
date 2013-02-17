@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 
 /*******************************************************************************
@@ -34,7 +35,7 @@ public class TreeItemLocatorPerforceTeamTagsTest extends AbstractTreeItemLocator
 		//Errors(.)*/Font Arial(size 12.0 pt) is not allowed."
 //(2)		
 //		ui.click(new TreeItemLocator("Errors(.*)/Font Arial(size 16.0 pt) is not allowed."));
-		ui.pause(3000);
+		ui.wait(TimeElapsedCondition.milliseconds(3000));
 		
 	}
 

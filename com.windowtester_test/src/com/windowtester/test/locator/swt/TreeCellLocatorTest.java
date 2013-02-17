@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.internal.selector.UIProxy;
 import com.windowtester.runtime.swt.locator.TreeCellLocator;
 import com.windowtester.test.locator.swt.shells.TreeCellLocatorShell;
@@ -48,7 +49,7 @@ public class TreeCellLocatorTest extends AbstractLocatorTest {
 		System.out.println(locatorShell.lastSelectedItemColumn);
 		assertEquals("TreeItem {0.0.2.1}", UIProxy.getToString(locatorShell.lastSelectedItem));
 		assertEquals(1, locatorShell.lastSelectedItemColumn);
-		getUI().pause(3000);
+		getUI().wait(TimeElapsedCondition.milliseconds(3000));
 	}
 	
 	public void testChildSelectionColumn0() throws Exception {
@@ -57,7 +58,7 @@ public class TreeCellLocatorTest extends AbstractLocatorTest {
 		System.out.println(locatorShell.lastSelectedItemColumn);
 		assertEquals("TreeItem {0.0.4.2}", UIProxy.getToString(locatorShell.lastSelectedItem));
 		assertEquals(0, locatorShell.lastSelectedItemColumn);
-		getUI().pause(3000);
+		getUI().wait(TimeElapsedCondition.milliseconds(3000));
 	}
 	
 	
