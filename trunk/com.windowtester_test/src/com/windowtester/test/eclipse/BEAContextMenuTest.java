@@ -4,13 +4,10 @@ import static com.windowtester.test.eclipse.helpers.JavaProjectHelper.createJava
 import static com.windowtester.test.eclipse.helpers.WorkBenchHelper.openPerspective;
 import static com.windowtester.test.eclipse.helpers.WorkBenchHelper.openView;
 
-import org.eclipse.swt.widgets.Tree;
-
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
-import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.TreeLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;

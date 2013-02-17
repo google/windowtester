@@ -1,6 +1,5 @@
 package com.windowtester.test.eclipse;
 
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.internal.ShowViewAction;
 

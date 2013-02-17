@@ -7,6 +7,7 @@ import org.eclipse.swt.widgets.Button;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetNotFoundException;
 import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.condition.eclipse.ConfirmPerspectiveSwitchShellHandler;
 import com.windowtester.runtime.swt.condition.eclipse.ProjectExistsCondition;
 import com.windowtester.runtime.swt.condition.shell.IShellConditionHandler;
@@ -134,7 +135,7 @@ public class LegacyExceptionTest extends BaseTest {
 			TestCase.assertNotNull(ui);
 			TestCase.assertNotNull(type);
 
-			ui.pause(500);
+			ui.wait(TimeElapsedCondition.milliseconds(500));
 			ui.click(new MenuItemLocator("&Window/Show &View/&Other.*")); //3.* safe path
 			ui.wait(new ShellShowingCondition("Show View"));
 			ui.click(new TreeItemLocator(type.toString()));

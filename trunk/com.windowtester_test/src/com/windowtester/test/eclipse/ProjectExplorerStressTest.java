@@ -20,7 +20,6 @@ import com.windowtester.runtime.swt.locator.CTabItemLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
-import com.windowtester.runtime.util.ScreenCapture;
 import com.windowtester.test.util.TypingLinuxHelper;
 
 /*******************************************************************************

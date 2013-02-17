@@ -3,7 +3,6 @@ package com.windowtester.test.eclipse.condition;
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.condition.IsSelected;
 import com.windowtester.runtime.swt.condition.SWTIdleCondition;
 import com.windowtester.runtime.swt.condition.eclipse.JobsCompleteCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;

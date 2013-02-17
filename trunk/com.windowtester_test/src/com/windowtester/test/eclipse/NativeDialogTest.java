@@ -24,6 +24,7 @@ import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.ICondition;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.swt.condition.NativeShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.NativeShellShowingCondition;
@@ -160,7 +161,7 @@ public class NativeDialogTest extends UITestCaseSWT {
 			}
 		});
 		IUIContext ui = getUI();
-		ui.pause(3000);
+		ui.wait(TimeElapsedCondition.milliseconds(3000));
 		ui.wait(new NativeShellShowingCondition("Message"));
 		ui.assertThat(new MessageBoxLocator().hasMessage(MSG));
 		ui.keyClick(WT.CR);

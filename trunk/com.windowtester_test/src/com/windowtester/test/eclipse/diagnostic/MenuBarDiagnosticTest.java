@@ -12,6 +12,7 @@ package com.windowtester.test.eclipse.diagnostic;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WT;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 
@@ -26,7 +27,7 @@ public class MenuBarDiagnosticTest extends UITestCaseSWT {
 		IUIContext ui = getUI();
 		for (String label : labels) {
 			ui.click(new MenuItemLocator(label));
-			ui.pause(1000);
+			ui.wait(TimeElapsedCondition.milliseconds(1000));
 			ui.keyClick(WT.ESC); //to dismiss
 		}
 		

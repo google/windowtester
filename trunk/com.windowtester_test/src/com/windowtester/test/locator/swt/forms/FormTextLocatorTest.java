@@ -13,6 +13,7 @@ package com.windowtester.test.locator.swt.forms;
 import org.eclipse.ui.forms.widgets.FormText;
 
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.locator.IWidgetReference;
 import com.windowtester.runtime.swt.internal.locator.forms.FormTextLocator;
 import com.windowtester.runtime.swt.internal.locator.forms.FormTextReference;
@@ -60,8 +61,8 @@ public class FormTextLocatorTest extends AbstractFormTextLocatorTest {
 		HyperlinkSegmentReference[] hyperlinks = FormTextReference.forText(formText).getHyperlinks();
 		for (HyperlinkSegmentReference link : hyperlinks) {
 			System.out.println(link);
-		}		
-		ui.pause(3000);
+		}
+		ui.wait(TimeElapsedCondition.milliseconds(3000));
 	}
 	
 	

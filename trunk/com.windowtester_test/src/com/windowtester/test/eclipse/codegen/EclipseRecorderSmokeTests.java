@@ -1,15 +1,13 @@
 package com.windowtester.test.eclipse.codegen;
 
-import static com.windowtester.test.eclipse.helpers.WorkBenchHelper.openPreferences;
-
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellDisposedCondition;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.CTabItemLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
-import com.windowtester.runtime.swt.locator.ShellLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ContributedToolItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.PullDownMenuItemLocator;
@@ -86,7 +84,7 @@ public class EclipseRecorderSmokeTests extends AbstractRecorderSmokeTest
 		ui.click(new ButtonLocator("&Finish"));
 		ui.wait(new ShellDisposedCondition("New Java Project"));
 		ui.click(new TreeItemLocator("EclipseRecorderSmokeTest_JPClickTestProject", new ViewLocator("org.eclipse.jdt.ui.PackageExplorer")));
-		ui.pause(2000);//give the recorder a moment to catch the click
+		ui.wait(TimeElapsedCondition.milliseconds(2000));//give the recorder a moment to catch the click
 	}
 	
 	public void testCTabItemClose() throws Exception {
