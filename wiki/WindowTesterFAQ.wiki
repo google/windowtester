@@ -1,10 +1,10 @@
 #summary WindowTester FAQ
 
-== Official WindowTester FAQ ==
+== Official !WindowTester FAQ ==
 
   * https://developers.google.com/java-dev-tools/wintester/html/faq/faq
 
-== Unofficial WindowTester FAQ / Workarounds ==
+== Unofficial !WindowTester FAQ / Workarounds ==
 
 === Errors during closing the application. ===
 
