@@ -37,9 +37,11 @@
 
 					<argLine>-Xms256m -Xmx512m -XX:MaxPermSize=256M</argLine>
 
-					<!-- <product>org.eclipse.sdk.ide</product>
-					<product>com.windowtester.example.contactmanager.rcp-product</product>
-					<application>org.eclipse.ui.ide.workbench</application>
+					<application>com.windowtester.example.contactmanager.rcp.application</application>
+
+					<includes>
+						<include>**/ContactManagerRCPTestSuite.java</include>
+					</includes>
 
 					<dependencies>
 						<dependency>
@@ -49,11 +51,10 @@
 						</dependency>
 						<dependency>
 							<type>p2-installable-unit</type>
-							<artifactId>org.eclipse.sdk.ide</artifactId>
+							<artifactId>com.windowtester.example.contactmanager.rcp</artifactId>
 							<version>0.0.0</version>
 						</dependency>
 					</dependencies>
-						-->
 				</configuration>
 			</plugin>
 		</plugins>
