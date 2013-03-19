@@ -6,5 +6,7 @@
 	<classpathentry kind="src" path="/com.windowtester.example.contactmanager.swing"/>
 	<classpathentry kind="con" path="com.windowtester.eclipse.ui.runtimeClasspathContainer"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1"/>
+	<classpathentry kind="src" path="/com.windowtester.swing.runtime"/>
+	<classpathentry kind="src" path="/com.windowtester.runtime"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
