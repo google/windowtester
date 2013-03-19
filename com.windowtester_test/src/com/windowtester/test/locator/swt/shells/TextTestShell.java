@@ -15,6 +15,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
@@ -86,6 +87,28 @@ public class TextTestShell {
 	
 	private void toggleBETA() {
 		BETA = !BETA;
+	}
+	
+	
+	/**
+	 * Launch the application
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		try {
+			TextTestShell window = new TextTestShell();
+			window.open();
+			
+			//new EventRecordingWatcher(window.getShell()).watch();
+			
+			final Display display = Display.getDefault();
+			while (!window.getShell().isDisposed()) {
+				if (!display.readAndDispatch())
+					display.sleep();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
