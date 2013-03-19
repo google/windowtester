@@ -32,10 +32,6 @@ import abbot.script.Action;
 import abbot.tester.*;
 import abbot.tester.Robot;
 import abbot.util.*;
-import abbot.util.Properties;
-import abbot.util.ThreadTerminatingSecurityManager.ThreadTerminatedException;
-
-import com.apple.mrj.*;
 
 /**
  * This is the 'model' behind the script editor UI.<p>
