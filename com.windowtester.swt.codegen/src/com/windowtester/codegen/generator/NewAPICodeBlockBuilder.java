@@ -195,15 +195,15 @@ public class NewAPICodeBlockBuilder implements ICodeBlockBuilder {
 	public CodeBlock buildAssertion(ILocator locator, PropertyMapping property) {
 		addImportsForLocator(locator);
 		Reflector reflector = Reflector.forObject(locator);
-		String properytKey = property.getKey();
-		Class<?>[] argTypes = (!property.isBoolean() && properytKey.startsWith("has")) ? new Class<?>[]{String.class} : null;
-		if (!reflector.supports(properytKey, argTypes))
+		String propertyKey = property.getKey();
+		Class<?>[] argTypes = (!property.isBoolean() && propertyKey.startsWith("has")) ? new Class<?>[]{String.class} : null;
+		if (!reflector.supports(propertyKey, argTypes))
 			return notHandled("assertion of property: " + property.toString() + "(unsupported)");
 		
-		String assertion = toJavaString(locator) + "." + properytKey + "(";
+		String assertion = toJavaString(locator) + "." + propertyKey + "(";
 		
 		//boolean case
-		if (properytKey.startsWith("is") || property.isBoolean()) {
+		if (propertyKey.startsWith("is") || property.isBoolean()) {
 			if (property.getValue().equals("false"))
 				assertion += "false";
 		} else {

@@ -43,20 +43,15 @@ public class WorkBenchHelper {
 	private static final String HELP_VIEW_ID = "org.eclipse.help.ui.HelpView";
 	
 	public static enum View {
-		BASIC_CONSOLE("(General|Basic)/Console",
-				"org.eclipse.ui.console.ConsoleView"), BASIC_INTERNALWEBBROWSER(
-				"(General|Basic)/Internal Web Browser",
-				"org.eclipse.ui.browser.view" /*3.3*/), BASIC_NAVIGATOR(
-				"(General|Basic)/Navigator",
-				"org.eclipse.ui.views.ResourceNavigator"), BASIC_OUTLINE(
-				"(General|Basic)/Outline",
-				"org.eclipse.ui.views.ContentOutline"), BASIC_PROBLEMS(
-				"(General|Basic)/Problems", "org.eclipse.ui.views.ProblemView"), BASIC_PROPERTIES(
-				"(General|Basic)/Properties",
-				"org.eclipse.ui.views.PropertySheet"), JAVA_PACKAGEEXPLORER(
-				"Java/Package Explorer", "org.eclipse.jdt.ui.PackageExplorer"), 
-				//PDERUNTIME_ERRORLOG("PDE Runtime/Error Log", "org.eclipse.pde.runtime.LogView"), 
-			JUNIT("Java/JUnit", "org.eclipse.jdt.junit.ResultView");
+		BASIC_CONSOLE("(General|Basic)/Console", "org.eclipse.ui.console.ConsoleView"),
+		BASIC_INTERNALWEBBROWSER("(General|Basic)/Internal Web Browser","org.eclipse.ui.browser.view" /*3.3*/),
+		BASIC_NAVIGATOR("(General|Basic)/Navigator", "org.eclipse.ui.views.ResourceNavigator"),
+		BASIC_OUTLINE("(General|Basic)/Outline", "org.eclipse.ui.views.ContentOutline"),
+		BASIC_PROBLEMS("(General|Basic)/Problems", "org.eclipse.ui.views.ProblemView"),
+		BASIC_PROPERTIES("(General|Basic)/Properties", "org.eclipse.ui.views.PropertySheet"),
+		JAVA_PACKAGEEXPLORER("Java/Package Explorer", "org.eclipse.jdt.ui.PackageExplorer"), 
+		//PDERUNTIME_ERRORLOG("PDE Runtime/Error Log", "org.eclipse.pde.runtime.LogView"), 
+		JUNIT("Java/JUnit", "org.eclipse.jdt.junit.ResultView");
 
 		private String _viewSelectionPath;
 
