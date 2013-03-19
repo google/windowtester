@@ -19,7 +19,7 @@ import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.internal.junit4.mirror.runners.InitializationError;
 import com.windowtester.runtime.junit4.UITestRunner;
 import com.windowtester.runtime.swt.internal.junit.SWTExecutionContext;
-import com.windowtester.swt.UIContextFactory;
+import com.windowtester.runtime.swt.internal.UIContextFactory;
 
 /**
  * The custom runner <code>TestRunnerSWT</code> provides runner support for SWT tests.
