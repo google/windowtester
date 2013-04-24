@@ -1,4 +1,5 @@
-#summary Setting up a development enviroment for !WindowTester
+#summary Setting up a development enviroment for WindowTester
+#labels Featured
 
 = Setting up a development environment for !WindowTester =
 
