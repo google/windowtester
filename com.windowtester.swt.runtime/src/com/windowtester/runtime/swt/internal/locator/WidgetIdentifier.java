@@ -12,6 +12,7 @@ package com.windowtester.runtime.swt.internal.locator;
 
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -76,6 +77,7 @@ import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.NamedWidgetLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.ShellLocator;
+import com.windowtester.runtime.swt.locator.StyledTextLocator;
 import com.windowtester.runtime.swt.locator.TabItemLocator;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
@@ -133,6 +135,8 @@ public class WidgetIdentifier implements IWidgetIdentifierStrategy {
 				return new HyperlinkLocator(text);
 			if (isA(w, Shell.class))
 				return new ShellLocator(text);
+			if (isA(w, StyledText.class))
+				return new StyledTextLocator();
 			
 			//fall through
 			return new SWTWidgetLocator(w.getClass(), text);
