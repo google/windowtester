@@ -364,9 +364,11 @@ public class LocatorJavaStringFactory {
 		com.windowtester.runtime.WidgetLocator parentInfo = locator.getParentInfo();
 		if (parentInfo != null) {
 			int index = locator.getIndex();
-			if (index != SwingWidgetLocator.UNASSIGNED)
-				sb.append(", ").append(index);
-			sb.append(", ");
+			if (index != SwingWidgetLocator.UNASSIGNED){
+				appendDelimeter(sb);
+				sb.append(index);
+			}
+			appendDelimeter(sb);
 			sb.append(wlToString(parentInfo));
 		}
 	}
@@ -379,9 +381,11 @@ public class LocatorJavaStringFactory {
 		
 		if (parentInfo != null && !specialCaseIgnoreParentLocator(locator)) {
 			int index = locator.getIndex();
-			if (index != SWTWidgetLocator.UNASSIGNED)
-				sb.append(", ").append(index);
-			sb.append(", ");
+			if (index != SWTWidgetLocator.UNASSIGNED){
+				appendDelimeter(sb);
+				sb.append(index);
+			}
+			appendDelimeter(sb);
 			sb.append(wlToString(parentInfo));
 		}
 	}

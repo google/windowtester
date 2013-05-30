@@ -1,6 +1,7 @@
 package com.windowtester.test.codegen;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.MenuItem;
@@ -28,6 +29,7 @@ import com.windowtester.runtime.swt.locator.ColumnLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeItemLocator;
 import com.windowtester.runtime.swt.locator.FilteredTreeLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
+import com.windowtester.runtime.swt.locator.StyledTextLocator;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
 import com.windowtester.runtime.swt.locator.TextLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
@@ -240,6 +242,33 @@ public class SWTAPICodeBlockBuilderTest extends BaseSWTAPICodeBlockCodegenTest {
 		assertEquals("ui.click(new FilteredTreeItemLocator(\"item\"));", block);
 		assertImportsContain(FilteredTreeItemLocator.class);
 		assertImportsDoNotContain(FilteredTreeLocator.class);
+	}
+	
+	public void testStyledTextSingleClick() throws Exception {
+		EventInfo info = CodeGenFixture.mockEvent(StyledText.class, new StyledTextLocator());
+		SemanticWidgetSelectionEvent select = new SemanticWidgetSelectionEvent(info);
+		select.setClicks(1);
+		CodeBlock block = getBuilder().buildSelect(select);
+		assertEquals("ui.click(new StyledTextLocator());", block);
+		assertImportsContain(StyledTextLocator.class);
+	}
+
+	public void testStyledTextSingleClick2() throws Exception {
+		EventInfo info = CodeGenFixture.mockEvent(StyledText.class, new StyledTextLocator(new SWTWidgetLocator(Composite.class)));
+		SemanticWidgetSelectionEvent select = new SemanticWidgetSelectionEvent(info);
+		select.setClicks(1);
+		CodeBlock block = getBuilder().buildSelect(select);
+		assertEquals("ui.click(new StyledTextLocator(new SWTWidgetLocator(Composite.class)));", block);
+		assertImportsContain(StyledTextLocator.class);
+	}
+
+	public void testStyledTextSingleClick3() throws Exception {
+		EventInfo info = CodeGenFixture.mockEvent(StyledText.class, new StyledTextLocator(1, new SWTWidgetLocator(Composite.class)));
+		SemanticWidgetSelectionEvent select = new SemanticWidgetSelectionEvent(info);
+		select.setClicks(1);
+		CodeBlock block = getBuilder().buildSelect(select);
+		assertEquals("ui.click(new StyledTextLocator(1, new SWTWidgetLocator(Composite.class)));", block);
+		assertImportsContain(StyledTextLocator.class);
 	}
 	
 	
