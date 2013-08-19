@@ -102,6 +102,10 @@ public class DynamicCompositeStacksTestShell {
 
 		Button button = new Button(shell, SWT.NONE);
 		button.setText("button");
+
+		Button button2 = new Button(shell, SWT.NONE);
+		button2.setText("button");
+		button2.setEnabled(false);
 	}
 
 	public Shell getShell() {
