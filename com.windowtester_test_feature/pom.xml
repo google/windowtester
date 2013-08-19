@@ -14,5 +14,6 @@
   <artifactId>com.windowtester.test</artifactId>
   <version>6.1.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
-  
+  <name>com.windowtester.test.feature</name>
+
 </project>

@@ -14,4 +14,5 @@
 	<artifactId>com.windowtester.example.contactmanager.rcp_test</artifactId>
 	<version>1.0.0</version>
 	<packaging>eclipse-feature</packaging>
+	<name>com.windowtester.example.contactmanager.rcp_test.feature</name>
 </project>
