@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.windowtester</groupId>
+		<artifactId>com.windowtester.gef.test-parent</artifactId>
+		<version>6.1.0-SNAPSHOT</version>
+		<relativePath>../com.windowtester.gef.test_parent</relativePath>
+	</parent>
+	<groupId>com.windowtester</groupId>
+	<artifactId>com.windowtester.gef.test</artifactId>
+	<version>6.1.0-SNAPSHOT</version>
+	<packaging>eclipse-test-plugin</packaging>
 
-  <parent>
-    <groupId>com.windowtester</groupId>
-    <artifactId>com.windowtester.gef.test-parent</artifactId>
-    <version>6.1.0-SNAPSHOT</version>
-    <relativePath>../com.windowtester.gef.test_parent</relativePath>
-  </parent>
-  
-  <groupId>com.windowtester</groupId>
-  <artifactId>com.windowtester.gef.test</artifactId>
-  <version>6.1.0-SNAPSHOT</version>
-  <packaging>eclipse-test-plugin</packaging>
+	<repositories>
+		<repository>
+			<id>windowtester</id>
+			<layout>p2</layout>
+			<url>http://dl.google.com/eclipse/inst/windowtester/beta/3.7</url>
+		</repository>
+	</repositories>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<showEclipseLog>true</showEclipseLog>
+					<argLine>-Xms256m -Xmx512m -XX:MaxPermSize=256M</argLine>
+					<product>org.eclipse.sdk.ide</product>
+					<application>org.eclipse.ui.ide.workbench</application>
+					<includes>
+						<include>**/com/windowtester/test/scenarios/GEFScenarios.java</include>
+					</includes>
+					<dependencies>
+						<dependency>
+							<type>p2-installable-unit</type>
+							<artifactId>com.windowtester.runtime.feature.group</artifactId>
+							<version>0.0.0</version>
+						</dependency>
+						<dependency>
+							<type>p2-installable-unit</type>
+							<artifactId>org.eclipse.sdk.ide</artifactId>
+							<version>0.0.0</version>
+						</dependency>
+					</dependencies>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
