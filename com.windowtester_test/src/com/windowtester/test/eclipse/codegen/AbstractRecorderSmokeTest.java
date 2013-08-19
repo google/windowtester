@@ -140,7 +140,7 @@ public abstract class AbstractRecorderSmokeTest extends UITestCaseSWT {
 	}
 
 	protected String getBundleName() {
-		return "com.windowtester_test";
+		return "com.windowtester.test";
 	}
 
 	/**

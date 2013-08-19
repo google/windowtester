@@ -75,7 +75,7 @@ public class GEFRecorderSmokeTests extends AbstractRecorderSmokeTest {
 	
 	@Override
 	protected String getBundleName() {
-		return "com.windowtester.gef_test";
+		return "com.windowtester.gef.test";
 	}
 	
 	
