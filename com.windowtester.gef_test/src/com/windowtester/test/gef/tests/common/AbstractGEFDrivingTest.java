@@ -46,6 +46,7 @@ public class AbstractGEFDrivingTest extends UITestCaseSWT {
 		sm.add(new WizardClosingShellHandler());
 		closeWelcomePageIfNecessary();
 		getUI().ensureThat(workbench().hasFocus());
+		getUI().ensureThat(workbench().isMaximized());
 		setLogUtil(new EclipseLogUtil());
 		getLogUtil().setUp();
 	}

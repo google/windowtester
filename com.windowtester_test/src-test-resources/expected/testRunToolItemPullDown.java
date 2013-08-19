@@ -15,8 +15,7 @@ public class testRunToolItemPullDown extends UITestCaseSWT {
 	 */
 	public void testtestRunToolItemPullDown() throws Exception {
 		IUIContext ui = getUI();
-		ui
-				.click(new PullDownMenuItemLocator(
+		ui.click(new PullDownMenuItemLocator(
 						"Run Configurations...",				   // ? 3.4
 						"Open Run Dialog...",                      // ? 3.3
 						"Run...",                                  // ? 3.2

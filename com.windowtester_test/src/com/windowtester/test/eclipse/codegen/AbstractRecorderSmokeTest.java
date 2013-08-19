@@ -182,7 +182,7 @@ public abstract class AbstractRecorderSmokeTest extends UITestCaseSWT {
 		if (welcomeTab.length == 0)
 			return;
 		// TODO: compute x based on tab width to avoid font dependencies
-		int x = 78;
+		int x = 88;
 		if (abbot.Platform.isOSX())
 			x = 95;
 		else if (abbot.Platform.isLinux())
