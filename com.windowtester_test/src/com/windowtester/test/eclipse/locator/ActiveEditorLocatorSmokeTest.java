@@ -90,6 +90,8 @@ public class ActiveEditorLocatorSmokeTest extends BaseTest {
 		// this is a bit cheesy...
 		String projectName = getProjectName();
 		createSimpleFile(ui, new Path(projectName), "myFile.txt");
+		//In Eclipse 4.x "Close All" is only shown, when more than one editor is open
+		createSimpleFile(ui, new Path(projectName), "myFile2.txt");
 		ui.contextClick(new CTabItemLocator("myFile.txt"), "Close All");
 		ui.wait(new JobsCompleteCondition());		
 	}
