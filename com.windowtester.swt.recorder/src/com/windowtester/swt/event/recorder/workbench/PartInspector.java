@@ -13,7 +13,6 @@ package com.windowtester.swt.event.recorder.workbench;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IViewReference;
-import org.eclipse.ui.internal.presentations.util.AbstractTabItem;
 
 import com.windowtester.internal.runtime.PropertySet;
 import com.windowtester.internal.runtime.locator.IdentifierAdapter;
@@ -87,13 +86,12 @@ public class PartInspector {
 		
 	}
 
-	
 	public SemanticWidgetInspectionEvent getDescription(Widget w) {
 		Object data = UIProxy.getData(w);
-		if (!(data instanceof AbstractTabItem))
-			return null;
-		AbstractTabItem tab = (AbstractTabItem)data;
-		data = tab.getData();
+//		if (!(data instanceof AbstractTabItem))
+//			return null;
+//		AbstractTabItem tab = (AbstractTabItem)data;
+//		data = tab.getData();
 		Object ref = Reflector.forObject(Reflector.forObject(data).invoke("getPane")).invoke("getPartReference");
 		if (ref instanceof IEditorReference)
 			return getEditorDescription((IEditorReference)ref);
