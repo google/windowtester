@@ -20,9 +20,9 @@
  	  	<module>../com.windowtester.swing.runtime</module>
 	  	<module>../com.windowtester.swt.runtime</module>
 	  	<module>../com.windowtester.swt.runtime.linux.gtk.x86</module>
-<!--   	<module>com.windowtester.swt.runtime.linux.gtk.x86_64</module>
-	   	<module>com.windowtester.swt.runtime.linux.motif.x86</module> -->
-    	<module>../com.windowtester.swt.runtime.macosx.carbon.x86</module>
+		<!--
+		<module>../com.windowtester.swt.runtime.linux.gtk.x86_64</module>
+	   	-->
 		<module>../com.windowtester.swt.runtime.macosx.cocoa</module>
     	<module>../com.windowtester.swt.runtime.macosx.cocoa.x86</module>
     	<module>../com.windowtester.swt.runtime.macosx.cocoa.x86_64</module>
