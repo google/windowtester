@@ -723,6 +723,8 @@ public class SWTWidgetHierarchy {
 		// TODO[pq]: baked in Forms support will get factored out 
 		if (widget instanceof Hyperlink)
 			visitor.visitHyperlink((Hyperlink)widget);
+		else if (widget instanceof StyledText)
+			visitor.visitStyledText((StyledText)widget);
 		else
 			visitor.visitCanvas(widget);
 		
