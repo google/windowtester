@@ -2,23 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swt.recorder; singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-ClassPath: recorder.jar
 Bundle-Activator: com.windowtester.swt.event.recorder.EventRecorderPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: com.windowtester.controller,
- com.windowtester.net,
- com.windowtester.swt.bootstrap,
- com.windowtester.swt.event.model,
- com.windowtester.swt.event.model.dnd,
- com.windowtester.swt.event.model.factory,
- com.windowtester.swt.event.recorder,
- com.windowtester.swt.event.recorder.jface,
- com.windowtester.swt.event.recorder.workbench,
- com.windowtester.swt.event.server,
- com.windowtester.swt.event.spy,
- com.windowtester.swt.util
+Export-Package: com.windowtester.controller,com.windowtester.net,com.w
+ indowtester.swt.bootstrap,com.windowtester.swt.event.model,com.window
+ tester.swt.event.model.dnd,com.windowtester.swt.event.model.factory,c
+ om.windowtester.swt.event.recorder,com.windowtester.swt.event.recorde
+ r.jface,com.windowtester.swt.event.recorder.workbench,com.windowteste
+ r.swt.event.server,com.windowtester.swt.event.spy,com.windowtester.sw
+ t.util
 Require-Bundle: org.eclipse.core.runtime,
  com.windowtester.swt.runtime,
  com.windowtester.swing.recorder;visibility:=reexport,

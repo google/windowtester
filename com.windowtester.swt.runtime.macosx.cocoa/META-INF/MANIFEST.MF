@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swt.runtime.macosx.cocoa;singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.swt,
  com.windowtester.swt.runtime
-Export-Package: com.windowtester.swt.runtime.internal.macosx,
- com.windowtester.swt.runtime.internal.macosx.cocoa
+Export-Package: com.windowtester.swt.runtime.internal.macosx,com.windo
+ wtester.swt.runtime.internal.macosx.cocoa
 Eclipse-PlatformFilter: (& (osgi.ws=cocoa) (osgi.os=macosx) (|(osgi.arch=x86)(osgi.arch=x86_64)))
 Bundle-Localization: plugin

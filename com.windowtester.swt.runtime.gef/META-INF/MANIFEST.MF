@@ -2,190 +2,128 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swt.runtime.gef; singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-ClassPath: wtGef-runtime.jar
 Bundle-Activator: com.windowtester.runtime.gef.internal.WTGEFPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: com.windowtester.recorder.gef.internal;x-internal:=true;
-  uses:="com.windowtester.runtime.swt.identifier,
-   com.windowtester.internal.runtime.resolver,
-   com.windowtester.runtime.locator,
-   org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.internal;x-internal:=true;
-  uses:="com.windowtester.runtime.gef,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.runtime,
-   org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.internal.condition;x-internal:=true,
- com.windowtester.runtime.draw2d.internal.finder;x-internal:=true;
-  uses:="com.windowtester.runtime.draw2d.internal,
-   com.windowtester.runtime.draw2d.internal.helpers,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.internal.runtime.finder,
-   com.windowtester.runtime,
-   org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.internal.helpers;x-internal:=true;
-  uses:="com.windowtester.event.selector.swt,
-   org.eclipse.draw2d.geometry,
-   org.eclipse.swt.graphics,
-   com.windowtester.runtime,
-   org.eclipse.swt.widgets,
-   org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.internal.locator;x-internal:=true;
-  uses:="com.windowtester.internal.runtime.locator,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.gef.internal.finder,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime,
-   org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.internal.matchers;x-internal:=true;uses:="com.windowtester.runtime.draw2d.matchers,com.windowtester.runtime.gef,org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.internal.selectors;x-internal:=true;
-  uses:="com.windowtester.internal.runtime.locator,
-   com.windowtester.internal.runtime,
-   com.windowtester.runtime.draw2d.internal.helpers,
-   com.windowtester.runtime.swt.internal.dnd,
-   com.windowtester.runtime.locator,
-   org.eclipse.swt.graphics,
-   com.windowtester.runtime,
-   org.eclipse.draw2d",
- com.windowtester.runtime.draw2d.matchers;uses:="com.windowtester.runtime.gef,org.eclipse.draw2d",
- com.windowtester.runtime.gef;uses:="com.windowtester.runtime.locator,org.eclipse.draw2d,org.eclipse.gef",
- com.windowtester.runtime.gef.internal;x-internal:=true;
-  uses:="com.windowtester.runtime.gef,
-   org.eclipse.jface.resource,
-   com.windowtester.runtime.locator,
-   org.eclipse.ui.plugin,
-   org.eclipse.draw2d,
-   com.windowtester.runtime.gef.internal.helpers,
-   com.windowtester.internal.runtime,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.runtime.gef.internal.finder,
-   com.windowtester.runtime.gef.internal.hierarchy,
-   org.eclipse.swt.graphics,
-   com.windowtester.runtime,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.commandstack;x-internal:=true;uses:="com.windowtester.runtime.condition,org.eclipse.gef.commands,com.windowtester.runtime",
- com.windowtester.runtime.gef.internal.condition;x-internal:=true;
-  uses:="com.windowtester.runtime.condition,
-   org.eclipse.ui,
-   org.eclipse.draw2d,
-   org.eclipse.gef.ui.palette,
-   com.windowtester.runtime.gef.internal.selectors",
- com.windowtester.runtime.gef.internal.experimental.factory;x-internal:=true;
-  uses:="com.windowtester.runtime.draw2d.matchers,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.gef.locator,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime.gef.internal.matchers,
-   org.eclipse.draw2d,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.experimental.locator;x-internal:=true;
-  uses:="com.windowtester.internal.runtime.locator,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.runtime.internal,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime,
-   com.windowtester.runtime.gef.internal",
- com.windowtester.runtime.gef.internal.finder;x-internal:=true;
-  uses:="com.windowtester.runtime.gef,
-   com.windowtester.runtime.draw2d.internal.finder,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime.gef.internal,
-   org.eclipse.draw2d,
-   org.eclipse.gef.handles,
-   com.windowtester.runtime.gef.internal.helpers,
-   com.windowtester.runtime.swt.locator.eclipse,
-   org.eclipse.draw2d.geometry,
-   com.windowtester.runtime,
-   org.eclipse.swt.widgets,
-   com.windowtester.runtime.gef.internal.selectors,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.finder.position;x-internal:=true;uses:="com.windowtester.runtime.gef,org.eclipse.draw2d.geometry,org.eclipse.draw2d",
- com.windowtester.runtime.gef.internal.finder.scope;x-internal:=true;
-  uses:="com.windowtester.runtime.internal.finder.scope,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.draw2d.internal.finder,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime.gef.internal,
-   com.windowtester.runtime.gef.internal.helpers,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.runtime.gef.internal.finder,
-   com.windowtester.runtime,
-   org.eclipse.swt.widgets",
- com.windowtester.runtime.gef.internal.helpers;x-internal:=true;
-  uses:="com.windowtester.runtime.swt.locator.eclipse,
-   org.eclipse.ui,
-   com.windowtester.runtime.gef.internal,
-   org.eclipse.draw2d,
-   org.eclipse.gef.palette,
-   org.eclipse.gef.ui.palette,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.hierarchy;x-internal:=true;
-  uses:="com.windowtester.internal.runtime,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.gef.internal,
-   org.eclipse.draw2d",
- com.windowtester.runtime.gef.internal.identifier;x-internal:=true;
-  uses:="com.windowtester.runtime.gef.locator,
-   com.windowtester.runtime.gef.internal.finder,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime,
-   org.eclipse.swt.widgets,
-   org.eclipse.draw2d,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.locator;x-internal:=true;
-  uses:="com.windowtester.internal.runtime.locator,
-   com.windowtester.runtime.draw2d.internal.locator,
-   com.windowtester.runtime.internal.finder.scope,
-   com.windowtester.runtime.swt.locator,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.draw2d.internal.finder,
-   com.windowtester.runtime.gef.internal.finder.scope,
-   com.windowtester.runtime.locator,
-   org.eclipse.draw2d,
-   com.windowtester.runtime.gef.internal.helpers,
-   com.windowtester.runtime.gef.locator,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.internal.runtime.finder,
-   com.windowtester.runtime.gef.internal.finder,
-   org.eclipse.jface.viewers,
-   org.eclipse.swt.graphics,
-   org.eclipse.draw2d.geometry,
-   com.windowtester.runtime",
- com.windowtester.runtime.gef.internal.locator.provisional.api;x-internal:=true;uses:="com.windowtester.runtime.gef,com.windowtester.runtime.gef.internal.locator,com.windowtester.runtime.gef.locator",
- com.windowtester.runtime.gef.internal.matchers;x-internal:=true;
-  uses:="com.windowtester.runtime.draw2d.matchers,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.internal,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime.gef.internal,
-   org.eclipse.draw2d,
-   com.windowtester.runtime.draw2d.internal.matchers,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.reflect;x-internal:=true;uses:="org.eclipse.draw2d,org.eclipse.gef",
- com.windowtester.runtime.gef.internal.selectors;x-internal:=true;
-  uses:="com.windowtester.runtime.gef.internal.condition,
-   com.windowtester.runtime.draw2d.internal.selectors,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime,
-   org.eclipse.gef.ui.palette,
-   org.eclipse.gef",
- com.windowtester.runtime.gef.internal.util;x-internal:=true;uses:="org.eclipse.gef",
- com.windowtester.runtime.gef.locator;
-  uses:="com.windowtester.runtime.swt.internal.locator,
-   com.windowtester.runtime.gef,
-   com.windowtester.runtime.gef.internal.locator,
-   com.windowtester.runtime.swt.locator.eclipse,
-   com.windowtester.runtime.locator,
-   com.windowtester.runtime",
- com.windowtester.runtime.internal;x-internal:=true,
- com.windowtester.runtime.internal.finder;x-internal:=true;uses:="abbot.finder.swt,com.windowtester.runtime.locator,org.eclipse.swt.widgets",
- com.windowtester.runtime.internal.finder.scope;x-internal:=true;uses:="com.windowtester.runtime.locator,com.windowtester.runtime",
- com.windowtester.runtime.internal.matcher;x-internal:=true;uses:="com.windowtester.runtime.internal",
- com.windowtester.runtime.internal.util;x-internal:=true
+Export-Package: com.windowtester.recorder.gef.internal;x-internal:=tru
+ e; uses:="com.windowtester.runtime.swt.identifier,  com.windowtester.
+ internal.runtime.resolver,  com.windowtester.runtime.locator,  org.ec
+ lipse.draw2d",com.windowtester.runtime.draw2d.internal;x-internal:=tr
+ ue; uses:="com.windowtester.runtime.gef,  com.windowtester.runtime.sw
+ t.locator.eclipse,  com.windowtester.runtime,  org.eclipse.draw2d",co
+ m.windowtester.runtime.draw2d.internal.condition;x-internal:=true,com
+ .windowtester.runtime.draw2d.internal.finder;x-internal:=true; uses:=
+ "com.windowtester.runtime.draw2d.internal,  com.windowtester.runtime.
+ draw2d.internal.helpers,  com.windowtester.runtime.gef,  com.windowte
+ ster.runtime.swt.locator.eclipse,  com.windowtester.internal.runtime.
+ finder,  com.windowtester.runtime,  org.eclipse.draw2d",com.windowtes
+ ter.runtime.draw2d.internal.helpers;x-internal:=true; uses:="com.wind
+ owtester.event.selector.swt,  org.eclipse.draw2d.geometry,  org.eclip
+ se.swt.graphics,  com.windowtester.runtime,  org.eclipse.swt.widgets,
+   org.eclipse.draw2d",com.windowtester.runtime.draw2d.internal.locato
+ r;x-internal:=true; uses:="com.windowtester.internal.runtime.locator,
+   com.windowtester.runtime.gef,  com.windowtester.runtime.gef.interna
+ l.finder,  com.windowtester.runtime.locator,  com.windowtester.runtim
+ e,  org.eclipse.draw2d",com.windowtester.runtime.draw2d.internal.matc
+ hers;x-internal:=true;uses:="com.windowtester.runtime.draw2d.matchers
+ ,com.windowtester.runtime.gef,org.eclipse.draw2d",com.windowtester.ru
+ ntime.draw2d.internal.selectors;x-internal:=true; uses:="com.windowte
+ ster.internal.runtime.locator,  com.windowtester.internal.runtime,  c
+ om.windowtester.runtime.draw2d.internal.helpers,  com.windowtester.ru
+ ntime.swt.internal.dnd,  com.windowtester.runtime.locator,  org.eclip
+ se.swt.graphics,  com.windowtester.runtime,  org.eclipse.draw2d",com.
+ windowtester.runtime.draw2d.matchers;uses:="com.windowtester.runtime.
+ gef,org.eclipse.draw2d",com.windowtester.runtime.gef;uses:="com.windo
+ wtester.runtime.locator,org.eclipse.draw2d,org.eclipse.gef",com.windo
+ wtester.runtime.gef.internal;x-internal:=true; uses:="com.windowteste
+ r.runtime.gef,  org.eclipse.jface.resource,  com.windowtester.runtime
+ .locator,  org.eclipse.ui.plugin,  org.eclipse.draw2d,  com.windowtes
+ ter.runtime.gef.internal.helpers,  com.windowtester.internal.runtime,
+   com.windowtester.runtime.swt.locator.eclipse,  com.windowtester.run
+ time.gef.internal.finder,  com.windowtester.runtime.gef.internal.hier
+ archy,  org.eclipse.swt.graphics,  com.windowtester.runtime,  org.ecl
+ ipse.gef",com.windowtester.runtime.gef.internal.commandstack;x-intern
+ al:=true;uses:="com.windowtester.runtime.condition,org.eclipse.gef.co
+ mmands,com.windowtester.runtime",com.windowtester.runtime.gef.interna
+ l.condition;x-internal:=true; uses:="com.windowtester.runtime.conditi
+ on,  org.eclipse.ui,  org.eclipse.draw2d,  org.eclipse.gef.ui.palette
+ ,  com.windowtester.runtime.gef.internal.selectors",com.windowtester.
+ runtime.gef.internal.experimental.factory;x-internal:=true; uses:="co
+ m.windowtester.runtime.draw2d.matchers,  com.windowtester.runtime.gef
+ ,  com.windowtester.runtime.gef.locator,  com.windowtester.runtime.lo
+ cator,  com.windowtester.runtime.gef.internal.matchers,  org.eclipse.
+ draw2d,  org.eclipse.gef",com.windowtester.runtime.gef.internal.exper
+ imental.locator;x-internal:=true; uses:="com.windowtester.internal.ru
+ ntime.locator,  com.windowtester.runtime.gef,  com.windowtester.runti
+ me.swt.locator.eclipse,  com.windowtester.runtime.internal,  com.wind
+ owtester.runtime.locator,  com.windowtester.runtime,  com.windowteste
+ r.runtime.gef.internal",com.windowtester.runtime.gef.internal.finder;
+ x-internal:=true; uses:="com.windowtester.runtime.gef,  com.windowtes
+ ter.runtime.draw2d.internal.finder,  com.windowtester.runtime.locator
+ ,  com.windowtester.runtime.gef.internal,  org.eclipse.draw2d,  org.e
+ clipse.gef.handles,  com.windowtester.runtime.gef.internal.helpers,  
+ com.windowtester.runtime.swt.locator.eclipse,  org.eclipse.draw2d.geo
+ metry,  com.windowtester.runtime,  org.eclipse.swt.widgets,  com.wind
+ owtester.runtime.gef.internal.selectors,  org.eclipse.gef",com.window
+ tester.runtime.gef.internal.finder.position;x-internal:=true;uses:="c
+ om.windowtester.runtime.gef,org.eclipse.draw2d.geometry,org.eclipse.d
+ raw2d",com.windowtester.runtime.gef.internal.finder.scope;x-internal:
+ =true; uses:="com.windowtester.runtime.internal.finder.scope,  com.wi
+ ndowtester.runtime.gef,  com.windowtester.runtime.draw2d.internal.fin
+ der,  com.windowtester.runtime.locator,  com.windowtester.runtime.gef
+ .internal,  com.windowtester.runtime.gef.internal.helpers,  com.windo
+ wtester.runtime.swt.locator.eclipse,  com.windowtester.runtime.gef.in
+ ternal.finder,  com.windowtester.runtime,  org.eclipse.swt.widgets",c
+ om.windowtester.runtime.gef.internal.helpers;x-internal:=true; uses:=
+ "com.windowtester.runtime.swt.locator.eclipse,  org.eclipse.ui,  com.
+ windowtester.runtime.gef.internal,  org.eclipse.draw2d,  org.eclipse.
+ gef.palette,  org.eclipse.gef.ui.palette,  org.eclipse.gef",com.windo
+ wtester.runtime.gef.internal.hierarchy;x-internal:=true; uses:="com.w
+ indowtester.internal.runtime,  com.windowtester.runtime.gef,  com.win
+ dowtester.runtime.gef.internal,  org.eclipse.draw2d",com.windowtester
+ .runtime.gef.internal.identifier;x-internal:=true; uses:="com.windowt
+ ester.runtime.gef.locator,  com.windowtester.runtime.gef.internal.fin
+ der,  com.windowtester.runtime.locator,  com.windowtester.runtime,  o
+ rg.eclipse.swt.widgets,  org.eclipse.draw2d,  org.eclipse.gef",com.wi
+ ndowtester.runtime.gef.internal.locator;x-internal:=true; uses:="com.
+ windowtester.internal.runtime.locator,  com.windowtester.runtime.draw
+ 2d.internal.locator,  com.windowtester.runtime.internal.finder.scope,
+   com.windowtester.runtime.swt.locator,  com.windowtester.runtime.gef
+ ,  com.windowtester.runtime.draw2d.internal.finder,  com.windowtester
+ .runtime.gef.internal.finder.scope,  com.windowtester.runtime.locator
+ ,  org.eclipse.draw2d,  com.windowtester.runtime.gef.internal.helpers
+ ,  com.windowtester.runtime.gef.locator,  com.windowtester.runtime.sw
+ t.locator.eclipse,  com.windowtester.internal.runtime.finder,  com.wi
+ ndowtester.runtime.gef.internal.finder,  org.eclipse.jface.viewers,  
+ org.eclipse.swt.graphics,  org.eclipse.draw2d.geometry,  com.windowte
+ ster.runtime",com.windowtester.runtime.gef.internal.locator.provision
+ al.api;x-internal:=true;uses:="com.windowtester.runtime.gef,com.windo
+ wtester.runtime.gef.internal.locator,com.windowtester.runtime.gef.loc
+ ator",com.windowtester.runtime.gef.internal.matchers;x-internal:=true
+ ; uses:="com.windowtester.runtime.draw2d.matchers,  com.windowtester.
+ runtime.gef,  com.windowtester.runtime.internal,  com.windowtester.ru
+ ntime.locator,  com.windowtester.runtime.gef.internal,  org.eclipse.d
+ raw2d,  com.windowtester.runtime.draw2d.internal.matchers,  org.eclip
+ se.gef",com.windowtester.runtime.gef.internal.reflect;x-internal:=tru
+ e;uses:="org.eclipse.draw2d,org.eclipse.gef",com.windowtester.runtime
+ .gef.internal.selectors;x-internal:=true; uses:="com.windowtester.run
+ time.gef.internal.condition,  com.windowtester.runtime.draw2d.interna
+ l.selectors,  com.windowtester.runtime.locator,  com.windowtester.run
+ time,  org.eclipse.gef.ui.palette,  org.eclipse.gef",com.windowtester
+ .runtime.gef.internal.util;x-internal:=true;uses:="org.eclipse.gef",c
+ om.windowtester.runtime.gef.locator; uses:="com.windowtester.runtime.
+ swt.internal.locator,  com.windowtester.runtime.gef,  com.windowteste
+ r.runtime.gef.internal.locator,  com.windowtester.runtime.swt.locator
+ .eclipse,  com.windowtester.runtime.locator,  com.windowtester.runtim
+ e",com.windowtester.runtime.internal;x-internal:=true,com.windowteste
+ r.runtime.internal.finder;x-internal:=true;uses:="abbot.finder.swt,co
+ m.windowtester.runtime.locator,org.eclipse.swt.widgets",com.windowtes
+ ter.runtime.internal.finder.scope;x-internal:=true;uses:="com.windowt
+ ester.runtime.locator,com.windowtester.runtime",com.windowtester.runt
+ ime.internal.matcher;x-internal:=true;uses:="com.windowtester.runtime
+ .internal",com.windowtester.runtime.internal.util;x-internal:=true
 Require-Bundle: org.eclipse.gef,
  com.windowtester.swt.runtime,
  org.eclipse.jface,

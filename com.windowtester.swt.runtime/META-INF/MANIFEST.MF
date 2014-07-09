@@ -2,87 +2,84 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swt.runtime; singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-ClassPath: wt-runtime.jar
 Bundle-Activator: com.windowtester.runtime.swt.internal.RuntimePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: abbot.finder.matchers.swt,
- abbot.finder.swt,
- abbot.swt,
- abbot.swt.utilities,
- abbot.tester.swt,
- com.windowtester.runtime.swt,
- com.windowtester.runtime.swt.condition,
- com.windowtester.runtime.swt.condition.eclipse,
- com.windowtester.runtime.swt.condition.shell,
- com.windowtester.runtime.swt.internal;x-friends:="com.windowtester.swt.runtime.gef,com.windowtester.swt.recorder",
- com.windowtester.runtime.swt.internal.abbot;x-friends:="com.windowtester.swt.recorder",
- com.windowtester.runtime.swt.internal.abbot.matcher;x-friends:="com.windowtester.swt.runtime.legacy",
- com.windowtester.runtime.swt.internal.application;x-internal:=true,
- com.windowtester.runtime.swt.internal.condition;x-friends:="com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.condition.eclipse;x-friends:="com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.condition.shell;x-friends:="com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.debug;x-friends:="com.windowtester.swt.codegen,com.windowtester.swt.recorder,com.windowtester.swt.runtime.legacy",
- com.windowtester.runtime.swt.internal.display;
-  x-friends:="com.windowtester.swt.runtime.gef,
-   com.windowtester.swt.recorder,
-   com.windowtester.eclipse.ui,
-   com.windowtester.swt.runtime.legacy,
-   com.windowtester.swt.codegen",
- com.windowtester.runtime.swt.internal.dnd;x-friends:="com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.drivers;x-friends:="com.windowtester_test",
- com.windowtester.runtime.swt.internal.finder;x-friends:="com.windowtester.swt.runtime.gef,com.windowtester_test,com.windowtester.swt.recorder",
- com.windowtester.runtime.swt.internal.finder.eclipse;x-friends:="com.windowtester.swt.runtime.gef,com.windowtester.swt.recorder",
- com.windowtester.runtime.swt.internal.finder.eclipse.editors;x-friends:="com.windowtester.swt.runtime.gef,com.windowtester.swt.recorder,com.windowtester.eclipse.ui",
- com.windowtester.runtime.swt.internal.finder.eclipse.views;x-friends:="com.windowtester.swt.runtime.gef,com.windowtester.swt.recorder",
- com.windowtester.runtime.swt.internal.finder.matchers;x-friends:="com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.finder.matchers.eclipse;x-internal:=true,
- com.windowtester.runtime.swt.internal.hover;x-internal:=true,
- com.windowtester.runtime.swt.internal.identifier;x-friends:="com.windowtester.swt.recorder",
- com.windowtester.runtime.swt.internal.jface;x-internal:=true,
- com.windowtester.runtime.swt.internal.junit;x-internal:=true,
- com.windowtester.runtime.swt.internal.locator;
-  x-friends:="com.windowtester.swt.runtime.gef,
-   com.windowtester.swt.recorder,
-   com.windowtester.swt.codegen,
-   com.windowtester_test",
- com.windowtester.runtime.swt.internal.locator.forms;x-friends:="com.windowtester.swt.recorder,com.windowtester_test",
- com.windowtester.runtime.swt.internal.locator.jface;x-friends:="com.windowtester.swt.recorder,com.windowtester_test",
- com.windowtester.runtime.swt.internal.matcher;x-friends:="com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.matchers;x-friends:="com.windowtester_test,com.windowtester.swt.runtime.gef",
- com.windowtester.runtime.swt.internal.monitor;x-internal:=true,
- com.windowtester.runtime.swt.internal.operation;x-friends:="com.windowtester_test,com.windowtester.swt.runtime.macosx.cocoa",
- com.windowtester.runtime.swt.internal.os;x-internal:=true,
- com.windowtester.runtime.swt.internal.preferences;
-  x-friends:="com.windowtester.swt.codegen,
-   com.windowtester.eclipse.ui,
-   com.windowtester.swt.recorder,
-   com.windowtester.swt.runtime.legacy",
- com.windowtester.runtime.swt.internal.reveal;x-internal:=true,
- com.windowtester.runtime.swt.internal.selection;x-internal:=true,
- com.windowtester.runtime.swt.internal.selector;x-friends:="com.windowtester.swt.recorder,com.windowtester.swt.runtime.gef,com.windowtester.swt.runtime.legacy",
- com.windowtester.runtime.swt.internal.settings,
- com.windowtester.runtime.swt.internal.state;x-friends:="com.windowtester.swt.recorder,com.windowtester.swt.runtime.legacy",
- com.windowtester.runtime.swt.internal.text;x-internal:=true,
- com.windowtester.runtime.swt.internal.text.keymaps;x-internal:=true,
- com.windowtester.runtime.swt.internal.util;x-friends:="com.windowtester.swt.runtime.legacy,com.windowtester.swt.codegen",
- com.windowtester.runtime.swt.internal.widgets;
-  x-friends:="com.windowtester.swt.runtime.linux.gtk.x86,
-   com.windowtester.swt.runtime.linux.motif.x86,
-   com.windowtester.swt.runtime.macosx.carbon.x86,
-   com.windowtester.swt.runtime.macosx.cocoa.x86_64,
-   com.windowtester.swt.runtime.win32.win32.x86,
-   com.windowtester.swt.runtime.win32.win32.x86_64,
-   com.windowtester_test,
-   com.windowtester.swt.runtime.macosx.cocoa.x86,
-   com.windowtester.swt.runtime.macosx.cocoa",
- com.windowtester.runtime.swt.internal.widgets.finder;x-friends:="com.windowtester_test",
- com.windowtester.runtime.swt.locator,
- com.windowtester.runtime.swt.locator.eclipse,
- com.windowtester.runtime.swt.locator.forms,
- com.windowtester.runtime.swt.locator.jface,
- com.windowtester.runtime.swt.util
+Export-Package: abbot.finder.matchers.swt,abbot.finder.swt,abbot.swt,a
+ bbot.swt.utilities,abbot.tester.swt,com.windowtester.runtime.swt,com.
+ windowtester.runtime.swt.condition,com.windowtester.runtime.swt.condi
+ tion.eclipse,com.windowtester.runtime.swt.condition.shell,com.windowt
+ ester.runtime.swt.internal;x-friends:="com.windowtester.swt.runtime.g
+ ef,com.windowtester.swt.recorder",com.windowtester.runtime.swt.intern
+ al.abbot;x-friends:="com.windowtester.swt.recorder",com.windowtester.
+ runtime.swt.internal.abbot.matcher;x-friends:="com.windowtester.swt.r
+ untime.legacy",com.windowtester.runtime.swt.internal.application;x-in
+ ternal:=true,com.windowtester.runtime.swt.internal.condition;x-friend
+ s:="com.windowtester.swt.runtime.gef",com.windowtester.runtime.swt.in
+ ternal.condition.eclipse;x-friends:="com.windowtester.swt.runtime.gef
+ ",com.windowtester.runtime.swt.internal.condition.shell;x-friends:="c
+ om.windowtester.swt.runtime.gef",com.windowtester.runtime.swt.interna
+ l.debug;x-friends:="com.windowtester.swt.codegen,com.windowtester.swt
+ .recorder,com.windowtester.swt.runtime.legacy",com.windowtester.runti
+ me.swt.internal.display; x-friends:="com.windowtester.swt.runtime.gef
+ ,  com.windowtester.swt.recorder,  com.windowtester.eclipse.ui,  com.
+ windowtester.swt.runtime.legacy,  com.windowtester.swt.codegen",com.w
+ indowtester.runtime.swt.internal.dnd;x-friends:="com.windowtester.swt
+ .runtime.gef",com.windowtester.runtime.swt.internal.drivers;x-friends
+ :="com.windowtester_test",com.windowtester.runtime.swt.internal.finde
+ r;x-friends:="com.windowtester.swt.runtime.gef,com.windowtester_test,
+ com.windowtester.swt.recorder",com.windowtester.runtime.swt.internal.
+ finder.eclipse;x-friends:="com.windowtester.swt.runtime.gef,com.windo
+ wtester.swt.recorder",com.windowtester.runtime.swt.internal.finder.ec
+ lipse.editors;x-friends:="com.windowtester.swt.runtime.gef,com.window
+ tester.swt.recorder,com.windowtester.eclipse.ui",com.windowtester.run
+ time.swt.internal.finder.eclipse.views;x-friends:="com.windowtester.s
+ wt.runtime.gef,com.windowtester.swt.recorder",com.windowtester.runtim
+ e.swt.internal.finder.matchers;x-friends:="com.windowtester.swt.runti
+ me.gef",com.windowtester.runtime.swt.internal.finder.matchers.eclipse
+ ;x-internal:=true,com.windowtester.runtime.swt.internal.hover;x-inter
+ nal:=true,com.windowtester.runtime.swt.internal.identifier;x-friends:
+ ="com.windowtester.swt.recorder",com.windowtester.runtime.swt.interna
+ l.jface;x-internal:=true,com.windowtester.runtime.swt.internal.junit;
+ x-internal:=true,com.windowtester.runtime.swt.internal.locator; x-fri
+ ends:="com.windowtester.swt.runtime.gef,  com.windowtester.swt.record
+ er,  com.windowtester.swt.codegen,  com.windowtester_test",com.window
+ tester.runtime.swt.internal.locator.forms;x-friends:="com.windowteste
+ r.swt.recorder,com.windowtester_test",com.windowtester.runtime.swt.in
+ ternal.locator.jface;x-friends:="com.windowtester.swt.recorder,com.wi
+ ndowtester_test",com.windowtester.runtime.swt.internal.matcher;x-frie
+ nds:="com.windowtester.swt.runtime.gef",com.windowtester.runtime.swt.
+ internal.matchers;x-friends:="com.windowtester_test,com.windowtester.
+ swt.runtime.gef",com.windowtester.runtime.swt.internal.monitor;x-inte
+ rnal:=true,com.windowtester.runtime.swt.internal.operation;x-friends:
+ ="com.windowtester_test,com.windowtester.swt.runtime.macosx.cocoa",co
+ m.windowtester.runtime.swt.internal.os;x-internal:=true,com.windowtes
+ ter.runtime.swt.internal.preferences; x-friends:="com.windowtester.sw
+ t.codegen,  com.windowtester.eclipse.ui,  com.windowtester.swt.record
+ er,  com.windowtester.swt.runtime.legacy",com.windowtester.runtime.sw
+ t.internal.reveal;x-internal:=true,com.windowtester.runtime.swt.inter
+ nal.selection;x-internal:=true,com.windowtester.runtime.swt.internal.
+ selector;x-friends:="com.windowtester.swt.recorder,com.windowtester.s
+ wt.runtime.gef,com.windowtester.swt.runtime.legacy",com.windowtester.
+ runtime.swt.internal.settings,com.windowtester.runtime.swt.internal.s
+ tate;x-friends:="com.windowtester.swt.recorder,com.windowtester.swt.r
+ untime.legacy",com.windowtester.runtime.swt.internal.text;x-internal:
+ =true,com.windowtester.runtime.swt.internal.text.keymaps;x-internal:=
+ true,com.windowtester.runtime.swt.internal.util;x-friends:="com.windo
+ wtester.swt.runtime.legacy,com.windowtester.swt.codegen",com.windowte
+ ster.runtime.swt.internal.widgets; x-friends:="com.windowtester.swt.r
+ untime.linux.gtk.x86,  com.windowtester.swt.runtime.linux.motif.x86, 
+  com.windowtester.swt.runtime.macosx.carbon.x86,  com.windowtester.sw
+ t.runtime.macosx.cocoa.x86_64,  com.windowtester.swt.runtime.win32.wi
+ n32.x86,  com.windowtester.swt.runtime.win32.win32.x86_64,  com.windo
+ wtester_test,  com.windowtester.swt.runtime.macosx.cocoa.x86,  com.wi
+ ndowtester.swt.runtime.macosx.cocoa",com.windowtester.runtime.swt.int
+ ernal.widgets.finder;x-friends:="com.windowtester_test",com.windowtes
+ ter.runtime.swt.locator,com.windowtester.runtime.swt.locator.eclipse,
+ com.windowtester.runtime.swt.locator.forms,com.windowtester.runtime.s
+ wt.locator.jface,com.windowtester.runtime.swt.util
 Require-Bundle: org.eclipse.swt,
  org.eclipse.jface,
  org.eclipse.core.runtime;visibility:=reexport,

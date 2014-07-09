@@ -2,28 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swt.codegen; singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-ClassPath: codegen.jar
 Bundle-Activator: com.windowtester.codegen.CodeGenPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: com.swtdesigner,
- com.windowtester.codegen,
- com.windowtester.codegen.assembly,
- com.windowtester.codegen.assembly.block,
- com.windowtester.codegen.assembly.unit,
- com.windowtester.codegen.debug,
- com.windowtester.codegen.eventstream,
- com.windowtester.codegen.generator,
- com.windowtester.codegen.generator.setup,
- com.windowtester.codegen.pde.util,
- com.windowtester.codegen.swing,
- com.windowtester.codegen.swt,
- com.windowtester.codegen.ui,
- com.windowtester.codegen.ui.controller,
- com.windowtester.codegen.util,
- com.windowtester.swt.codegen.wizards,
- com.windowtester.swt.event.writer
+Export-Package: com.swtdesigner,com.windowtester.codegen,com.windowtes
+ ter.codegen.assembly,com.windowtester.codegen.assembly.block,com.wind
+ owtester.codegen.assembly.unit,com.windowtester.codegen.debug,com.win
+ dowtester.codegen.eventstream,com.windowtester.codegen.generator,com.
+ windowtester.codegen.generator.setup,com.windowtester.codegen.pde.uti
+ l,com.windowtester.codegen.swing,com.windowtester.codegen.swt,com.win
+ dowtester.codegen.ui,com.windowtester.codegen.ui.controller,com.windo
+ wtester.codegen.util,com.windowtester.swt.codegen.wizards,com.windowt
+ ester.swt.event.writer
 Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.core,
  org.eclipse.text,
