@@ -2,24 +2,19 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swing.runtime;singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-ClassPath: swingRuntime.jar
 Bundle-Activator: com.windowtester.internal.swing.runtime.RuntimePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: com.windowtester.internal.finder.matchers.swing,
- com.windowtester.internal.finder.swing,
- com.windowtester.internal.swing,
- com.windowtester.internal.swing.locator,
- com.windowtester.internal.swing.matcher,
- com.windowtester.internal.swing.monitor,
- com.windowtester.internal.swing.runtime,
- com.windowtester.internal.swing.util,
- com.windowtester.internal.tester.swing,
- com.windowtester.runtime.swing,
- com.windowtester.runtime.swing.condition,
- com.windowtester.runtime.swing.internal.junit,
- com.windowtester.runtime.swing.locator
+Export-Package: com.windowtester.internal.finder.matchers.swing,com.wi
+ ndowtester.internal.finder.swing,com.windowtester.internal.swing,com.
+ windowtester.internal.swing.locator,com.windowtester.internal.swing.m
+ atcher,com.windowtester.internal.swing.monitor,com.windowtester.inter
+ nal.swing.runtime,com.windowtester.internal.swing.util,com.windowtest
+ er.internal.tester.swing,com.windowtester.runtime.swing,com.windowtes
+ ter.runtime.swing.condition,com.windowtester.runtime.swing.internal.j
+ unit,com.windowtester.runtime.swing.locator
 Require-Bundle: org.eclipse.swt,
  org.eclipse.jface,
  org.eclipse.core.runtime;visibility:=reexport,

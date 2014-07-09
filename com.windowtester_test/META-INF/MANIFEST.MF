@@ -1,5 +1,5 @@
 Bundle-Name: %pluginName
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-SymbolicName: com.windowtester.test;singleton:=true
 Manifest-Version: 1.0
 Provide-Package: com.windowtester.test.eclipse,com.windowtester.test.license,com.windowtester.test.prefpage
@@ -17,14 +17,11 @@ Require-Bundle: org.junit,
  com.windowtester.eclipse.ui,
  org.eclipse.swt,
  org.eclipse.jdt.core
-Export-Package: com.windowtester.test,
- com.windowtester.test.codegen,
- com.windowtester.test.eclipse.codegen,
- com.windowtester.test.eclipse.helpers,
- com.windowtester.test.locator.swt,
- com.windowtester.test.locator.swt.forms,
- com.windowtester.test.locator.swt.shells,
- com.windowtester.test.util
+Export-Package: com.windowtester.test,com.windowtester.test.codegen,co
+ m.windowtester.test.eclipse.codegen,com.windowtester.test.eclipse.hel
+ pers,com.windowtester.test.locator.swt,com.windowtester.test.locator.
+ swt.forms,com.windowtester.test.locator.swt.shells,com.windowtester.t
+ est.util
 Bundle-ManifestVersion: 2
 Bundle-Activator: com.windowtester.test.Activator
 Bundle-Localization: plugin

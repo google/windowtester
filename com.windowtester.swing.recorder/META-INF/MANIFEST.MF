@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.windowtester.swing.recorder;singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.1.2.qualifier
 Bundle-ClassPath: swingRecorder.jar,
  abbot/lib/bsh.jar,
  abbot/lib/gnu-regexp.jar,
@@ -10,33 +10,14 @@ Bundle-ClassPath: swingRecorder.jar,
 Bundle-Activator: com.windowtester.recorder.SwingRecorderPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: abbot,
- abbot.editor,
- abbot.editor.actions,
- abbot.editor.editors,
- abbot.editor.recorder,
- abbot.editor.widgets,
- abbot.finder,
- abbot.finder.matchers,
- abbot.i18n,
- abbot.script,
- abbot.script.parsers,
- com.windowtester.recorder,
- com.windowtester.recorder.event,
- com.windowtester.recorder.event.meta,
- com.windowtester.recorder.event.user,
- com.windowtester.swing.event.recorder,
- com.windowtester.swing.recorder,
- example,
- gnu.regexp,
- junit.extensions.abbot,
- org.jdom,
- org.jdom.adapters,
- org.jdom.filter,
- org.jdom.input,
- org.jdom.output,
- org.jdom.transform,
- org.jdom.xpath
+Export-Package: abbot,abbot.editor,abbot.editor.actions,abbot.editor.e
+ ditors,abbot.editor.recorder,abbot.editor.widgets,abbot.finder,abbot.
+ finder.matchers,abbot.i18n,abbot.script,abbot.script.parsers,com.wind
+ owtester.recorder,com.windowtester.recorder.event,com.windowtester.re
+ corder.event.meta,com.windowtester.recorder.event.user,com.windowtest
+ er.swing.event.recorder,com.windowtester.swing.recorder,example,gnu.r
+ egexp,junit.extensions.abbot,org.jdom,org.jdom.adapters,org.jdom.filt
+ er,org.jdom.input,org.jdom.output,org.jdom.transform,org.jdom.xpath
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.ui;visibility:=reexport,
  com.windowtester.runtime,
