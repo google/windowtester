@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.eclipse.help,com.windowtester.eclipse.help"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.eclipse.ui,com.windowtester.eclipse.ui"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.eclipse.ui.update.notifier,com.windowtester.eclipse.ui.update.notifier"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.eclipse.ui_test,com.windowtester.eclipse.ui_test"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.eclipse.ui_tool,com.windowtester.eclipse.ui_tool"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.gef_test,com.windowtester.gef_test"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.gef_test_feature,com.windowtester.gef_test_feature"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.ide.gef_feature,com.windowtester.ide.gef_feature"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.ide_feature,com.windowtester.ide_feature"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.launcher_feature,com.windowtester.launcher_feature"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.runner,com.windowtester.runner"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.runtime,com.windowtester.runtime"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.runtime.gef_feature,com.windowtester.runtime.gef_feature"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.runtime_feature,com.windowtester.runtime_feature"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swing.recorder,com.windowtester.swing.recorder"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swing.runtime,com.windowtester.swing.runtime"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swing.runtime_test,com.windowtester.swing.runtime_test"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.codegen,com.windowtester.swt.codegen"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.gef.codegen,com.windowtester.swt.gef.codegen"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.macosx,com.windowtester.swt.macosx"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.macosx.cocoa,com.windowtester.swt.macosx.cocoa"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.recorder,com.windowtester.swt.recorder"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime,com.windowtester.swt.runtime"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.gef,com.windowtester.swt.runtime.gef"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.linux.gtk.x86,com.windowtester.swt.runtime.linux.gtk.x86"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.linux.motif.x86,com.windowtester.swt.runtime.linux.motif.x86"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.macosx.carbon.x86,com.windowtester.swt.runtime.macosx.carbon.x86"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.macosx.cocoa,com.windowtester.swt.runtime.macosx.cocoa"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.macosx.cocoa.x86,com.windowtester.swt.runtime.macosx.cocoa.x86"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.macosx.cocoa.x86_64,com.windowtester.swt.runtime.macosx.cocoa.x86_64"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.win32.win32.x86,com.windowtester.swt.runtime.win32.win32.x86"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester.swt.runtime.win32.win32.x86_64,com.windowtester.swt.runtime.win32.win32.x86_64"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester_test,com.windowtester_test"/>
+<project reference="0.9.3,http://windowtester.googlecode.com/svn/trunk/com.windowtester_test_feature,com.windowtester_test_feature"/>
+</provider>
+</psf>
