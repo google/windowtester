@@ -10,8 +10,7 @@
  *******************************************************************************/
 package com.windowtester.internal.runtime.bundle;
 
-import org.eclipse.osgi.baseadaptor.BaseData;
-import org.eclipse.osgi.baseadaptor.loader.BaseClassLoader;
+import org.eclipse.osgi.internal.loader.EquinoxClassLoader;
 import org.osgi.framework.Bundle;
 
 /**
@@ -24,12 +23,18 @@ public class BundleResolver {
 	 * Get the bundle associated with this class.
 	 */
 	public static Bundle bundleForClass(Class<?> cls) {
+		
 		ClassLoader classLoader = cls.getClassLoader();
-		if (classLoader instanceof BaseClassLoader) {
-			BaseClassLoader loader = (BaseClassLoader)classLoader;
-			BaseData baseData = loader.getClasspathManager().getBaseData();
-			return baseData.getBundle();
+		if (classLoader instanceof EquinoxClassLoader) {
+			EquinoxClassLoader loader = (EquinoxClassLoader) classLoader;
+			return loader.getBundle();
 		}
+		/* Does not work anymore in Eclipse 4.4.2 */
+//		if (classLoader instanceof BaseClassLoader) {
+//			BaseClassLoader loader = (BaseClassLoader)classLoader;
+//			BaseData baseData = loader.getClasspathManager().getBaseData();
+//			return baseData.getBundle();
+//		}
 		return null;
 	}
 

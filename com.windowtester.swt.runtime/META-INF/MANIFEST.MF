@@ -90,6 +90,7 @@ Require-Bundle: org.eclipse.swt,
  com.windowtester.runtime;visibility:=reexport,
  com.windowtester.swing.runtime,
  org.eclipse.e4.ui.model.workbench,
- org.eclipse.e4.ui.workbench.renderers.swt
+ org.eclipse.e4.ui.workbench.renderers.swt,
+ org.eclipse.e4.ui.workbench
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

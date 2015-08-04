@@ -91,7 +91,7 @@ public class RecorderSWTLaunchConfDelegate extends RecorderWorkbenchLaunchConfDe
 	 * @throws CoreException
 	 */
 	private void setEnvironment(ILaunchConfigurationWorkingCopy wc) throws CoreException {
-		wc.setAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<?, ?>)wcSwt.getAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<?, ?>)null));
+		wc.setAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<String, String>)wcSwt.getAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<String, String>)null));
 		wc.setAttribute(ILaunchManager.ATTR_APPEND_ENVIRONMENT_VARIABLES, wcSwt.getAttribute(ILaunchManager.ATTR_APPEND_ENVIRONMENT_VARIABLES, false));
 	}
 

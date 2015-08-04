@@ -26,9 +26,9 @@
 
 	<repositories>
 		<repository>
-			<id>juno</id>
+			<id>luna</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/juno</url>
+			<url>http://download.eclipse.org/releases/luna</url>
 		</repository>
 	</repositories>
 
@@ -133,7 +133,7 @@
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<format>'e4x'yyyyMMddHHmm</format>
+					<format>'e44x'yyyyMMddHHmm</format>
 				</configuration>
 			</plugin>
 			<plugin>

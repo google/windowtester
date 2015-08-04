@@ -13,9 +13,7 @@ import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 
 import com.windowtester.recorder.event.ISemanticEvent;
-import com.windowtester.runtime.WidgetSearchException;
-import com.windowtester.runtime.locator.IWidgetLocator;
-import com.windowtester.runtime.locator.XYLocator;
+import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.swt.locator.CTabItemLocator;
 import com.windowtester.runtime.util.TestMonitor;
@@ -175,19 +173,21 @@ public abstract class AbstractRecorderSmokeTest extends UITestCaseSWT {
 	/**
 	 * Recent versions of Eclipse do not close the welcome page when view
 	 * is opened. Make sure it gets closed.
-	 * @throws WidgetSearchException
+	 * @throws Exception 
+	 * @throws WaitTimedOutException 
 	 */
-	protected void closeWelcomePageIfNecessary() throws WidgetSearchException {
-		IWidgetLocator[] welcomeTab = getUI().findAll(new CTabItemLocator("Welcome"));
-		if (welcomeTab.length == 0)
-			return;
-		// TODO: compute x based on tab width to avoid font dependencies
-		int x = 88;
-		if (abbot.Platform.isOSX())
-			x = 95;
-		else if (abbot.Platform.isLinux())
-			x = 100;
-		getUI().click(new XYLocator(welcomeTab[0], x, 12));
+	protected void closeWelcomePageIfNecessary() throws WaitTimedOutException, Exception {
+		getUI().ensureThat(new CTabItemLocator("Welcome").isClosed());
+//		IWidgetLocator[] welcomeTab = getUI().findAll(new CTabItemLocator("Welcome"));
+//		if (welcomeTab.length == 0)
+//			return;
+//		// TODO: compute x based on tab width to avoid font dependencies
+//		int x = 88;
+//		if (abbot.Platform.isOSX())
+//			x = 95;
+//		else if (abbot.Platform.isLinux())
+//			x = 100;
+//		getUI().click(new XYLocator(welcomeTab[0], x, 12));
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////

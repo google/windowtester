@@ -79,9 +79,18 @@ public class CTabFolderReference extends CompositeReference<CTabFolder> {
 					if(control instanceof Composite){
 						Composite comp = (Composite) control;
 						for(Control compChildren : comp.getChildren()){
+							//System.out.println("compChildren: " + compChildren.getClass().getSimpleName() + " " + compChildren.getData());
 							if(compChildren instanceof ToolBar){
 								ToolBar compChildrenToolBar = (ToolBar) compChildren;
+								//Works only with Eclipse 4.4
+								if("ViewMenu".equals(compChildrenToolBar.getData())) {
+									ToolItem compChildrenToolBarItem = compChildrenToolBar.getItems()[0];
+									return asReferenceOfType(compChildrenToolBarItem, ToolItemReference.class);
+								}
+								
+								//Works only with Eclipse 4.x - 4.3
 								for(ToolItem compChildrenToolBarItem : compChildrenToolBar.getItems()){
+									//System.out.println("compChildrenToolBarItem: " + compChildrenToolBarItem.getClass().getSimpleName() + " " + compChildrenToolBarItem.getData());
 									//TODO: Improve check (without internal classes?)
 									MMenu mmenu = (MMenu) compChildrenToolBarItem.getData("theMenu");
 									if(mmenu != null && mmenu.getTags().contains(StackRenderer.TAG_VIEW_MENU)){
