@@ -22,84 +22,78 @@ import com.windowtester.runtime.swt.internal.finder.eclipse.views.ViewFinder.IVi
  */
 public class ViewExplorer {
 
-	public void spelunk() {
-		IViewDescriptor[] views = getViews();
-		for (int i = 0; i < views.length; i++) {
-			IViewDescriptor view = views[i];
-//			System.out.println(Arrays.toString(view.getCategoryPath()));
-			System.out.println(view);
-			System.out.println(findCategoryPath(view));
-			System.out.println("----");
-		}
-		
-	}
+    public void spelunk() {
+        IViewDescriptor[] views = getViews();
+        for (int i = 0; i < views.length; i++) {
+            IViewDescriptor view = views[i];
+            // System.out.println(Arrays.toString(view.getCategoryPath()));
+            System.out.println(view);
+            System.out.println(view.getLabel());
+            System.out.println(findCategoryPath(view));
+            System.out.println("----");
+        }
 
+    }
 
-	private IViewDescriptor[] getViews() {
-		return getViewRegistry().getViews();
-	}
+    private IViewDescriptor[] getViews() {
+        return getViewRegistry().getViews();
+    }
 
-	
-	public String findCategory(String viewName) {
-		return findCategoryPath(findView(viewName));
-		
-	}
+    public String findCategory(String viewName) {
+        return findCategoryPath(findView(viewName));
 
-	
-	public String findCategoryPath(IViewDescriptor view) {
-		if (view == null)
-			return null;
-		IViewCategory[] categories = getViewRegistry().getCategories();
-		for (int i = 0; i < categories.length; i++) {
-			IViewCategory category = categories[i];
-			IViewDescriptor[] views = category.getViews();
-			for (int j = 0; j < views.length; j++) {
-				IViewDescriptor candidateView = views[j];
-				if (view == candidateView)
-					return category.getLabel();
-			}
-		}
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }
 
+    public String findCategoryPath(IViewDescriptor view) {
+        if (view == null) {
+            return null;
+        }
+        IViewCategory[] categories = getViewRegistry().getCategories();
+        for (int i = 0; i < categories.length; i++) {
+            IViewCategory category = categories[i];
+            IViewDescriptor[] views = category.getViews();
+            for (int j = 0; j < views.length; j++) {
+                IViewDescriptor candidateView = views[j];
+                if (view == candidateView) {
+                    return category.getLabel();
+                }
+            }
+        }
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	private IViewRegistry getViewRegistry() {
-		return WorkbenchFinder.getWorkbench().getViewRegistry();
-	}
+    private IViewRegistry getViewRegistry() {
+        return WorkbenchFinder.getWorkbench().getViewRegistry();
+    }
 
+    public IViewDescriptor findView(String name) {
+        if (name == null) {
+            return null;
+        }
+        IViewDescriptor[] views = getViews();
+        for (int i = 0; i < views.length; i++) {
+            IViewDescriptor view = views[i];
+            String label = view.getLabel();
+            if (label == null) {
+                continue;
+            }
+            if (name.equals(view.getLabel())) {
+                return view;
+            }
+        }
+        return null;
+    }
 
-	public IViewDescriptor findView(String name) {
-		if (name == null)
-			return null;
-		IViewDescriptor[] views = getViews();
-		for (int i = 0; i < views.length; i++) {
-			IViewDescriptor view = views[i];
-			String label = view.getLabel();
-			if (label == null)
-				continue;
-			if (name.equals(view.getLabel()))
-				return view;
-		}
-		return null;
-	}
-	
-
-
-
-	public IViewDescriptor findMatchInRegistry(IViewMatcher matcher) {
-		IViewDescriptor[] views = getViews();
-		for (int i = 0; i < views.length; i++) {
-			IViewDescriptor view = views[i];
-			if (matcher.matches(view))
-				return view;
-		}
-		return null;
-	}
-
-
-
-
-
+    public IViewDescriptor findMatchInRegistry(IViewMatcher matcher) {
+        IViewDescriptor[] views = getViews();
+        for (int i = 0; i < views.length; i++) {
+            IViewDescriptor view = views[i];
+            if (matcher.matches(view)) {
+                return view;
+            }
+        }
+        return null;
+    }
 
 }
