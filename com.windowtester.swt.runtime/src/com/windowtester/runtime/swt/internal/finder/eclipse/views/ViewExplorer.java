@@ -54,7 +54,7 @@ public class ViewExplorer {
 			IViewCategory category = categories[i];
 			IViewDescriptor[] views = category.getViews();
 			for (int j = 0; j < views.length; j++) {
-				IViewDescriptor candidateView = views[i];
+				IViewDescriptor candidateView = views[j];
 				if (view == candidateView)
 					return category.getLabel();
 			}
