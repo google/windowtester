@@ -22,6 +22,7 @@ import com.windowtester.runtime.swt.locator.LabeledTextLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.TableItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
+import com.windowtester.runtime.swt.locator.eclipse.EditorLocator;
 
 public class NewEntryTest extends UITestCaseSWT {
 
@@ -38,17 +39,12 @@ public class NewEntryTest extends UITestCaseSWT {
 		ui.click(new LabeledTextLocator("Street"));
 		ui.enterText("645 NW 1st Ave");
 		ui.click(new LabeledTextLocator("City"));
+		ui.enterText("New York");
 		ui.click(new ButtonLocator("&Finish"));
+		ui.wait(new ShellDisposedCondition(""));
 		ui.click(2, new TableItemLocator("Smith,James", new ViewLocator(
 				"com.windowtester.example.contactmanager.rcp.view")));
-		ui.click(new LabeledTextLocator("City"));
-		ui.enterText("New York");
-		ui.click(new MenuItemLocator("File/Exit"));
-		ui.wait(new ShellDisposedCondition("Progress Information"));
-		ui.wait(new ShellShowingCondition("Save Resource"));
-		ui.click(new ButtonLocator("&No"));
-		ui.wait(new ShellDisposedCondition("Save Resource"));
-		ui.wait(new ShellDisposedCondition("RCP Contacts Editor"));
+		ui.assertThat(new EditorLocator("Smith,James").isVisible());
 	}
 
 }

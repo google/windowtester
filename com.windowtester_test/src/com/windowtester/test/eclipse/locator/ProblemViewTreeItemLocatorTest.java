@@ -10,6 +10,7 @@ import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.swt.condition.eclipse.ActiveEditorCondition;
+import com.windowtester.runtime.swt.locator.CTabItemLocator;
 import com.windowtester.runtime.swt.locator.MenuItemLocator;
 import com.windowtester.runtime.swt.locator.TreeItemLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ViewLocator;
@@ -32,13 +33,17 @@ public class ProblemViewTreeItemLocatorTest extends BaseTest {
 	
 	public void testClickItemInProblemView() throws Exception {
 		IUIContext ui = getUI();
-		createJavaProject(ui, getProjectName());
-		createJavaClass(ui, getSrcFolder(), "MyClass");
-		ui.wait(ActiveEditorCondition.forName("MyClass.java"));
-		ui.enterText("bang");
-		ui.click(new MenuItemLocator("File/Save"));
-		openView(ui, BASIC_PROBLEMS);
-		verifyProblemReported();
+		try{
+			createJavaProject(ui, getProjectName());
+			createJavaClass(ui, getSrcFolder(), "MyClass");
+			ui.wait(ActiveEditorCondition.forName("MyClass.java"));
+			ui.enterText("bang");
+			ui.click(new MenuItemLocator("File/Save"));
+			openView(ui, BASIC_PROBLEMS);
+			verifyProblemReported();
+		}finally{
+			ui.ensureThat(new CTabItemLocator("MyClass.java").isClosed());
+		}
 	}
 
 	private void verifyProblemReported() throws WidgetSearchException {

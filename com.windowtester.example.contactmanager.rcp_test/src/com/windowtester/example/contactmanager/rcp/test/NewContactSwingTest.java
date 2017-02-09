@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 
 import com.windowtester.internal.swing.UIContextSwing;
 import com.windowtester.runtime.IUIContext;
+import com.windowtester.runtime.condition.TimeElapsedCondition;
 import com.windowtester.runtime.swing.condition.WindowDisposedCondition;
 import com.windowtester.runtime.swing.condition.WindowShowingCondition;
 import com.windowtester.runtime.swing.locator.JButtonLocator;
@@ -36,6 +37,7 @@ public class NewContactSwingTest extends UITestCaseSWT {
 		
 		IUIContext uiSwing = (IUIContext) ui.getAdapter(UIContextSwing.class);
 		uiSwing.wait(new WindowShowingCondition("New Contact"));
+		ui.wait(TimeElapsedCondition.milliseconds(500));
 		uiSwing.enterText("John");
 		uiSwing.keyClick(KeyEvent.VK_TAB);
 		uiSwing.enterText("Doe");
@@ -45,7 +47,7 @@ public class NewContactSwingTest extends UITestCaseSWT {
 		uiSwing.enterText("New York");
 		uiSwing.click(new JButtonLocator("Finish"));
 		uiSwing.wait(new WindowDisposedCondition("New Contact"));
-		ui.pause(100);
+		ui.wait(TimeElapsedCondition.milliseconds(500));
 		
 		ui.click(2, new TableItemLocator("Doe,John", new ViewLocator(
 		"com.windowtester.example.contactmanager.rcp.view")));

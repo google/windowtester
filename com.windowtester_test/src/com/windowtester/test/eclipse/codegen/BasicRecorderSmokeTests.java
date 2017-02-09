@@ -3,6 +3,8 @@ package com.windowtester.test.eclipse.codegen;
 
 import static com.windowtester.test.eclipse.helpers.WorkBenchHelper.openPreferences;
 
+import java.util.concurrent.TimeUnit;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TableItem;
@@ -99,6 +101,11 @@ public class BasicRecorderSmokeTests extends AbstractRecorderSmokeTest {
 		ui.click(new ButtonLocator("&Next >"));
 		ui.enterText("JP2");
 		ui.click(new ButtonLocator("&Finish"));
+		ui.wait(new TimeElapsedCondition(TimeUnit.MILLISECONDS, 500));
+		if(new ShellLocator("Open Associated Perspective?").isVisible().testUI(ui)){
+			ui.click(new ButtonLocator("&Yes"));
+			ui.wait(new ShellDisposedCondition("Open Associated Perspective?"));
+		}
 		ui.wait(new ShellDisposedCondition("New Java Project"));
 	}
 

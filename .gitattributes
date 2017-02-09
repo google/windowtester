@@ -1,0 +1,4 @@
+* 	text=auto
+
+*.java	text	diff=java
+*.html	text	diff=html

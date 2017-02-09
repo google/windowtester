@@ -15,6 +15,7 @@ import com.windowtester.runtime.locator.IWidgetLocator;
 import com.windowtester.runtime.locator.IWidgetReference;
 import com.windowtester.runtime.swt.UITestCaseSWT;
 import com.windowtester.runtime.swt.internal.widgets.DisplayReference;
+import com.windowtester.runtime.swt.locator.CTabItemLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.test.eclipse.EclipseUtil;
 
@@ -200,17 +201,19 @@ public class ValidateIntroPageContentTest extends UITestCaseSWT /* intentionally
 		browser = getBrowser();
 	}
 	
-//	/* (non-Javadoc)
-//	 * @see junit.framework.TestCase#tearDown()
-//	 */
-//	@Override
-//	protected void tearDown() throws Exception {
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		// Zoom out again
+		getUI().click(2, new CTabItemLocator("Welcome"));
 //		String html = getHTML(); 
 //		System.out.println(html);
 //		System.out.println("-------------------------------------");
 //		System.out.println("-------------------------------------");		
 //		super.tearDown();
-//	}
+	}
 	
 	public void testTutorialsLinkExists() throws Exception {
 		if (!testPrereqs())

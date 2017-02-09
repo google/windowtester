@@ -11,11 +11,11 @@
 package com.windowtester.test.locator.swt;
 
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Shell;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.condition.HasTextCondition;
-import com.windowtester.runtime.condition.WidgetShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.TextLocator;
@@ -32,7 +32,7 @@ public class ContainedInLocatorTest extends AbstractLocatorTest {
 	public void uiSetup() {
 		_window = new DynamicCompositeStacksTestShell();
 		_window.open();
-		wait(new WidgetShowingCondition(getUI(), new ButtonLocator("button")));
+//		wait(new WidgetShowingCondition(getUI(), new ButtonLocator("button")));
 	}
 
 	@Override
@@ -59,5 +59,9 @@ public class ContainedInLocatorTest extends AbstractLocatorTest {
 		ui.assertThat(new HasTextCondition(singleText, HELLO));
 		ui.assertThat(new HasTextCondition(doubleText0, WINDOW_TESTER));
 		ui.assertThat(new HasTextCondition(doubleText1, PRO));
+
+		//Index test
+		ui.assertThat(new ButtonLocator("button" , 0, new SWTWidgetLocator(Shell.class)).isEnabled());
+		ui.assertThat(new ButtonLocator("button" , 1, new SWTWidgetLocator(Shell.class)).isEnabled(false));
 	}
 }

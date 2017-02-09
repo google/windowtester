@@ -374,15 +374,20 @@ public class SWTWidgetLocator extends WidgetLocator implements IUISelector, IsVi
 	public IWidgetLocator[] findAll(IUIContext ui) {
 		ISWTWidgetMatcher matcher = buildMatcher();
 		ISWTWidgetReference<?>[] allWidgetsFound = SWTWidgetFinder.forActiveShell().findAll(matcher);
-		if (getIndex() == UNASSIGNED) {
+		//only for ".containedIn()" locators
+		if (getAncestorInfo() != null){
+			if (getIndex() == UNASSIGNED) {
+				return allWidgetsFound;
+			}
+			if (getIndex() > allWidgetsFound.length - 1) {
+				return new ISWTWidgetReference<?>[0];
+			}
+			ISWTWidgetReference<?>[] singleWidgetFound = new ISWTWidgetReference<?>[1];
+			singleWidgetFound[0] = allWidgetsFound[getIndex()];
+			return singleWidgetFound;
+		}else{
 			return allWidgetsFound;
 		}
-		if (getIndex() > allWidgetsFound.length - 1) {
-			return new ISWTWidgetReference<?>[0];
-		}
-		ISWTWidgetReference<?>[] singleWidgetFound = new ISWTWidgetReference<?>[1];
-		singleWidgetFound[0] = allWidgetsFound[getIndex()];
-		return singleWidgetFound;
 //		return Finder.findWidgets(matcher).in(Finder.activeShell());
 	}
 	

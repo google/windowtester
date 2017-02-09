@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.windowtester</groupId>
+		<artifactId>com.windowtester.test-parent</artifactId>
+		<version>6.1.2-SNAPSHOT</version>
+		<relativePath>../com.windowtester.test_parent</relativePath>
+	</parent>
+	
+	<groupId>com.windowtester</groupId>
+	<artifactId>com.windowtester.repository</artifactId>
+	<version>6.1.2-SNAPSHOT</version>
+	<packaging>eclipse-repository</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<finalName>${project.artifactId}-${unqualifiedVersion}.${buildQualifier}</finalName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

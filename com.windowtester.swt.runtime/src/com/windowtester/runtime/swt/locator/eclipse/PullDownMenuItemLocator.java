@@ -15,6 +15,7 @@ import java.util.concurrent.Callable;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.part.ViewPart;
 
 import com.windowtester.runtime.IClickDescription;
 import com.windowtester.runtime.IUIContext;
@@ -36,9 +37,13 @@ import com.windowtester.runtime.swt.internal.drivers.MenuDriver;
 import com.windowtester.runtime.swt.internal.finder.SWTHierarchyHelper;
 import com.windowtester.runtime.swt.internal.finder.eclipse.views.ViewFinder;
 import com.windowtester.runtime.swt.internal.locator.IControlRelativeLocator;
+import com.windowtester.runtime.swt.internal.widgets.CTabFolderReference;
+import com.windowtester.runtime.swt.internal.widgets.CTabItemReference;
 import com.windowtester.runtime.swt.internal.widgets.ISWTWidgetReference;
 import com.windowtester.runtime.swt.internal.widgets.MenuReference;
+import com.windowtester.runtime.swt.internal.widgets.ToolItemReference;
 import com.windowtester.runtime.swt.internal.widgets.ViewReference;
+import com.windowtester.runtime.swt.locator.CTabItemLocator;
 import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.util.ScreenCapture;
 
@@ -110,7 +115,12 @@ public class PullDownMenuItemLocator extends SWTWidgetLocator implements IPathLo
 	 * @see com.windowtester.runtime.swt.locator.SWTWidgetLocator#click(com.windowtester.runtime.IUIContext, com.windowtester.runtime.locator.WidgetReference, com.windowtester.runtime.IClickDescription)
 	 */
 	public IWidgetLocator click(IUIContext ui, IWidgetReference widget, final IClickDescription click) throws WidgetSearchException {
-		final IWidgetReference widgetToSelect = getMenuHost(widget);
+		final IWidgetReference widgetToSelect;
+		if (getControlLocator() instanceof ViewLocator) {
+			widgetToSelect = getToolItemReference(ui);
+		}else {
+			widgetToSelect = getMenuHost(widget);
+		}
 		return new MenuDriver().resolveAndSelect(new Callable<MenuReference>() {
 			public MenuReference call() throws Exception {
 				return ((ISWTWidgetReference<?>) widgetToSelect).showPulldownMenu(click);
@@ -156,7 +166,12 @@ public class PullDownMenuItemLocator extends SWTWidgetLocator implements IPathLo
 	private IWidgetReference getMenuHost(IUIContext ui)
 			throws WidgetSearchException, WidgetNotFoundException {
 		IWidgetReference widget = (IWidgetReference) ui.find(this);
-		final IWidgetReference menuHost = getMenuHost(widget);
+		final IWidgetReference menuHost;
+		if (getControlLocator() instanceof ViewLocator) {
+			menuHost = getToolItemReference(ui);
+		}else {
+			menuHost = getMenuHost(widget);
+		}
 		return menuHost;
 	}
 	
@@ -191,6 +206,34 @@ public class PullDownMenuItemLocator extends SWTWidgetLocator implements IPathLo
 //			new ToolItemSelector().clickExpand(item);
 //		}
 //	}
+
+	/**
+	 * Returns "ViewMenu" ToolItemReference <br/>
+	 * Works only with Eclipse 4.x!
+	 *  
+	 * @return
+	 */
+	private ToolItemReference getToolItemReference(IUIContext ui) throws WidgetSearchException {
+		SWTWidgetLocator controlLocator = getControlLocator();
+		if (controlLocator instanceof ViewLocator) {
+			ViewLocator viewLocator = (ViewLocator) controlLocator;
+			
+			String viewName = viewLocator.getViewId();
+			ViewPart viewPart = (ViewPart) ViewFinder.getViewPart(viewName);
+			String partName = viewPart.getPartName();
+			
+			CTabItemLocator cTabItemLocator = new CTabItemLocator(partName);
+			final CTabItemReference tabItemRef = (CTabItemReference) ui.find(cTabItemLocator);
+			
+			CTabFolderReference parent = tabItemRef.getParent();
+			ToolItemReference viewMenu = parent.getViewMenu();
+			
+			return viewMenu;
+		} else {
+			System.out.println("No viewlocator found");
+			return null;
+		}
+	}
 	
 	
 //	private ToolItem getToolItem(IWidgetReference ref) {

@@ -91,7 +91,7 @@ public class RecorderSWTLaunchConfDelegate extends RecorderWorkbenchLaunchConfDe
 	 * @throws CoreException
 	 */
 	private void setEnvironment(ILaunchConfigurationWorkingCopy wc) throws CoreException {
-		wc.setAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<?, ?>)wcSwt.getAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<?, ?>)null));
+		wc.setAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<String, String>)wcSwt.getAttribute(ILaunchManager.ATTR_ENVIRONMENT_VARIABLES, (Map<String, String>)null));
 		wc.setAttribute(ILaunchManager.ATTR_APPEND_ENVIRONMENT_VARIABLES, wcSwt.getAttribute(ILaunchManager.ATTR_APPEND_ENVIRONMENT_VARIABLES, false));
 	}
 
@@ -225,10 +225,10 @@ public class RecorderSWTLaunchConfDelegate extends RecorderWorkbenchLaunchConfDe
 
 	private String[] constructClassPath(ILaunchConfiguration configuration) throws CoreException {
 		/* $if eclipse.version < 3.6 $ */
-		return org.eclipse.pde.internal.ui.launcher.LaunchArgumentsHelper.constructClasspath(configuration);
-		/* $else$
+//		return org.eclipse.pde.internal.ui.launcher.LaunchArgumentsHelper.constructClasspath(configuration);
+		/* $else$ */
 		return org.eclipse.pde.internal.launching.launcher.LaunchArgumentsHelper.constructClasspath(configuration);
-		$endif$ */
+		/* $endif$ */
 	}
 
 	/**

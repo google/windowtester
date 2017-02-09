@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 
+import com.windowtester.runtime.WT;
 import com.windowtester.runtime.WaitTimedOutException;
 import com.windowtester.runtime.WidgetSearchException;
 import com.windowtester.runtime.swt.UITestCaseSWT;
@@ -35,6 +36,7 @@ import com.windowtester.runtime.swt.locator.MenuItemLocator;
 public class BaseTest extends UITestCaseSWT {
 
 	protected void setUp() throws Exception {
+		WT.setLocaleToCurrent();
 		checkForPDERequirement();
 		ensureWorkbenchIsInFront();
 		closeWelcomePageIfNecessary();

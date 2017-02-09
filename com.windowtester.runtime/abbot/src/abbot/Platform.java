@@ -2,10 +2,10 @@ package abbot;
 
 import java.util.StringTokenizer;
 
-import org.eclipse.swt.SWT;
-
-/** Simple utility to figure out what platform we're on, what java version
- * we're running.
+/** Simple utility to figure out what platform we're on, what java version we're running.
+ * 
+ * Last update from abbot-1.3.0
+ * + modifications to fix problem with recognizing Mac OS X
  */
 
 public class Platform {
@@ -16,17 +16,19 @@ public class Platform {
     public static final int JAVA_1_3 = 0x1300;
     public static final int JAVA_1_4 = 0x1400;
     public static final int JAVA_1_5 = 0x1500;
+    public static final int JAVA_1_6 = 0x1600;
+    public static final int JAVA_1_7 = 0x1700;
+    public static final int JAVA_1_8 = 0x1800;
+    public static final int JAVA_1_9 = 0x1900;
 
     public static final String OS_NAME;
     public static final String JAVA_VERSION_STRING;
     public static final int JAVA_VERSION;
-  
 
     static {
         OS_NAME = System.getProperty("os.name");
         JAVA_VERSION_STRING = System.getProperty("java.version");
         JAVA_VERSION = parse(JAVA_VERSION_STRING);
-     
     }
     
     private static boolean isWindows = OS_NAME.startsWith("Windows");
@@ -35,8 +37,9 @@ public class Platform {
             || OS_NAME.indexOf("98") != -1
             || OS_NAME.indexOf("ME") != -1);
     private static boolean isWindowsXP = isWindows && OS_NAME.indexOf("XP") != -1;
+    //With Mac OS X 10.9.1 (Mavericks) mrj.version returns null, apparently
     private static boolean isMac = System.getProperty("mrj.version") != null;
-    private static boolean isOSX = isMac && OS_NAME.indexOf("OS X") != -1;
+    private static boolean isOSX = OS_NAME.indexOf("OS X") != -1;
     private static boolean isSunOS = (OS_NAME.startsWith("SunOS")
                                       || OS_NAME.startsWith("Solaris"));
     private static boolean isHPUX = OS_NAME.equals("HP-UX");
@@ -75,14 +78,24 @@ public class Platform {
     public static boolean isWindows9X() { return isWindows9X; }
     public static boolean isWindowsXP() { return isWindowsXP; }
     public static boolean isMacintosh() { return isMac; }
-    // moved SWT dependent code so that it is needed only in case if Mac
-    // otherwise causes error for Swing tests, see
-  
-    public static boolean isMacCocoa() { return isMac && SWT.getPlatform().equals("cocoa"); }
     public static boolean isOSX() { return isOSX; }
     public static boolean isSolaris() { return isSunOS; }
     public static boolean isHPUX() { return isHPUX; }
     public static boolean isLinux() { return isLinux; }
+    
+    public static boolean is6OrAfter() { return JAVA_VERSION>=JAVA_1_6; }
+    public static boolean is7OrAfter() { return JAVA_VERSION>=JAVA_1_7; }
+    public static boolean is8OrAfter() { return JAVA_VERSION>=JAVA_1_8; }
+
+    public static boolean isBefore7() { return JAVA_VERSION<JAVA_1_7; }
+    public static boolean isBefore8() { return JAVA_VERSION<JAVA_1_8; }
+
+        
+    public static boolean is6() { return JAVA_VERSION>=JAVA_1_6 && JAVA_VERSION<JAVA_1_7; }
+    public static boolean is7() { return JAVA_VERSION>=JAVA_1_7 && JAVA_VERSION<JAVA_1_8; }
+    public static boolean is8() { return JAVA_VERSION>=JAVA_1_8 && JAVA_VERSION<JAVA_1_9; }
+    
+    
     public static void main(String[] args) {
         System.out.println("Java version is " + JAVA_VERSION_STRING);
         System.out.println("Version number is " + Integer.toHexString(JAVA_VERSION));
