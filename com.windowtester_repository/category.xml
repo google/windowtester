@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.windowtester.ide_6.1.0.qualifier.jar" id="com.windowtester.ide" version="0.0.0">
+      <category name="com.windowtester.ide"/>
+   </feature>
+   <feature url="features/com.windowtester.ide_6.1.0.qualifier-sources-feature.jar" id="com.windowtester.ide.source" version="0.0.0">
+      <category name="com.windowtester.ide"/>
+   </feature>
+   <feature url="features/com.windowtester.runtime_6.1.0.qualifier.jar" id="com.windowtester.runtime" version="0.0.0">
+      <category name="com.windowtester.runtime"/>
+   </feature>
+   <feature url="features/com.windowtester.runtime_6.1.0.qualifier-sources-feature.jar" id="com.windowtester.runtime.source" version="0.0.0">
+      <category name="com.windowtester.runtime"/>
+   </feature>
+   <feature url="features/com.windowtester.ide.gef_6.1.0.qualifier.jar" id="com.windowtester.ide.gef" version="0.0.0">
+      <category name="com.windowtester.ide.gef"/>
+   </feature>
+   <feature url="features/com.windowtester.ide.gef_6.1.0.qualifier-sources-feature.jar" id="com.windowtester.ide.gef.source" version="0.0.0">
+      <category name="com.windowtester.ide.gef"/>
+   </feature>
+   <feature url="features/com.windowtester.runtime.gef_6.1.0.qualifier.jar" id="com.windowtester.runtime.gef" version="0.0.0">
+      <category name="com.windowtester.runtime.gef"/>
+   </feature>
+   <feature url="features/com.windowtester.runtime.gef_6.1.0.qualifier-sources-feature.jar" id="com.windowtester.runtime.gef.source" version="0.0.0">
+      <category name="com.windowtester.runtime.gef"/>
+   </feature>
+   <feature url="features/com.windowtester.launcher_6.1.0.qualifier.jar" id="com.windowtester.launcher" version="0.0.0">
+      <category name="com.windowtester.launcher"/>
+   </feature>
+   <feature url="features/com.windowtester.launcher_6.1.0.qualifier-sources-feature.jar" id="com.windowtester.launcher.source" version="0.0.0">
+      <category name="com.windowtester.launcher"/>
+   </feature>
+   <category-def name="com.windowtester.ide" label="WindowTester IDE"/>
+   <category-def name="com.windowtester.runtime" label="WindowTester Runtime"/>
+   <category-def name="com.windowtester.ide.gef" label="WindowTester GEF IDE Integration"/>
+   <category-def name="com.windowtester.runtime.gef" label="WindowTester Runtime GEF"/>
+   <category-def name="com.windowtester.launcher" label="WindowTester Launcher"/>
+</site>

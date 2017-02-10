@@ -13,6 +13,8 @@ import com.windowtester.runtime.swt.locator.SWTWidgetLocator;
 import com.windowtester.runtime.swt.locator.eclipse.ContributedToolItemLocator;
 import com.windowtester.test.eclipse.BaseTest;
 import com.windowtester.test.eclipse.EclipseUtil;
+import com.windowtester.test.eclipse.helpers.WorkBenchHelper;
+import com.windowtester.test.eclipse.helpers.WorkBenchHelper.Perspective;
 
 /*******************************************************************************
  *  Copyright (c) 2012 Google, Inc.
@@ -42,6 +44,7 @@ public class ContributedToolItemLocatorSmokeTest extends BaseTest {
 
 	public void testOpenSearchToolItem() throws WidgetSearchException {
 		IUIContext ui = getUI();
+		WorkBenchHelper.openPerspective(getUI(), Perspective.JAVA);
 		ui.click(new MenuItemLocator("&Window/Show &View/Navigator"));
 		String id = EclipseUtil.isAtLeastVersion_34() ? "org.eclipse.search.OpenSearchDialogPage" : "org.eclipse.search.ui.openSearchDialog";
 		ui.click(new ContributedToolItemLocator(id));

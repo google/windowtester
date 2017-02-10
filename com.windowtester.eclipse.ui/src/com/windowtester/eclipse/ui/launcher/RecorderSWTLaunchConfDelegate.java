@@ -225,10 +225,10 @@ public class RecorderSWTLaunchConfDelegate extends RecorderWorkbenchLaunchConfDe
 
 	private String[] constructClassPath(ILaunchConfiguration configuration) throws CoreException {
 		/* $if eclipse.version < 3.6 $ */
-		return org.eclipse.pde.internal.ui.launcher.LaunchArgumentsHelper.constructClasspath(configuration);
-		/* $else$
+//		return org.eclipse.pde.internal.ui.launcher.LaunchArgumentsHelper.constructClasspath(configuration);
+		/* $else$ */
 		return org.eclipse.pde.internal.launching.launcher.LaunchArgumentsHelper.constructClasspath(configuration);
-		$endif$ */
+		/* $endif$ */
 	}
 
 	/**

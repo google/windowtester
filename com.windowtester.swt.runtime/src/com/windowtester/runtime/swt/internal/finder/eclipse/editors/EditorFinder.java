@@ -25,6 +25,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.PartSite;
+import org.eclipse.ui.internal.WorkbenchPartReference;
 
 import com.windowtester.runtime.MultipleWidgetsFoundException;
 import com.windowtester.runtime.WidgetNotFoundException;
@@ -120,7 +121,7 @@ public class EditorFinder {
 			return null;
 		IWorkbenchPartSite site = part.getSite();
 		if (site instanceof PartSite) {
-			return ((PartSite) site).getPane().getControl();
+			return ((WorkbenchPartReference) ((PartSite) site).getPartReference()).getPane().getControl();
 		}
 		return null;
 	}

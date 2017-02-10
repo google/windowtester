@@ -14,6 +14,7 @@ import static com.windowtester.runtime.swt.locator.eclipse.EclipseLocators.view;
 
 import com.windowtester.runtime.IUIContext;
 import com.windowtester.runtime.swt.UITestCaseSWT;
+import com.windowtester.runtime.swt.locator.eclipse.WorkbenchLocator;
 
 public class CloseWelcomeTest extends UITestCaseSWT
 {
@@ -33,5 +34,6 @@ public class CloseWelcomeTest extends UITestCaseSWT
 //		ui.close(new CTabItemLocator("Welcome"));
 //		ui.pause(3000);
 		ui.ensureThat(view("Welcome").isClosed());
+		ui.ensureThat(new WorkbenchLocator().isMaximized());
 	}
 }

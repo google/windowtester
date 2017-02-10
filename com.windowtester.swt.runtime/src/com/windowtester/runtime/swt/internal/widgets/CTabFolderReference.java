@@ -12,8 +12,13 @@ package com.windowtester.runtime.swt.internal.widgets;
 
 import java.util.concurrent.Callable;
 
+import org.eclipse.e4.ui.model.application.ui.menu.MMenu;
+import org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 
 /**
  * A {@link CTabFolder} reference.
@@ -60,8 +65,40 @@ public class CTabFolderReference extends CompositeReference<CTabFolder> {
 			}
 		});
 	}
-	
-	
+
+	/**
+	 * Returns "ViewMenu" ToolItemReference <br/>
+	 * Works only with Eclipse 4.x!
+	 *  
+	 * @return
+	 */
+	public ToolItemReference getViewMenu(){
+		return displayRef.execute(new Callable<ToolItemReference>() {
+			public ToolItemReference call() throws Exception {
+				for(Control control : widget.getChildren()){
+					if(control instanceof Composite){
+						Composite comp = (Composite) control;
+						for(Control compChildren : comp.getChildren()){
+							if(compChildren instanceof ToolBar){
+								ToolBar compChildrenToolBar = (ToolBar) compChildren;
+								for(ToolItem compChildrenToolBarItem : compChildrenToolBar.getItems()){
+									//TODO: Improve check (without internal classes?)
+									MMenu mmenu = (MMenu) compChildrenToolBarItem.getData("theMenu");
+									if(mmenu != null && mmenu.getTags().contains(StackRenderer.TAG_VIEW_MENU)){
+										//System.out.println("View Menu found!");
+										return asReferenceOfType(compChildrenToolBarItem, ToolItemReference.class);
+									}
+								}
+							}
+						}
+					}
+				}
+				return null;
+			}
+		});
+		
+	}
+
 //	/* (non-Javadoc)
 //	 * @see com.windowtester.runtime.swt.internal.widgets.SWTWidgetReference#accept(com.windowtester.runtime.swt.internal.widgets.SWTWidgetReference.Visitor)
 //	 */

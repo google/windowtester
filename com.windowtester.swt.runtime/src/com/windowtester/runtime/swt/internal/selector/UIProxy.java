@@ -1029,6 +1029,9 @@ public class UIProxy {
 							if (w instanceof ToolItem){
 								return getToolItemId((ToolItem)w);
 							}
+							if (w instanceof Text){
+								return getWidgetName(w) + " {" + ((Text) w).getText() + "}";
+							}
 							return w.toString();
 						}
 					});
@@ -1037,6 +1040,13 @@ public class UIProxy {
 		}
 		
 		return result;	
+	}
+	
+	private static String getWidgetName (Widget w) {
+		String string = w.getClass().getName();
+		int index = string.lastIndexOf ('.');
+		if (index == -1) return string;
+		return string.substring (index + 1, string.length ());
 	}
 
     /**

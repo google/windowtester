@@ -25,10 +25,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.PartPane;
 import org.eclipse.ui.internal.PartSite;
-import org.eclipse.ui.internal.ViewPane;
-import org.eclipse.ui.internal.ViewStack;
+import org.eclipse.ui.internal.WorkbenchPartReference;
 import org.eclipse.ui.views.IViewDescriptor;
 
 import com.windowtester.runtime.swt.internal.finder.FinderHelper;
@@ -209,7 +207,7 @@ public class ViewFinder extends WorkbenchFinder {
 		IViewSite viewSite = viewPart.getViewSite();
 		if (viewSite instanceof PartSite) {
 			PartSite partSite = (PartSite)viewSite;
-			return partSite.getPane().getControl();
+			return ((WorkbenchPartReference) partSite.getPartReference()).getPane().getControl();
 		}
 		return null;
 	}
@@ -359,14 +357,21 @@ public class ViewFinder extends WorkbenchFinder {
 		SWTHierarchyHelper hierarchy = new SWTHierarchyHelper();
 		while (w != null) {
 			Object data = w.getData();
-			if (data instanceof ViewStack) {
-				ViewStack stack = (ViewStack)data;
-				PartPane selection = stack.getSelection();
-				if (selection instanceof ViewPane) {
-					IViewReference ref = ((ViewPane)selection).getViewReference();
-					return ViewLocator.forId(ref.getId());
-				}
-			}
+			System.out.println("ViewFinder.findInViewStack() data.getClass(): " + data.getClass());
+			
+//			if (data instanceof WorkbenchPage){
+//			if (data instanceof WorkbenchPart){
+//				WorkbenchPart part = (WorkbenchPart) data;
+//				part.getSel
+				
+//			if (data instanceof PartStack) {
+//				ViewStack stack = (ViewStack)data;
+//				PartPane selection = stack.getSelection();
+//				if (selection instanceof ViewPane) {
+//					IViewReference ref = ((ViewPane)selection).getViewReference();
+//					return ViewLocator.forId(ref.getId());
+//				}
+//			}
 			w = hierarchy.getParent(w);
 		}
 		return null;

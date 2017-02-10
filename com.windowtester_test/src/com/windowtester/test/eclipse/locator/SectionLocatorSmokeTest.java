@@ -99,40 +99,43 @@ public class SectionLocatorSmokeTest extends BaseTest {
 	
 	public void testDriveManifestEditor() throws Exception {
 		IUIContext ui = getUI();
-		ui.click(new MenuItemLocator("File/New/Other..."));
-		ui.wait(new ShellShowingCondition("New"));
-		ui.click(new TreeItemLocator("General"));
-		ui.click(new TreeItemLocator("Plug-in Development/Plug-in Project"));
-		ui.click(new ButtonLocator("Next >"));
-		ui.enterText(projectName);
-		ui.click(new ButtonLocator("Next >"));
-		ui.click(new ButtonLocator("Finish"));
-		// Extra long timeout for Dan's slow Linux box
-		ui.wait(new ShellDisposedCondition("New Plug-in Project"), 60000);
-		
-		ui.wait(ActiveEditorCondition.forName(projectName), 5000);
-
-		// Click the "Overview" tab to make sure we are on that page
-		ui.click(new CTabItemLocator("Overview"));
-		// Sometimes, the button is partially scrolled off the page, 
-		// so zoom the editor and click the top left corner of the button
-		ui.click(2, new CTabItemLocator(projectName));
-		ui.click(new ButtonLocator("Add...", new SectionLocator("Execution Environments")));
-		
-		
-		ui.wait(new ShellShowingCondition("Execution Environments"));
-		ui.click(new TableItemLocator("J2SE-1.3"));
-		ui.click(new ButtonLocator("OK"));
-		ui.wait(new ShellDisposedCondition("Execution Environments"));
-
-		ui.click(new TableItemLocator("J2SE-1.3", new SectionLocator("Execution Environments")));
-		ui.assertThat(new ButtonLocator("Remove", new SectionLocator("Execution Environments")).isEnabled());
-		
-		// Save the changes
-		ui.click(new MenuItemLocator("File/Save"));
-		
-		// Unzoom the editor
-		ui.click(2, new CTabItemLocator(projectName));
+		try{
+			ui.click(new MenuItemLocator("File/New/Other..."));
+			ui.wait(new ShellShowingCondition("New"));
+			ui.click(new TreeItemLocator("General"));
+			ui.click(new TreeItemLocator("Plug-in Development/Plug-in Project"));
+			ui.click(new ButtonLocator("Next >"));
+			ui.enterText(projectName);
+			ui.click(new ButtonLocator("Next >"));
+			ui.click(new ButtonLocator("Finish"));
+			// Extra long timeout for Dan's slow Linux box
+			ui.wait(new ShellDisposedCondition("New Plug-in Project"), 60000);
+			
+			ui.wait(ActiveEditorCondition.forName(projectName), 5000);
+	
+			// Click the "Overview" tab to make sure we are on that page
+			ui.click(new CTabItemLocator("Overview"));
+			// Sometimes, the button is partially scrolled off the page, 
+			// so zoom the editor and click the top left corner of the button
+			ui.click(2, new CTabItemLocator(projectName));
+			ui.click(new ButtonLocator("Add...", new SectionLocator("Execution Environments")));
+			
+			
+			ui.wait(new ShellShowingCondition("Execution Environments"));
+			ui.click(new TableItemLocator("J2SE-1.3"));
+			ui.click(new ButtonLocator("OK"));
+			ui.wait(new ShellDisposedCondition("Execution Environments"));
+	
+			ui.click(new TableItemLocator("J2SE-1.3", new SectionLocator("Execution Environments")));
+			ui.assertThat(new ButtonLocator("Remove", new SectionLocator("Execution Environments")).isEnabled());
+			
+			// Save the changes
+			ui.click(new MenuItemLocator("File/Save"));
+		}finally{
+			// Unzoom the editor
+			ui.click(2, new CTabItemLocator(projectName));
+			ui.ensureThat(new CTabItemLocator(projectName).isClosed());
+		}
 		
 	}
 
