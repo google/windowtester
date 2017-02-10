@@ -14,6 +14,7 @@ package com.windowtester.runtime.swt.internal.widgets;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Caret;
 import org.eclipse.swt.widgets.Combo;
@@ -228,6 +229,11 @@ public class WTRuntimeFactorySWT implements WTRuntimeFactory
 		@Override
 		public void visitSlider(Slider widget) {
 			reference = new SliderReference(widget);
+		}
+
+		@Override
+		public void visitStyledText(StyledText widget) {
+			reference = new StyledTextReference(widget);
 		}
 
 		public ISWTWidgetReference<?> findReference() {

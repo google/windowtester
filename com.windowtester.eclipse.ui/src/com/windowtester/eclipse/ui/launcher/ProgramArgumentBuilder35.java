@@ -27,7 +27,7 @@ import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 
-/* $if eclipse.version == 3.5 $ */
+/* $if eclipse.version == 3.5 $
 import org.eclipse.pde.core.plugin.ModelEntry;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.pde.core.plugin.TargetPlatform;
@@ -42,7 +42,7 @@ import org.eclipse.pde.internal.ui.launcher.BundleLauncherHelper;
 import org.eclipse.pde.internal.ui.launcher.LauncherUtils;
 import org.eclipse.pde.internal.ui.launcher.LaunchArgumentsHelper;
 import org.eclipse.pde.internal.ui.launcher.LaunchConfigurationHelper;
-/* $endif$ */
+$endif$ */
 
 import org.eclipse.pde.internal.ui.PDEPlugin;
 import org.eclipse.pde.ui.launcher.IPDELauncherConstants;
@@ -75,7 +75,7 @@ public class ProgramArgumentBuilder35 {
 	 * @see org.eclipse.pde.ui.launcher.AbstractPDELaunchConfiguration#getConfigDir(org.eclipse.debug.core.ILaunchConfiguration)
 	 */
 	protected File getConfigDir(ILaunchConfiguration config) {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $ 
 		if (fConfigDir == null) {
 			try {
 				if (config.getAttribute(IPDELauncherConstants.USEFEATURES, false) && config.getAttribute(IPDELauncherConstants.CONFIG_USE_DEFAULT_AREA, true)) {
@@ -91,12 +91,12 @@ public class ProgramArgumentBuilder35 {
 				fConfigDir = LaunchConfigurationHelper.getConfigurationArea(config);
 			}
 		}
-		/* $endif$ */
+		$endif$ */
 		return fConfigDir;
 	}
 	
 	public String[] getProgramArguments2(ILaunchConfiguration configuration) throws CoreException {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		ArrayList programArgs = new ArrayList();
 
 		// add tracing, if turned on	
@@ -137,13 +137,13 @@ public class ProgramArgumentBuilder35 {
 		}
 
 		return (String[]) programArgs.toArray(new String[programArgs.size()]);
-		/* $else$
+		$else$ */
 		return (String[])PreprocessorInvariant.violated();		
-		$endif$ */
+		/*$endif$ */
 	}
 	
 	private void ensureProductFilesExist(IPath productArea) {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		File productDir = productArea.toFile();
 		File marker = new File(productDir, ".eclipseproduct"); //$NON-NLS-1$
 		IPath eclipsePath = new Path(TargetPlatform.getLocation());
@@ -160,7 +160,7 @@ public class ProgramArgumentBuilder35 {
 	}
 	
 	private void validateFeatures() throws CoreException {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		IPath installPath = PDEPlugin.getWorkspace().getRoot().getLocation();
 		String lastSegment = installPath.lastSegment();
 		boolean badStructure = lastSegment == null;
@@ -174,9 +174,9 @@ public class ProgramArgumentBuilder35 {
 		}
 		// Ensure important files are present
 		ensureProductFilesExist(getProductPath());
-		/* $else$
+		$else$ */
 		PreprocessorInvariant.violated();		
-		$endif$ */
+		/* $endif$ */
 	}
 	
 	private void updatePluginMap(Map pluginMap, String[] requiredPluginsIds) {
@@ -243,7 +243,7 @@ public class ProgramArgumentBuilder35 {
 	}
 	
 	private void addToMap(Map pluginMap, String id) {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		ModelEntry entry = PluginRegistry.findEntry(id);
 		if (entry != null) {
 			IPluginModelBase models[] = entry.getExternalModels();
@@ -262,9 +262,9 @@ public class ProgramArgumentBuilder35 {
 		else{
 			locations.add(id);
 		}		
-		/* $else$
+		$else$ */
 		PreprocessorInvariant.violated();		
-		$endif$ */
+		/* $endif$ */
 		
 	}
 	
@@ -274,7 +274,7 @@ public class ProgramArgumentBuilder35 {
 	 */
 	public String[] getProgramArguments(ILaunchConfiguration configuration,String[] reqs) throws CoreException {
 		
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		fModels = getBundleMap(configuration);
 		
 		
@@ -378,35 +378,35 @@ public class ProgramArgumentBuilder35 {
 		}
 		return (String[]) programArgs.toArray(new String[programArgs.size()]);
 		
-		/* $else$
+		$else$ */
 		return (String[])PreprocessorInvariant.violated();		
-		$endif$ */
+		/* $endif$ */
 	}
 
 	private Properties getProperties(ILaunchConfiguration configuration,
 			String productID) throws CoreException {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		return LaunchConfigurationHelper.createConfigIniFile(configuration, productID, fAllBundles, fModels, getConfigDir(configuration));
-		/* $else$
+		$else$ */
 		return (Properties)PreprocessorInvariant.violated();		
-		$endif$ */
+		/* $endif$ */
 	}
 
 	private Map getBundleMap(ILaunchConfiguration configuration) throws CoreException {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		return BundleLauncherHelper.getMergedBundleMap(configuration, false);
-		/* $else$
+		$else$ */
 		return (Map)PreprocessorInvariant.violated();		
-		$endif$ */
+		/* $endif$ */
 	}
 	
 	private String computeShowsplashArgument() {
-		/* $if eclipse.version == 3.5 $ */
+		/* $if eclipse.version == 3.5 $
 		IPath eclipseHome = new Path(TargetPlatform.getLocation());
 		IPath fullPath = eclipseHome.append("eclipse"); //$NON-NLS-1$
 		return fullPath.toOSString() + " -showsplash 600"; //$NON-NLS-1$
-		/* $else$
+		$else$ */
 		return (String)PreprocessorInvariant.violated();		
-		$endif$ */
+		/* $endif$ */
 	}
 }

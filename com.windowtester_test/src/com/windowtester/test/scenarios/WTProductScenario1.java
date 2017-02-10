@@ -21,16 +21,11 @@ import com.windowtester.runtime.condition.IHandler;
 import com.windowtester.runtime.swt.condition.shell.ShellShowingCondition;
 import com.windowtester.runtime.swt.locator.ButtonLocator;
 import com.windowtester.runtime.util.ScreenCapture;
-import com.windowtester.test.eclipse.CodeCoverageViewTest;
 import com.windowtester.test.eclipse.ImportExampleProjectTest;
 import com.windowtester.test.eclipse.NewSimpleProjectTest;
 import com.windowtester.test.eclipse.locator.ContributedToolItemLocatorSmokeTest;
-import com.windowtester.test.license.WindowTesterEvalRegTest;
-import com.windowtester.test.prefpage.CodeCoveragePrefPageTest;
 import com.windowtester.test.prefpage.WindowTesterPrefPageTest;
 import com.windowtester.test.product.docs.ValidateIntroPageContentTest;
-import com.windowtester.test.screencapture.NewAPIScreenCaptureTest;
-//import com.windowtester.test.screencapture.NewUIContextAdapterTest;
 
 public class WTProductScenario1
 {
@@ -51,7 +46,8 @@ public class WTProductScenario1
 //		suite.addTestSuite(WindowTesterEvalRegTest.class);
 		suite.addTestSuite(ImportExampleProjectTest.class);
 
-		suite.addTestSuite(NewAPIScreenCaptureTest.class);
+		//disabled because testNonExistentMenuItem hangs for 3 hours ?!
+//		suite.addTestSuite(NewAPIScreenCaptureTest.class);
 		
 		//REMOVED: https://fogbugz.instantiations.com/default.php?44001
 		//suite.addTestSuite(NewUIContextAdapterTest.class);
